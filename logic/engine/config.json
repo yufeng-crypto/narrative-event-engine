@@ -1,0 +1,7 @@
+{
+  "api_key": "sk-cp-cOK9G2O4ZpSb7TWE9OVx8-Pl1zq2yHzG_UgfzCRZ6JIMDa_O855-mB0U5oEgUe78CmnMDFOYEPcuQpDAAUikvApd509C0S5PGn5dxm4xCAwLWwKR1JYy5ss",
+  "api_url": "https://api.minimax.chat/v1/text/chatcompletion_v2",
+  "model": "MiniMax-M2.5",
+  "temperature": 0.7,
+  "max_tokens": 2048
+}

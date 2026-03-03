@@ -1,0 +1,12 @@
+[2026-03-01 05:40:11.980] [INFO] [MAIN] 程序启动，日志文件: C:\Users\20731\.openclaw\workspace\logic\prototype\logs\debug\debug_20260301_054011.log
+[2026-03-01 05:40:11.984] [INFO] [ENGINE] 引擎模块加载成功
+[2026-03-01 05:40:12.053] [INFO] [GUI] 选择角色时加载历史状态
+    Extra: 六轴: {'Intimacy': 2, 'Risk': 3, 'Info': 3, 'Action': 2, 'Rel': 4, 'Growth': 5}
+[2026-03-01 05:40:12.054] [INFO] [GUI] 更新Perception预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 05:40:12.054] [INFO] [GUI] 更新Director预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 05:40:12.054] [INFO] [GUI] 更新Predictor预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 05:40:12.055] [INFO] [GUI] 更新Performer预览
+    Extra: 输入长度: 0, 输出长度: 0

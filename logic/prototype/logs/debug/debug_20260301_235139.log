@@ -1,0 +1,6 @@
+[2026-03-01 23:51:39.887] [INFO] [MAIN] 程序启动，日志文件: C:\Users\20731\.openclaw\workspace\logic\prototype\logs\debug\debug_20260301_235139.log
+[2026-03-01 23:51:39.892] [INFO] [ENGINE] 引擎模块加载成功
+[2026-03-01 23:51:39.937] [INFO] [GUI] MODELS_CONFIG加载
+    Extra: {'default': 'minimax', 'providers': {'minimax': {'name': 'MiniMax', 'api_url': 'https://api.minimax.chat/v1/text/chatcompletion_v2', 'models': ['MiniMax-M2.5'], 'default_model': 'MiniMax-M2.5'}, 'doubao': {'name': '火山引擎 Doubao', 'api_url': 'https://ark.cn-beijing.volces.com/api/v3', 'models': ['doubao-1-5-pro-32k-character-250715'], 'default_model': 'doubao-1-5-pro-32k-character-250715', 'api_key': '2245200e-e4e5-4fc8-8620-e0a4c38ec774'}}}
+[2026-03-01 23:51:39.941] [INFO] [GUI] 可用模型列表
+    Extra: ['minimax:MiniMax-M2.5', 'doubao:doubao-1-5-pro-32k-character-250715']

@@ -1,0 +1,27 @@
+{
+  "round": 5,
+  "user": "姐姐以前在宫里是什么位份？",
+  "npc": "哈？宫里？姐姐我可是21世纪的新时代女性，什么宫不宫的，你当这是在拍古装剧呢？\n\n再说了，本小姐要是真在那种地方，还用得着在这里开直播？看不出来你问问题这么没水准的吗......\n\n不过算了，看在你这么好奇的份上——本小姐以前在沈氏集团旗下的娱乐公司，那可是正当红的一姐！排面懂吗？\n\n你到底想问什么？能不能说点本小姐听得懂的话？",
+  "history": [
+    {
+      "user": "姐姐一个人在这冷宫，可还好？",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    },
+    {
+      "user": "随便你，我走了",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    },
+    {
+      "user": "嗯",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    },
+    {
+      "user": "你为什么会在冷宫？",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    },
+    {
+      "user": "姐姐以前在宫里是什么位份？",
+      "npc": "哈？宫里？姐姐我可是21世纪的新时代女性，什么宫不宫的，你当这是在拍古装剧呢？\n\n再说了，本小姐要是真在那种地方，还用得着在这里开直播？看不出来你问问题这么没水准的吗......\n\n不过算了，看在你这么好奇的份上——本小姐以前在沈氏集团旗下的娱乐公司，那可是正当红的一姐！排面懂吗？\n\n你到底想问什么？能不能说点本小姐听得懂的话？"
+    }
+  ]
+}

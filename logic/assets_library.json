@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "created_at": "2026-02-25",
+  "neh_library": {
+    "ARC_W": {
+      "name": "外部干预",
+      "description": "社会/物理不可抗力",
+      "prototypes": [
+        { "id": "ARC_W_01", "plot_hook": "不速之客", "trigger_condition": "Intimacy >= 5" },
+        { "id": "ARC_W_02", "plot_hook": "紧急召唤", "trigger_condition": "Action >= 7" },
+        { "id": "ARC_W_03", "plot_hook": "社交破裂", "trigger_condition": "Risk >= 6" },
+        { "id": "ARC_W_04", "plot_hook": "舆论围剿", "trigger_condition": "Info >= 6" },
+        { "id": "ARC_W_05", "plot_hook": "身份剥夺", "trigger_condition": "Rel >= 8" }
+      ]
+    },
+    "ARC_E": {
+      "name": "环境突变",
+      "description": "空间逻辑强制重塑",
+      "prototypes": [
+        { "id": "ARC_E_01", "plot_hook": "物理囚笼", "trigger_condition": "Risk >= 7" },
+        { "id": "ARC_E_02", "plot_hook": "资源匮乏", "trigger_condition": "Action >= 6" },
+        { "id": "ARC_E_03", "plot_hook": "感官剥夺", "trigger_condition": "Info >= 7" },
+        { "id": "ARC_E_04", "plot_hook": "时空紊乱", "trigger_condition": "Risk >= 8" },
+        { "id": "ARC_E_05", "plot_hook": "资产损毁", "trigger_condition": "Action >= 5" }
+      ]
+    },
+    "ARC_R": {
+      "name": "情感余震",
+      "description": "亲密后的心理回弹",
+      "prototypes": [
+        { "id": "ARC_R_01", "plot_hook": "致命误会", "trigger_condition": "Intimacy >= 6" },
+        { "id": "ARC_R_02", "plot_hook": "秘密外溢", "trigger_condition": "Info >= 5" },
+        { "id": "ARC_R_03", "plot_hook": "旧识干预", "trigger_condition": "Rel >= 4" },
+        { "id": "ARC_R_04", "plot_hook": "依赖转移", "trigger_condition": "Growth >= 5" },
+        { "id": "ARC_R_05", "plot_hook": "信任余震", "trigger_condition": "Intimacy >= 7" }
+      ]
+    },
+    "ARC_S": {
+      "name": "信仰坍塌",
+      "description": "核心价值观受挫",
+      "prototypes": [
+        { "id": "ARC_S_01", "plot_hook": "梦想受挫", "trigger_condition": "Growth >= 6" },
+        { "id": "ARC_S_02", "plot_hook": "面具剥落", "trigger_condition": "Growth >= 7" },
+        { "id": "ARC_S_03", "plot_hook": "二选一困境", "trigger_condition": "Rel >= 8" },
+        { "id": "ARC_S_04", "plot_hook": "价值背离", "trigger_condition": "Rel >= 7" },
+        { "id": "ARC_S_05", "plot_hook": "余烬重塑", "trigger_condition": "Growth >= 9" }
+      ]
+    }
+  },
+  "tension_tools": {
+    "intimacy": {
+      "range_2_3": "短促对视、微动作",
+      "range_8_9": "呼吸交错、核心创伤交付",
+      "range_10": "身心交融、绝对坦诚"
+    },
+    "risk": {
+      "range_5_6": "密闭空间压强、环境不安",
+      "range_9": "存亡时刻、秩序崩塌"
+    },
+    "growth": {
+      "range_4_5": "自我怀疑、内心动摇",
+      "range_10": "绝对真实、社交伪装剥离"
+    }
+  },
+  "config": {
+    "Unmasked_Filter": true,
+    "NEH_Interval": 5,
+    "Pressure_Threshold": 5.0
+  }
+}

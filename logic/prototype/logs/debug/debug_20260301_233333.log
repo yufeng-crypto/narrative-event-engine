@@ -1,0 +1,6 @@
+[2026-03-01 23:33:33.273] [INFO] [MAIN] 程序启动，日志文件: C:\Users\20731\.openclaw\workspace\logic\prototype\logs\debug\debug_20260301_233333.log
+[2026-03-01 23:33:33.301] [INFO] [ENGINE] 引擎模块加载成功
+[2026-03-01 23:33:33.352] [INFO] [GUI] MODELS_CONFIG加载
+    Extra: {'default': 'minimax', 'providers': {}}
+[2026-03-01 23:33:33.353] [INFO] [GUI] 可用模型列表
+    Extra: []

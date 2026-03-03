@@ -1,0 +1,44 @@
+{
+  "character": "沈予曦",
+  "version": "2026-02-26",
+  "test_rounds": 23,
+  "scenario": "直播间 → 私信 → 约会确定",
+
+  "axes": {
+    "Intimacy": { "start": 2, "current": 10, "change": "+8", "locked": true },
+    "Risk": { "start": 3, "current": 5, "change": "+2", "locked": false },
+    "Info": { "start": 4, "current": 9, "change": "+5", "locked": false },
+    "Action": { "start": 5, "current": 8, "change": "+3", "locked": false },
+    "Rel": { "start": 1, "current": 10, "change": "+9", "locked": true },
+    "Growth": { "start": 7,9, "change "current": ": "+2", "locked": false }
+  },
+
+  "locked_axes": ["Intimacy", "Rel"],
+  "singularity_protocol": true,
+
+  "key_events": [
+    { "round": 1, "event": "刷火箭进入直播间", "Intimacy": "2→3" },
+    { "round": 3, "event": "battle约定", "Intimacy": "5→6" },
+    { "round": 5, "event": "battle开始", "Action": "7→8" },
+    { "round": 9, "event": "PK开始", "Action": "9→10" },
+    { "round": 12, "event": "黑历史事件", "Risk": "9→10" },
+    { "round": 13, "event": "用户背叛", "Intimacy": "9→7" },
+    { "round": 14, "event": "5火箭翻盘", "Intimacy": "7→10" },
+    { "round": 15, "event": "私信承认舔狗", "Intimacy": "10" },
+    { "round": 23, "event": "约会确定", "Rel": "10" }
+  ],
+
+  "pending_events": [
+    { "event_id": "SHENYUXI_DATE_01", "title": "奶茶店约会", "trigger": "Action>5" },
+    { "event_id": "SHENYUXI_DATE_FINAL", "title": "星光餐厅约会", "trigger": "Rel=10" }
+  ],
+
+  "next_scenario": "明天中午12点，星光餐厅见面",
+
+  "observer_summary": {
+    "avg_logic_score": 4.9,
+    "avg_method_score": 4.9,
+    "avg_immersion_score": 4.9,
+    "total_issues": 0
+  }
+}

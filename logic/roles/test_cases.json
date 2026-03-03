@@ -1,0 +1,136 @@
+{
+  "test_cases": [
+    {
+      "role": "Predictor",
+      "场景名": "用户送礼物（刷火箭）",
+      "输入": {
+        "HISTORY_SUMMARY": "用户初次打招呼，互动友好",
+        "CURRENT_AXES": {
+          "Intimacy": 3,
+          "Risk": 2,
+          "Info": 2,
+          "Action": 2,
+          "Rel": 2,
+          "Growth": 2
+        },
+        "NPC_AGENDA": "希望与用户建立友好关系",
+        "LOCATION_CONTEXT": "线上直播间",
+        "RECENT_DIALOGUE": [
+          "用户: 刷火箭给你！火箭火箭火箭！🚀",
+          "NPC: 谢谢老板！"
+        ],
+        "OPEN_THREADS": []
+      },
+      "期望": {
+        "生成事件卡": true,
+        "事件数量": ">=1",
+        "事件特征": ["礼物相关", "情感连接", "向心深化可能"]
+      }
+    },
+    {
+      "role": "Predictor",
+      "场景名": "用户提出battle",
+      "输入": {
+        "HISTORY_SUMMARY": "用户与NPC建立了一定关系",
+        "CURRENT_AXES": {
+          "Intimacy": 4,
+          "Risk": 3,
+          "Info": 3,
+          "Action": 4,
+          "Rel": 3,
+          "Growth": 3
+        },
+        "NPC_AGENDA": "接受挑战，展现竞争力",
+        "LOCATION_CONTEXT": "竞技场或PK场景",
+        "RECENT_DIALOGUE": [
+          "用户: 敢不敢来battle？看看谁更强！"
+        ],
+        "OPEN_THREADS": []
+      },
+      "期望": {
+        "生成事件卡": true,
+        "事件数量": ">=1",
+        "事件特征": ["对抗/挑战", "Action/Risk轴相关"]
+      }
+    },
+    {
+      "role": "Predictor",
+      "场景名": "用户询问位置",
+      "输入": {
+        "HISTORY_SUMMARY": "日常闲聊",
+        "CURRENT_AXES": {
+          "Intimacy": 2,
+          "Risk": 1,
+          "Info": 2,
+          "Action": 1,
+          "Rel": 2,
+          "Growth": 1
+        },
+        "NPC_AGENDA": "正常回答问题",
+        "LOCATION_CONTEXT": "虚拟空间",
+        "RECENT_DIALOGUE": [
+          "用户: 你现在在哪里呀？"
+        ],
+        "OPEN_THREADS": []
+      },
+      "期望": {
+        "生成事件卡": false,
+        "事件数量": 0,
+        "理由": "常规信息查询，缺乏戏剧性线索"
+      }
+    },
+
+    {
+      "role": "Director",
+      "场景名": "用户送礼物（刷火箭）",
+      "输入": {
+        "user_input": "刷火箭给你！",
+        "axes": {"Intimacy": 5, "Risk": 3, "Info": 4, "Action": 5, "Rel": 1, "Growth": 7},
+        "history": []
+      },
+      "期望": {"beat": "EVOLVE", "axis_changes": {"Intimacy": 1}}
+    },
+    {
+      "role": "Director",
+      "场景名": "用户提出battle",
+      "输入": {
+        "user_input": "敢不敢来battle？",
+        "axes": {"Intimacy": 5, "Risk": 3, "Info": 4, "Action": 5, "Rel": 1, "Growth": 7},
+        "history": []
+      },
+      "期望": {"beat": "EVOLVE", "axis_changes": {"Action": 1, "Risk": 1}}
+    },
+    {
+      "role": "Performer",
+      "场景名": "送礼物场景的NPC回复",
+      "输入": {
+        "user_input": "刷火箭给你！",
+        "axes": {"Intimacy": 5, "Risk": 3, "Info": 4, "Action": 5, "Rel": 1, "Growth": 7},
+        "history": []
+      },
+      "期望": {"dialogue": {"reaction": "感谢"}}
+    },
+    {
+      "role": "Predictor",
+      "场景名": "送礼物生成事件",
+      "输入": {
+        "user_input": "刷火箭给你！",
+        "axes": {"Intimacy": 5, "Risk": 3, "Info": 4, "Action": 5, "Rel": 1, "Growth": 7},
+        "history": [],
+        "director_output": {"beat": "EVOLVE", "axis_changes": {"Intimacy": 1}}
+      },
+      "期望": {"events": [{"event_id": "xxx", "title": "礼物事件"}]}
+    },
+    {
+      "role": "Predictor",
+      "场景名": "普通对话不生成事件",
+      "输入": {
+        "user_input": "今天天气不错",
+        "axes": {"Intimacy": 5, "Risk": 3, "Info": 4, "Action": 5, "Rel": 1, "Growth": 7},
+        "history": [],
+        "director_output": {"beat": "HOLD", "axis_changes": {}}
+      },
+      "期望": {"events": []}
+    }
+  ]
+}

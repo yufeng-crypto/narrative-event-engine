@@ -1,0 +1,19 @@
+{
+  "round": 3,
+  "user": "嗯",
+  "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]",
+  "history": [
+    {
+      "user": "姐姐一个人在这冷宫，可还好？",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    },
+    {
+      "user": "随便你，我走了",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    },
+    {
+      "user": "嗯",
+      "npc": "[API错误: {'status_code': 2013, 'status_msg': 'invalid params, invalid chat setting'}]"
+    }
+  ]
+}

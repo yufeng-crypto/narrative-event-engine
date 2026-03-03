@@ -1,0 +1,275 @@
+{
+  "axes": {
+    "Intimacy": 8,
+    "Risk": 5,
+    "Info": 4,
+    "Action": 7,
+    "Rel": 1,
+    "Growth": 7
+  },
+  "momentum": {
+    "Intimacy": 0,
+    "Risk": 0,
+    "Info": 0,
+    "Action": 0,
+    "Rel": 0,
+    "Growth": 0
+  },
+  "round": 8,
+  "locked_axes": [],
+  "pending_events": [],
+  "history": [
+    {
+      "user_input": "我给你刷个火箭",
+      "npc_output": "3000？对本小姐来说算正常水平啦~",
+      "director": {
+        "beat": "EVOLVE",
+        "axis_changes": {
+          "Intimacy": 1
+        },
+        "reasoning": "User sends gift"
+      },
+      "events": [
+        {
+          "event_id": "TEST_EVENT_01",
+          "archetype": "ARC_W_01",
+          "title": "Test Event",
+          "trigger": {
+            "axis": "Action",
+            "value": ">5"
+          },
+          "choices": [
+            {
+              "label": "A",
+              "impact": {
+                "Intimacy": 1
+              }
+            },
+            {
+              "label": "B",
+              "impact": {
+                "Risk": 1
+              }
+            }
+          ]
+        }
+      ],
+      "observer": {
+        "emotion_curve": 3,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 1
+    },
+    {
+      "user_input": "3000才能喝奶茶啊",
+      "npc_output": "好吧...勉强让你请一次~",
+      "director": {
+        "beat": "HOLD",
+        "axis_changes": {
+          "Intimacy": 1
+        },
+        "reasoning": "Normal interaction"
+      },
+      "events": [],
+      "observer": {
+        "emotion_curve": 3,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 2
+    },
+    {
+      "user_input": "我们battle吧",
+      "npc_output": "笑死，本小姐直播以来就没输过！",
+      "director": {
+        "beat": "EVOLVE",
+        "axis_changes": {
+          "Action": 1,
+          "Risk": 1
+        },
+        "reasoning": "User proposes battle"
+      },
+      "events": [
+        {
+          "event_id": "TEST_EVENT_01",
+          "archetype": "ARC_W_01",
+          "title": "Test Event",
+          "trigger": {
+            "axis": "Action",
+            "value": ">5"
+          },
+          "choices": [
+            {
+              "label": "A",
+              "impact": {
+                "Intimacy": 1
+              }
+            },
+            {
+              "label": "B",
+              "impact": {
+                "Risk": 1
+              }
+            }
+          ]
+        }
+      ],
+      "observer": {
+        "emotion_curve": 4,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 3
+    },
+    {
+      "user_input": "好了不闹了，去喝奶茶吧",
+      "npc_output": "好吧...勉强让你请一次~",
+      "director": {
+        "beat": "HOLD",
+        "axis_changes": {
+          "Intimacy": 1
+        },
+        "reasoning": "Normal interaction"
+      },
+      "events": [],
+      "observer": {
+        "emotion_curve": 3,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 4
+    },
+    {
+      "user_input": "我给你刷个火箭",
+      "npc_output": "3000？对本小姐来说算正常水平啦~",
+      "director": {
+        "beat": "EVOLVE",
+        "axis_changes": {
+          "Intimacy": 1
+        },
+        "reasoning": "User sends gift"
+      },
+      "events": [
+        {
+          "event_id": "TEST_EVENT_01",
+          "archetype": "ARC_W_01",
+          "title": "Test Event",
+          "trigger": {
+            "axis": "Action",
+            "value": ">5"
+          },
+          "choices": [
+            {
+              "label": "A",
+              "impact": {
+                "Intimacy": 1
+              }
+            },
+            {
+              "label": "B",
+              "impact": {
+                "Risk": 1
+              }
+            }
+          ]
+        }
+      ],
+      "observer": {
+        "emotion_curve": 3,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 5
+    },
+    {
+      "user_input": "3000才能喝奶茶啊",
+      "npc_output": "好吧...勉强让你请一次~",
+      "director": {
+        "beat": "HOLD",
+        "axis_changes": {
+          "Intimacy": 1
+        },
+        "reasoning": "Normal interaction"
+      },
+      "events": [],
+      "observer": {
+        "emotion_curve": 3,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 6
+    },
+    {
+      "user_input": "我们battle吧",
+      "npc_output": "笑死，本小姐直播以来就没输过！",
+      "director": {
+        "beat": "EVOLVE",
+        "axis_changes": {
+          "Action": 1,
+          "Risk": 1
+        },
+        "reasoning": "User proposes battle"
+      },
+      "events": [
+        {
+          "event_id": "TEST_EVENT_01",
+          "archetype": "ARC_W_01",
+          "title": "Test Event",
+          "trigger": {
+            "axis": "Action",
+            "value": ">5"
+          },
+          "choices": [
+            {
+              "label": "A",
+              "impact": {
+                "Intimacy": 1
+              }
+            },
+            {
+              "label": "B",
+              "impact": {
+                "Risk": 1
+              }
+            }
+          ]
+        }
+      ],
+      "observer": {
+        "emotion_curve": 4,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 7
+    },
+    {
+      "user_input": "好了不闹了，去喝奶茶吧",
+      "npc_output": "好吧...勉强让你请一次~",
+      "director": {
+        "beat": "HOLD",
+        "axis_changes": {
+          "Intimacy": 1
+        },
+        "reasoning": "Normal interaction"
+      },
+      "events": [],
+      "observer": {
+        "emotion_curve": 3,
+        "suspense": 2,
+        "character_memory": 4,
+        "immersion": 4
+      },
+      "round": 8
+    }
+  ],
+  "npc": "沈予曦",
+  "last_npc_output": "好吧...勉强让你请一次~"
+}

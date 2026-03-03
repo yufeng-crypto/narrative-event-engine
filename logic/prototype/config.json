@@ -1,0 +1,10 @@
+{
+  "api": {
+    "provider": "minimax",
+    "api_key": "sk-cp-cOK9G2O4ZpSb7TWE9OVx8-Pl1zq2yHzG_UgfzCRZ6JIMDa_O855-mB0U5oEgUe78CmnMDFOYEPcuQpDAAUikvApd509C0S5PGn5dxm4xCAwLWwKR1JYy5ss",
+    "base_url": "https://api.minimax.chat/v1",
+    "model": "MiniMax-M2.5"
+  },
+  "roles_path": "C:\\Users\\20731\\.openclaw\\workspace\\logic\\roles",
+  "logs_path": "C:\\Users\\20731\\.openclaw\\workspace\\logic\\prototype\\logs"
+}

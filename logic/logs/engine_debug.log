@@ -1,0 +1,16 @@
+[测试] 日志功能正常
+[2026-03-02 00:48:13] [set_model] MODEL=doubao-1-5-pro-32k-character-250715, CURRENT_PROVIDER=doubao
+[2026-03-02 00:48:26] [call_llm] 调用模型=MiniMax-M2.5, 传入model参数=None
+[2026-03-02 00:48:38] [call_llm] 调用模型=MiniMax-M2.5, 传入model参数=None
+[2026-03-02 00:49:08] [performer.perform] 调用call_llm, MODEL=doubao-1-5-pro-32k-character-250715
+[2026-03-02 00:49:08] [call_llm] 调用模型=doubao-1-5-pro-32k-character-250715, 传入model参数=doubao-1-5-pro-32k-character-250715
+[2026-03-02 00:59:11] [set_model] MODEL=doubao-1-5-pro-32k-character-250715, CURRENT_PROVIDER=doubao
+[2026-03-02 00:59:31] [call_llm] 调用模型=MiniMax-M2.5, 传入model参数=None
+[2026-03-02 00:59:49] [call_llm] 调用模型=MiniMax-M2.5, 传入model参数=None
+[2026-03-02 01:00:30] [performer.perform] 调用call_llm, current_model=doubao-1-5-pro-32k-character-250715
+[2026-03-02 01:00:30] [call_llm] 调用模型=doubao-1-5-pro-32k-character-250715, 传入model参数=doubao-1-5-pro-32k-character-250715
+[2026-03-02 01:06:02] [set_model] MODEL=doubao-1-5-pro-32k-character-250715, CURRENT_PROVIDER=doubao
+[2026-03-02 01:06:15] [call_llm] 调用模型=MiniMax-M2.5, 传入model参数=None
+[2026-03-02 01:06:25] [call_llm] 调用模型=MiniMax-M2.5, 传入model参数=None
+[2026-03-02 01:07:25] [performer.perform] 调用call_llm, current_model=doubao-1-5-pro-32k-character-250715
+[2026-03-02 01:07:25] [call_llm] 调用模型=doubao-1-5-pro-32k-character-250715, 传入model参数=doubao-1-5-pro-32k-character-250715

@@ -1,0 +1,22 @@
+{
+  "default": "minimax",
+  "providers": {
+    "minimax": {
+      "name": "MiniMax",
+      "api_url": "https://api.minimax.chat/v1/text/chatcompletion_v2",
+      "models": [
+        "MiniMax-M2.5"
+      ],
+      "default_model": "MiniMax-M2.5"
+    },
+    "doubao": {
+      "name": "火山引擎 Doubao",
+      "api_url": "https://ark.cn-beijing.volces.com/api/v3/chat/completions",
+      "models": [
+        "doubao-1-5-pro-32k-character-250715"
+      ],
+      "default_model": "doubao-1-5-pro-32k-character-250715",
+      "api_key": "b9846d06-f1ce-4062-a83e-5e7dc1682ad4"
+    }
+  }
+}

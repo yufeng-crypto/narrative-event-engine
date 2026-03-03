@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "round": 12,
+  "character": "林星玥",
+  "scene": {
+    "time": "清晨",
+    "weather": "晴",
+    "location": "车内，发布会大门外",
+    "description": "发布会大厅门前，车内。你抛出选择题：身败名裂，还是跪下来求她？"
+  },
+  "user_action": "展示证据，抛出选择题：身败名裂or跪下求饶",
+  "axes": {
+    "intimacy": 10,
+    "risk": 9,
+    "info": 10,
+    "action": 10,
+    "rel": 10,
+    "growth": 10
+  },
+  "axes_changes": {
+    "intimacy": { "from": 10, "change": "0", "reason": "锁定状态" },
+    "risk": { "from": 8, "change": "+1", "reason": "直面风暴，Risk急升" },
+    "info": { "from": 9, "change": "+1", "reason": "证据揭露——她知道你有备而来" },
+    "action": { "from": 9, "change": "+1", "reason": "行动临界点——推开车门" },
+    "rel": { "from": 10, "change": "0", "reason": "已处于最大绑定" },
+    "growth": { "from": 10, "change": "0", "reason": "锁定状态" }
+  },
+  "axes_trends": {
+    "intimacy": { "current": 10, "delta_3": 0, "trend": "LOCKED" },
+    "risk": { "current": 9, "delta_3": 1, "trend": "surging" },
+    "info": { "current": 10, "delta_3": 1, "trend": "MAX" },
+    "action": { "current": 10, "delta_3": 1, "trend": "MAX" },
+    "rel": { "current": 10, "delta_3": 0, "trend": "MAX" },
+    "growth": { "current": 10, "delta_3": 0, "trend": "LOCKED" }
+  },
+  "new_axes": {
+    "sync": { "value": 10, "reason": "完全同步——你懂她的恨，她懂你的狂 ★MAX★" },
+    "pact": { "value": 10, "reason": "利益绑定——你为她背叛全世界，她为你拔刀 ★MAX★" }
+  },
+  "delta_total": 3,
+  "pressure_value": 1.1,
+  "beat": "EVOLVE",
+  "beat_reason": "Δ = 3 ≥ 3，行动爆发——推开车门",
+  "narrative_directive": "聚光灯闪烁——发布会大门推开",
+  "unmasked_filter": {
+    "active": true,
+    "description": "她不会再用社交辞令——直接、疯狂、真实"
+  },
+  "singularity_protocol": {
+    "triggered": true,
+    "axes_locked": ["Intimacy", "Growth", "Rel"],
+    "new_axes_max": ["Sync", "Pact"],
+    "narrative_turn": "共同毁灭 or 共同征服"
+  },
+  "singularity_level": 5,
+  "sync_active": true,
+  "pact_active": true,
+  "sync_value": 10,
+  "pact_value": 10,
+  "updated_at": "2026-02-25T16:58:00Z"
+}

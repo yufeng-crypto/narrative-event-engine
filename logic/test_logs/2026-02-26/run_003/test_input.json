@@ -1,0 +1,8 @@
+{
+  "scene_id": "scene_003",
+  "scene_type": "cold",
+  "user_input": "嗯",
+  "axes_before": {"Intimacy": 4, "Risk": 8, "Info": 6, "Action": 5, "Rel": 3, "Growth": 7},
+  "character": "沈氏",
+  "description": "用户仅回复'嗯'，这是一个典型的冷启动场景，用户态度冷淡"
+}

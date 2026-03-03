@@ -1,0 +1,16 @@
+{
+  "axes": {
+    "Intimacy": 5,
+    "Risk": 6
+  },
+  "history": [
+    {
+      "round": 1,
+      "user": "hello",
+      "npc": "hi"
+    }
+  ],
+  "round": 1,
+  "npc_name": "沈予曦",
+  "saved_at": "2026-02-26T11:42:53.296912"
+}

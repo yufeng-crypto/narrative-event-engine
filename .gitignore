@@ -1,0 +1,6 @@
+# .openclaw/
+# logs/
+# prototype/logs/
+# __pycache__/
+# *.pyc
+# .env

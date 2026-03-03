@@ -1,0 +1,89 @@
+{
+  "version": "1.0",
+  "arc_templates": {
+    "ARC_W": [
+      { "id": "ARC_W_01", "type": "外部干预", "plot_hook": "不速之客", "trigger_condition": "Intimacy >= 5" },
+      { "id": "ARC_W_02", "type": "外部干预", "plot_hook": "社交破裂", "trigger_condition": "Risk >= 6" },
+      { "id": "ARC_W_03", "type": "外部干预", "plot_hook": "紧急召唤", "trigger_condition": "Action >= 7" },
+      { "id": "ARC_W_04", "type": "外部干预", "plot_hook": "资源争夺", "trigger_condition": "Rel >= 5" },
+      { "id": "ARC_W_05", "type": "外部干预", "plot_hook": "舆论风暴", "trigger_condition": "Info >= 6" }
+    ],
+    "ARC_E": [
+      { "id": "ARC_E_01", "type": "环境突变", "plot_hook": "物理囚笼", "trigger_condition": "Risk >= 7" },
+      { "id": "ARC_E_02", "type": "环境突变", "plot_hook": "资产损毁", "trigger_condition": "Action >= 5" },
+      { "id": "ARC_E_03", "type": "环境突变", "plot_hook": "场景崩塌", "trigger_condition": "Risk >= 8" },
+      { "id": "ARC_E_04", "type": "环境突变", "plot_hook": "失物寻找", "trigger_condition": "Intimacy >= 4" },
+      { "id": "ARC_E_05", "type": "环境突变", "plot_hook": "感官侵蚀", "trigger_condition": "Info >= 7" }
+    ],
+    "ARC_R": [
+      { "id": "ARC_R_01", "type": "情感余震", "plot_hook": "致命误会", "trigger_condition": "Intimacy >= 6" },
+      { "id": "ARC_R_02", "type": "情感余震", "plot_hook": "秘密外溢", "trigger_condition": "Info >= 5" },
+      { "id": "ARC_R_03", "type": "情感余震", "plot_hook": "旧识干预", "trigger_condition": "Rel >= 4" },
+      { "id": "ARC_R_04", "type": "情感余震", "plot_hook": "信任余震", "trigger_condition": "Intimacy >= 7" },
+      { "id": "ARC_R_05", "type": "情感余震", "plot_hook": "依赖转移", "trigger_condition": "Growth >= 5" }
+    ],
+    "ARC_S": [
+      { "id": "ARC_S_01", "type": "信仰坍塌", "plot_hook": "梦想受挫", "trigger_condition": "Growth >= 6" },
+      { "id": "ARC_S_02", "type": "信仰坍塌", "plot_hook": "终极二选一", "trigger_condition": "Rel >= 8" },
+      { "id": "ARC_S_03", "type": "信仰坍塌", "plot_hook": "面具剥落", "trigger_condition": "Growth >= 7" },
+      { "id": "ARC_S_04", "type": "信仰坍塌", "plot_hook": "价值背离", "trigger_condition": "Rel >= 7" },
+      { "id": "ARC_S_05", "type": "信仰坍塌", "plot_hook": "余烬重塑", "trigger_condition": "Growth >= 9" }
+    ],
+    "ARC_PACT": [
+      { "id": "ARC_PACT_01", "type": "联盟战斗", "plot_hook": "抄袭反击战", "trigger_condition": "Pact >= 7" },
+      { "id": "ARC_PACT_02", "type": "联盟战斗", "plot_hook": "舆论保卫战", "trigger_condition": "Risk >= 8" },
+      { "id": "ARC_PACT_03", "type": "联盟战斗", "plot_hook": "证据收集", "trigger_condition": "Info >= 8" }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "WORLD_REACTION_01",
+      "generated_at": "2026-02-25T16:25:00Z",
+      "arc_type": "ARC_W",
+      "plot_hook": "舆论风暴",
+      "trigger_condition": "Pact >= 9 AND Info >= 8",
+      "description": "林星玥和你决定反击后，抄袭者提前得知风声，在网上先发制人发布\"原创声明\"，引导舆论倒向对方。林星玥的社交媒体被攻击，粉丝开始脱粉回踩。",
+      "impact": {
+        "risk": "+2",
+        "info": "+1",
+        "pact": "+1 (加固)"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "CAND_PACT_01",
+      "generated_at": "2026-02-25T15:55:00Z",
+      "arc_type": "ARC_PACT",
+      "plot_hook": "抄袭反击战",
+      "trigger_condition": "Pact >= 7",
+      "description": "那个抄袭她作品的人即将在明天举办发布会——这是反击的绝佳时机。你们需要制定计划，在对方最风光的时候揭开真相。",
+      "status": "pending"
+    }
+  ],
+  "active_events": [
+    {
+      "id": "ARC_E_01",
+      "type": "环境突变",
+      "plot_hook": "物理囚笼",
+      "triggered_at": "2026-02-25T15:33:00Z",
+      "status": "resolved",
+      "description": "断电 - 已恢复"
+    },
+    {
+      "id": "SINGULARITY_MAIN",
+      "type": "奇点事件",
+      "plot_hook": "宿命式契约",
+      "triggered_at": "2026-02-25T15:45:00Z",
+      "status": "active",
+      "description": "Intimacy达到10 + Growth达到10"
+    },
+    {
+      "id": "SINGULARITY_PACT",
+      "type": "奇点事件",
+      "plot_hook": "共同对抗世界",
+      "triggered_at": "2026-02-25T15:50:00Z",
+      "status": "active",
+      "description": "Pact结盟 - 外部危机"
+    }
+  ]
+}

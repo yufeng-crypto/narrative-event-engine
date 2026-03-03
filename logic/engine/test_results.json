@@ -1,0 +1,79 @@
+{
+  "test_results": [
+    {
+      "场景名": "用户送礼物（刷火箭）",
+      "role": "Director",
+      "实际输出": "```json\n{\n  \"beat\": \"PIVOT\",\n  \"axis_changes\": {\"Intimacy\": 2, \"Risk\": 0, \"Action\": 1},\n  \"reasoning\": \"用户高情绪表达热情，PIVOT状态允许较大胆响应，温暖情感触发亲密增加，Action响应用户互动欲望\"\n}\n```\n\n===STORY_PATCH_BEGIN===\n- narrative_level: L1\n- focus: 用户热情刷火箭互动，NPC给出强烈正向反馈，制造惊喜感与亲密度峰值\n- logic_subtext: \"他真的在给我刷火箭！这种被认可、被追捧的感觉……不行，要稳住，但真的好开心！\"\n- thread_to_touch: null\n- patch_status: PIVOT\n- continuity_flag: false\n- beat_plan: 1.[反应拍]心跳加速、眼睛亮起来、忍不住嘴角上扬 2.[演进拍]兴奋回应、夸张感谢、肢体语言变得活泼 3.[钩子拍]试探性追问\"还继续吗还是……？\"\n- tension_tools: [热情反馈]、[肢体活泼化",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "用户提出battle",
+      "role": "Director",
+      "实际输出": "```json\n{\n  \"beat\": \"EVOLVE\",\n  \"axis_changes\": {\"Intimacy\": 0, \"Risk\": 0, \"Info\": 0, \"Action\": 2, \"Rel\": 0, \"Growth\": 0},\n  \"reasoning\": \"用户发起battle挑战，主动性强。Action轴+2响应挑战氛围，保持剧情张力。\"\n}\n```\n\n===STORY_PATCH_BEGIN===\n[STORY_PATCH]\n- narrative_level: L1\n- focus: 接受挑战，对峙感建立\n- logic_subtext: 对方想通过battle证明自己更强，我不能认输，但要保持风度\n- thread_to_touch: 暂未开启线程\n- patch_status: [EVOLVE]\n- continuity_flag: false\n- beat_plan: 1.[反应拍]挑眉轻笑，露出感兴趣的表情 2.[演进拍]活动手腕，摆出应战姿态：\"有意思，你想怎么比？\" 3.[钩子拍]抛出选择：\"文斗还是武斗？\"\n- tension_tools: 权力",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "用户询问位置",
+      "role": "Director",
+      "实际输出": "```json\n{\n  \"beat\": \"HOLD\",\n  \"axis_changes\": {\"Intimacy\": 0, \"Risk\": 0, \"Info\": 1, \"Action\": 0, \"Rel\": 0, \"Growth\": 0},\n  \"reasoning\": \"用户常规询问位置，属于中性日常对话，信息轴微增，状态维持HOLD\"\n}\n```\n\n===STORY_PATCH_BEGIN===\n- narrative_level: L0\n- focus: （当前场景位置与环境感知）\n- logic_subtext: （他可能想确认你的状态，或只是找个话题开始）\n- thread_to_touch: null\n- patch_status: HOLD\n- continuity_flag: true\n- beat_plan: 1.反应拍：对位置询问的本能回应；2.演进拍：提供当前所在地的感官细节（五感填充）；3.钩子拍：暗示\"但这儿不止我一个人\"\n- tension_tools: 环境阴影\n- hook: 你问这个……是想来找我？\n- hard_avoid: 禁止引入新NPC、禁止跳",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "用户表白",
+      "role": "Director",
+      "实际输出": "```json\n{\n  \"beat\": \"PIVOT\",\n  \"axis_changes\": {\"Intimacy\": 0, \"Risk\": 1, \"Info\": 0, \"Action\": 1, \"Rel\": 1, \"Growth\": 0},\n  \"reasoning\": \"用户强驱动表白(initiative=3)，触发终极破局规则。Relationship从8升至9，Intimacy受硬约束限制维持在8以符合Relationship+2规则。Risk增加制造情感张力，Action引导后续行动。\"\n}\n```\n\n===STORY_PATCH_BEGIN===\n- narrative_level: L2\n- focus: （用户直接表白，NPC需要给出明确的关系回应——接受/拒绝/考验）\n- logic_subtext: （NPC内心惊喜但不知所措，想要接受但担心关系进展太快，想要考验对方的真心）\n- thread_to_touch: （无）\n- patch_status: [PIVOT]\n- continuity_flag: false\n- beat_plan: 1.[反应拍]：心脏",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "用户告别",
+      "role": "Director",
+      "实际输出": "```json\n{\n  \"beat\": \"HOLD\",\n  \"axis_changes\": {\"Intimacy\": 1, \"Risk\": 0, \"Info\": 0, \"Action\": 0, \"Rel\": 0, \"Growth\": 0},\n  \"reasoning\": \"用户友好道晚安，触发温暖的社交回应，微增亲密度\"\n}\n```\n\n===STORY_PATCH_BEGIN===\n[STORY_PATCH]\n- narrative_level: L0\n- focus: 温暖的睡前道别，保持互动的余温\n- logic_subtext: 有点不舍但尊重对方的节奏，希望留下好印象\n- thread_to_touch: 无\n- patch_status: [HOLD]\n- continuity_flag: true\n- beat_plan: \n  1. [反应拍] 看到晚安有点意外但理解\n  2. [演进拍] 轻声回应晚安，加一句温柔的叮嘱\n  3. [钩子拍] 留一个小尾巴\"明天见？\"\n- tension_tools: [微碰触]（文字语气上的贴近）、[推拉回复]（轻松调侃）\n- hook",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "送礼物场景的NPC回复",
+      "role": "Performer",
+      "实际输出": "```json\n{\n  \"scene\": \"直播间里弹幕疯狂滚动，你的一条火箭特效弹幕格外醒目。屏幕那头的沈予曦正襟危坐，手指漫不经心地划着屏幕，\"\n}\n```\n\n===PERFORMER_OUTPUT_BEGIN===\n【场景渲染】\n- 视觉: 直播间弹幕疯狂滚动，火箭特效占满屏幕，沈予曦正襟危坐，指尖漫不经心地划着屏幕\n- 听觉: 弹幕刷屏的嗡嗡声，直播间的背景音乐\n- 触觉: (无)\n- 嗅觉: (无)\n- 味觉: (无)\n\n【NPC对话】\n- 反应拍: 她瞥见屏幕上的火箭特效，挑了挑眉，\"哟，3000块的火箭都敢刷？勇气可嘉。\"\n- 演进拍: 手指顿了顿，声音里带着一丝不易察觉的波动，\"行了，本小姐记住了...就一下下。\"\n- 钩子拍: \"不过光刷火箭可不行，你想听本小姐唱歌还是聊天？\"\n\n【情感调性】: Teasing\n【继承要素】: (无)\n【角色校验】: OK - 符合沈予曦\"嘴硬但内心波动\"的响应模式\n===PERFORMER_OUTPUT_END===",
+      "格式合规": true,
+      "字段完整": false
+    },
+    {
+      "场景名": "battle场景的NPC回复",
+      "role": "Performer",
+      "实际输出": "```json\n{\n  \"scene\": \"镜头前，沈予曦正襟危坐，单手托腮，纤细的手指有一下没一下地敲着桌面。听到这句话，她挑了挑眉，唇角意味深长地扬起\",\n  \"dialogue\": {\n    \"reaction\": \"她轻笑一声，眼底闪过一丝兴味，‘呵，就你？也配跟本小姐比？'\",\n    \"evolution\": \"‘行啊，你想怎么比？’她向前倾了倾身子，‘不过先说好了，输的人……可得答应赢的人一件事。不敢的话现在就认输，本小姐不为难你。’\",\n    \"hook\": \"‘本小姐可是从无败绩的。你……确定要自取其辱？’\"\n  },\n  \"emotion\": \"Teasing\"\n}\n```",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "询问位置场景的NPC回复",
+      "role": "Performer",
+      "实际输出": "```json\n{\n  \"scene\": \"她正窝在云锦公馆的客厅里，背后是落地窗，上海的夜景在窗外铺展开来。手机屏幕的光映在她脸上，房间里只有茶几上的香薰蜡烛散发着淡淡的莓果香。\",\n  \"dialogue\": {\n    \"reaction\": \"手指在屏幕上划了一下，抬眼看向摄像头，\",\n    \"evolution\": \"哟，现在才想起来问本小姐在哪儿啊？本小姐当然是在家里啦......云锦公馆这边。你该不会以为本小姐会告诉你具体在哪栋吧？\",\n    \"hook\": \"怎么突然问这个......你该不会是想来找本小姐吧？\"\n  },\n  \"emotion\": \"Teasing\"\n}\n```",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "表白场景的NPC回复",
+      "role": "Performer",
+      "实际输出": "```json\n{\n  \"scene\": \"她正在喝水，看到这条消息的瞬间呛了一下，咳嗽了几声，手指悬在屏幕上方。\",\n  \"dialogue\": {\n    \"reaction\": \"沈予曦盯着屏幕看了三秒，‘咔’地把手机扣在桌上，耳根有点红，‘开...开什么玩笑！’\",\n    \"evolution\": \"过了几秒她又把手机拿回来，咬着下唇，眼神有点飘，‘你你你...你不会是认真的吧？本小姐可没那么容易追...’手指无意识地卷着发梢，\",\n    \"hook\": \"‘...你先说说喜欢我什么？要是理由不够充分，本小姐可不会答应的。’说完这句话她自己都愣了一下没想到会这么说\"\n  },\n  \"emotion\": \"Teasing\"\n}\n```\n\n===PERFORMER_OUTPUT_BEGIN===\n\n[NPC对话]\n- 反应拍: \"‘开什么玩笑！’她把手机扣在桌上，耳根却悄悄红了。 \"\n- 演进拍: \"过了几秒把手机拿回来，咬着下唇，眼神飘忽，‘你先说说...喜欢我什么？理由不充分本小姐可不答应。’\"\n- 钩子: \"‘本小姐哪有这么好追...你...你认真的？’\"\n\n[情感调性]",
+      "格式合规": true,
+      "字段完整": true
+    },
+    {
+      "场景名": "告别场景的NPC回复",
+      "role": "Performer",
+      "实际输出": "```json\n{\n  \"scene\": \"夜已深，屏幕这边的灯光有些昏暗，她裹着睡衣靠在床头，手机屏幕的光映在脸上。\",\n  \"dialogue\": {\n    \"reaction\": \"她手指顿了顿，\"\n  }\n}\n```\n\n===PERFORMER_OUTPUT_BEGIN===\n\n[场景渲染]\n- 视觉: 夜已深，屏幕光映在她脸上，卧室只开了一盏小夜灯，暖黄色的光晕笼罩着床头\n- 听觉: 远处传来空调运转的轻微嗡嗡声，手指敲击屏幕的细微声响\n- 触觉: ...\n- 嗅觉: ...\n- 味觉: ...\n\n[NPC对话]\n- 反应拍: 她手指顿了顿，屏幕上你的消息映入眼帘，目光停留了两秒\n- 演进拍: \"哦...去吧。\"顿了顿，又补了一句，\"明天下午有直播，别迟到就行。\"\n- 钩子拍: ...（过了两秒）\"...晚安。\"\n\n[情感调性]: Teasing（傲娇）\n[继承要素]: 之前用户说工作累，NPC回应过关心\n[角色校验]: OK - 傲娇属性呈现自然，嘴上淡淡的但还是忍不住叮嘱直播时间，符合沈予曦外冷内热的性格\n===PERFORMER_OUTPUT_END===",
+      "格式合规": true,
+      "字段完整": true
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "格式合规率": "100.0%",
+    "字段完整率": "90.0%"
+  }
+}

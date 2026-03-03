@@ -1,0 +1,296 @@
+# -*- coding: utf-8 -*-
+"""
+爱巴基斯坦叙事引擎 (aibaji Engine) - 完整版
+真正调用LLM生成内容，实现模块化信息隔离
+"""
+
+import sys
+import io
+import json
+import os
+from datetime import datetime
+from typing import Dict, List, Optional
+
+# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')  # 移到 main 中
+
+# ==================== 配置 ====================
+def load_config():
+    config_path = os.path.join(os.path.dirname(__file__), "config.json")
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except:
+        return {"api_key": "", "api_url": "", "model": "MiniMax-M2.5"}
+
+CONFIG = load_config()
+API_KEY = CONFIG.get("api_key", "")
+API_URL = CONFIG.get("api_url", "https://api.minimaxi.com/v1/text/chatcompletion_v2")
+MODEL = CONFIG.get("model", "MiniMax-M2.5")
+
+# ==================== 辅助函数 ====================
+def merge_system_messages(messages: List[Dict]) -> List[Dict]:
+    """合并多个 system 消息为一个（MiniMax API 不支持多个 system）"""
+    system_contents = []
+    other_messages = []
+    
+    for msg in messages:
+        if msg.get("role") == "system":
+            system_contents.append(msg.get("content", ""))
+        else:
+            other_messages.append(msg)
+    
+    if system_contents:
+        combined = "\n\n---\n\n".join(system_contents)
+        return [{"role": "system", "content": combined}] + other_messages
+    
+    return messages
+
+# ==================== LLM 调用 ====================
+def call_llm(messages: List[Dict], max_tokens: int = 1024, max_retries: int = 3) -> str:
+    last_error = ""
+    for attempt in range(max_retries):
+        try:
+            import urllib.request
+            import urllib.error
+            
+            payload = {
+                "model": MODEL,
+                "messages": messages,
+                "temperature": 0.7
+            }
+            
+            data = json.dumps(payload).encode('utf-8')
+            req = urllib.request.Request(API_URL, data=data, method='POST')
+            req.add_header("Authorization", f"Bearer {API_KEY}")
+            req.add_header("Content-Type", "application/json")
+            
+            try:
+                response = urllib.request.urlopen(req, timeout=60)
+            except urllib.error.HTTPError as e:
+                error_body = e.read().decode('utf-8') if e.fp else ""
+                return f"[HTTP错误 {e.code}: {e.reason}] {error_body[:200]}"
+            
+            result = json.loads(response.read().decode('utf-8'))
+            
+            # 检查 API 返回的错误
+            if "base_resp" in result and result["base_resp"].get("status_code", 0) != 0:
+                return f"[API错误: {result['base_resp']}]"
+            
+            if "reply" in result and result["reply"]:
+                return result["reply"]
+            
+            choices = result.get("choices", [])
+            if choices and len(choices) > 0:
+                return choices[0].get("message", {}).get("content", "")
+            
+            return f"[API返回空: {result}]"
+            
+        except urllib.error.URLError as e:
+            last_error = f"网络错误: {e.reason}"
+            if attempt < max_retries - 1:
+                import time
+                time.sleep(2 ** attempt)  # 指数退避
+        except json.JSONDecodeError as e:
+            return f"[JSON解析错误: {e}]"
+        except Exception as e:
+            return f"[LLM调用失败: {e}]"
+    
+    return f"[重试{max_retries}次后仍失败: {last_error}]"
+
+# ==================== NPC角色设定 ====================
+def get_npc_context(npc_name: str = "沈予曦") -> str:
+    npc_file = os.path.join(os.path.dirname(__file__), "..", "roles", f"npc_{npc_name}.md")
+    try:
+        with open(npc_file, 'r', encoding='utf-8') as f:
+            return f.read()
+    except:
+        return f"你是{npc_name}，请根据角色设定回复。"
+
+# ==================== Prompt模板 ====================
+
+DIRECTOR_SYSTEM = """你是爱巴基斯坦叙事引擎的Director。
+
+## 职责：判定叙事节拍，计算轴向变化
+
+## 节拍：STALL/HOLD/EVOLVE/PIVOT
+
+## 输出JSON：{"beat": "节拍", "axis_changes": {"轴": 变化}, "reasoning": "理由"}"""
+
+PREDICTOR_SYSTEM = """你是爱巴基斯坦叙事引擎的Predictor。
+
+## 职责：生成候选事件卡
+
+## 输出JSON：{"events": [{"event_id": "ID", "archetype": "母版", "title": "名称", "trigger": "条件", "plot_hook": "场景"}]}"""
+
+PERFORMER_SYSTEM = """你是爱巴基斯坦叙事引擎的Performer。
+
+## 职责：生成NPC对话
+
+## 输出JSON：{"scene": "场景", "dialogue": {"reaction": "反应", "evolution": "演进", "hook": "钩子"}, "emotion": "情感"}"""
+
+OBSERVER_SYSTEM = """你是爱巴基斯坦叙事引擎的Observer。
+
+## 职责：纯旁观者评估剧情质量
+
+## 输出JSON：{"scores": {"emotion_curve": x, "suspense": x, "memory": x, "immersion": x}, "summary": "总结"}"""
+
+# ==================== 状态管理 ====================
+class GameState:
+    def __init__(self):
+        self.axes = {"Intimacy": 2, "Risk": 3, "Info": 4, "Action": 5, "Rel": 1, "Growth": 7}
+        self.history = []
+        self.round = 0
+        self.npc_name = "沈予曦"
+    
+    def add_turn(self, user: str, npc: str):
+        self.round += 1
+        self.history.append({"round": self.round, "user": user, "npc": npc})
+        if len(self.history) > 10:
+            self.history = self.history[-10:]
+    
+    def get_history_str(self, last_n: int = 3) -> str:
+        recent = self.history[-last_n:] if self.history else []
+        if not recent:
+            return "（暂无历史）"
+        lines = []
+        for h in recent:
+            lines.append(f"R{h['round']}: 用户「{h['user'][:20]}」 → NPC「{h['npc'][:20]}」")
+        return "\n".join(lines)
+    
+    def get_axes_str(self) -> str:
+        return json.dumps(self.axes, ensure_ascii=False)
+
+# ==================== 引擎核心 ====================
+class Engine:
+    def __init__(self):
+        self.state = GameState()
+        print("=== 爱巴基斯坦叙事引擎 ===")
+        print(f"NPC: {self.state.npc_name}")
+    
+    def run_turn(self, user_input: str) -> Dict:
+        self.state.round += 1
+        round_num = self.state.round
+        
+        print(f"\n{'='*50}")
+        print(f"【Round {round_num}】用户: {user_input}")
+        print(f"{'='*50}")
+        
+        npc_context = get_npc_context(self.state.npc_name)
+        history_str = self.state.get_history_str(3)
+        axes_str = self.state.get_axes_str()
+        
+        # ===== Director =====
+        print(f"\n【Director】")
+        print(f"├─ 收到信息:")
+        print(f"│   ├─ 来源: 系统 Prompt (角色定义)")
+        print(f"│   ├─ 来源: state.axes (六轴状态)")
+        print(f"│   │   └─ {axes_str}")
+        print(f"│   ├─ 来源: state.history (对话历史)")
+        print(f"│   │   └─ {history_str}")
+        print(f"│   ├─ 来源: NPC角色库 (npc_shenyuxi.md)")
+        print(f"│   └─ 来源: 用户输入")
+        
+        director_messages = [
+            {"role": "system", "content": DIRECTOR_SYSTEM},
+            {"role": "system", "content": f"六轴状态:\n{axes_str}"},
+            {"role": "system", "content": f"对话历史:\n{history_str}"},
+            {"role": "system", "content": f"NPC角色:\n{npc_context[:300]}"},
+            {"role": "user", "content": f"用户输入: {user_input}\n请输出JSON决策"}
+        ]
+        director_messages = merge_system_messages(director_messages)
+        
+        director_output = call_llm(director_messages)
+        print(f"│")
+        print(f"└─ 输出: {director_output[:150]}...")
+        
+        # ===== Predictor =====
+        print(f"\n【Predictor】")
+        print(f"├─ 收到信息:")
+        print(f"│   ├─ 来源: 系统 Prompt (角色定义)")
+        print(f"│   ├─ 来源: Director (决策结果)")
+        print(f"│   │   └─ {director_output[:100]}...")
+        print(f"│   ├─ 来源: state.axes (六轴)")
+        print(f"│   ├─ 来源: state.history (历史)")
+        print(f"│   └─ 来源: 用户输入")
+        
+        predictor_messages = [
+            {"role": "system", "content": PREDICTOR_SYSTEM},
+            {"role": "system", "content": f"六轴: {axes_str}"},
+            {"role": "system", "content": f"历史: {history_str}"},
+            {"role": "system", "content": f"Director决策: {director_output[:200]}"},
+            {"role": "user", "content": f"用户: {user_input}\n请生成事件卡"}
+        ]
+        predictor_messages = merge_system_messages(predictor_messages)
+        
+        predictor_output = call_llm(predictor_messages)
+        print(f"│")
+        print(f"└─ 输出: {predictor_output[:150]}...")
+        
+        # ===== Performer =====
+        print(f"\n【Performer】")
+        print(f"├─ 收到信息:")
+        print(f"│   ├─ 来源: 系统 Prompt (角色定义)")
+        print(f"│   ├─ 来源: NPC角色库 (npc_shenyuxi.md)")
+        print(f"│   │   └─ {npc_context[:100]}...")
+        print(f"│   ├─ 来源: Director (决策)")
+        print(f"│   │   └─ {director_output[:80]}...")
+        print(f"│   ├─ 来源: Predictor (事件)")
+        print(f"│   │   └─ {predictor_output[:80]}...")
+        print(f"│   ├─ 来源: state.axes (六轴)")
+        print(f"│   ├─ 来源: state.history (历史)")
+        print(f"│   └─ 来源: 用户输入")
+        
+        performer_messages = [
+            {"role": "system", "content": PERFORMER_SYSTEM},
+            {"role": "system", "content": f"六轴: {axes_str}"},
+            {"role": "system", "content": f"历史: {history_str}"},
+            {"role": "system", "content": f"NPC设定: {npc_context}"},
+            {"role": "system", "content": f"Director决策: {director_output[:200]}"},
+            {"role": "system", "content": f"事件: {predictor_output[:200]}"},
+            {"role": "user", "content": f"用户: {user_input}\n请生成NPC对话"}
+        ]
+        performer_messages = merge_system_messages(performer_messages)
+        
+        performer_output = call_llm(performer_messages)
+        print(f"│")
+        print(f"└─ 输出: {performer_output[:150]}...")
+        
+        # ===== Observer =====
+        print(f"\n【Observer】")
+        print(f"├─ 收到信息:")
+        print(f"│   ├─ 来源: 系统 Prompt (角色定义)")
+        print(f"│   ├─ 来源: state.history (对话历史)")
+        print(f"│   │   └─ {history_str}")
+        print(f"│   ├─ 来源: 用户输入")
+        print(f"│   └─ 来源: Performer (NPC回复)")
+        print(f"│       └─ {performer_output[:80]}...")
+        
+        observer_messages = [
+            {"role": "system", "content": OBSERVER_SYSTEM},
+            {"role": "system", "content": f"历史:\n{history_str}"},
+            {"role": "user", "content": f"用户: {user_input}\nNPC: {performer_output[:200]}\n请评估"}
+        ]
+        observer_messages = merge_system_messages(observer_messages)
+        
+        observer_output = call_llm(observer_messages)
+        print(f"│")
+        print(f"└─ 输出: {observer_output[:150]}...")
+        
+        # 保存
+        self.state.add_turn(user_input, performer_output[:100])
+        
+        print(f"\n{'='*50}")
+        print(f"【NPC回复】{performer_output[:100]}...")
+        print(f"【轴向】{self.state.get_axes_str()}")
+        
+        return {"npc": performer_output, "director": director_output, "predictor": predictor_output, "observer": observer_output}
+
+# ==================== 主程序 ====================
+if __name__ == "__main__":
+    if not API_KEY:
+        print("请先在config.json设置API_KEY")
+    else:
+        engine = Engine()
+        test = ["刷火箭", "battle"]
+        for i in test:
+            engine.run_turn(i)

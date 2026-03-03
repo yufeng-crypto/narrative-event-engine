@@ -1,0 +1,23 @@
+[2026-03-01 19:51:54.587] [INFO] [MAIN] 程序启动，日志文件: C:\Users\20731\.openclaw\workspace\logic\prototype\logs\debug\debug_20260301_195154.log
+[2026-03-01 19:51:54.593] [INFO] [ENGINE] 引擎模块加载成功
+[2026-03-01 19:51:54.681] [INFO] [GUI] 选择角色时加载历史状态
+    Extra: 六轴: {'Intimacy': 2, 'Risk': 3, 'Info': 3, 'Action': 2, 'Rel': 4, 'Growth': 5}
+[2026-03-01 19:51:54.681] [INFO] [GUI] 更新Perception预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:54.682] [INFO] [GUI] 更新Director预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:54.684] [INFO] [GUI] 更新Predictor预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:54.686] [INFO] [GUI] 更新Performer预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:59.550] [INFO] [GUI] 选择角色时加载历史状态
+    Extra: 六轴: {'Intimacy': 2, 'Risk': 3, 'Info': 3, 'Action': 2, 'Rel': 4, 'Growth': 5}
+[2026-03-01 19:51:59.566] [INFO] [GUI] 更新Perception预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:59.566] [INFO] [GUI] 更新Director预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:59.567] [INFO] [GUI] 更新Predictor预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:51:59.567] [INFO] [GUI] 更新Performer预览
+    Extra: 输入长度: 0, 输出长度: 0
+[2026-03-01 19:52:30.240] [INFO] [ENGINE] 检查状态文件: C:\Users\20731\.openclaw\workspace\logic\prototype\..\save\state_shenyuxi.json

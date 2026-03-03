@@ -1,0 +1,34 @@
+{
+  "project": "aibaji互动叙事引擎",
+  "version": "2.0",
+  "created_at": "2026-02-25",
+  "system_status": "Operational_Gold",
+  "config": {
+    "Unmasked_Filter": true,
+    "NEH_Interval": 5,
+    "Pressure_Threshold": 5.0
+  },
+  "character": {
+    "name": "林星玥",
+    "type": "NPC"
+  },
+  "world_config": {
+    "default_time": "深夜",
+    "default_weather": "暴雨",
+    "default_location": "工作室"
+  },
+  "pressure_config": {
+    "base_increase": 0.1,
+    "initiative_weight": 1.0,
+    "threshold": 5
+  },
+  "beat_config": {
+    "stall_delta": 0,
+    "hold_delta_max": 2,
+    "evolve_delta_min": 3
+  },
+  "singularity_config": {
+    "trigger_growth": 10,
+    "new_axes": ["sync", "pact"]
+  }
+}
