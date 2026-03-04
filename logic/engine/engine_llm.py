@@ -864,12 +864,16 @@ class DirectorLayer:
         # NEH事件信息
         neh_info = ""
         if neh_event:
-            neh_info = f"""
-当前NEH事件:
-- 母版: {neh_event.archetype}
-- 描述: {neh_event.description}
-- 触发条件: {json.dumps(neh_event.trigger_condition, ensure_ascii=False)}
-"""
+            # 动态获取所有字段，不限定字段名
+            event_dict = asdict(neh_event)
+            neh_info = "当前NEH事件:\n"
+            for key, value in event_dict.items():
+                if value:  # 只显示非空字段
+                    # 如果值是字典，转为格式化字符串
+                    if isinstance(value, dict):
+                        neh_info += f"- {key}: {json.dumps(value, ensure_ascii=False)}\n"
+                    else:
+                        neh_info += f"- {key}: {value}\n"
 
         # system prompt: md模板
         system_prompt = self.prompt_template
@@ -1331,8 +1335,22 @@ class Engine:
         print(f"\n=== Round {round_num} ===")
         print(f"用户: {user_input}")
 
-        # 如果传入了对话历史，同步到引擎state
-        if conversation_history:
+        # ===== NEH-Predictor (每5轮生成事件，存入待检查池) =====
+        predictor_input = ""
+        predictor_output = None
+        if round_num % NEH_INTERVAL == 0:
+            new_event = self.predictor.generate_event_card()
+            if new_event:
+                predictor_output = asdict(new_event)
+                # 存入待检查事件池，下一轮 Trigger 才检查
+                if not hasattr(self, '_pending_neh_events'):
+                    self._pending_neh_events = []
+                self._pending_neh_events.append(new_event)
+                print(f"[NEH] 生成事件: {new_event.archetype}，将在下一轮检查触发")
+
+        # 获取Predictor使用的完整prompt（用于调试显示）
+        predictor_parts = self.predictor.get_last_prompt_parts()
+        predictor_input = predictor_parts.get("system", "") + "\n\n===== USER =====\n" + predictor_parts.get("user", "")
             # 转换格式：GUI的conversation_history到引擎的state.history
             engine_history = []
             for msg in conversation_history:
@@ -1383,11 +1401,20 @@ class Engine:
         predictor_parts = self.predictor.get_last_prompt_parts()
         predictor_input = predictor_parts.get("system", "") + "\n\n===== USER =====\n" + predictor_parts.get("user", "")
 
-        # ===== NEH-Trigger =====
-        triggered = check_neh_trigger(self.event_pool.events, self.state.axes, self.state.get_avg_initiative())
-        if triggered:
-            print(f"[NEH] 触发事件: {triggered.archetype}")
-            self.event_pool.remove_triggered(triggered.event_id)
+        # ===== NEH-Trigger (检查上一轮生成的事件) =====
+        triggered = None
+        if hasattr(self, '_pending_neh_events') and self._pending_neh_events:
+            # 检查待检查事件池中的事件
+            triggered = check_neh_trigger(self._pending_neh_events, self.state.axes, self.state.get_avg_initiative())
+            if triggered:
+                print(f"[NEH] 触发事件: {triggered.archetype}")
+                self.event_pool.add(triggered)
+                self._pending_neh_events = []  # 清空待检查池
+            else:
+                # 没有触发，合并到事件池
+                for evt in self._pending_neh_events:
+                    self.event_pool.add(evt)
+                self._pending_neh_events = []  # 清空待检查池
 
         # ===== 导演层 =====
         t2 = time.time()

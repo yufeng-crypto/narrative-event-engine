@@ -1502,21 +1502,40 @@ class NPCChatApp:
                 self.axis_labels[axis_name]["value"].config(text=str(value))
 
     def update_event_card_display(self):
-        """更新事件卡显示"""
+        """更新事件卡显示（直接显示原始 Predictor 输出）"""
         if not hasattr(self, 'event_card_text'):
             return
 
         self.event_card_text.config(state=tk.NORMAL)
         self.event_card_text.delete('1.0', tk.END)
 
-        if self.event_card.get("event_id"):
-            # 显示事件卡内容
-            card_text = f"""event_id: {self.event_card.get('event_id', '')}
-archetype: {self.event_card.get('archetype', '')}
-title: {self.event_card.get('title', '')}
-trigger: {self.event_card.get('trigger', '')}
-plot_hook: {self.event_card.get('plot_hook', '')}"""
-            self.event_card_text.insert('1.0', card_text)
+        if self.event_card:
+            # 检查是否是原始输出
+            if self.event_card.get('_raw_output'):
+                # 直接显示原始输出
+                self.event_card_text.insert('1.0', self.event_card['_raw_output'])
+            else:
+                # 兼容旧格式：动态显示所有字段
+                import json
+                card_text = "【事件卡】\n"
+                for key, value in self.event_card.items():
+                    if value:
+                        if isinstance(value, dict):
+                            card_text += f"{key}:\n"
+                            for k, v in value.items():
+                                card_text += f"  - {k}: {v}\n"
+                        elif isinstance(value, list):
+                            card_text += f"{key}:\n"
+                            for i, item in enumerate(value):
+                                if isinstance(item, dict):
+                                    card_text += f"  [{i+1}]\n"
+                                    for k, v in item.items():
+                                        card_text += f"    - {k}: {v}\n"
+                                else:
+                                    card_text += f"  - {item}\n"
+                        else:
+                            card_text += f"{key}: {value}\n"
+                self.event_card_text.insert('1.0', card_text)
         else:
             self.event_card_text.insert('1.0', "等待事件触发...")
 
@@ -1550,74 +1569,111 @@ plot_hook: {self.event_card.get('plot_hook', '')}"""
         self.update_axes_display()
 
     def parse_predictor_events(self, predictor_output, return_events=False):
-        """解析 Predictor API 输出，提取事件卡"""
+        """解析 Predictor API 输出，提取事件卡（动态解析所有字段和所有事件）"""
         import re
         import json
 
         if not predictor_output or predictor_output.startswith("【"):
-            # API 错误或空输出
             return [] if return_events else None
 
-        # 尝试从输出中提取 JSON
-        events = []
+        all_events = []
+        
         try:
-            # 查找 JSON 块（可能是 ```json ... ``` 格式）
+            # 查找 JSON 块
             json_match = re.search(r'```json\s*(\{[\s\S]*?\})\s*```', predictor_output)
             if json_match:
                 json_str = json_match.group(1)
             else:
-                # 尝试直接解析整个输出
                 json_str = predictor_output
 
-            # 解析 JSON
             data = json.loads(json_str)
 
-            # 提取事件列表 (支持 events 或 pending_events)
-            events = data.get('events', []) or data.get('pending_events', [])
-            if events and len(events) > 0:
-                # 使用第一个事件
-                event = events[0]
-                self.event_card = {
-                    "event_id": event.get('event_id', ''),
-                    "archetype": event.get('archetype_ref', ''),
-                    "title": event.get('title', ''),
-                    "trigger": event.get('trigger_condition', ''),
-                    "plot_hook": event.get('plot_hook', '')
-                }
-                self.update_event_card_display()
+            # 获取事件列表（支持多种字段名）
+            events = data.get('events', []) or data.get('pending_events', []) or data.get('event_pool', [])
+            
+            # 解析所有事件
+            for event in events:
+                # 动态获取所有字段，不限定字段名
+                event_dict = {}
+                for key, value in event.items():
+                    if value:  # 只保留非空字段
+                        # 如果值是字典或列表，转为字符串
+                        if isinstance(value, (dict, list)):
+                            event_dict[key] = json.dumps(value, ensure_ascii=False)
+                        else:
+                            event_dict[key] = str(value)
                 
-                if return_events:
-                    return events  # 返回完整的事件列表
+                if event_dict:
+                    all_events.append(event_dict)
+
+            # 如果没有事件，检查根级别的字段（扁平格式）
+            if not all_events:
+                for key, value in data.items():
+                    if value and key not in ['parse_error', 'raw', 'reason']:
+                        if isinstance(value, (dict, list)):
+                            data[key] = json.dumps(value, ensure_ascii=False)
+                
+                # 把根级别的非元数据字段也显示出来
+                if data.get('event_id') or data.get('title'):
+                    all_events.append({k: v for k, v in data.items() if v and k not in ['parse_error', 'raw', 'reason']})
+
+            # 显示所有事件
+            if all_events:
+                display_text = "【事件卡】\n"
+                for i, evt in enumerate(all_events):
+                    display_text += f"\n=== 事件 {i+1} ===\n"
+                    for key, value in evt.items():
+                        display_text += f"{key}: {value}\n"
+                
+                self.event_card_text.config(state=tk.NORMAL)
+                self.event_card_text.delete('1.0', tk.END)
+                self.event_card_text.insert('1.0', display_text)
+                self.event_card_text.config(state=tk.DISABLED)
+                
+                # 更新 event_card 字典（保留第一个事件的字段供其他地方使用）
+                if all_events:
+                    self.event_card = all_events[0]
+                
+                return all_events if return_events else None
 
         except json.JSONDecodeError:
-            # JSON 解析失败，尝试简单的文本解析
             pass
 
-        # 备用：尝试从文本中提取字段
+        # 备用：简单文本解析
         try:
-            event_id_match = re.search(r'event_id["\s:]+([A-Z0-9_]+)', predictor_output)
-            archetype_match = re.search(r'archetype_ref["\s:]+([^"\n]+)', predictor_output)
-            title_match = re.search(r'title["\s:]+([^"\n]+)', predictor_output)
-            trigger_match = re.search(r'trigger_condition["\s:]+([^"\n]+)', predictor_output)
-            plot_hook_match = re.search(r'plot_hook["\s:]+([^"\n]+)', predictor_output)
-
-            if event_id_match or title_match:
-                self.event_card = {
-                    "event_id": event_id_match.group(1) if event_id_match else "",
-                    "archetype": archetype_match.group(1).strip() if archetype_match else "",
-                    "title": title_match.group(1).strip() if title_match else "",
-                    "trigger": trigger_match.group(1).strip() if trigger_match else "",
-                    "plot_hook": plot_hook_match.group(1).strip() if plot_hook_match else ""
-                }
-                self.update_event_card_display()
+            # 尝试提取所有 key: value 格式的内容
+            lines = predictor_output.split('\n')
+            event_dict = {}
+            current_key = None
+            
+            for line in lines:
+                # 匹配 key: value 格式
+                match = re.match(r'^([^:]+):\s*(.+)$', line.strip())
+                if match:
+                    key = match.group(1).strip()
+                    value = match.group(2).strip()
+                    if key and value:
+                        event_dict[key] = value
+            
+            if event_dict:
+                all_events.append(event_dict)
+                display_text = "【事件卡】\n"
+                for key, value in event_dict.items():
+                    display_text += f"{key}: {value}\n"
                 
-                if return_events:
-                    return [self.event_card]  # 返回事件列表
+                self.event_card_text.config(state=tk.NORMAL)
+                self.event_card_text.delete('1.0', tk.END)
+                self.event_card_text.insert('1.0', display_text)
+                self.event_card_text.config(state=tk.DISABLED)
+                
+                self.event_card = event_dict
+                
+                return all_events if return_events else None
 
         except Exception as e:
             print(f"解析事件卡失败: {e}")
 
-        return events if return_events else None
+        return all_events if return_events else None
 
     def parse_director_focus(self, director_output):
         """解析 Director 输出，提取 focus 字段（包含事件卡的 plot_hook）"""
@@ -1800,42 +1856,18 @@ plot_hook: {self.event_card.get('plot_hook', '')}"""
             self.axes_data = {k: v for k, v in axes.items()}  # 直接使用0-10
             self.update_axes_display()
                     
-            # 更新事件卡显示 - Predictor生成的事件卡 或 NEH触发的事件卡
-            predictor_out = result.get('predictor_output')
+            # 更新事件卡显示 - 直接显示 Predictor 原始输出
+            predictor_raw = result.get('predictor_raw_output', '')
             neh_triggered = result.get('neh_triggered')
-                    
-            if predictor_out:
-                # predictor_output 可能是 {"pending_events": [...]} 格式
-                pending = predictor_out.get('pending_events', [])
-                if pending and len(pending) > 0:
-                    evt = pending[0]
-                    self.event_card = {
-                        "event_id": evt.get('event_id', ''),
-                        "archetype": evt.get('archetype_ref', ''),
-                        "title": evt.get('title', ''),
-                        "trigger": str(evt.get('trigger_condition', {})),
-                        "plot_hook": evt.get('plot_hook', '')
-                    }
-                elif predictor_out.get('event_id'):
-                    # 直接结构（兼容性）
-                    self.event_card = {
-                        "event_id": predictor_out.get('event_id', ''),
-                        "archetype": predictor_out.get('archetype', ''),
-                        "title": predictor_out.get('description', ''),
-                        "trigger": str(predictor_out.get('trigger_condition', {})),
-                        "plot_hook": predictor_out.get('description', '')
-                    }
+            
+            if predictor_raw:
+                # 直接存储原始输出，显示完整 JSON
+                self.event_card = {"_raw_output": predictor_raw}
             elif neh_triggered:
-                # 显示触发的NEH事件
-                self.event_card = {
-                    "event_id": neh_triggered.get('event_id', ''),
-                    "archetype": neh_triggered.get('archetype', ''),
-                    "title": neh_triggered.get('description', ''),
-                    "trigger": str(neh_triggered.get('trigger_condition', {})),
-                    "plot_hook": neh_triggered.get('description', '')
-                }
-                    
-            if self.event_card.get('event_id'):
+                # 显示触发的 NEH 事件
+                self.event_card = {"_raw_output": str(neh_triggered)}
+            
+            if self.event_card:
                 self.update_event_card_display()
                     
             # 更新预览面板 - 显示各模块输入输出
