@@ -1169,6 +1169,16 @@ class PerformerLayer:
         # system prompt: md模板
         system_prompt = self.prompt_template
 
+        # 获取对话历史（最近10轮）
+        history_str = ""
+        for h in self.state.history[-10:]:
+            user_msg = h.get('user', '')
+            npc_msg = h.get('npc', '')
+            if user_msg:
+                history_str += f"用户: {user_msg}\n"
+            if npc_msg:
+                history_str += f"NPC: {npc_msg}\n"
+
         # 如果有原始字符串，优先使用STORY_PATCH
         story_patch_for_performer = story_patch_str if story_patch_str else json.dumps(asdict(patch), ensure_ascii=False)
 
@@ -1177,6 +1187,9 @@ class PerformerLayer:
 {npc_ctx[:600]}
 
 六轴: {axes_str}
+
+对话历史（最近10轮）:
+{history_str}
 
 STORY_PATCH:
 {story_patch_for_performer}
