@@ -1351,6 +1351,9 @@ class Engine:
         # 获取Predictor使用的完整prompt（用于调试显示）
         predictor_parts = self.predictor.get_last_prompt_parts()
         predictor_input = predictor_parts.get("system", "") + "\n\n===== USER =====\n" + predictor_parts.get("user", "")
+
+        # 如果传入了对话历史，同步到引擎state
+        if conversation_history:
             # 转换格式：GUI的conversation_history到引擎的state.history
             engine_history = []
             for msg in conversation_history:
