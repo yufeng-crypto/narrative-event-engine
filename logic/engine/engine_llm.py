@@ -1417,23 +1417,6 @@ class Engine:
         director_parts = self.director.get_last_prompt_parts()
         director_input = director_parts.get("system", "") + "\n\n===== USER =====\n" + director_parts.get("user", "")
 
-        # ===== NEH-Predictor (每5轮生成事件，在Director执行后) =====
-        predictor_input = ""
-        predictor_output = None
-        if round_num % NEH_INTERVAL == 0:
-            new_event = self.predictor.generate_event_card()
-            if new_event:
-                predictor_output = asdict(new_event)
-                # 存入待检查事件池，下一轮 Trigger 才检查
-                if not hasattr(self, '_pending_neh_events'):
-                    self._pending_neh_events = []
-                self._pending_neh_events.append(new_event)
-                print(f"[NEH] 生成事件: {new_event.archetype}，将在下一轮检查触发")
-
-        # 获取Predictor使用的完整prompt（用于调试显示）
-        predictor_parts = self.predictor.get_last_prompt_parts()
-        predictor_input = predictor_parts.get("system", "") + "\n\n===== USER =====\n" + predictor_parts.get("user", "")
-
         # ===== 表现层 =====
         # 获取Director提取的原始STORY_PATCH字符串
         story_patch_str = getattr(self.director, '_last_story_patch_str', "")
@@ -1461,6 +1444,23 @@ class Engine:
 
         # 应用Director输出的STATE_UPDATE（轴值、动量变化）
         self.director.apply_state_update()
+
+        # ===== NEH-Predictor (每5轮生成事件，在表现层执行后) =====
+        predictor_input = ""
+        predictor_output = None
+        if round_num % NEH_INTERVAL == 0:
+            new_event = self.predictor.generate_event_card()
+            if new_event:
+                predictor_output = asdict(new_event)
+                # 存入待检查事件池，下一轮 Trigger 才检查
+                if not hasattr(self, '_pending_neh_events'):
+                    self._pending_neh_events = []
+                self._pending_neh_events.append(new_event)
+                print(f"[NEH] 生成事件: {new_event.archetype}，将在下一轮检查触发")
+
+        # 获取Predictor使用的完整prompt（用于调试显示）
+        predictor_parts = self.predictor.get_last_prompt_parts()
+        predictor_input = predictor_parts.get("system", "") + "\n\n===== USER =====\n" + predictor_parts.get("user", "")
 
         # 调试：打印轴值变化
         print(f"[DEBUG] axes after update: {self.state.axes}")
