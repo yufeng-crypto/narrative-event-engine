@@ -1417,6 +1417,10 @@ class Engine:
         director_parts = self.director.get_last_prompt_parts()
         director_input = director_parts.get("system", "") + "\n\n===== USER =====\n" + director_parts.get("user", "")
 
+        # 应用Director输出的STATE_UPDATE（轴值、动量变化）- 在表现层之前更新
+        self.director.apply_state_update()
+        print(f"[DEBUG] axes after update: {self.state.axes}")
+
         # ===== 表现层 =====
         # 获取Director提取的原始STORY_PATCH字符串
         story_patch_str = getattr(self.director, '_last_story_patch_str', "")
@@ -1441,9 +1445,6 @@ class Engine:
         performer_input = performer_parts.get("system", "") + "\n\n===== USER =====\n" + performer_parts.get("user", "")
         # Performer的输出就是npc_output
         performer_output = npc_output
-
-        # 应用Director输出的STATE_UPDATE（轴值、动量变化）
-        self.director.apply_state_update()
 
         # ===== NEH-Predictor (每5轮生成事件，在表现层执行后) =====
         predictor_input = ""
