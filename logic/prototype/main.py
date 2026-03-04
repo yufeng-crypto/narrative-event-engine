@@ -1034,6 +1034,13 @@ class NPCChatApp:
         self.director_output = ""
         self.predictor_input = ""
         self.predictor_output = ""
+        self.performer_input = ""
+        self.performer_output = ""
+
+        # 重置引擎，确保新角色使用正确的角色设定
+        # 下次发送消息时会自动用新角色创建引擎
+        self.engine = None
+        self.append_system(f"【系统】已切换到角色: {role_id}，引擎已重置")
     
     def load_role_state(self, role_id):
         """加载角色存档中的六轴状态
@@ -1168,7 +1175,7 @@ class NPCChatApp:
                         current_speaker = 'user'
                         current_msg_lines = [clean_msg[clean_msg.find(':')+1:].strip()]
                     # 检查是否是NPC消息（去掉英文名后匹配）
-                    elif '沈予曦' in clean_msg or 'linxingyue' in clean_msg.lower():
+                    elif '沈予曦' in clean_msg or '林星月' in clean_msg or 'linxingyue' in clean_msg.lower() or 'lin xingyue' in clean_msg.lower():
                         current_speaker = 'npc'
                         current_msg_lines = [clean_msg[clean_msg.find(':')+1:].strip()]
                     else:
