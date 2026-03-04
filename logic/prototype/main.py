@@ -1915,7 +1915,7 @@ class NPCChatApp:
                 self.predictor_input = predictor_in
                 self.predictor_output = predictor_raw
             else:
-                self.predictor_input = f"Round {result.get('round', 0)} - 事件卡每{NEH_INTERVAL}轮生成"
+                self.predictor_input = f"Round {result.get('round', 0)} - 事件卡后台异步生成"
                 self.predictor_output = "本轮未生成事件卡"
                     
             # Performer 显示LLM原始输出
