@@ -1908,12 +1908,24 @@ class NPCChatApp:
             # Director显示LLM原始输出
             self.director_output = result.get('director_raw_output', '')
                     
-            # Predictor 显示LLM原始输出
-            predictor_in = result.get('predictor_input', '')
+            # Predictor 显示LLM原始输出（从 engine 对象读取后台执行的结果）
             predictor_raw = result.get('predictor_raw_output', '')
+            predictor_in = result.get('predictor_input', '')
+            
+            # 检查 engine 对象是否有后台执行的 Predictor 结果
+            predictor_event = None
+            if hasattr(self.engine, '_last_predictor_output') and self.engine._last_predictor_output:
+                predictor_raw = self.engine._last_predictor_output
+                predictor_in = getattr(self.engine, '_last_predictor_input', '')
+                predictor_event = getattr(self.engine, '_last_predictor_event', None)
+            
             if predictor_raw:
                 self.predictor_input = predictor_in
                 self.predictor_output = predictor_raw
+                # 更新事件卡显示
+                if predictor_event:
+                    self.event_card = {"_raw_output": predictor_raw}
+                    self.update_event_card_display()
             else:
                 self.predictor_input = f"Round {result.get('round', 0)} - 事件卡后台异步生成"
                 self.predictor_output = "本轮未生成事件卡"

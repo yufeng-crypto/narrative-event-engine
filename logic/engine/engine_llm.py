@@ -1452,12 +1452,22 @@ class Engine:
         def run_predictor_async():
             """后台线程执行 Predictor"""
             try:
+                # 获取 Predictor 的原始输入
+                predictor_parts = self.predictor.get_last_prompt_parts()
+                predictor_input = predictor_parts.get("system", "") + "\n\n===== USER =====\n" + predictor_parts.get("user", "")
+                
                 new_event = self.predictor.generate_event_card()
                 if new_event:
                     # 存入待检查事件池，下一轮 Trigger 才检查
                     if not hasattr(self, '_pending_neh_events'):
                         self._pending_neh_events = []
                     self._pending_neh_events.append(new_event)
+                    
+                    # 存储原始输出供 GUI 显示
+                    self._last_predictor_output = self.predictor._last_llm_output or ""
+                    self._last_predictor_input = predictor_input
+                    self._last_predictor_event = asdict(new_event)
+                    
                     print(f"[NEH] 生成事件: {new_event.archetype}，将在下一轮检查触发")
             except Exception as e:
                 print(f"[NEH] 后台生成事件失败: {e}")
