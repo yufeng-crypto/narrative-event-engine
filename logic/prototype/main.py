@@ -763,6 +763,7 @@ class NPCChatApp:
         btn_top_frame.pack(fill=tk.X)
 
         ttk.Button(btn_top_frame, text="发送", command=self.send_message).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_top_frame, text="直通模型", command=self.send_message_direct).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_top_frame, text="保存", command=self.save_conversation).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_top_frame, text="分析", command=self.analyze_conversation).pack(side=tk.LEFT, padx=5)
         ttk.Button(btn_top_frame, text="新对话", command=self.start_new_chat).pack(side=tk.LEFT, padx=5)
@@ -817,6 +818,11 @@ class NPCChatApp:
         self.performer_tab = ttk.Frame(self.debug_notebook)
         self.debug_notebook.add(self.performer_tab, text="Performer")
         self._create_debug_tab(self.performer_tab, "performer")
+
+        # Performer Direct 标签页
+        self.performer_direct_tab = ttk.Frame(self.debug_notebook)
+        self.debug_notebook.add(self.performer_direct_tab, text="Performer Direct")
+        self._create_debug_tab(self.performer_direct_tab, "performer_direct")
 
         # ============ 右侧：六轴状态 + 事件卡 ============
         right_frame = ttk.Frame(paned)
@@ -941,6 +947,9 @@ class NPCChatApp:
         elif role_key == "performer":
             self.performer_input_text = input_text
             self.performer_output_text = output_text
+        elif role_key == "performer_direct":
+            self.performer_direct_input_text = input_text
+            self.performer_direct_output_text = output_text
 
     def _build_predictor_system_prompt(self, role_content, axes_data, conversation_history, user_message):
 
@@ -1036,6 +1045,8 @@ class NPCChatApp:
         self.predictor_output = ""
         self.performer_input = ""
         self.performer_output = ""
+        self.performer_direct_input = ""
+        self.performer_direct_output = ""
 
         # 重置引擎，确保新角色使用正确的角色设定
         # 下次发送消息时会自动用新角色创建引擎
@@ -1174,13 +1185,16 @@ class NPCChatApp:
                     if clean_msg.startswith('用户:') or clean_msg.startswith('你:'):
                         current_speaker = 'user'
                         current_msg_lines = [clean_msg[clean_msg.find(':')+1:].strip()]
-                    # 检查是否是NPC消息（去掉英文名后匹配）
-                    elif '沈予曦' in clean_msg or '林星月' in clean_msg or 'linxingyue' in clean_msg.lower() or 'lin xingyue' in clean_msg.lower():
-                        current_speaker = 'npc'
+                    # 检查是否是NPC消息（通用方式：不是用户消息就是NPC消息）
+                    # 聊天记录格式: [时间] 角色名: 内容
+                    # 用户消息可能是 "用户:" 或 "你:"
+                    if clean_msg.startswith('用户:') or clean_msg.startswith('你:'):
+                        current_speaker = 'user'
                         current_msg_lines = [clean_msg[clean_msg.find(':')+1:].strip()]
                     else:
-                        current_speaker = None
-                        current_msg_lines = []
+                        # 其他都当作 NPC 消息
+                        current_speaker = 'npc'
+                        current_msg_lines = [clean_msg[clean_msg.find(':')+1:].strip()]
                 elif current_speaker and line:
                     # 继续收集消息内容（多行）
                     current_msg_lines.append(line)
@@ -1258,6 +1272,7 @@ class NPCChatApp:
             content: 对话内容
             model: 使用的模型名称（如 "doubao"）
         """
+        log_info("GUI", f"append_message调用", f"role={role}, content长度={len(content)}, model={model}")
         if model and model != "MiniMax-M2.5":
             # 显示模型信息
             self.chat_text.insert(tk.END, f"\n{role} [{model}]: {content}\n")
@@ -1361,6 +1376,17 @@ class NPCChatApp:
         self.performer_output_text.delete('1.0', tk.END)
         self.performer_output_text.insert('1.0', self.performer_output)
         self.performer_output_text.config(state=tk.DISABLED)
+
+        # 更新 Performer Direct 标签页
+        self.performer_direct_input_text.config(state=tk.NORMAL)
+        self.performer_direct_input_text.delete('1.0', tk.END)
+        self.performer_direct_input_text.insert('1.0', self.performer_direct_input)
+        self.performer_direct_input_text.config(state=tk.DISABLED)
+
+        self.performer_direct_output_text.config(state=tk.NORMAL)
+        self.performer_direct_output_text.delete('1.0', tk.END)
+        self.performer_direct_output_text.insert('1.0', self.performer_direct_output)
+        self.performer_direct_output_text.config(state=tk.DISABLED)
 
     def _build_predictor_system_prompt(self, role_content, axes_data, conversation_history, user_message):
         """构建 Predictor 的 system prompt"""
@@ -1952,6 +1978,151 @@ class NPCChatApp:
         except Exception as e:
             # 引擎模式错误直接抛出，不再降级
             raise Exception(f"引擎错误: {e}")
+    
+    def send_message_direct(self):
+        """直通模式 - 绕过叙事引擎，直接调用 LLM"""
+        user_message = self.input_text.get('1.0', tk.END).strip()
+        if not user_message:
+            return
+
+        if not self.current_role_id:
+            messagebox.showwarning("提示", "请先选择角色")
+            return
+
+        # 清空输入框
+        self.input_text.delete('1.0', tk.END)
+
+        # 显示用户消息
+        self.append_message("你", user_message)
+
+        # 添加到历史（但这个不会更新六轴）
+        self.conversation_history.append({"role": "user", "content": user_message})
+
+        # 获取角色设定
+        role = self.roles[self.current_role_id]
+        role_content = role.get('content', '')
+
+        # 获取当前选中的模型
+        selected_model = self.model_var.get()
+        log_info("GUI", f"直通模式使用模型: {selected_model}")
+
+        # 读取 performer_direct.md 作为 prompt
+        prompt_path = os.path.join(os.path.dirname(__file__), "..", "roles", "performer_direct.md")
+        
+        try:
+            with open(prompt_path, 'r', encoding='utf-8') as f:
+                performer_direct_prompt = f.read()
+        except Exception as e:
+            log_error("PERFORMER_DIRECT", f"读取prompt失败: {prompt_path}", str(e))
+            self.append_system(f"【错误】无法读取角色设定文件")
+            return
+
+        # 准备对话历史（去掉最后一轮，用于对比测试）
+        history_for_direct = self.conversation_history[:-1] if len(self.conversation_history) > 1 else []
+        history_str = ""
+        for msg in history_for_direct:
+            role_name = "你" if msg.get("role") == "user" else role['name']
+            history_str += f"{role_name}: {msg.get('content', '')}\n"
+
+        # 构建 user prompt
+        user_prompt = f"""角色设定：
+{role_content}
+
+# 对话历史
+{history_str}
+
+现在请继续对话。
+"""
+
+        # 显示正在发送
+        self.status_var.set("直通模式发送中...")
+        self.append_system("【系统】直通模式发送中...")
+
+        try:
+            # 调用 LLM
+            import requests
+            
+            # 获取 API 配置 - 从 MODELS_CONFIG 中获取当前 provider 的配置
+            from engine_llm import MODELS_CONFIG, CURRENT_PROVIDER
+            
+            # 从 selected_model 中提取 provider（如 "doubao:doubao-1-5-pro-32k" -> "doubao"）
+            provider = selected_model.split(':')[0] if ':' in selected_model else CURRENT_PROVIDER
+            
+            # 获取对应 provider 的配置
+            provider_config = MODELS_CONFIG.get("providers", {}).get(provider, {})
+            api_config = {
+                "api_key": provider_config.get("api_key", ""),
+                "base_url": provider_config.get("api_url", "https://api.minimax.chat/v1"),
+                "default_model": provider_config.get("default_model", selected_model)
+            }
+            
+            log_info("PERFORMER_DIRECT", f"API配置", f"provider={provider}, api_config={api_config}")
+            
+            if not api_config.get("api_key"):
+                messagebox.showerror("错误", f"模型 [{selected_model}] 未配置 API Key")
+                return
+
+            api_key = api_config.get('api_key', '')
+            if not api_key:
+                messagebox.showerror("错误", f"模型 [{selected_model}] 未配置 API Key")
+                return
+
+            # 使用和引擎一致的调用方式
+            import urllib.request
+            import urllib.error
+            import json
+            
+            url = api_config.get('base_url', 'https://api.minimax.chat/v1')
+            
+            payload = {
+                "model": api_config.get('default_model', selected_model),
+                "messages": [
+                    {"role": "system", "content": performer_direct_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "temperature": 0.7
+            }
+            data = json.dumps(payload).encode('utf-8')
+            
+            log_info("PERFORMER_DIRECT", f"请求payload", f"url={url}, model={payload['model']}")
+
+            req = urllib.request.Request(url, data=data, method='POST')
+            req.add_header("Authorization", f"Bearer {api_key}")
+            req.add_header("Content-Type", "application/json")
+
+            try:
+                response = urllib.request.urlopen(req, timeout=60)
+                result = json.loads(response.read().decode('utf-8'))
+            except urllib.error.HTTPError as e:
+                error_body = e.read().decode('utf-8') if e.fp else ""
+                raise Exception(f"HTTP错误 {e.code}: {e.reason} {error_body[:200]}")
+            except Exception as e:
+                raise Exception(f"请求失败: {str(e)}")
+
+            if 'choices' in result and len(result['choices']) > 0:
+                npc_reply = result['choices'][0]['message']['content']
+            elif 'error' in result:
+                raise Exception(f"API错误: {result['error']}")
+            else:
+                raise Exception(f"未知响应: {result}")
+
+            # 简化模型名显示
+            display_model = selected_model.split(':')[-1] if ':' in selected_model else selected_model
+
+            # 显示回复
+            self.append_message(role['name'], npc_reply, display_model)
+            
+            # 记录到预览面板
+            self.performer_direct_input = f"=== SYSTEM ===\n{performer_direct_prompt}\n\n=== USER ===\n{user_prompt}"
+            self.performer_direct_output = npc_reply
+            self.update_preview_panes()
+
+            self.status_var.set(f"直通模式完成")
+
+        except Exception as e:
+            log_error("PERFORMER_DIRECT", "直通模式失败", str(e))
+            self.append_system(f"【错误】直通模式失败: {str(e)}")
+            self.status_var.set("直通模式失败")
     
     def auto_save_conversation(self):
         """自动保存对话到文件（每个角色一份，持续追加）"""
