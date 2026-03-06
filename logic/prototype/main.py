@@ -1123,9 +1123,6 @@ class NPCChatApp:
 
         logs_path = CONFIG.get('logs_path', '')
         chat_file = os.path.join(logs_path, f"chat_{role_id}.txt")
-        
-        # 调试：打印加载信息
-        print(f"[DEBUG load] role_id={role_id}, chat_file={chat_file}, exists={os.path.exists(chat_file)}")
 
         if not os.path.exists(chat_file):
             self.append_system(f"【系统】未找到历史记录: {chat_file}")
@@ -1212,11 +1209,6 @@ class NPCChatApp:
             self.chat_text.see(tk.END)
             rounds = len(self.conversation_history) // 2
             
-            # 调试：打印解析结果
-            print(f"[DEBUG] loaded {len(self.conversation_history)} messages")
-            for i, msg in enumerate(self.conversation_history):
-                print(f"  [{i}] {msg.get('role')}: {msg.get('content', '')[:30]}...")
-            
             self.append_system(f"【系统】已加载 {rounds} 轮历史对话")
 
         except Exception as e:
@@ -1288,46 +1280,24 @@ class NPCChatApp:
 
     def update_preview_panes(self):
         """更新中间标签页预览框"""
-        # 记录到日志
+        # 记录到日志（只记录长度，不记录内容）
         log_info("GUI", "更新Perception预览", f"输入长度: {len(self.perception_input)}, 输出长度: {len(self.perception_output)}")
         log_info("GUI", "更新Director预览", f"输入长度: {len(self.director_input)}, 输出长度: {len(self.director_output)}")
         log_info("GUI", "更新Predictor预览", f"输入长度: {len(self.predictor_input)}, 输出长度: {len(self.predictor_output)}")
         log_info("GUI", "更新Performer预览", f"输入长度: {len(self.performer_input)}, 输出长度: {len(self.performer_output)}")
         
-        # Perception 输入日志
-        if self.perception_input:
-            has_user_input = "用户输入" in self.perception_input
-            log_info("GUI", f"Perception输入包含'用户输入': {has_user_input}", 
-                    f"前500字符: {self.perception_input[:500]}")
-            log_debug("GUI", "Perception输入内容", self.perception_input[:3000])
-        
+        # 只保留各模块的输出（LLM返回内容），删除输入内容
         # Perception 输出日志
         if self.perception_output:
             log_debug("GUI", "Perception输出内容", self.perception_output[:2000])
         
-        # Director 输入日志（完整内容）
-        if self.director_input:
-            # 搜索关键字段
-            has_perception = "用户输入分析" in self.director_input
-            log_info("GUI", f"Director输入包含'用户输入分析': {has_perception}", 
-                    f"前500字符: {self.director_input[:500]}")
-            log_debug("GUI", "Director输入内容", self.director_input[:5000])
-        
-        # Director 输出日志（完整内容）
+        # Director 输出日志
         if self.director_output:
             log_debug("GUI", "Director输出内容", self.director_output[:2000])
-        
-        # Predictor 输入日志
-        if self.predictor_input:
-            log_debug("GUI", "Predictor输入内容", self.predictor_input[:5000])
         
         # Predictor 输出日志
         if self.predictor_output:
             log_debug("GUI", "Predictor输出内容", self.predictor_output[:2000])
-        
-        # Performer 输入日志
-        if self.performer_input:
-            log_debug("GUI", "Performer输入内容", self.performer_input[:3000])
         
         # Performer 输出日志
         if self.performer_output:
@@ -1914,7 +1884,7 @@ class NPCChatApp:
             if not p_output:
                 p_output = {"note": "perception_output为空，可能是引擎模式未正确执行"}
                     
-            log_info("GUI", "perception_input", f"长度: {len(p_input)}, 内容前100: {p_input[:100] if isinstance(p_input, str) else 'NOT_STRING'}")
+            log_info("GUI", "perception_input", f"长度: {len(p_input)}")
                     
             # Perception显示LLM原始输出
             self.perception_input = p_input if isinstance(p_input, str) else str(p_input)
@@ -1929,7 +1899,7 @@ class NPCChatApp:
                 # 从perception构建director输入
                 perc = p_output if isinstance(p_output, dict) else {}
                 self.director_input = f"【用户输入分析】\n{json.dumps(perc, ensure_ascii=False)}"
-                log_info("GUI", "从perception构建director_input", self.director_input[:200])
+                log_info("GUI", "从perception构建director_input", f"长度: {len(self.director_input)}")
                     
             # Director显示LLM原始输出
             self.director_output = result.get('director_raw_output', '')
@@ -2018,11 +1988,23 @@ class NPCChatApp:
             return
 
         # 准备对话历史（去掉最后一轮，用于对比测试）
+        # 只保留最近10轮，避免超出模型上下文限制
         history_for_direct = self.conversation_history[:-1] if len(self.conversation_history) > 1 else []
+        
+        # 限制历史长度：只保留最近10条消息（约5轮对话）
+        max_history_chars = 5000  # 限制历史文本最多5000字符
         history_str = ""
-        for msg in history_for_direct:
+        char_count = 0
+        for msg in reversed(history_for_direct):
+            if char_count >= max_history_chars:
+                break
             role_name = "你" if msg.get("role") == "user" else role['name']
-            history_str += f"{role_name}: {msg.get('content', '')}\n"
+            msg_content = msg.get('content', '')
+            # 如果加上这条会超，就截断
+            if char_count + len(msg_content) + len(role_name) + 3 > max_history_chars:
+                msg_content = msg_content[:max_history_chars - char_count - 10] + "..."
+            history_str = f"{role_name}: {msg_content}\n" + history_str
+            char_count += len(msg_content) + len(role_name) + 3
 
         # 构建 user prompt
         user_prompt = f"""角色设定：
@@ -2056,8 +2038,6 @@ class NPCChatApp:
                 "default_model": provider_config.get("default_model", selected_model)
             }
             
-            log_info("PERFORMER_DIRECT", f"API配置", f"provider={provider}, api_config={api_config}")
-            
             if not api_config.get("api_key"):
                 messagebox.showerror("错误", f"模型 [{selected_model}] 未配置 API Key")
                 return
@@ -2083,8 +2063,6 @@ class NPCChatApp:
                 "temperature": 0.7
             }
             data = json.dumps(payload).encode('utf-8')
-            
-            log_info("PERFORMER_DIRECT", f"请求payload", f"url={url}, model={payload['model']}")
 
             req = urllib.request.Request(url, data=data, method='POST')
             req.add_header("Authorization", f"Bearer {api_key}")
@@ -2100,7 +2078,29 @@ class NPCChatApp:
                 raise Exception(f"请求失败: {str(e)}")
 
             if 'choices' in result and len(result['choices']) > 0:
-                npc_reply = result['choices'][0]['message']['content']
+                message = result['choices'][0].get('message', {})
+                content = message.get('content', '')
+                
+                # 检查是否返回的是JSON
+                if content.strip().startswith('{'):
+                    try:
+                        # 尝试解析JSON
+                        parsed = json.loads(content)
+                        # 如果是JSON，提取对话内容
+                        if 'dialogue' in parsed and isinstance(parsed['dialogue'], dict):
+                            dialogue = parsed['dialogue']
+                            npc_reply = dialogue.get('reaction', '') or dialogue.get('dialogue', '')
+                        elif 'scene' in parsed:
+                            scene = parsed.get('scene', '')
+                            dialogue = parsed.get('dialogue', {})
+                            reaction = dialogue.get('reaction', '') or dialogue.get('dialogue', '')
+                            npc_reply = f"{scene}\n{dialogue}" if scene else reaction
+                        else:
+                            npc_reply = str(parsed)
+                    except json.JSONDecodeError:
+                        npc_reply = content
+                else:
+                    npc_reply = content
             elif 'error' in result:
                 raise Exception(f"API错误: {result['error']}")
             else:
