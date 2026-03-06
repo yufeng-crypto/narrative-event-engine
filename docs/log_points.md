@@ -154,7 +154,7 @@
 |------|------|---------|------|---------|
 | main.py | __init__ | 日志文件路径 | log_info | ✅ 保留 |
 | main.py | 切换模型 | 选择模型 | log_info | ✅ 保留 |
-| main.py | 更新调试窗口 | 各模块input/output | log_info | ✅ 保留 |
+| main.py | 更新调试窗口 | 各模块 output（已优化：只保留LLM返回内容） | log_debug | ✅ 保留 |
 
 **重复性**: 无
 
