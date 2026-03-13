@@ -93,7 +93,34 @@ description: 在飞书文档中创建流程图，优先使用飞书画板（Boar
 
 - 文档创建/补写：`feishu_doc`
 - 文档权限：`feishu_perm`（必要时为用户加权限）
-- 画板节点渲染：直接调用飞书开放 API（Python/Node）
+- 画板节点渲染：优先调用本 skill 自带脚本 `scripts/board_render.py`
+
+## 可直接调用的脚本（无上下文也可用）
+
+路径：`skills/feishu-flowchart/scripts/board_render.py`
+
+能力：
+1. 自动鉴权（优先读环境变量 `FEISHU_APP_ID/FEISHU_APP_SECRET`，否则回退 `~/.openclaw/openclaw.json`）
+2. 在 docx 文档中插入画板块（`block_type=43`）
+3. 将 Mermaid 解析为画板节点（非图片）
+4. 自动校验节点数量并输出 JSON 结果
+
+示例：
+
+```bash
+python skills/feishu-flowchart/scripts/board_render.py \
+  --doc-token <DOC_TOKEN> \
+  --mermaid-file flowchart.mmd \
+  --title "离线剧情流程图"
+```
+
+或：
+
+```bash
+python skills/feishu-flowchart/scripts/board_render.py \
+  --doc-token <DOC_TOKEN> \
+  --mermaid-text "flowchart TD\nA[开始]-->B{判断}\nB-->|是|C[处理]\nB-->|否|D[结束]"
+```
 
 ## 注意事项
 
