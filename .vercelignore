@@ -1,0 +1,15 @@
+# OpenClaw workspace files — not part of the deployed app
+.openclaw/
+memory/
+skills/
+docs/
+AGENTS.md
+BOOTSTRAP.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+index_memory.py
+test_fts.py
+gemini-conversation-*.md

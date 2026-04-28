@@ -1,0 +1,63 @@
+{
+  "version": "0.1",
+  "lastUpdated": "2026-04-28",
+  "sources": [
+    "上交所公募 REITs 披露页 https://www.sse.com.cn/reits/",
+    "深交所 REITs 披露页 http://reits.szse.cn/",
+    "东方财富 ETF 板块 b:MK0021 第 1 页（已拉到的红利 ETF）",
+    "Web search 2026-04-28 主流红利 ETF + 港股通红利 ETF",
+    "之前调研已确认有效的 REITs 代码"
+  ],
+  "notes": "每季度需要刷新一次。新发产品加入时打 added_at；退市/合并的设 status=delisted（保留代码但不进入流水线）",
+  "dividend_etfs_a": [
+    { "code": "510880", "market": "sh", "name": "红利ETF华泰柏瑞", "added_at": "2026-04-28", "status": "active", "notes": "上证红利指数 000015，2006 成立，国内最老牌" },
+    { "code": "515100", "market": "sh", "name": "红利低波100ETF景顺", "added_at": "2026-04-28", "status": "active", "notes": "中证红利低波 100 (930955)" },
+    { "code": "512890", "market": "sh", "name": "红利低波ETF华泰柏瑞", "added_at": "2026-04-28", "status": "active", "notes": "中证红利低波 H30269，规模最大" },
+    { "code": "515080", "market": "sh", "name": "中证红利ETF招商", "added_at": "2026-04-28", "status": "active" },
+    { "code": "515300", "market": "sh", "name": "300红利低波ETF嘉实", "added_at": "2026-04-28", "status": "active" },
+    { "code": "515890", "market": "sh", "name": "红利ETF博时", "added_at": "2026-04-28", "status": "active" },
+    { "code": "561580", "market": "sh", "name": "央企红利ETF华泰柏瑞", "added_at": "2026-04-28", "status": "active", "notes": "央企+红利双主题" },
+    { "code": "560020", "market": "sh", "name": "红利ETF汇添富", "added_at": "2026-04-28", "status": "active" },
+    { "code": "530880", "market": "sh", "name": "红利国企ETF银河", "added_at": "2026-04-28", "status": "active" },
+    { "code": "510720", "market": "sh", "name": "红利国企ETF国泰", "added_at": "2026-04-28", "status": "active" },
+    { "code": "563890", "market": "sh", "name": "国企红利ETF创金合信", "added_at": "2026-04-28", "status": "active" },
+    { "code": "561060", "market": "sh", "name": "国企红利ETF华安", "added_at": "2026-04-28", "status": "active" },
+    { "code": "563180", "market": "sh", "name": "高股息ETF银华", "added_at": "2026-04-28", "status": "active" },
+    { "code": "159307", "market": "sz", "name": "红利低波ETF博时", "added_at": "2026-04-28", "status": "active", "notes": "费率 0.2%，同类最低" },
+    { "code": "159549", "market": "sz", "name": "红利低波ETF天弘", "added_at": "2026-04-28", "status": "active" },
+    { "code": "159581", "market": "sz", "name": "红利ETF万家", "added_at": "2026-04-28", "status": "active" },
+    { "code": "159515", "market": "sz", "name": "国企红利ETF鹏扬", "added_at": "2026-04-28", "status": "active" },
+    { "code": "159708", "market": "sz", "name": "红利ETF西部利得", "added_at": "2026-04-28", "status": "active" },
+    { "code": "159589", "market": "sz", "name": "红利ETF广发", "added_at": "2026-04-28", "status": "active" }
+  ],
+  "dividend_etfs_hk": [
+    { "code": "513530", "market": "sh", "name": "港股通红利ETF华泰柏瑞", "added_at": "2026-04-28", "status": "active", "notes": "QDII 模式，红利税优势（vs 港股通 20%）" },
+    { "code": "520890", "market": "sh", "name": "港股通红利低波ETF华泰柏瑞", "added_at": "2026-04-28", "status": "active" },
+    { "code": "159607", "market": "sz", "name": "港股通红利低波ETF鹏华", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+    { "code": "513820", "market": "sh", "name": "港股红利ETF易方达", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" }
+  ],
+  "reits": [
+    { "code": "180601", "market": "sz", "name": "华夏华润商业REIT", "reit_subtype": "consumption", "added_at": "2026-04-28", "status": "active", "notes": "青岛万象城" },
+    { "code": "180602", "market": "sz", "name": "中金印力消费REIT", "reit_subtype": "consumption", "added_at": "2026-04-28", "status": "active", "notes": "杭州西溪印象城" },
+    { "code": "180102", "market": "sz", "name": "嘉实物美消费REIT", "reit_subtype": "consumption", "added_at": "2026-04-28", "status": "active" },
+    { "code": "508009", "market": "sh", "name": "华安百联消费REIT", "reit_subtype": "consumption", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+
+    { "code": "508077", "market": "sh", "name": "华夏基金华润有巢REIT", "reit_subtype": "rental_housing", "added_at": "2026-04-28", "status": "active", "notes": "上海新桥/泗泾" },
+    { "code": "508058", "market": "sh", "name": "中金厦门安居REIT", "reit_subtype": "rental_housing", "added_at": "2026-04-28", "status": "active" },
+    { "code": "508016", "market": "sh", "name": "国泰君安城投宽庭REIT", "reit_subtype": "rental_housing", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+    { "code": "508018", "market": "sh", "name": "华夏合肥高新产园REIT", "reit_subtype": "park", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+
+    { "code": "508028", "market": "sh", "name": "中信建投国家电投新能源REIT", "reit_subtype": "energy", "added_at": "2026-04-28", "status": "active", "notes": "江苏滨海海上风电" },
+    { "code": "508006", "market": "sh", "name": "富国首创水务REIT", "reit_subtype": "municipal", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+
+    { "code": "180202", "market": "sz", "name": "华夏越秀高速REIT", "reit_subtype": "transportation", "added_at": "2026-04-28", "status": "active", "notes": "广州/越秀高速" },
+    { "code": "508000", "market": "sh", "name": "平安广州广河REIT", "reit_subtype": "transportation", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+    { "code": "508001", "market": "sh", "name": "浙商证券沪杭甬REIT", "reit_subtype": "transportation", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+    { "code": "508008", "market": "sh", "name": "国金中国铁建高速REIT", "reit_subtype": "transportation", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+    { "code": "508021", "market": "sh", "name": "华夏中国交建高速REIT", "reit_subtype": "transportation", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+
+    { "code": "508098", "market": "sh", "name": "嘉实京东仓储基础设施REIT", "reit_subtype": "logistics", "added_at": "2026-04-28", "status": "active", "notes": "京东自用仓储" },
+    { "code": "508056", "market": "sh", "name": "中金普洛斯仓储物流REIT", "reit_subtype": "logistics", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" },
+    { "code": "508088", "market": "sh", "name": "国君临港创新产业园REIT", "reit_subtype": "park", "added_at": "2026-04-28", "status": "pending", "notes": "代码待验证" }
+  ]
+}

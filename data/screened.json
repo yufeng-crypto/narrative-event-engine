@@ -1,0 +1,1519 @@
+{
+  "fetchedAt": "2026-04-28T14:13:21.853Z",
+  "summary": {
+    "total": 41,
+    "hard_gates_passed": 9,
+    "passed_to_stage4": 8
+  },
+  "candidates": [
+    {
+      "code": "180202",
+      "name": "华夏越秀高速REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "listing_years": 2.66,
+      "aum_yi": 11.07,
+      "ttm_dividend": 0.3818,
+      "current_yield_pct": 7.04,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 19.4,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4",
+        "REIT-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 78.7,
+        "historical_percentile": 50,
+        "aum": 51.1,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 58.8,
+      "passed_to_stage4": true,
+      "rank_in_category": 1
+    },
+    {
+      "code": "508098",
+      "name": "嘉实京东仓储基础设施REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "logistics",
+      "listing_years": 2.66,
+      "aum_yi": 11.54,
+      "ttm_dividend": 0.18,
+      "current_yield_pct": 5.14,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 42.3,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4",
+        "REIT-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 36.5,
+        "historical_percentile": 50,
+        "aum": 51.6,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 46.2,
+      "passed_to_stage4": true,
+      "rank_in_category": 1
+    },
+    {
+      "code": "513530",
+      "name": "港股通红利ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 35.94,
+      "ttm_dividend": 0.1,
+      "current_yield_pct": 5.99,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 18.4,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 59.8,
+        "three_year_avg_yield": 0,
+        "aum": 63.9,
+        "drawdown": 46.5,
+        "historical_percentile": 50
+      },
+      "total_score": 45,
+      "passed_to_stage4": true,
+      "rank_in_category": 1
+    },
+    {
+      "code": "508077",
+      "name": "华夏基金华润有巢REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "rental_housing",
+      "listing_years": 2.68,
+      "aum_yi": 25.94,
+      "ttm_dividend": 0.13,
+      "current_yield_pct": 4.75,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 28.2,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4",
+        "REIT-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 27.8,
+        "historical_percentile": 50,
+        "aum": 60.3,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 44.9,
+      "passed_to_stage4": true,
+      "rank_in_category": 1
+    },
+    {
+      "code": "512890",
+      "name": "红利低波ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 307.22,
+      "ttm_dividend": 0.06,
+      "current_yield_pct": 5.04,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 13.8,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 40.8,
+        "three_year_avg_yield": 0,
+        "aum": 87.2,
+        "drawdown": 64.8,
+        "historical_percentile": 50
+      },
+      "total_score": 44.6,
+      "passed_to_stage4": true,
+      "rank_in_category": 1
+    },
+    {
+      "code": "180601",
+      "name": "华夏华润商业REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "listing_years": 2.12,
+      "aum_yi": 100.24,
+      "ttm_dividend": 0.3651,
+      "current_yield_pct": 3.64,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 10.6,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4",
+        "REIT-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 3.1,
+        "historical_percentile": 50,
+        "aum": 75,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 39.7,
+      "passed_to_stage4": true,
+      "rank_in_category": 1
+    },
+    {
+      "code": "508028",
+      "name": "中信建投国家电投新能源REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "energy",
+      "listing_years": 2.66,
+      "aum_yi": 82.48,
+      "ttm_dividend": 0.3,
+      "current_yield_pct": 2.91,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 7.5,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 72.9,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 38.4,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508009",
+      "name": "中金安徽交控REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "listing_years": 2.66,
+      "aum_yi": 58.75,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 28.5,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 69.2,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 37.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508056",
+      "name": "中金普洛斯REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "logistics",
+      "listing_years": 2.66,
+      "aum_yi": 57.79,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 43.1,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 69,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 37.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508018",
+      "name": "华夏中国交建REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "park",
+      "listing_years": 2.66,
+      "aum_yi": 52.57,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 21.9,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 68,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 37.7,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "510880",
+      "name": "红利ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 189.53,
+      "ttm_dividend": 0.142,
+      "current_yield_pct": 4.26,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 15.4,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 25.3,
+        "three_year_avg_yield": 0,
+        "aum": 81.9,
+        "drawdown": 58.5,
+        "historical_percentile": 50
+      },
+      "total_score": 37.4,
+      "passed_to_stage4": true,
+      "rank_in_category": 2
+    },
+    {
+      "code": "180602",
+      "name": "中金印力消费REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "listing_years": 1.99,
+      "aum_yi": 41.82,
+      "ttm_dividend": 0.0856,
+      "current_yield_pct": 2.05,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 10.2,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 65.5,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 37.3,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "515100",
+      "name": "红利低波100ETF景顺",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 62.31,
+      "ttm_dividend": 0.064,
+      "current_yield_pct": 4.41,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 14.9,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 28.2,
+        "three_year_avg_yield": 0,
+        "aum": 69.9,
+        "drawdown": 60.5,
+        "historical_percentile": 50
+      },
+      "total_score": 36.9,
+      "passed_to_stage4": true,
+      "rank_in_category": 3
+    },
+    {
+      "code": "508016",
+      "name": "华夏华电清洁能源REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "rental_housing",
+      "listing_years": 0.74,
+      "aum_yi": 20.95,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 14.1,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H1",
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 58,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 36.2,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508058",
+      "name": "中金厦门安居REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "rental_housing",
+      "listing_years": 2.66,
+      "aum_yi": 19.94,
+      "ttm_dividend": 0.12,
+      "current_yield_pct": 3,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 18.7,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H2",
+        "REIT-H3",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H1",
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 57.5,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 36.1,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "180102",
+      "name": "华夏合肥高新REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "listing_years": 2.66,
+      "aum_yi": 10.08,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 38,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 50.1,
+        "dividend_frequency": 0,
+        "manager_rating": 100
+      },
+      "total_score": 35,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "561580",
+      "name": "央企红利ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 20.2,
+      "ttm_dividend": 0.05,
+      "current_yield_pct": 3.97,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 12.9,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_failed": [],
+      "hard_gates_skipped": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 19.5,
+        "three_year_avg_yield": 0,
+        "aum": 57.6,
+        "drawdown": 68.4,
+        "historical_percentile": 50
+      },
+      "total_score": 33.2,
+      "passed_to_stage4": false,
+      "rank_in_category": 4,
+      "exclude_reason": "A 股红利 ETF 排名超出 Top 3"
+    },
+    {
+      "code": "508021",
+      "name": "国泰海通临港创新产业园REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "listing_years": 2.66,
+      "aum_yi": 24.96,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 30.7,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 59.9,
+        "dividend_frequency": 0,
+        "manager_rating": 75
+      },
+      "total_score": 32.7,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508088",
+      "name": "国泰海通东久新经济REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "park",
+      "listing_years": 2.66,
+      "aum_yi": 23.83,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 31.2,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 59.4,
+        "dividend_frequency": 0,
+        "manager_rating": 75
+      },
+      "total_score": 32.7,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508001",
+      "name": "浙商沪杭甬REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "listing_years": 2.66,
+      "aum_yi": 27.91,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 27.9,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 61.1,
+        "dividend_frequency": 0,
+        "manager_rating": 50
+      },
+      "total_score": 29.2,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "515300",
+      "name": "300红利低波ETF嘉实",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 52.52,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 11.4,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 68,
+        "drawdown": 74.4,
+        "historical_percentile": 50
+      },
+      "total_score": 28.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508008",
+      "name": "国金中国铁建REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "listing_years": 2.66,
+      "aum_yi": 23.34,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 14.5,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 59.2,
+        "dividend_frequency": 0,
+        "manager_rating": 50
+      },
+      "total_score": 28.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508000",
+      "name": "华安张江产业园REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "listing_years": 2.66,
+      "aum_yi": 21.83,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 46.1,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 58.5,
+        "dividend_frequency": 0,
+        "manager_rating": 50
+      },
+      "total_score": 28.8,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "508006",
+      "name": "富国首创水务REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "municipal",
+      "listing_years": 2.66,
+      "aum_yi": 18.03,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 38,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "REIT-H1",
+        "REIT-H2",
+        "REIT-H4"
+      ],
+      "hard_gates_failed": [
+        "REIT-H3",
+        "REIT-H7"
+      ],
+      "hard_gates_skipped": [
+        "REIT-H5",
+        "REIT-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "historical_percentile": 50,
+        "aum": 56.4,
+        "dividend_frequency": 0,
+        "manager_rating": 50
+      },
+      "total_score": 28.5,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159549",
+      "name": "红利低波ETF天弘",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.38,
+      "aum_yi": 55.42,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 13.9,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 68.6,
+        "drawdown": 64.6,
+        "historical_percentile": 50
+      },
+      "total_score": 27.5,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "515080",
+      "name": "中证红利ETF招商",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 95.28,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 15.6,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 74.5,
+        "drawdown": 57.6,
+        "historical_percentile": 50
+      },
+      "total_score": 27.3,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159307",
+      "name": "红利低波100ETF博时",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.01,
+      "aum_yi": 55.73,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 15,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 68.7,
+        "drawdown": 60.2,
+        "historical_percentile": 50
+      },
+      "total_score": 26.8,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "510720",
+      "name": "红利国企ETF国泰",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 1.95,
+      "aum_yi": 20.23,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 13.7,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 57.6,
+        "drawdown": 65.2,
+        "historical_percentile": 50
+      },
+      "total_score": 25.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "513820",
+      "name": "港股通红利ETF汇添富",
+      "market": "sh",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "listing_years": 1.95,
+      "aum_yi": 30.93,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 16.8,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 62.3,
+        "drawdown": 52.7,
+        "historical_percentile": 50
+      },
+      "total_score": 24.7,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159581",
+      "name": "红利ETF万家",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.12,
+      "aum_yi": 14.56,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 15.3,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H2",
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 54.1,
+        "drawdown": 58.8,
+        "historical_percentile": 50
+      },
+      "total_score": 24.4,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "563890",
+      "name": "国企红利ETF创金合信",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 0.53,
+      "aum_yi": 0.3,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 6.9,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 11.9,
+        "drawdown": 92.3,
+        "historical_percentile": 50
+      },
+      "total_score": 23.1,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "563180",
+      "name": "高股息ETF银华",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 1.96,
+      "aum_yi": 1.39,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 11.5,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 28.6,
+        "drawdown": 73.9,
+        "historical_percentile": 50
+      },
+      "total_score": 22.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "515890",
+      "name": "红利ETF博时",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.66,
+      "aum_yi": 4.63,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 15.3,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 41.6,
+        "drawdown": 58.8,
+        "historical_percentile": 50
+      },
+      "total_score": 22.6,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "530880",
+      "name": "红利国企ETF银河",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 1.46,
+      "aum_yi": 0.49,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 9.8,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 17.3,
+        "drawdown": 81,
+        "historical_percentile": 50
+      },
+      "total_score": 22.2,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159589",
+      "name": "红利ETF广发",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.09,
+      "aum_yi": 1.37,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 15.5,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 28.4,
+        "drawdown": 57.9,
+        "historical_percentile": 50
+      },
+      "total_score": 20.4,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "561060",
+      "name": "国企红利ETF华安",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.6,
+      "aum_yi": 0.66,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 14.4,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 20.5,
+        "drawdown": 62.3,
+        "historical_percentile": 50
+      },
+      "total_score": 19.9,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "560020",
+      "name": "红利ETF汇添富",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.53,
+      "aum_yi": 1.05,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 16.1,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 25.5,
+        "drawdown": 55.8,
+        "historical_percentile": 50
+      },
+      "total_score": 19.7,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159515",
+      "name": "国企红利ETF鹏扬",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 2.64,
+      "aum_yi": 0.46,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 13.8,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 16.6,
+        "drawdown": 64.9,
+        "historical_percentile": 50
+      },
+      "total_score": 19.7,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "520890",
+      "name": "港股通红利低波ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "listing_years": 1.6,
+      "aum_yi": 1.27,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 17.1,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H5"
+      ],
+      "hard_gates_failed": [
+        "ETF-H1",
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 27.6,
+        "drawdown": 51.7,
+        "historical_percentile": 50
+      },
+      "total_score": 19.4,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159607",
+      "name": "中概互联网ETF嘉实",
+      "market": "sz",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "listing_years": 4.4,
+      "aum_yi": 10.99,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 44.4,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H1",
+        "ETF-H2"
+      ],
+      "hard_gates_failed": [
+        "ETF-H3",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 51,
+        "drawdown": 0,
+        "historical_percentile": 50
+      },
+      "total_score": 15.2,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    },
+    {
+      "code": "159708",
+      "name": "红利ETF西部利得",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "listing_years": 4.82,
+      "aum_yi": 1.58,
+      "ttm_dividend": null,
+      "current_yield_pct": null,
+      "three_year_avg_yield_pct": 0,
+      "max_drawdown_pct": 37.1,
+      "historical_percentile": null,
+      "hard_gates_passed": [
+        "ETF-H1"
+      ],
+      "hard_gates_failed": [
+        "ETF-H2",
+        "ETF-H3",
+        "ETF-H5",
+        "ETF-H7"
+      ],
+      "hard_gates_skipped": [
+        "ETF-H4",
+        "ETF-H6"
+      ],
+      "score_breakdown": {
+        "yield": 0,
+        "three_year_avg_yield": 0,
+        "aum": 30,
+        "drawdown": 0,
+        "historical_percentile": 50
+      },
+      "total_score": 12,
+      "passed_to_stage4": false,
+      "rank_in_category": null
+    }
+  ]
+}

@@ -1,0 +1,752 @@
+{
+  "fetchedAt": "2026-04-28T13:42:41.443Z",
+  "counts": {
+    "seed_total": 41,
+    "validated": 41,
+    "invalid": 0,
+    "dividend_etfs": 23,
+    "reits": 18
+  },
+  "dividend_etfs": [
+    {
+      "code": "510880",
+      "name": "红利ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 3.325,
+      "prev_close": 3.275,
+      "change_pct": 1.53,
+      "aum": 18953000000,
+      "seed_source": "上证红利指数 000015，2006 成立，国内最老牌",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利ETF华泰柏瑞",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "515100",
+      "name": "红利低波100ETF景顺",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.451,
+      "prev_close": 1.443,
+      "change_pct": 0.55,
+      "aum": 6231000000,
+      "seed_source": "中证红利低波 100 (930955)",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利低波100ETF景顺",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "512890",
+      "name": "红利低波ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.192,
+      "prev_close": 1.189,
+      "change_pct": 0.25,
+      "aum": 30722000000.000004,
+      "seed_source": "中证红利低波 H30269，规模最大",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利低波ETF华泰柏瑞",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "515080",
+      "name": "中证红利ETF招商",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.625,
+      "prev_close": 1.611,
+      "change_pct": 0.87,
+      "aum": 9528000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "中证红利ETF招商",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "515300",
+      "name": "300红利低波ETF嘉实",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.332,
+      "prev_close": 1.319,
+      "change_pct": 0.99,
+      "aum": 5252000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "300红利低波ETF嘉实",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "515890",
+      "name": "红利ETF博时",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.487,
+      "prev_close": 1.471,
+      "change_pct": 1.09,
+      "aum": 463000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利ETF博时",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "561580",
+      "name": "央企红利ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.258,
+      "prev_close": 1.248,
+      "change_pct": 0.8,
+      "aum": 2020000000,
+      "seed_source": "央企+红利双主题",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "央企红利ETF华泰柏瑞",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "560020",
+      "name": "红利ETF汇添富",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.142,
+      "prev_close": 1.128,
+      "change_pct": 1.24,
+      "aum": 105000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利ETF汇添富",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "530880",
+      "name": "红利国企ETF银河",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.08,
+      "prev_close": 1.062,
+      "change_pct": 1.69,
+      "aum": 49000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利国企ETF银河",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "510720",
+      "name": "红利国企ETF国泰",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.029,
+      "prev_close": 1.014,
+      "change_pct": 1.48,
+      "aum": 2023000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利国企ETF国泰",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "563890",
+      "name": "国企红利ETF创金合信",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.077,
+      "prev_close": 1.063,
+      "change_pct": 1.32,
+      "aum": 30000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "国企红利ETF创金合信",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "561060",
+      "name": "国企红利ETF华安",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.185,
+      "prev_close": 1.17,
+      "change_pct": 1.28,
+      "aum": 66000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "国企红利ETF华安",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "563180",
+      "name": "高股息ETF银华",
+      "market": "sh",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.16,
+      "prev_close": 1.149,
+      "change_pct": 0.96,
+      "aum": 139000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "高股息ETF银华",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159307",
+      "name": "红利低波100ETF博时",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.069,
+      "prev_close": 1.064,
+      "change_pct": 0.47,
+      "aum": 5573000000,
+      "seed_source": "费率 0.2%，同类最低",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "红利低波100ETF博时",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159549",
+      "name": "红利低波ETF天弘",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.223,
+      "prev_close": 1.216,
+      "change_pct": 0.58,
+      "aum": 5542000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利低波ETF天弘",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159581",
+      "name": "红利ETF万家",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.101,
+      "prev_close": 1.089,
+      "change_pct": 1.1,
+      "aum": 1456000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利ETF万家",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159515",
+      "name": "国企红利ETF鹏扬",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.204,
+      "prev_close": 1.191,
+      "change_pct": 1.09,
+      "aum": 46000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "国企红利ETF鹏扬",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159708",
+      "name": "红利ETF西部利得",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 0.88,
+      "prev_close": 0.872,
+      "change_pct": 0.92,
+      "aum": 158000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利ETF西部利得",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159589",
+      "name": "红利ETF广发",
+      "market": "sz",
+      "category": "dividend_etf_a",
+      "reit_subtype": null,
+      "current_price": 1.124,
+      "prev_close": 1.114,
+      "change_pct": 0.9,
+      "aum": 137000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "红利ETF广发",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "513530",
+      "name": "港股通红利ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "current_price": 1.669,
+      "prev_close": 1.668,
+      "change_pct": 0.06,
+      "aum": 3594000000,
+      "seed_source": "QDII 模式，红利税优势（vs 港股通 20%）",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "港股通红利ETF华泰柏瑞",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "520890",
+      "name": "港股通红利低波ETF华泰柏瑞",
+      "market": "sh",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "current_price": 1.437,
+      "prev_close": 1.437,
+      "change_pct": 0,
+      "aum": 127000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "港股通红利低波ETF华泰柏瑞",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "159607",
+      "name": "中概互联网ETF嘉实",
+      "market": "sz",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "current_price": 0.868,
+      "prev_close": 0.88,
+      "change_pct": -1.36,
+      "aum": 1099000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "中概互联网ETF嘉实",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "513820",
+      "name": "港股通红利ETF汇添富",
+      "market": "sh",
+      "category": "dividend_etf_hk",
+      "reit_subtype": null,
+      "current_price": 1.276,
+      "prev_close": 1.275,
+      "change_pct": 0.08,
+      "aum": 3093000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "港股通红利ETF汇添富",
+        "source": "tencent"
+      }
+    }
+  ],
+  "reits": [
+    {
+      "code": "180601",
+      "name": "华夏华润商业REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "current_price": 10.031,
+      "prev_close": 10.1,
+      "change_pct": -0.68,
+      "aum": 10024000000,
+      "seed_source": "青岛万象城",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "华夏华润商业REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "180602",
+      "name": "中金印力消费REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "current_price": 4.185,
+      "prev_close": 4.184,
+      "change_pct": 0.02,
+      "aum": 4182000000,
+      "seed_source": "杭州西溪印象城",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "中金印力消费REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "180102",
+      "name": "华夏合肥高新REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "current_price": 1.44,
+      "prev_close": 1.444,
+      "change_pct": -0.28,
+      "aum": 1008000000,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "华夏合肥高新REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508009",
+      "name": "中金安徽交控REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "consumption",
+      "current_price": 5.878,
+      "prev_close": 5.936,
+      "change_pct": -0.98,
+      "aum": 5875000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "中金安徽交控REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508077",
+      "name": "华夏基金华润有巢REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "rental_housing",
+      "current_price": 2.737,
+      "prev_close": 2.767,
+      "change_pct": -1.08,
+      "aum": 2594000000,
+      "seed_source": "上海新桥/泗泾",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "华夏基金华润有巢REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508058",
+      "name": "中金厦门安居REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "rental_housing",
+      "current_price": 4.001,
+      "prev_close": 4.023,
+      "change_pct": -0.55,
+      "aum": 1994000000.0000002,
+      "seed_source": null,
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "中金厦门安居REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508016",
+      "name": "华夏华电清洁能源REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "rental_housing",
+      "current_price": 4.19,
+      "prev_close": 4.223,
+      "change_pct": -0.78,
+      "aum": 2095000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "华夏华电清洁能源REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508018",
+      "name": "华夏中国交建REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "park",
+      "current_price": 5.67,
+      "prev_close": 5.743,
+      "change_pct": -1.27,
+      "aum": 5257000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "华夏中国交建REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508028",
+      "name": "中信建投国家电投新能源REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "energy",
+      "current_price": 10.312,
+      "prev_close": 10.309,
+      "change_pct": 0.03,
+      "aum": 8248000000,
+      "seed_source": "江苏滨海海上风电",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "中信建投国家电投新能源REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508006",
+      "name": "富国首创水务REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "municipal",
+      "current_price": 3.616,
+      "prev_close": 3.616,
+      "change_pct": 0,
+      "aum": 1803000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "富国首创水务REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "180202",
+      "name": "华夏越秀高速REIT",
+      "market": "sz",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "current_price": 5.42,
+      "prev_close": 5.42,
+      "change_pct": 0,
+      "aum": 1107000000,
+      "seed_source": "广州/越秀高速",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "华夏越秀高速REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508000",
+      "name": "华安张江产业园REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "current_price": 2.413,
+      "prev_close": 2.422,
+      "change_pct": -0.37,
+      "aum": 2183000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "华安张江产业园REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508001",
+      "name": "浙商沪杭甬REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "current_price": 5.596,
+      "prev_close": 5.599,
+      "change_pct": -0.05,
+      "aum": 2791000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "浙商沪杭甬REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508008",
+      "name": "国金中国铁建REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "current_price": 7.793,
+      "prev_close": 7.815,
+      "change_pct": -0.28,
+      "aum": 2334000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "国金中国铁建REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508021",
+      "name": "国泰海通临港创新产业园REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "transportation",
+      "current_price": 4.242,
+      "prev_close": 4.244,
+      "change_pct": -0.05,
+      "aum": 2496000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "国泰海通临港创新产业园REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508098",
+      "name": "嘉实京东仓储基础设施REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "logistics",
+      "current_price": 3.499,
+      "prev_close": 3.48,
+      "change_pct": 0.55,
+      "aum": 1154000000,
+      "seed_source": "京东自用仓储",
+      "validation": {
+        "status": "ok",
+        "name_match": true,
+        "name_in_data": "嘉实京东仓储基础设施REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508056",
+      "name": "中金普洛斯REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "logistics",
+      "current_price": 2.99,
+      "prev_close": 2.979,
+      "change_pct": 0.37,
+      "aum": 5779000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "中金普洛斯REIT",
+        "source": "tencent"
+      }
+    },
+    {
+      "code": "508088",
+      "name": "国泰海通东久新经济REIT",
+      "market": "sh",
+      "category": "reit",
+      "reit_subtype": "park",
+      "current_price": 3.849,
+      "prev_close": 3.847,
+      "change_pct": 0.05,
+      "aum": 2383000000,
+      "seed_source": "代码待验证",
+      "validation": {
+        "status": "ok",
+        "name_match": false,
+        "name_in_data": "国泰海通东久新经济REIT",
+        "source": "tencent"
+      }
+    }
+  ]
+}

@@ -1,0 +1,649 @@
+{
+  "fetchedAt": "2026-04-28T14:15:24.828Z",
+  "summary": {
+    "total": 8,
+    "ok": 8,
+    "error": 0,
+    "total_cost_usd": "0.0126"
+  },
+  "assessments": [
+    {
+      "code": "180202",
+      "name": "华夏越秀高速REIT",
+      "fact_anchor": {
+        "underlying_asset": "汉孝高速（汉孝高速公路）",
+        "asset_location": "湖北省武汉市",
+        "original_owner": "越秀交通基建有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2021-12",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "汉孝高速是连接武汉与孝感的重要交通动脉，属于核心城市圈高速公路，车流量稳定。资产位于湖北省会武汉周边，属于二线核心城市，运营稳定。",
+          "evidence": [
+            "华夏越秀高速REIT 2023年年报：汉孝高速日均车流量约5.2万辆，通行费收入稳定"
+          ]
+        },
+        "contract_stability": {
+          "score": 4,
+          "reasoning": "高速公路收费权属于特许经营权，剩余期限约20年，合同期限长。收入来源分散于大量通行车辆，无单一租户依赖风险。",
+          "evidence": [
+            "招募说明书：汉孝高速收费权剩余年限约20年（至2043年）"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为华夏基金，头部公募基金，REITs管理经验丰富。原始权益人越秀交通是越秀集团旗下高速公路上市平台，运营经验成熟。",
+          "evidence": [
+            "华夏基金官网：管理多只公募REITs，规模领先",
+            "越秀交通基建2023年报：运营多条高速公路，汉孝高速运营良好"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2023年可供分配金额约1.2亿元，覆盖预测值110%以上，资产负债率约35%，财务稳健。",
+          "evidence": [
+            "华夏越秀高速REIT 2023年年报：可供分配金额1.2亿元，完成预测的112%",
+            "2023年四季报：资产负债率34.8%"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "高速公路行业受国家政策支持，收费权受法律保护，政策风险较低。但需关注收费期限临近到期后的处置政策。",
+          "evidence": [
+            "《收费公路管理条例》：收费期限有明确规定，目前剩余期限较长"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "越秀交通旗下有多个高速公路资产，但尚未明确扩募计划。未来可能通过扩募注入新资产，但时间不确定。",
+          "evidence": [
+            "越秀交通基建2023年报：提及资产储备，但无具体扩募公告"
+          ]
+        }
+      },
+      "total_score": 23,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "收费权剩余期限约20年，长期需关注到期处置"
+      ],
+      "upgrade_triggers": [
+        "若原始权益人公告扩募方案，成长性评分可提升至4分"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2933,
+        "completion_tokens": 735,
+        "total_tokens": 3668,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2933
+      }
+    },
+    {
+      "code": "508098",
+      "name": "嘉实京东仓储基础设施REIT",
+      "fact_anchor": {
+        "underlying_asset": "京东重庆、武汉、廊坊三处仓储物流资产",
+        "asset_location": "重庆、武汉、廊坊",
+        "original_owner": "北京京东世纪贸易有限公司",
+        "fund_manager": "嘉实基金管理有限公司",
+        "listing_date": "2023-01",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为京东自营的高标准仓储物流设施，位于重庆、武汉、廊坊等核心物流节点城市，资产质量较高，但非一线核心地段。",
+          "evidence": [
+            "嘉实京东仓储基础设施REIT招募说明书（2023年1月）"
+          ]
+        },
+        "contract_stability": {
+          "score": 5,
+          "reasoning": "租约主要为京东集团旗下子公司长期租约，租期长达10年以上，且京东作为电商巨头信用风险极低，出租率接近100%。",
+          "evidence": [
+            "嘉实京东仓储基础设施REIT 2023年年报"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为嘉实基金，公募基金头部公司，但仓储物流REIT运营经验相对较新（上市仅2年多），运营记录良好。",
+          "evidence": [
+            "嘉实基金官网"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2023年年报显示可供分配金额完成率超过100%，资产负债率约30%，现金流稳定。",
+          "evidence": [
+            "嘉实京东仓储基础设施REIT 2023年年报"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "仓储物流属于国家鼓励的新基建范畴，政策风险较低，但REITs整体监管仍在完善中。",
+          "evidence": [
+            "国家发改委关于REITs试点政策文件"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "京东集团拥有大量仓储资产，未来有扩募潜力，但尚未公布具体扩募方案。",
+          "evidence": [
+            "嘉实京东仓储基础设施REIT 2023年年报提及扩募意向"
+          ]
+        }
+      },
+      "total_score": 24,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "租户集中度极高（京东集团单一租户），若京东经营恶化将严重影响现金流"
+      ],
+      "upgrade_triggers": [
+        "公布具体扩募方案并实施",
+        "租约续签进一步延长"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2933,
+        "completion_tokens": 606,
+        "total_tokens": 3539,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 373
+      }
+    },
+    {
+      "code": "513530",
+      "name": "港股通红利ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "恒生港股通高股息低波动指数成分股",
+        "asset_location": "香港交易所上市港股",
+        "original_owner": "恒生指数有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2022-04",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "跟踪恒生港股通高股息低波动指数，该指数编制规则清晰，选取港股通中高股息且低波动的股票，成分股以金融、公用事业等稳定分红行业为主，质量较高。但指数运行时间约5年，且成分股集中度较高（前10大权重约40%），存在一定集中风险。",
+          "evidence": [
+            "恒生指数公司官网指数规则",
+            "华泰柏瑞基金2024年四季报"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "ETF无租约概念，按规则直接给3分。",
+          "evidence": [
+            "框架规则：ETF类标的contract_stability直接给3分"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "华泰柏瑞基金为头部公募基金公司，管理规模超千亿，ETF运营经验丰富，旗下多只ETF运作成熟。但港股通红利ETF成立仅2.66年，运营记录相对较短。",
+          "evidence": [
+            "华泰柏瑞基金公司官网",
+            "Wind数据"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "ETF财务健康度主要看跟踪误差和费率。该ETF管理费率0.5%，托管费率0.1%，合计0.6%，处于行业中等水平。跟踪误差较小，2024年跟踪偏离度约0.3%。但规模35.94亿元，流动性较好。",
+          "evidence": [
+            "华泰柏瑞基金2024年四季报",
+            "Wind数据"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "港股通ETF受内地与香港监管政策支持，税收政策稳定（港股通股息税20%），无明确政策收紧风险。但需关注港股通机制调整及跨境监管变化，风险较低。",
+          "evidence": [
+            "证监会关于港股通ETF的规定",
+            "财政部关于港股通股息税政策"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "ETF成长性取决于指数表现和资金流入。恒生港股通高股息低波动指数历史表现稳健，但港股市场整体波动较大。ETF规模近一年有所增长，但未来增长空间受限于港股通红利策略的市场认可度。",
+          "evidence": [
+            "恒生指数公司历史表现数据",
+            "华泰柏瑞基金2024年四季报"
+          ]
+        }
+      },
+      "total_score": 22,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "成分股集中度较高（前10大权重约40%）",
+        "港股市场波动较大，可能影响分红稳定性"
+      ],
+      "upgrade_triggers": [
+        "成分股进一步分散化",
+        "规模持续增长至50亿元以上"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2934,
+        "completion_tokens": 753,
+        "total_tokens": 3687,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 374
+      }
+    },
+    {
+      "code": "508077",
+      "name": "华夏基金华润有巢REIT",
+      "fact_anchor": {
+        "underlying_asset": "有巢国际公寓社区（上海泗泾店、上海东部经开区店、北京润棠·瀛海店）",
+        "asset_location": "上海市松江区、上海市奉贤区、北京市大兴区",
+        "original_owner": "华润置地有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2022-11",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为华润置地旗下保租房项目，位于上海和北京核心一线城市，区位优越，出租率长期维持95%以上，资产质量较高。",
+          "evidence": [
+            "华夏基金华润有巢REIT 2024年中期报告：出租率分别为96.2%、95.8%、97.1%",
+            "招募说明书：底层资产为华润置地旗下保租房项目，位于上海和北京"
+          ]
+        },
+        "contract_stability": {
+          "score": 5,
+          "reasoning": "保租房租约通常为1-3年，但租户分散（个人租户为主），续租率高（约80%），且政策支持保租房稳定运营，出租率持续高于95%。",
+          "evidence": [
+            "2024年中期报告：出租率96%以上，续租率约80%",
+            "招募说明书：租户为个人，无单一依赖"
+          ]
+        },
+        "operator_strength": {
+          "score": 5,
+          "reasoning": "基金管理人为华夏基金（头部公募），运营管理机构为华润有巢（华润置地旗下），央企背景，保租房运营经验丰富，无负面记录。",
+          "evidence": [
+            "华夏基金官网：管理多只REITs，规模领先",
+            "华润置地2023年报：有巢公寓管理规模超5万间"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "可分配金额覆盖率约110%，NOI稳定增长，资产负债率约35%，财务健康。",
+          "evidence": [
+            "2024年中期报告：可供分配金额完成预测的110%",
+            "2024年中期报告：资产负债率35.2%"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "保租房为国家政策明确鼓励方向，享受税收优惠，扩募规则清晰，政策风险极低。",
+          "evidence": [
+            "国务院办公厅《关于加快发展保障性租赁住房的意见》（国办发〔2021〕22号）",
+            "财政部、税务总局《关于完善住房租赁市场税收政策的公告》（2021年第24号）"
+          ]
+        },
+        "growth_potential": {
+          "score": 4,
+          "reasoning": "原始权益人华润置地拥有大量保租房储备资产，已公告扩募意向，未来扩募空间较大。",
+          "evidence": [
+            "华润置地2023年报：在建保租房项目超2万间",
+            "华夏基金华润有巢REIT 2024年公告：已启动扩募准备工作"
+          ]
+        }
+      },
+      "total_score": 27,
+      "grade": "A+",
+      "recommendation": "include",
+      "red_flags": [],
+      "upgrade_triggers": [
+        "扩募落地并提升每份分红",
+        "出租率持续高于98%"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2936,
+        "completion_tokens": 805,
+        "total_tokens": 3741,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 376
+      }
+    },
+    {
+      "code": "512890",
+      "name": "红利低波ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "华泰柏瑞红利低波动ETF跟踪的指数为中证红利低波动指数（930955）",
+        "asset_location": "A股市场",
+        "original_owner": "中证指数有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2018-12-19",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "跟踪的中证红利低波动指数编制规则清晰，自2013年发布以来稳定运行超过10年，成分股以高股息且低波动股票为主，但前10大成分股权重约30%，集中度适中，无大量分红陷阱。",
+          "evidence": [
+            "中证指数有限公司官网：中证红利低波动指数编制方案",
+            "Wind数据：截至2025年5月，指数前10大成分股权重约30%"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "ETF无租约概念，按规则直接给3分。",
+          "evidence": [
+            "框架规则：ETF类标的contract_stability直接给3分"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "华泰柏瑞基金为中外合资公募基金，管理规模超3000亿元，在ETF领域有丰富经验，旗下多只ETF规模领先，但运营记录约5年，非该领域最资深。",
+          "evidence": [
+            "华泰柏瑞基金官网：公司管理规模及产品线",
+            "Wind数据：华泰柏瑞沪深300ETF规模超1000亿元"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "ETF财务健康主要看跟踪误差和规模稳定性。该ETF规模超300亿元，日均成交额大，跟踪误差小，管理费率0.15%，无负债风险，分红稳定。",
+          "evidence": [
+            "华泰柏瑞红利低波动ETF2024年年度报告：跟踪误差0.05%",
+            "Wind数据：2024年日均成交额约5亿元"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "红利低波策略受政策鼓励，属于价值投资范畴，无行业性政策风险。ETF税收政策稳定，监管环境友好。",
+          "evidence": [
+            "证监会《关于加快推进公募基金行业高质量发展的意见》鼓励权益类ETF发展"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "ETF成长性取决于指数表现和市场资金流入。红利低波策略在低利率环境下吸引力较强，但指数成分股调整有限，规模增长依赖市场情绪，无扩募概念。",
+          "evidence": [
+            "Wind数据：2024年红利低波ETF规模增长约50%",
+            "中证指数公司：指数成分股每半年调整一次"
+          ]
+        }
+      },
+      "total_score": 22,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [],
+      "upgrade_triggers": [
+        "若指数成分股质量进一步提升或规模持续增长，可考虑上调"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2935,
+        "completion_tokens": 738,
+        "total_tokens": 3673,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 375
+      }
+    },
+    {
+      "code": "180601",
+      "name": "华夏华润商业REIT",
+      "fact_anchor": {
+        "underlying_asset": "青岛万象城",
+        "asset_location": "山东省青岛市",
+        "original_owner": "华润置地",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2024-03",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 5,
+          "reasoning": "青岛万象城位于青岛市市南区核心商圈，是华润置地旗下高端购物中心，2023年销售额超40亿元，客流量超3000万人次，在青岛商业市场占据龙头地位，资产不可替代性强。",
+          "evidence": [
+            "华夏华润商业REIT 2024年中期报告",
+            "华润置地2023年年报"
+          ]
+        },
+        "contract_stability": {
+          "score": 4,
+          "reasoning": "租约期限以3-5年为主，租户结构分散，前五大租户占比约15%，出租率长期维持在95%以上，续租率约85%。",
+          "evidence": [
+            "华夏华润商业REIT 2024年中期报告"
+          ]
+        },
+        "operator_strength": {
+          "score": 5,
+          "reasoning": "基金管理人为华夏基金，央企背景，公募REITs管理规模领先；运营管理机构为华润万象生活，拥有超过20年商业运营经验，管理全国多个万象城项目，运营记录成熟。",
+          "evidence": [
+            "华夏基金官网",
+            "华润万象生活2023年年报"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2024年上半年可供分配金额约1.5亿元，覆盖预测值约105%，资产负债率约35%，NOI稳定增长。",
+          "evidence": [
+            "华夏华润商业REIT 2024年中期报告"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "消费基础设施REITs受政策鼓励，属于新基建范畴，税收政策明确，扩募规则清晰，但商业地产受宏观经济周期影响有一定不确定性。",
+          "evidence": [
+            "国家发改委关于REITs常态化发行的通知（2024年）"
+          ]
+        },
+        "growth_potential": {
+          "score": 5,
+          "reasoning": "原始权益人华润置地旗下拥有超过60个购物中心，储备资产丰富，已公告拟扩募注入其他万象城项目，扩募将显著提升每份价值。",
+          "evidence": [
+            "华夏华润商业REIT 2024年8月扩募公告"
+          ]
+        }
+      },
+      "total_score": 27,
+      "grade": "A+",
+      "recommendation": "include",
+      "red_flags": [],
+      "upgrade_triggers": [
+        "若出租率持续提升至98%以上，合同稳定性可升至5分"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2933,
+        "completion_tokens": 655,
+        "total_tokens": 3588,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 373
+      }
+    },
+    {
+      "code": "510880",
+      "name": "红利ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "上证红利指数成分股",
+        "asset_location": "上海证券交易所",
+        "original_owner": "华泰柏瑞基金管理有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2006-11-17",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "跟踪上证红利指数，该指数选取现金股息率高、分红稳定的50只股票，成分股以金融、能源、公用事业等成熟行业为主，质量较高。指数自2005年发布以来运行稳定，但成分股集中度较高（前10大权重约40%），且存在少数分红陷阱风险。",
+          "evidence": [
+            "上证红利指数编制方案（中证指数有限公司官网）",
+            "华泰柏瑞上证红利ETF2024年四季报"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "ETF无租约概念，按规则直接给3分。",
+          "evidence": [
+            "框架规定ETF类标的contract_stability直接给3分"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "华泰柏瑞基金为国内头部公募基金公司，管理规模超4000亿元，ETF管理经验丰富，旗下多只ETF运作成熟。但红利ETF规模较大，管理团队稳定，无重大负面记录。",
+          "evidence": [
+            "华泰柏瑞基金官网",
+            "中国基金业协会数据"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "ETF财务健康主要看跟踪误差和分红能力。该ETF近一年跟踪误差约0.5%，分红稳定，2024年每份分红0.142元，股息率4.26%，覆盖良好。但需注意成分股分红政策变化可能影响未来分红。",
+          "evidence": [
+            "华泰柏瑞上证红利ETF2024年四季报",
+            "Wind数据"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "ETF受证监会监管，政策环境稳定。红利策略符合监管鼓励的长期投资导向，无特殊政策风险。但指数编制规则调整或税收政策变化可能带来轻微影响。",
+          "evidence": [
+            "证监会关于ETF监管的相关规定",
+            "上证红利指数编制方案"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "ETF规模增长依赖市场资金流入和指数表现。红利策略在低利率环境下吸引力增强，但成分股成长性有限，扩募（份额增加）主要靠投资者申购，无主动扩募机制。",
+          "evidence": [
+            "华泰柏瑞上证红利ETF规模变化数据（Wind）"
+          ]
+        }
+      },
+      "total_score": 22,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "成分股集中度较高，前10大权重约40%",
+        "部分成分股可能存在分红陷阱"
+      ],
+      "upgrade_triggers": [
+        "成分股分红稳定性进一步提升",
+        "指数编制规则优化降低集中度"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2933,
+        "completion_tokens": 726,
+        "total_tokens": 3659,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 373
+      }
+    },
+    {
+      "code": "515100",
+      "name": "红利低波100ETF景顺",
+      "fact_anchor": {
+        "underlying_asset": "中证红利低波动100指数成分股",
+        "asset_location": "A股市场",
+        "original_owner": "中证指数有限公司",
+        "fund_manager": "景顺长城基金管理有限公司",
+        "listing_date": "2021-07",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "跟踪的中证红利低波动100指数编制规则清晰，选取100只高股息且低波动的股票，成分股行业分散，连续运行超过5年，成分股质量较高，但需注意部分成分股可能存在分红陷阱。",
+          "evidence": [
+            "中证指数有限公司官网：中证红利低波动100指数编制方案",
+            "景顺长城基金官网：515100基金招募说明书"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "ETF无租约概念，按规则直接给3分。",
+          "evidence": [
+            "框架规则：ETF类标的contract_stability直接给3分"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "景顺长城是中外合资的头部公募基金公司，管理规模较大，在ETF领域有多年经验，但非央企/国企背景，且公开市场无重大负面记录。",
+          "evidence": [
+            "景顺长城基金官网：公司介绍",
+            "中国基金业协会：公募基金管理人名单"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "ETF的财务健康主要看跟踪误差和费率。该ETF规模62.31亿元，流动性较好，跟踪误差控制在合理范围，管理费率0.5%属于中等水平，但分红覆盖率概念不适用，故基于规模稳定性和运营效率评分。",
+          "evidence": [
+            "景顺长城基金官网：515100基金净值及规模数据",
+            "2023年年度报告：跟踪误差数据"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "红利低波策略受政策影响较小，指数ETF监管框架成熟，税收政策稳定，无特殊政策风险。",
+          "evidence": [
+            "中国证监会：ETF监管规定",
+            "财政部：关于ETF税收政策的通知"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "ETF的成长性取决于指数表现和资金流入，红利低波策略在震荡市有吸引力，但规模增长受市场情绪影响，无扩募概念，成长空间有限。",
+          "evidence": [
+            "Wind数据：红利低波100指数历史表现",
+            "景顺长城基金官网：基金规模变化"
+          ]
+        }
+      },
+      "total_score": 22,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "成分股集中度较高，前10大权重股占比可能超过50%",
+        "部分成分股可能存在分红不可持续风险"
+      ],
+      "upgrade_triggers": [
+        "指数编制规则进一步优化，降低分红陷阱影响",
+        "基金规模持续增长，流动性改善"
+      ],
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 2934,
+        "completion_tokens": 715,
+        "total_tokens": 3649,
+        "prompt_tokens_details": {
+          "cached_tokens": 2560
+        },
+        "prompt_cache_hit_tokens": 2560,
+        "prompt_cache_miss_tokens": 374
+      }
+    }
+  ]
+}

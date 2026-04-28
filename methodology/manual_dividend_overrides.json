@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "lastUpdated": "2026-04-28",
+  "notes": "TTM 分红手动维护清单。Stage 2 优先用这里的数据，缺失时尝试从 API 拉（目前东方财富 API 不可用）。每季度刷新一次。",
+  "source_strategy": [
+    "ETF: https://fundf10.eastmoney.com/fhsp_<code>.html （HTML 页面，手工读取 + 累加最近 12 个月分红）",
+    "REIT: 上交所/深交所披露的'收益分配公告' PDF，每只标的的最近 4 季合计"
+  ],
+  "overrides": {
+    "510880": { "ttm_dividend": 0.142, "as_of": "2026-01-21", "verified_by": "web_search_2026-04-28" },
+    "515100": { "ttm_dividend": 0.064, "as_of": "2026-04-16", "verified_by": "estimated_from_index_yield_4.55%" },
+    "512890": { "ttm_dividend": 0.060, "as_of": "2025-10-31", "verified_by": "estimated_from_5%_yield" },
+    "561580": { "ttm_dividend": 0.05, "as_of": "2026-04-28", "verified_by": "rough_estimate_5%_yield_pending_verify" },
+    "513530": { "ttm_dividend": 0.10, "as_of": "2026-03-17", "verified_by": "estimated_2025_7_dividends" },
+    "180601": { "ttm_dividend": 0.3651, "as_of": "2026-02-28", "verified_by": "公告_2025_4_quarters" },
+    "180602": { "ttm_dividend": 0.0856, "as_of": "2025-12-31", "verified_by": "deepseek_assessment_2026-04-28" },
+    "180202": { "ttm_dividend": 0.38175, "as_of": "2026-01-31", "verified_by": "公告_2025_累计" },
+    "508077": { "ttm_dividend": 0.13, "as_of": "2025-12-31", "verified_by": "estimate_累计0.2581_除以_持有年" },
+    "508058": { "ttm_dividend": 0.12, "as_of": "2026-04-28", "verified_by": "rough_estimate_pending_verify" },
+    "508028": { "ttm_dividend": 0.30, "as_of": "2026-01-05", "verified_by": "公告_2024_3次合计_约0.42_2025_首次0.1587" },
+    "508098": { "ttm_dividend": 0.18, "as_of": "2026-01-22", "verified_by": "estimate_2025_3次分红" }
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "fetchedAt": "2026-04-28T14:18:18.096Z",
+  "summary": {
+    "total": 12,
+    "core": 3,
+    "supporting": 5,
+    "watch": 4,
+    "a_plus": 3,
+    "a": 9
+  },
+  "notes": {
+    "methodology": "methodology/05_stage5_review_2026-04-28.md",
+    "tier_overrides_explained": {
+      "180202": {
+        "tier": "supporting",
+        "reason": "特许经营权 2036 到期归零，应当 11 年期高息债处理而非永续"
+      },
+      "180602": {
+        "tier": "watch",
+        "reason": "与 180601 同消费类，且 2024-04 才上市分红刚起步"
+      },
+      "508058": {
+        "tier": "watch",
+        "reason": "非厦门核心地段（集美区），覆盖率 104% 偏低"
+      },
+      "508098": {
+        "tier": "supporting",
+        "reason": "100% 关联方租户（京东自用）— 京东经营恶化即直接影响"
+      },
+      "515100": {
+        "tier": "watch",
+        "reason": "与 512890 同 A 股红利低波，二选一即可"
+      },
+      "561580": {
+        "tier": "watch",
+        "reason": "上市仅 1.5 年，运营记录太短"
+      }
+    }
+  },
+  "pool": [
+    {
+      "code": "180601",
+      "name": "华夏华润商业REIT",
+      "grade": "A+",
+      "total_score": 27,
+      "tier": "core",
+      "tier_reason": null,
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "青岛万象城",
+        "asset_location": "山东省青岛市",
+        "original_owner": "华润置地",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2024-03",
+        "verification_confidence": "high"
+      },
+      "red_flags": [],
+      "upgrade_triggers": [
+        "若出租率持续提升至98%以上，合同稳定性可升至5分"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "508077",
+      "name": "华夏基金华润有巢REIT",
+      "grade": "A+",
+      "total_score": 27,
+      "tier": "core",
+      "tier_reason": null,
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "有巢国际公寓社区（上海泗泾店、上海东部经开区店、北京润棠·瀛海店）",
+        "asset_location": "上海市松江区、上海市奉贤区、北京市大兴区",
+        "original_owner": "华润置地有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2022-11",
+        "verification_confidence": "high"
+      },
+      "red_flags": [],
+      "upgrade_triggers": [
+        "扩募落地并提升每份分红",
+        "出租率持续高于98%"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "508028",
+      "name": "中信建投国家电投新能源 REIT",
+      "grade": "A+",
+      "total_score": 27,
+      "tier": "core",
+      "tier_reason": null,
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "滨海北H1、H2海上风电项目及配套输电设施",
+        "asset_location": "江苏省盐城市滨海县",
+        "original_owner": "国家电力投资集团有限公司（国家电投）",
+        "fund_manager": "中信建投基金管理有限公司",
+        "listing_date": "2023-03",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "新能源发电受自然条件影响，来风量波动可能影响短期收益"
+      ],
+      "upgrade_triggers": [
+        "扩募方案落地并注入优质资产",
+        "来风量持续稳定，提升可分配金额"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "508098",
+      "name": "嘉实京东仓储基础设施REIT",
+      "grade": "A",
+      "total_score": 24,
+      "tier": "supporting",
+      "tier_reason": "100% 关联方租户（京东自用）— 京东经营恶化即直接影响",
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "京东重庆、武汉、廊坊三处仓储物流资产",
+        "asset_location": "重庆、武汉、廊坊",
+        "original_owner": "北京京东世纪贸易有限公司",
+        "fund_manager": "嘉实基金管理有限公司",
+        "listing_date": "2023-01",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "租户集中度极高（京东集团单一租户），若京东经营恶化将严重影响现金流"
+      ],
+      "upgrade_triggers": [
+        "公布具体扩募方案并实施",
+        "租约续签进一步延长"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "180202",
+      "name": "华夏越秀高速REIT",
+      "grade": "A",
+      "total_score": 23,
+      "tier": "supporting",
+      "tier_reason": "特许经营权 2036 到期归零，应当 11 年期高息债处理而非永续",
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "汉孝高速（汉孝高速公路）",
+        "asset_location": "湖北省武汉市",
+        "original_owner": "越秀交通基建有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2021-12",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "收费权剩余期限约20年，长期需关注到期处置"
+      ],
+      "upgrade_triggers": [
+        "若原始权益人公告扩募方案，成长性评分可提升至4分"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "512890",
+      "name": "红利低波ETF华泰柏瑞",
+      "grade": "A",
+      "total_score": 22,
+      "tier": "supporting",
+      "tier_reason": null,
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "华泰柏瑞红利低波动ETF跟踪的指数为中证红利低波动指数（930955）",
+        "asset_location": "A股市场",
+        "original_owner": "中证指数有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2018-12-19",
+        "verification_confidence": "high"
+      },
+      "red_flags": [],
+      "upgrade_triggers": [
+        "若指数成分股质量进一步提升或规模持续增长，可考虑上调"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "510880",
+      "name": "红利ETF华泰柏瑞",
+      "grade": "A",
+      "total_score": 22,
+      "tier": "supporting",
+      "tier_reason": null,
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "上证红利指数成分股",
+        "asset_location": "上海证券交易所",
+        "original_owner": "华泰柏瑞基金管理有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2006-11-17",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "成分股集中度较高，前10大权重约40%",
+        "部分成分股可能存在分红陷阱"
+      ],
+      "upgrade_triggers": [
+        "成分股分红稳定性进一步提升",
+        "指数编制规则优化降低集中度"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "513530",
+      "name": "港股通红利ETF华泰柏瑞",
+      "grade": "A",
+      "total_score": 22,
+      "tier": "supporting",
+      "tier_reason": null,
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "恒生港股通高股息低波动指数成分股",
+        "asset_location": "香港交易所上市港股",
+        "original_owner": "恒生指数有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2022-04",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "成分股集中度较高（前10大权重约40%）",
+        "港股市场波动较大，可能影响分红稳定性"
+      ],
+      "upgrade_triggers": [
+        "成分股进一步分散化",
+        "规模持续增长至50亿元以上"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "508058",
+      "name": "中金厦门安居 REIT",
+      "grade": "A",
+      "total_score": 25,
+      "tier": "watch",
+      "tier_reason": "非厦门核心地段（集美区），覆盖率 104% 偏低",
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "园博公寓、珩琦公寓",
+        "asset_location": "福建省厦门市集美区",
+        "original_owner": "厦门安居集团有限公司",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2022-08",
+        "verification_confidence": "high"
+      },
+      "red_flags": [],
+      "upgrade_triggers": [
+        "若扩募方案落地并注入优质资产，成长性评分可提升至4-5分",
+        "若可供分配金额覆盖率持续提升至120%以上，财务健康度可升至5分"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "180602",
+      "name": "中金印力消费 REIT",
+      "grade": "A",
+      "total_score": 24,
+      "tier": "watch",
+      "tier_reason": "与 180601 同消费类，且 2024-04 才上市分红刚起步",
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "杭州西溪印象城",
+        "asset_location": "浙江省杭州市",
+        "original_owner": "印力集团（万科旗下）",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2024-04",
+        "verification_confidence": "high"
+      },
+      "red_flags": [],
+      "upgrade_triggers": [
+        "扩募落地且新资产质量优异",
+        "出租率持续提升至98%以上"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "561580",
+      "name": "央企红利 ETF（华泰柏瑞）",
+      "grade": "A",
+      "total_score": 23,
+      "tier": "watch",
+      "tier_reason": "上市仅 1.5 年，运营记录太短",
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "中证中央企业红利指数（指数代码：000825）",
+        "asset_location": "A股市场",
+        "original_owner": "中证指数有限公司",
+        "fund_manager": "华泰柏瑞基金管理有限公司",
+        "listing_date": "2023-05",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "指数运行时间不足5年，历史数据有限",
+        "成分股集中度较高"
+      ],
+      "upgrade_triggers": [
+        "指数运行满5年且表现稳定",
+        "基金规模突破50亿元"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    },
+    {
+      "code": "515100",
+      "name": "红利低波100ETF景顺",
+      "grade": "A",
+      "total_score": 22,
+      "tier": "watch",
+      "tier_reason": "与 512890 同 A 股红利低波，二选一即可",
+      "subtype": null,
+      "fact_anchor": {
+        "underlying_asset": "中证红利低波动100指数成分股",
+        "asset_location": "A股市场",
+        "original_owner": "中证指数有限公司",
+        "fund_manager": "景顺长城基金管理有限公司",
+        "listing_date": "2021-07",
+        "verification_confidence": "high"
+      },
+      "red_flags": [
+        "成分股集中度较高，前10大权重股占比可能超过50%",
+        "部分成分股可能存在分红不可持续风险"
+      ],
+      "upgrade_triggers": [
+        "指数编制规则进一步优化，降低分红陷阱影响",
+        "基金规模持续增长，流动性改善"
+      ],
+      "recommendation": "include",
+      "verification_confidence": "high"
+    }
+  ]
+}

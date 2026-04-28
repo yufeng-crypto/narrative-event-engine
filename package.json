@@ -1,0 +1,30 @@
+{
+  "name": "stock-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "screen:01": "node --env-file=.env scripts/01_fetch_universe.mjs",
+    "screen:02": "node --env-file=.env scripts/02_fetch_history.mjs",
+    "screen:03": "node --env-file=.env scripts/03_apply_screening.mjs",
+    "screen:04": "node --env-file=.env scripts/04_review_quality.mjs",
+    "screen:all": "npm run screen:01 && npm run screen:02 && npm run screen:03 && npm run screen:04"
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2"
+  }
+}
