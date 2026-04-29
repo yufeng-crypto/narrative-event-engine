@@ -1,25 +1,54 @@
 /**
- * Stage 4 · DeepSeek 资产质量评估
+ * Stage 4 · LLM 资产质量评估
  *
  * 输入：data/screened.json + methodology/04_quality_framework.md
  * 输出：data/quality_scores.json
  *
- * 对每只 candidate 调一次 DeepSeek API，按 framework 6 维度评分。
+ * 对每只 candidate 调一次 LLM API，按 framework 6 维度评分。
+ *
+ * Provider 通过环境变量 LLM_PROVIDER 控制：
+ *   - "deepseek" (默认): deepseek-chat V3，便宜（~¥0.01/只）
+ *   - "claude-sonnet": Claude Sonnet 4.5，中文金融知识更深，幻觉率更低（~¥0.10/只）
+ *   - "claude-haiku": Claude Haiku 4.5，便宜但 niche 知识弱（~¥0.03/只）
+ *   - "claude-opus": Claude Opus 4.5，最强但杀鸡用牛刀（~¥0.50/只）
  *
  * 失败容忍：单只失败不中断，标记 status: 'error' 留在结果里。
- *
- * 注意：Stage 4 是整个 pipeline 里**唯一调 LLM** 的步骤。
- * 14 只 candidate × ~3000 tokens = 约 42K tokens
- * 用 deepseek-chat (V3): 约 ¥0.30 总成本，5-10 分钟
  */
 
 import { readFileSync } from 'node:fs';
 import { readJson, writeJson, timestamp } from './_lib/io.mjs';
-import { callDeepSeek, estimateCost } from './_lib/deepseek.mjs';
+import { callDeepSeek, estimateCost as estimateDeepSeekCost } from './_lib/deepseek.mjs';
+import { callClaude, estimateClaudeCost } from './_lib/claude.mjs';
 
 const IN = 'data/screened.json';
 const FRAMEWORK_PATH = 'methodology/04_quality_framework.md';
-const OUT = 'data/quality_scores.json';
+const PROVIDER = process.env.LLM_PROVIDER || 'deepseek';
+const OUT_BY_PROVIDER = {
+  'deepseek': 'data/quality_scores.json',
+  'claude-haiku': 'data/quality_scores_claude_haiku.json',
+  'claude-sonnet': 'data/quality_scores_claude_sonnet.json',
+  'claude-opus': 'data/quality_scores_claude_opus.json',
+};
+const OUT = OUT_BY_PROVIDER[PROVIDER] || 'data/quality_scores.json';
+
+const CLAUDE_MODEL_MAP = {
+  'claude-haiku': 'claude-haiku-4-5',
+  'claude-sonnet': 'claude-sonnet-4-5',
+  'claude-opus': 'claude-opus-4-5',
+};
+
+async function callLLM(opts) {
+  if (PROVIDER === 'deepseek') {
+    const { text, usage } = await callDeepSeek(opts);
+    return { text, usage, cost: estimateDeepSeekCost(usage), model: 'deepseek-chat' };
+  }
+  const claudeModel = CLAUDE_MODEL_MAP[PROVIDER];
+  if (!claudeModel) {
+    throw new Error(`Unknown LLM_PROVIDER: ${PROVIDER}. Use deepseek|claude-haiku|claude-sonnet|claude-opus`);
+  }
+  const { text, usage, model } = await callClaude({ ...opts, model: claudeModel });
+  return { text, usage, cost: estimateClaudeCost(usage, claudeModel), model };
+}
 
 const SYSTEM_PROMPT = `你是公募 REITs 和红利 ETF 的资产质量分析师。你的任务是按 framework 给定的 6 个维度评分。
 
@@ -102,7 +131,9 @@ async function main() {
   const screened = readJson(IN);
   const framework = readFileSync(FRAMEWORK_PATH, 'utf8');
   const candidates = screened.candidates.filter((c) => c.passed_to_stage4);
+  console.log(`[04] Provider: ${PROVIDER}`);
   console.log(`[04] ${candidates.length} 只 candidates 进入质量评估`);
+  console.log(`[04] 输出 → ${OUT}`);
 
   if (candidates.length === 0) {
     console.log('[04] ⚠️ 没有 candidates，跳过');
@@ -111,30 +142,37 @@ async function main() {
 
   const results = [];
   let totalCost = 0;
+  let modelUsed = null;
 
   for (let i = 0; i < candidates.length; i++) {
     const c = candidates[i];
     process.stdout.write(`[04] (${i + 1}/${candidates.length}) ${c.code} ${c.name}... `);
     try {
-      const { text, usage } = await callDeepSeek({
+      const { text, usage, cost, model } = await callLLM({
         system: SYSTEM_PROMPT,
         user: buildUserPrompt(c, framework),
         json: true,
-        timeoutMs: 90000,
+        timeoutMs: 120000,
       });
-      const cost = estimateCost(usage);
+      modelUsed = model;
       totalCost += cost;
+
+      // 容错：去掉可能的 markdown code fence
+      let cleaned = text.trim();
+      if (cleaned.startsWith('```')) {
+        cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+      }
 
       let parsed;
       try {
-        parsed = JSON.parse(text);
+        parsed = JSON.parse(cleaned);
       } catch (e) {
         results.push({
           code: c.code,
           name: c.name,
           status: 'error',
           error: 'JSON parse failed',
-          raw: text.slice(0, 1000),
+          raw: cleaned.slice(0, 1500),
         });
         console.log(`✗ JSON parse failed`);
         continue;
@@ -143,6 +181,7 @@ async function main() {
       results.push({ ...parsed, status: 'ok', usage });
       console.log(
         `✓ ${parsed.grade ?? '?'} score=${parsed.total_score ?? '?'} ` +
+          `confidence=${parsed.fact_anchor?.verification_confidence ?? '?'} ` +
           `cost=$${cost.toFixed(4)}`,
       );
     } catch (e) {
@@ -160,6 +199,8 @@ async function main() {
 
   writeJson(OUT, {
     fetchedAt: timestamp(),
+    provider: PROVIDER,
+    model: modelUsed,
     summary: {
       total: candidates.length,
       ok: results.filter((r) => r.status === 'ok').length,

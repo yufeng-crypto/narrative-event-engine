@@ -1,0 +1,437 @@
+{
+  "fetchedAt": "2026-04-28T15:00:00Z",
+  "provider": "claude-sonnet (via subagent)",
+  "model": "claude-sonnet-4-5",
+  "summary": {
+    "total": 12,
+    "ok": 12,
+    "error": 0,
+    "note": "12 个 sonnet subagent 并行评估（首批 8 + 补跑 4），每个独立调用 WebSearch/WebFetch 核实事实"
+  },
+  "assessments": [
+    {
+      "code": "180202",
+      "name": "华夏越秀高速REIT",
+      "fact_anchor": {
+        "underlying_asset": "汉孝高速公路（主线33km + 机场北连接线），武汉至孝感，特许经营权至2036年12月",
+        "asset_location": "湖北省武汉市至孝感市，途经黄陂区，沿线有天河机场、临空经济港",
+        "original_owner": "越秀（中国）交通基建投资有限公司（越秀集团旗下，广州国资）",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2021-12",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 3, "reasoning": "二线核心、不可替代性弱、剩余约 10 年到期", "evidence": ["2024 年年报", "2024 年中期报告"] },
+        "contract_stability": { "score": 4, "reasoning": "特许权合同性强，但到期归零", "evidence": ["2024-12-04 分红公告"] },
+        "operator_strength": { "score": 4, "reasoning": "华夏 + 越秀央企背景，记录可靠", "evidence": ["华夏官网"] },
+        "financial_health": { "score": 2, "reasoning": "可分配金额同比 -22%，资产负债率 86.6%（含 ABS 内部债），2025Q2 收入继续下降 6.86%", "evidence": ["2024 年报", "2025Q2 季报", "2025 中期报告"] },
+        "regulatory_risk": { "score": 3, "reasoning": "通行费受政府管制，特许权到期归零结构性风险", "evidence": ["产品资料概要 2025-10-15"] },
+        "growth_potential": { "score": 2, "reasoning": "无具体扩募方案、单一资产、资产老化", "evidence": ["2025 中期报告", "越秀债券募集说明书"] }
+      },
+      "total_score": 18,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "2024 年可分配金额同比下降 22%，2025Q2 通行费同比继续下降 6.86%",
+        "折旧摊销 2025Q2 同比 +23.26%",
+        "合并资产负债率 86.6%（ABS 内部债），利息支出占用现金流",
+        "特许权剩余约 10 年（2036-12 到期），净值趋零",
+        "京港澳改扩建持续分流，竞争路网趋于成熟",
+        "无扩募进展，单一资产 + 资产老化"
+      ],
+      "upgrade_triggers": [
+        "公告具体扩募方案",
+        "通行费收入连续两个季度同比转正",
+        "可分配金额覆盖率回升至 110%+"
+      ]
+    },
+    {
+      "code": "508098",
+      "name": "嘉实京东仓储基础设施REIT",
+      "fact_anchor": {
+        "underlying_asset": "3 个京东亚洲一号高标仓：重庆巴南（18.46万sqm）、武汉东西湖（5.22万sqm）、廊坊经开区（10.46万sqm）",
+        "asset_location": "重庆/武汉/廊坊",
+        "original_owner": "北京京东世纪贸易有限公司",
+        "fund_manager": "嘉实基金管理有限公司",
+        "listing_date": "2023-02",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 3, "reasoning": "二线物流枢纽，但廊坊周边市场租金已腰斩", "evidence": ["高力国际 2025Q4 数据", "2024Q4 季报"] },
+        "contract_stability": { "score": 2, "reasoning": "100% 关联方（京东系）租户，单一企业生态圈风险", "evidence": ["2024 中报", "廊坊续租公告 2026-03"] },
+        "operator_strength": { "score": 3, "reasoning": "嘉实头部公募但非央企，REIT 记录约 3 年", "evidence": ["嘉实官网"] },
+        "financial_health": { "score": 3, "reasoning": "2025 收入 -1.77%，经营现金流 -10.05%，廊坊续租降租 30%、武汉降租 13%、重庆降租", "evidence": ["2025 年报", "2025Q1 季报", "续租公告"] },
+        "regulatory_risk": { "score": 4, "reasoning": "仓储物流明确纳入支持范围，但行业供需偏弱（80.4% 出租率）", "evidence": ["发改委 2025 清单", "仲量联行 2024Q4"] },
+        "growth_potential": { "score": 3, "reasoning": "扩募已推进（西安/合肥/三大空港），但行业筑底期", "evidence": ["扩募公告 2026"] }
+      },
+      "total_score": 18,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "100% 京东系关联方租户，单一企业生态圈风险极高",
+        "廊坊 2026-05 起续租降租 30%（39.39 → 27.68 元/sqm/月）",
+        "重庆 2025 年起降租，武汉 2024 年起降租 13%",
+        "NOI 连续下行：2025 收入 -1.77%、现金流 -10.05%、2025Q1 可分配 -14.44%",
+        "廊坊周边市场租金已较 2020 年腰斩",
+        "关联交易定价独立性存疑"
+      ],
+      "upgrade_triggers": [
+        "扩募完成（西安/合肥/空港）且新资产出租率 95%+",
+        "引入第三方非关联租户，关联方比例降至 70%",
+        "可分配金额覆盖率回到 110% 持续 2 个季度"
+      ]
+    },
+    {
+      "code": "513530",
+      "name": "港股通红利ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "中证港股通高股息投资指数（930915）30 只成分股，银行 27% / 交运 20% / 煤炭 12% / 石油 10%",
+        "asset_location": "香港交易所上市股票（港股通范围）",
+        "original_owner": "N/A（被动 ETF）",
+        "fund_manager": "华泰柏瑞基金（基金经理李茜，2022-04 起）",
+        "listing_date": "2022-04",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 3, "reasoning": "30 只样本少，前两大行业集中度高，含周期顺资源股有分红陷阱风险", "evidence": ["中证编制方案 V1.2", "2024 行业分布"] },
+        "contract_stability": { "score": 3, "reasoning": "ETF 不适用", "evidence": [] },
+        "operator_strength": { "score": 4, "reasoning": "华泰柏瑞 ETF 龙头，AUM 8084 亿，沪深 300ETF 第一", "evidence": ["天天基金 2025Q3"] },
+        "financial_health": { "score": 4, "reasoning": "2024 年净值 +30.16%，2025 H1 +12.94%，分红覆盖良好", "evidence": ["2025Q4 季报"] },
+        "regulatory_risk": { "score": 3, "reasoning": "QDII 额度紧张：2025Q1 已 21.63% 转港股通渠道（红利税 10% → 20%）", "evidence": ["2025Q1 季报"] },
+        "growth_potential": { "score": 3, "reasoning": "规模 35 亿创新高，但底层周期行业增长有限", "evidence": ["2025-12 资金流入"] }
+      },
+      "total_score": 20,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "QDII 额度紧张：21.63% 资产已转港股通渠道，红利税升至 20%，税收优势部分稀释",
+        "30 只样本，行业前 4 集中 68%（银行+交运+煤炭+石油）",
+        "最大回撤 18.4% + 汇率波动",
+        "2026-04 份额从 22.52 亿降至 19.60 亿（缩减 13%）"
+      ],
+      "upgrade_triggers": [
+        "QDII 外汇额度大幅扩充",
+        "成分股年分红同比 +10%，指数股息率维持 6.5%+",
+        "规模稳定突破 50 亿"
+      ]
+    },
+    {
+      "code": "508077",
+      "name": "华夏基金华润有巢REIT",
+      "fact_anchor": {
+        "underlying_asset": "上海松江区有巢泗泾项目 + 有巢东部经开区项目（合计 ~3000+ 间公寓 + 少量商业）",
+        "asset_location": "上海市松江区 G60 科创走廊",
+        "original_owner": "有巢住房租赁（深圳）有限公司（华润置地子公司）",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2022-11",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 3, "reasoning": "G60 科创走廊（一线非核心），公寓出租率 94%+，但商业部分仅 63%", "evidence": ["2024 年报"] },
+        "contract_stability": { "score": 2, "reasoning": "公寓 WALE 仅 0.52 年，极短租期是结构性弱点", "evidence": ["2024 年报"] },
+        "operator_strength": { "score": 5, "reasoning": "华夏 + 华润有巢央企背景，央企保租房第一", "evidence": ["华润 2024 中期"] },
+        "financial_health": { "score": 3, "reasoning": "2024 实际分配 6541 万 > 可分配 4904 万，超额分配消耗净资产，份额净值累计 -7.4%", "evidence": ["2024 年报"] },
+        "regulatory_risk": { "score": 5, "reasoning": "保租房纳入三大工程，政策强支持", "evidence": ["上交所扩募受理 2024-11"] },
+        "growth_potential": { "score": 4, "reasoning": "马桥扩募 2024-11 受理，扩募后规模翻倍但分派率预测降至 3.3%", "evidence": ["扩募说明书"] }
+      },
+      "total_score": 22,
+      "grade": "A",
+      "recommendation": "watch",
+      "red_flags": [
+        "公寓 WALE 仅 0.52 年，每年大规模续约依赖运营投入",
+        "2024 年实际分配 6541 万超过可分配 4904 万 33%，超额分配消耗净资产",
+        "基金份额净值自成立累计下跌 7.4%",
+        "商业出租率仅 63.01%（同比 -8.55pct）",
+        "公寓租金单价同比 -1.79%",
+        "扩募完成后预测分派率仅 3.3%（低于当前 4.75%），存在摊薄压力"
+      ],
+      "upgrade_triggers": [
+        "扩募完成（马桥项目），规模扩大",
+        "公寓租金单价转正",
+        "商业出租率回到 80%+",
+        "可分配 ≥ 实际分配（消除超额分配）"
+      ]
+    },
+    {
+      "code": "512890",
+      "name": "红利低波ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "中证红利低波动指数（H30269）50 只成分股，银行 37.5% / 煤炭 15.3% / 交运 11.2%",
+        "asset_location": "A 股境内",
+        "original_owner": "N/A",
+        "fund_manager": "华泰柏瑞基金（柳军，2018-12 起）",
+        "listing_date": "2018-12",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 4, "reasoning": "10 年指数历史，三步筛选含分红正增长，前 10 集中 27%", "evidence": ["中证 V1.1 编制方案", "2024 信达证券研报"] },
+        "contract_stability": { "score": 3, "reasoning": "ETF 不适用", "evidence": [] },
+        "operator_strength": { "score": 5, "reasoning": "华泰柏瑞 ETF 龙头 4900+ 亿，柳军 20 年经验，6 年全部正收益", "evidence": ["2024 年报", "金牛奖"] },
+        "financial_health": { "score": 4, "reasoning": "跟踪误差 0.085%，规模 307 亿，连续 6 年正收益", "evidence": ["2024 年报"] },
+        "regulatory_risk": { "score": 5, "reasoning": "新国九条强制分红 + 险资入市 + SFISF 政策利好", "evidence": ["2024-04 国九条"] },
+        "growth_potential": { "score": 4, "reasoning": "规模年内翻倍至 307 亿，Y 份额养老金第一，但同赛道竞争 16 只", "evidence": ["2025-12 数据"] }
+      },
+      "total_score": 25,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "行业高度集中：银行 37.5% + 煤炭 15.3%，前两合计 52%",
+        "ETF 分红需累计报酬超指数 1%，分红确定性低于 REIT",
+        "量化筛选得分 44.6/100 偏低",
+        "同赛道 16 只 ETF，规模优势可能边际削弱"
+      ],
+      "upgrade_triggers": [
+        "银行净息差企稳 / 煤炭景气度改善",
+        "险资持续增配至 500 亿+",
+        "实际分红频次提至每年 3-4 次"
+      ]
+    },
+    {
+      "code": "180601",
+      "name": "华夏华润商业REIT",
+      "fact_anchor": {
+        "underlying_asset": "青岛万象城（城市级购物中心，可租赁面积 13.7 万 sqm）",
+        "asset_location": "山东省青岛市市南区香港中路商圈",
+        "original_owner": "华润置地有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2024-03",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 4, "reasoning": "青岛核心商圈、入驻 546 商户、出租率 99%、客流 +10.9%、会员 160 万", "evidence": ["2024 年报", "2025 中期报告"] },
+        "contract_stability": { "score": 3, "reasoning": "WALE 仅 1.99 年（短），但前 5 大租户仅 13.56%，分散度极高", "evidence": ["2025H1 季报"] },
+        "operator_strength": { "score": 5, "reasoning": "华夏 + 华润万象生活，华润 2024 零售额 1953 亿 +19%", "evidence": ["华润 2024 年报"] },
+        "financial_health": { "score": 4, "reasoning": "2024 分派率 5.08%（年化）超预测，2025 收入 +18.7% / 净利 +352%，资产负债率 21%", "evidence": ["2024 年报", "2025 各季报"] },
+        "regulatory_risk": { "score": 3, "reasoning": "消费 REIT 政策正面，但商业地产受周期情绪影响", "evidence": ["2025-10 二次扩募受理"] },
+        "growth_potential": { "score": 5, "reasoning": "华润 92 个万象城在营 / 规划 127 个 / 已两轮扩募 / 30 亿 Pre-REITs 储备", "evidence": ["十五五目标 600 亿", "Pre-REITs 公告"] }
+      },
+      "total_score": 24,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "WALE 仅 1.99 年，消费下行时续租率压力",
+        "底层资产单一（青岛一城），扩募前集中度风险高",
+        "当前价格高使分派率仅 3.64%，估值压力",
+        "强二线非一线，消费收缩压力",
+        "关联交易公允性持续监管审查"
+      ],
+      "upgrade_triggers": [
+        "昆山万象汇扩募完成上市（资产分散）",
+        "杭州萧山/沈阳/淄博三项目扩募完成",
+        "市价回到分派率 5%+",
+        "可分配覆盖率稳定 120%+"
+      ]
+    },
+    {
+      "code": "510880",
+      "name": "红利ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "上证红利指数（000015）50 只 A 股股息率高股票，股息率加权",
+        "asset_location": "仅限上海证券交易所",
+        "original_owner": "N/A",
+        "fund_manager": "华泰柏瑞（柳军 + 李茜）",
+        "listing_date": "2007-01",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 4, "reasoning": "20 年指数历史，三重筛选，前 10 集中 29%，但仅沪市单因子", "evidence": ["中证 V1.2 编制方案"] },
+        "contract_stability": { "score": 3, "reasoning": "ETF 不适用", "evidence": [] },
+        "operator_strength": { "score": 4, "reasoning": "华泰柏瑞 AUM 8454 亿 / ETF 6231 亿，但非央/国企", "evidence": ["天天基金"] },
+        "financial_health": { "score": 4, "reasoning": "连续 15 年分红 / 6 年正收益 / 累计利润 76 亿，但费率 0.60% 偏高", "evidence": ["2024 年报"] },
+        "regulatory_risk": { "score": 5, "reasoning": "新国九条 / 长钱长投 / SFISF 政策强利好", "evidence": ["2025 分红创新高 2.6 万亿"] },
+        "growth_potential": { "score": 3, "reasoning": "规模 190 亿增速放缓 / 费率劣势 / 同赛道竞品多", "evidence": ["费率对比", "界面新闻"] }
+      },
+      "total_score": 23,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "费率 0.60% 偏高（行业头部 0.20%），长期持有成本劣势",
+        "选股仅限上交所（不含深市/北交所）",
+        "单因子（仅股息率）易纳入分红陷阱周期股",
+        "中证红利 / 红利低波等多因子产品长期回撤控制更优",
+        "量化筛选得分仅 37.4/100"
+      ],
+      "upgrade_triggers": [
+        "跟进降费至 0.20% 以下",
+        "指数扩展至全市场 / 引入质量因子",
+        "规模突破 300 亿"
+      ]
+    },
+    {
+      "code": "515100",
+      "name": "红利低波100ETF景顺",
+      "fact_anchor": {
+        "underlying_asset": "中证红利低波动 100 指数（930955）100 只 A 股，股息率/波动率比值加权",
+        "asset_location": "A 股全市场（沪深两市）",
+        "original_owner": "N/A",
+        "fund_manager": "景顺长城基金（龚丽丽，2023-11 起）",
+        "listing_date": "2020-07",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 3, "reasoning": "8 年历史 / 100 只分散好，但不含 ROE 筛选，钢铁 9% + 化工 8% 周期股占比高", "evidence": ["中证 factsheet", "2025-10 行业分布"] },
+        "contract_stability": { "score": 3, "reasoning": "ETF 不适用", "evidence": [] },
+        "operator_strength": { "score": 4, "reasoning": "景顺非货基增速第一 + 主动权益第二，但非央/国企", "evidence": ["每经 2026-01"] },
+        "financial_health": { "score": 3, "reasoning": "**2025 年分红 0.1053 元 vs 2023 年 0.4370 元，下降 76%**，超额收益波动大", "evidence": ["天天基金 fhsp"] },
+        "regulatory_risk": { "score": 4, "reasoning": "总体利好，但 2024 红利赛道同比 +266% 拥挤交易风险", "evidence": ["2025-12 新浪报道"] },
+        "growth_potential": { "score": 3, "reasoning": "规模 62 亿同类第一，但分红依赖周期股盈利改善", "evidence": ["2026-04 持续净申购"] }
+      },
+      "total_score": 20,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "指数不含 ROE 筛选，钢铁（9%）+ 化工（8%）周期股分红可持续性存疑",
+        "**2025 年分红 0.1053 元 vs 2023 年 0.4370 元，下降 76%** — 超额收益波动剧烈",
+        "现任经理 2023-11 才接管，任期仅 2.5 年",
+        "红利低波赛道 2024 规模同比 +266%，拥挤交易"
+      ],
+      "upgrade_triggers": [
+        "指数引入 ROE 或盈利质量因子",
+        "连续 2 年每份分红 ≥ 0.10 元",
+        "周期股盈利改善"
+      ]
+    },
+    {
+      "code": "508028",
+      "name": "中信建投国家电投新能源REIT",
+      "fact_anchor": {
+        "underlying_asset": "江苏盐城滨海北 H1（100MW）+ H2（400MW）海上风电项目，合计 500MW，H1 并网 2016、H2 并网 2018，设计运营期 25 年",
+        "asset_location": "江苏省盐城市滨海县近海海域",
+        "original_owner": "国家电投集团江苏电力有限公司（央企国电投旗下）",
+        "fund_manager": "中信建投基金管理有限公司",
+        "listing_date": "2023-03",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 4, "reasoning": "亚洲单体最大海风之一，可利用率 99.57%，但风速年际波动 + 送出线路单一", "evidence": ["2025Q3 临时公告 2025-10-11", "2025 年报 2026-03-31"] },
+        "contract_stability": { "score": 3, "reasoning": "国补部分稳定，但 2025-01 起 8.02% 已市场化定价；国补保理依赖大", "evidence": ["2025 年报", "2025Q3 季报"] },
+        "operator_strength": { "score": 5, "reasoning": "国家电投央企 + 中信建投 + 全国首单海风 REIT", "evidence": ["JLL 报告"] },
+        "financial_health": { "score": 3, "reasoning": "2024 完成率 111%，但 2025 可分配 -14.13%，Q3 单季度可分配 -979 万（电网停电 14 天 + 风速偏低）", "evidence": ["2025 年报", "2025Q3 报告"] },
+        "regulatory_risk": { "score": 5, "reasoning": "2025-11 起海风增值税即征即退 50% 政策延续到 2027-12-31，差异化优待", "evidence": ["财政部公告 2025-10-17"] },
+        "growth_potential": { "score": 3, "reasoning": "国家电投扩募意向明确但无落地时间表", "evidence": ["2025 年报 §2.3"] }
+      },
+      "total_score": 23,
+      "grade": "A",
+      "recommendation": "watch",
+      "red_flags": [
+        "⚠️ 2025 可分配 -14.13%（66907 vs 上年 77917 万），Q3 单季可分配 -979 万",
+        "⚠️ 国补保理融资 38.18 亿，依赖保理融资完成分配",
+        "⚠️ 2026-03-30 战略配售解禁 24.7%（已发生），流通盘扩大 + 减持压力",
+        "电力市场化交易敞口扩大（已 8.02%），燃煤基准价部分面临波动",
+        "送出线路单一，电网停电直接影响发电量"
+      ],
+      "upgrade_triggers": [
+        "公告具体扩募方案（资产清单 + 时间表）",
+        "国补加速回款或政策清算",
+        "滨海~鹤栖 500kV 线路投运（2025 底）降低停电风险",
+        "2026 全年发电量恢复（1-2 月已 +11.6%）",
+        "分派率回升至 3.5%+"
+      ]
+    },
+    {
+      "code": "180602",
+      "name": "中金印力消费REIT",
+      "fact_anchor": {
+        "underlying_asset": "杭州西溪印象城（A 座 + B 座，可租赁 9.95 万 sqm，TOD 购物中心，杭州城西最大单体商业体）",
+        "asset_location": "浙江省杭州市余杭区，毗邻西溪湿地，地铁 3 号线洪园站",
+        "original_owner": "印力商用置业（印力集团旗下，万科控股子公司）",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2024-04",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 4, "reasoning": "杭州城西 TOD 单体最大购物中心，2025 出租率 98-99%、客流 +6.5%~+10.72%、销售 +8.97%", "evidence": ["2025Q3/Q4 季报"] },
+        "contract_stability": { "score": 3, "reasoning": "前 5 大租户 10.25%（极度分散），但 WALE 仅 2.53 年（短租）", "evidence": ["2025Q4 季报"] },
+        "operator_strength": { "score": 4, "reasoning": "中金 + 印力（万科系）。⚠️ 万科 2025Q3 现金短债比 0.43，集团流动性危机可能传导", "evidence": ["万科 2025 三季报"] },
+        "financial_health": { "score": 4, "reasoning": "可分配覆盖率 102-104%（健康），资产负债率仅 20%，2025H1 累计 +17.84%", "evidence": ["2024 年报", "2025Q1 业绩说明会"] },
+        "regulatory_risk": { "score": 3, "reasoning": "消费 REIT 政策正面但 2025-11 万科展期后单日跌 2.7%（情绪传导）", "evidence": ["搜索结果"] },
+        "growth_potential": { "score": 4, "reasoning": "印力 220+ 项目储备 / 50 个满 3 年可扩募，5 个项目（虹桥前湾/天津/杭州奥体等）净回收资金已投入", "evidence": ["2025Q4 季报"] }
+      },
+      "total_score": 22,
+      "grade": "A",
+      "recommendation": "watch",
+      "red_flags": [
+        "⚠️ 万科系流动性危机（现金短债比 0.43），印力集团运营资源 + 品牌稳定性受联动",
+        "底层单一资产（西溪印象城），高度依赖杭州城西单一市场",
+        "WALE 仅 2.53 年（短租），消费降级环境下续租压力",
+        "管理费 4052 万 > 净利润 1929 万，费用结构偏高",
+        "贷款 15 年后到期还本约 5.25 亿，远期集中还款风险"
+      ],
+      "upgrade_triggers": [
+        "万科流动性危机实质化解",
+        "正式公告扩募方案",
+        "可分配覆盖率连续 4 季度 ≥ 110%",
+        "销售额回暖驱动有效租金 ≥ 270 元/sqm/月"
+      ]
+    },
+    {
+      "code": "508058",
+      "name": "中金厦门安居REIT",
+      "fact_anchor": {
+        "underlying_asset": "园博公寓（2614 套，11.29 万 sqm）+ 珩琦公寓（2051 套，8.57 万 sqm）合计 4665 套保租房，建面 19.86 万 sqm",
+        "asset_location": "福建省厦门市集美区（园博苑片区 + 珩琦二里小区），均岛外",
+        "original_owner": "厦门安居控股集团（厦门市属国企），运营方厦门住房租赁发展公司",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2022-08",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 3, "reasoning": "集美区岛外，毗邻软件园三期 + 15 所院校 15 万师生，刚需强；但非岛内核心地段", "evidence": ["2024 年报", "厦门本地宝"] },
+        "contract_stability": { "score": 4, "reasoning": "个人租户 93.86% 极度分散，出租率 99.7%+ 收缴率 100%，1 年期短租但政策性粘性高", "evidence": ["2024Q4 季报"] },
+        "operator_strength": { "score": 4, "reasoning": "中金（公募 1200+ 亿）+ 厦门安居（厦门最主要保租房运营方）", "evidence": ["天天基金"] },
+        "financial_health": { "score": 4, "reasoning": "✅ 关键对比：2024 可分配 5814 万 vs 经营现金流 5953 万 = 102% 覆盖（健康），不像 508077 有超额分配。资产负债率 1.5%", "evidence": ["2024 年报"] },
+        "regulatory_risk": { "score": 5, "reasoning": "保租房纳入三大工程 + 厦门 2025 目标 20 万套 + 扩募已 2025-04 受理", "evidence": ["国务院 2021 文件", "2025-04-28 扩募申请"] },
+        "growth_potential": { "score": 4, "reasoning": "拟扩募林边公寓（思明区岛内）+ 仁和公寓（湖里区岛内）— 地段升级！集团回收资金使用率 99.71%", "evidence": ["扩募公告 2024-08"] }
+      },
+      "total_score": 24,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "集美区岛外，租金单价（约 34 元/sqm/月）和增速（3-4%/年）低于厦门岛内",
+        "扩募拟引入公租房（仁和），政策管控更严，可能拉低组合租金",
+        "基金净资产 2024 同比 -2.52%（折旧摊销，REITs 通性）"
+      ],
+      "upgrade_triggers": [
+        "扩募完成纳入思明/湖里区岛内资产，组合地段升级",
+        "租金单价增速 ≥ 5%/年",
+        "可分配连续 4 季度同比增长且覆盖率 ≥ 105%"
+      ]
+    },
+    {
+      "code": "561580",
+      "name": "央企红利ETF华泰柏瑞",
+      "fact_anchor": {
+        "underlying_asset": "中证央企红利指数（000825），50 只央企股票（实控人国资委或财政部），股息率加权",
+        "asset_location": "A 股沪深两市央企股票",
+        "original_owner": "N/A（指数 ETF）",
+        "fund_manager": "华泰柏瑞基金（ETF 行业第三 6231 亿元，李茜任职）",
+        "listing_date": "2023-05",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": { "score": 4, "reasoning": "指数 2012 发布运行 12+ 年，50 只央企含中国神华/中国移动/建行等龙头，但金融板块 33.5% + 前 10 集中 60%+ 偏高", "evidence": ["中证编制方案", "2025 年央企分红 8713 亿"] },
+        "contract_stability": { "score": 3, "reasoning": "ETF 不适用", "evidence": [] },
+        "operator_strength": { "score": 5, "reasoning": "华泰柏瑞 ETF 行业第三，沪深 300ETF 3747 亿全市场最大；李茜 3 年任职 +34%", "evidence": ["2025Q4 季报"] },
+        "financial_health": { "score": 4, "reasoning": "成立来 12 次分红 0.13 元/份；2025 指数股息率 4.1-5.2% 区间稳定；运行仅 3 年缺完整周期", "evidence": ["天天基金分红记录"] },
+        "regulatory_risk": { "score": 5, "reasoning": "国资委市值管理要求 + 央企分红考核 + 新国九条三重支持，政策最受益区间", "evidence": ["国资委 2025 指引", "2025 ETF 分红 +140%"] },
+        "growth_potential": { "score": 4, "reasoning": "规模 1.5 年涨 2.4 倍（6.4 → 15.35 亿），但同跟踪 000825 有富国 159332 竞争", "evidence": ["规模数据"] }
+      },
+      "total_score": 25,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "金融（银行）板块 33.5% + 前 10 集中 60%+，板块系统性风险敞口大",
+        "费率 0.60% 高于同类红利低波 100（0.15%），长期拖累",
+        "运营仅 3 年（2023-05 上市），未经历完整牛熊验证",
+        "富国 159332 同跟踪 000825，份额竞争压力",
+        "规模 15 亿，与头部红利 ETF（512890 308 亿）差距大"
+      ],
+      "upgrade_triggers": [
+        "规模突破 50 亿成为央企红利赛道龙头",
+        "管理费降至 0.30% 以下",
+        "运营满 5 年覆盖完整周期",
+        "金融板块占比降至 25% 以下"
+      ]
+    }
+  ]
+}
