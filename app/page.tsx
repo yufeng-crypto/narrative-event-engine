@@ -1,5 +1,7 @@
+import { CandidateCard } from '@/components/CandidateCard';
 import { ProductCard } from '@/components/ProductCard';
 import { RefreshButton } from '@/components/RefreshButton';
+import { loadCandidates } from '@/lib/candidates';
 import { fetchEastMoneyQuote } from '@/lib/eastmoney';
 import { formatBjTime } from '@/lib/format';
 import { PRODUCTS, TIER_ORDER } from '@/lib/products';
@@ -39,6 +41,7 @@ async function loadView(): Promise<{
 
 export default async function HomePage() {
   const { views, ts } = await loadView();
+  const candidates = loadCandidates();
 
   const buyCount = views.filter((v) => v.signal.level === 'buy_now').length;
   const watchCount = views.filter((v) => v.signal.level === 'watch').length;
@@ -108,6 +111,32 @@ export default async function HomePage() {
             </section>
           );
         })}
+
+        {candidates.length > 0 && (
+          <section className="mb-10">
+            <div className="mb-4 flex items-baseline gap-3 border-b border-slate-800 pb-2">
+              <h2 className="text-lg font-bold text-slate-300">
+                🪧 候选池（未入选）
+              </h2>
+              <span className="text-xs text-slate-500">
+                seed_universe 里、Stage 3 量化筛选未通过的标的，下次复跑流水线时可能升级
+              </span>
+              <span className="ml-auto font-mono text-xs text-slate-500">
+                {candidates.length} 只
+              </span>
+            </div>
+            <div className="mb-3 rounded-lg bg-amber-500/5 px-3 py-2 text-xs text-amber-300/80 ring-1 ring-amber-500/20">
+              ⚠️ 注意：dividend API 当前不可用，导致 REIT-H3（近 12 月无分红）和
+              REIT-H7（分派率 &lt; 3.5%）出现大量误判 — 实际上这些标的可能是有分红的，
+              下次跑流水线时只要 manual_dividend_overrides.json 补全或 API 恢复，就能正常评估
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {candidates.map((c) => (
+                <CandidateCard key={c.code} candidate={c} />
+              ))}
+            </div>
+          </section>
+        )}
 
         <footer className="mt-12 border-t border-slate-800 pt-6 text-xs text-slate-500">
           <p>
