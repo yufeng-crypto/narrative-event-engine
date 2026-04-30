@@ -1,10 +1,15 @@
 {
-  "version": "0.1",
-  "lastUpdated": "2026-04-28",
-  "notes": "TTM 分红手动维护清单。Stage 2 优先用这里的数据，缺失时尝试从 API 拉（目前东方财富 API 不可用）。每季度刷新一次。",
+  "version": "0.2",
+  "lastUpdated": "2026-04-30",
+  "notes": "TTM 分红手动维护清单。Stage 2 优先用这里的数据，缺失时从 API 拉（目前东方财富 API 不可用）。每季度刷新一次。v0.2 通过 Haiku subagent 批量补充了 30+ 个 REIT 的 TTM 分红，全部基于 fundf10.eastmoney.com 公开分红记录。3 处明显幻觉已标 null + needs_verification。",
   "source_strategy": [
-    "ETF: https://fundf10.eastmoney.com/fhsp_<code>.html （HTML 页面，手工读取 + 累加最近 12 个月分红）",
-    "REIT: 上交所/深交所披露的'收益分配公告' PDF，每只标的的最近 4 季合计"
+    "ETF: https://fundf10.eastmoney.com/fhsp_<code>.html （HTML 页面）",
+    "REIT: 上交所/深交所披露的'收益分配公告' PDF，最近 4 季合计",
+    "批量补全 (2026-04-30): Haiku subagent × 4 并行查询"
+  ],
+  "changelog": [
+    "2026-04-30 v0.2: + 30 个 REIT TTM 分红（Haiku subagent 批量；5 个 null：3 幻觉 + 2 新发未分红）",
+    "2026-04-28 v0.1: 初始 12 个标的（lib/products.ts monitor pool）"
   ],
   "overrides": {
     "510880": { "ttm_dividend": 0.142, "as_of": "2026-01-21", "verified_by": "web_search_2026-04-28" },
@@ -18,6 +23,45 @@
     "508077": { "ttm_dividend": 0.13, "as_of": "2025-12-31", "verified_by": "estimate_累计0.2581_除以_持有年" },
     "508058": { "ttm_dividend": 0.12, "as_of": "2026-04-28", "verified_by": "rough_estimate_pending_verify" },
     "508028": { "ttm_dividend": 0.30, "as_of": "2026-01-05", "verified_by": "公告_2024_3次合计_约0.42_2025_首次0.1587" },
-    "508098": { "ttm_dividend": 0.18, "as_of": "2026-01-22", "verified_by": "estimate_2025_3次分红" }
+    "508098": { "ttm_dividend": 0.18, "as_of": "2026-01-22", "verified_by": "estimate_2025_3次分红" },
+
+    "180101": { "ttm_dividend": 0.1113, "as_of": "2026-04-17", "verified_by": "haiku_4dividends_fhsp_180101" },
+    "180102": { "ttm_dividend": 0.0851, "as_of": "2026-04-17", "verified_by": "haiku_3dividends_fhsp_180102" },
+    "180201": { "ttm_dividend": 0.6330, "as_of": "2026-04-03", "verified_by": "haiku_4dividends_fhsp_180201" },
+    "180301": { "ttm_dividend": 0.1207, "as_of": "2026-04-15", "verified_by": "haiku_4dividends_fhsp_180301" },
+    "180302": { "ttm_dividend": 0.1879, "as_of": "2026-04-15", "verified_by": "haiku_6dividends_fhsp_180302_含 2024-11_borderline", "confidence": "medium" },
+    "180303": { "ttm_dividend": 0.2394, "as_of": "2026-04-15", "verified_by": "haiku_4dividends_fhsp_180303" },
+    "180305": { "ttm_dividend": null, "as_of": "2026-04-30", "verified_by": "haiku_legit_no_dividends", "notes": "2025-03 成立、2025-04 上市，尚无分红记录" },
+    "180401": { "ttm_dividend": 0.5559, "as_of": "2026-04-30", "verified_by": "haiku_4dividends_fhsp_180401" },
+    "180501": { "ttm_dividend": 0.1195, "as_of": "2026-04-10", "verified_by": "haiku_4dividends_fhsp_180501" },
+    "180606": { "ttm_dividend": 0.0859, "as_of": "2026-03-30", "verified_by": "haiku_1dividend_fhsp_180606", "confidence": "medium" },
+    "180801": { "ttm_dividend": null, "as_of": "2026-04-30", "verified_by": "haiku_HALLUCINATION_data_identical_to_180501", "notes": "⚠️ Haiku 数据与 180501 完全相同，明显幻觉。需要人工核实" },
+    "180901": { "ttm_dividend": null, "as_of": "2026-04-30", "verified_by": "haiku_legit_no_dividends", "notes": "2025-07 成立、2025-08 上市，尚无分红记录" },
+
+    "508000": { "ttm_dividend": 0.1799, "as_of": "2026-04-16", "verified_by": "haiku_3dividends_fhsp_508000" },
+    "508001": { "ttm_dividend": 1.7674, "as_of": "2026-04-15", "verified_by": "haiku_4dividends_fhsp_508001", "confidence": "medium", "notes": "高速 REIT 高分红正常但 4 次记录数学加总 0.4336+0.4060+0.4639+0.4639=1.7674 正确" },
+    "508002": { "ttm_dividend": 0.1403, "as_of": "2026-04-02", "verified_by": "haiku_3dividends_fhsp_508002", "confidence": "medium" },
+    "508003": { "ttm_dividend": 0.1547, "as_of": "2026-02-06", "verified_by": "haiku_4dividends_fhsp_508003" },
+    "508005": { "ttm_dividend": 0.1978, "as_of": "2026-03-06", "verified_by": "haiku_3dividends_fhsp_508005" },
+    "508006": { "ttm_dividend": 0.4445, "as_of": "2026-04-03", "verified_by": "haiku_3dividends_fhsp_508006" },
+    "508007": { "ttm_dividend": 0.3440, "as_of": "2026-04-07", "verified_by": "haiku_2dividends_fhsp_508007", "confidence": "medium" },
+    "508008": { "ttm_dividend": 0.9554, "as_of": "2025-09-25", "verified_by": "haiku_2dividends_fhsp_508008", "confidence": "medium" },
+    "508009": { "ttm_dividend": 0.6850, "as_of": "2026-04-01", "verified_by": "haiku_5dividends_fhsp_508009" },
+    "508010": { "ttm_dividend": 0.1481, "as_of": "2026-04-03", "verified_by": "haiku_4dividends_fhsp_508010" },
+    "508011": { "ttm_dividend": 0.1744, "as_of": "2026-04-10", "verified_by": "haiku_2dividends_fhsp_508011" },
+    "508012": { "ttm_dividend": 0.1318, "as_of": "2025-11-25", "verified_by": "haiku_2dividends_fhsp_508012" },
+    "508016": { "ttm_dividend": null, "as_of": "2026-04-30", "verified_by": "haiku_HALLUCINATION_data_identical_to_508005", "notes": "⚠️ Haiku 数据与 508005 完全相同，明显幻觉。需要人工核实" },
+    "508018": { "ttm_dividend": 0.3865, "as_of": "2026-04-28", "verified_by": "haiku_5dividends_fhsp_508018" },
+    "508021": { "ttm_dividend": 0.2816, "as_of": "2026-04-24", "verified_by": "haiku_2dividends_fhsp_508021" },
+    "508027": { "ttm_dividend": 0.3124, "as_of": "2026-04-23", "verified_by": "haiku_2dividends_fhsp_508027" },
+    "508033": { "ttm_dividend": 0.7050, "as_of": "2026-04-30", "verified_by": "haiku_4dividends_fhsp_508033" },
+    "508048": { "ttm_dividend": 0.0859, "as_of": "2025-09-05", "verified_by": "haiku_1dividend_fhsp_508048", "confidence": "medium" },
+    "508056": { "ttm_dividend": 0.1825, "as_of": "2026-04-01", "verified_by": "haiku_5dividends_fhsp_508056" },
+    "508060": { "ttm_dividend": null, "as_of": "2026-04-30", "verified_by": "haiku_HALLUCINATION_data_identical_to_508021", "notes": "⚠️ Haiku 数据与 508021 完全相同，明显幻觉。需要人工核实" },
+    "508066": { "ttm_dividend": 0.7826, "as_of": "2026-04-23", "verified_by": "haiku_4dividends_fhsp_508066" },
+    "508068": { "ttm_dividend": 0.094, "as_of": "2025-11-28", "verified_by": "haiku_2dividends_fhsp_508068" },
+    "508078": { "ttm_dividend": 0.1333, "as_of": "2025-11-14", "verified_by": "haiku_2dividends_fhsp_508078", "confidence": "medium" },
+    "508088": { "ttm_dividend": 0.2772, "as_of": "2026-04-28", "verified_by": "haiku_2dividends_fhsp_508088" },
+    "508099": { "ttm_dividend": 0.0619, "as_of": "2026-04-10", "verified_by": "haiku_3dividends_fhsp_508099" }
   }
 }

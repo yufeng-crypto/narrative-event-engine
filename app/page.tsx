@@ -126,9 +126,10 @@ export default async function HomePage() {
               </span>
             </div>
             <div className="mb-3 rounded-lg bg-amber-500/5 px-3 py-2 text-xs text-amber-300/80 ring-1 ring-amber-500/20">
-              ⚠️ 注意：dividend API 当前不可用，导致 REIT-H3（近 12 月无分红）和
-              REIT-H7（分派率 &lt; 3.5%）出现大量误判 — 实际上这些标的可能是有分红的，
-              下次跑流水线时只要 manual_dividend_overrides.json 补全或 API 恢复，就能正常评估
+              ℹ️ 候选池来自上次 pipeline 运行（基于旧数据）。最新调整：
+              <br />· Stage 3 规则已加 SKIP_IF_NO_DATA 兜底（H3/H7 无数据时不再误杀）
+              <br />· manual_dividend_overrides.json 已补 30 个 REIT 的 TTM 分红
+              <br />重跑 pipeline 后，候选池会大幅缩小，多数标的会进入 Stage 4 评估
             </div>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {candidates.map((c) => (

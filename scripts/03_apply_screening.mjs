@@ -37,18 +37,30 @@ const ETF_HARD_GATES = {
   'ETF-H4': () => SKIP_IF_NO_DATA,
   'ETF-H5': (t) => (t.metrics?.max_drawdown_pct ?? 100) <= 30,
   'ETF-H6': () => SKIP_IF_NO_DATA,
-  'ETF-H7': (t) => (t.metrics?.current_yield_pct ?? 0) >= 3,
+  // 同 REIT-H7：null 时 SKIP，避免 dividend API 不可用导致全量误杀
+  'ETF-H7': (t) =>
+    t.metrics?.current_yield_pct == null
+      ? SKIP_IF_NO_DATA
+      : t.metrics.current_yield_pct >= 3,
 };
 
 const REIT_HARD_GATES = {
   'REIT-H1': (t) =>
     isManualListed(t) ? SKIP_IF_NO_DATA : (t.listing_years ?? 0) >= 1.5,
   'REIT-H2': (t) => (t.aum ?? 0) >= 10e8,
-  'REIT-H3': (t) => (t.metrics?.ttm_dividend ?? 0) > 0,
+  // H3/H7：dividend API 当前不可用。如 ttm_dividend 为 null（manual override 也没有）
+  // → SKIP 不淘汰，让 Stage 4 LLM 主动评估；如有数据则正常判断
+  'REIT-H3': (t) =>
+    t.metrics?.ttm_dividend == null
+      ? SKIP_IF_NO_DATA
+      : t.metrics.ttm_dividend > 0,
   'REIT-H4': (t) => t.reit_subtype && t.reit_subtype !== 'other',
   'REIT-H5': () => SKIP_IF_NO_DATA,
   'REIT-H6': () => SKIP_IF_NO_DATA,
-  'REIT-H7': (t) => (t.metrics?.current_yield_pct ?? 0) >= 3.5,
+  'REIT-H7': (t) =>
+    t.metrics?.current_yield_pct == null
+      ? SKIP_IF_NO_DATA
+      : t.metrics.current_yield_pct >= 3.5,
 };
 
 // ============================================================
