@@ -19,15 +19,18 @@ import { readFileSync } from 'node:fs';
 import { readJson, writeJson, timestamp } from './_lib/io.mjs';
 import { callDeepSeek, estimateCost as estimateDeepSeekCost } from './_lib/deepseek.mjs';
 import { callClaude, estimateClaudeCost } from './_lib/claude.mjs';
+import { callDoubao, estimateDoubaoCost } from './_lib/doubao.mjs';
 
 const IN = 'data/screened.json';
 const FRAMEWORK_PATH = 'methodology/04_quality_framework.md';
 const PROVIDER = process.env.LLM_PROVIDER || 'deepseek';
+const ONLY_NEW = process.env.ONLY_NEW === '1'; // 只评估当前 lib/products.ts 没收录的
 const OUT_BY_PROVIDER = {
   'deepseek': 'data/quality_scores.json',
   'claude-haiku': 'data/quality_scores_claude_haiku.json',
   'claude-sonnet': 'data/quality_scores_claude_sonnet.json',
   'claude-opus': 'data/quality_scores_claude_opus.json',
+  'doubao': 'data/quality_scores_doubao.json',
 };
 const OUT = OUT_BY_PROVIDER[PROVIDER] || 'data/quality_scores.json';
 
@@ -42,13 +45,24 @@ async function callLLM(opts) {
     const { text, usage } = await callDeepSeek(opts);
     return { text, usage, cost: estimateDeepSeekCost(usage), model: 'deepseek-chat' };
   }
+  if (PROVIDER === 'doubao') {
+    const { text, usage, model } = await callDoubao(opts);
+    return { text, usage, cost: estimateDoubaoCost(usage, model), model };
+  }
   const claudeModel = CLAUDE_MODEL_MAP[PROVIDER];
   if (!claudeModel) {
-    throw new Error(`Unknown LLM_PROVIDER: ${PROVIDER}. Use deepseek|claude-haiku|claude-sonnet|claude-opus`);
+    throw new Error(`Unknown LLM_PROVIDER: ${PROVIDER}. Use deepseek|claude-haiku|claude-sonnet|claude-opus|doubao`);
   }
   const { text, usage, model } = await callClaude({ ...opts, model: claudeModel });
   return { text, usage, cost: estimateClaudeCost(usage, claudeModel), model };
 }
+
+// 已评估过的 codes（在 data/quality_scores_claude_sonnet.json 里）
+// 设 ONLY_NEW=1 时跳过这些
+const ALREADY_EVALUATED = new Set([
+  '180601','512890','561580','508077','508058','510880',
+  '508028','180602','513530','180202','508098','515100',
+]);
 
 const SYSTEM_PROMPT = `你是公募 REITs 和红利 ETF 的资产质量分析师。你的任务是按 framework 给定的 6 个维度评分。
 
@@ -130,7 +144,12 @@ TTM 分红：${candidate.ttm_dividend} 元/份
 async function main() {
   const screened = readJson(IN);
   const framework = readFileSync(FRAMEWORK_PATH, 'utf8');
-  const candidates = screened.candidates.filter((c) => c.passed_to_stage4);
+  let candidates = screened.candidates.filter((c) => c.passed_to_stage4);
+  if (ONLY_NEW) {
+    const before = candidates.length;
+    candidates = candidates.filter((c) => !ALREADY_EVALUATED.has(c.code));
+    console.log(`[04] ONLY_NEW=1：从 ${before} 只过滤到 ${candidates.length} 只新候选`);
+  }
   console.log(`[04] Provider: ${PROVIDER}`);
   console.log(`[04] ${candidates.length} 只 candidates 进入质量评估`);
   console.log(`[04] 输出 → ${OUT}`);

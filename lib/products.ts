@@ -1,12 +1,22 @@
 import type { ProductConfig } from './types';
 
 /**
- * 监控产品池 v0.5 — Sonnet 全 12 只评估完成（2026-04-28）
+ * 监控产品池 v0.6 — Doubao 扩展批次（2026-04-30）
+ *
+ * 演进：
+ *   v0.4 (Sonnet × 8): 8 标的 ABC 分级
+ *   v0.5 (Sonnet × 12): 补 4 只 → core 3 / supporting 3 / watch 6
+ *   v0.6 (Doubao × 11): 加 11 只新 watch（新 stage 3 通过的，未经 Sonnet WebSearch 兜底）
+ *
+ * 当前总数：12 (Sonnet 评估) + 11 (Doubao 评估) = 23 标的
+ *   - core 3 (Sonnet)
+ *   - supporting 3 (Sonnet)
+ *   - watch 17 (6 Sonnet + 11 Doubao)
  *
  * 流水线：
  *   Stage 1 (universe seed) → Stage 2 (history + manual TTM) →
- *   Stage 3 (量化筛选 8 通过) → Stage 4 (Sonnet 6 维度评估，全 12 只) →
- *   Stage 5 v3 (Opus 把关 + 风险显化)
+ *   Stage 3 (量化筛选) → Stage 4 (Sonnet/Doubao 6 维度评估) →
+ *   Stage 5 (Opus 把关 + 风险显化)
  *
  * v0.4 → v0.5 调整（基于 Sonnet 补跑 4 只评估）：
  *   - 561580 央企红利：watch → CORE（Sonnet 25 分，政策最强支持，规模 1.5 年涨 2.4 倍）
@@ -318,6 +328,234 @@ export const PRODUCTS: ProductConfig[] = [
     watchYield: 4.8,
     buyYield: 5.2,
     notes: '中证红利低波 100（930955）。景顺长城管理。规模 62 亿同类第一但 Sonnet 评分降到 B+',
+  },
+
+  // ════════════════════════════════════════════════════════
+  // 🆕 Doubao 新评估批次（2026-04-30，全部 watch tier 待人工复核）
+  // 来自 Stage 4 (LLM_PROVIDER=doubao)，无 WebSearch 兜底
+  // 数据：data/quality_scores_doubao.json
+  // ════════════════════════════════════════════════════════
+  {
+    code: '508056',
+    name: '中金普洛斯 REIT',
+    shortName: '普洛斯物流',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A+',
+    qualityScore: 27,
+    redFlags: [
+      '历史最大回撤 56%，市场波动风险',
+      '2023 年分派率从上市初期已显著下降',
+    ],
+    tierReason: 'Doubao A+ 27 — 物流 REIT 旗舰（普洛斯 7 处物流园），但需 Sonnet 验证 / 人工复核扩募节奏',
+    ttmDividend: 0.1825,
+    ttmDividendAsOf: '2026-04-01',
+    watchYield: 5.0,
+    buyYield: 5.5,
+    notes: '北京空港 / 上海青浦 / 广州保税 / 佛山 / 苏州 / 武汉 / 成都 7 处物流园。中金 + 普洛斯中国（首批 REIT）',
+  },
+  {
+    code: '508033',
+    name: '易方达深高速 REIT',
+    shortName: '深高速',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A+',
+    qualityScore: 26,
+    redFlags: [
+      '高速 REIT 通病：特许经营权到期归零（参考 180202）',
+      '收费标准受政府定价限制',
+      '宏观经济波动影响通行量',
+    ],
+    tierReason: 'Doubao A+ 26 — 但高速 REIT 必须当"X 年期高息债"看，建仓前必须确认特许期剩余',
+    ttmDividend: 0.705,
+    ttmDividendAsOf: '2026-04-30',
+    watchYield: 5.5,
+    buyYield: 6.0,
+    notes: '机荷高速西段 + 盐排高速 + 南光高速。易方达 + 深圳高速。当前分派率 10.88% 极高（部分反映到期归零折现）',
+  },
+  {
+    code: '180401',
+    name: '鹏华深圳能源 REIT',
+    shortName: '深圳能源',
+    market: 'sz',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A',
+    qualityScore: 24,
+    redFlags: [
+      '客户集中度极高（单一电网）',
+      '电价政策变动风险',
+      '光伏依赖光照条件',
+    ],
+    tierReason: 'Doubao A 24 — 与 508028 国电投新能源同类（能源），但底层是光伏（红泥湾/惠州/梅州）',
+    ttmDividend: 0.5559,
+    ttmDividendAsOf: '2026-04-30',
+    watchYield: 5.0,
+    buyYield: 5.5,
+    notes: '深圳能源红泥湾 + 惠州稔山 + 梅州梅县光伏电站。鹏华 + 深能集团（深圳国资）',
+  },
+  {
+    code: '508006',
+    name: '富国首创水务 REIT',
+    shortName: '首创水务',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A',
+    qualityScore: 23,
+    redFlags: [
+      '历史最大回撤 69%（极高）',
+      '3 年股息率均值 0%（数据不全）',
+    ],
+    tierReason: 'Doubao A 23 — 市政水务，特许经营 + 政府付费稳定，但回撤大需观察',
+    ttmDividend: 0.4445,
+    ttmDividendAsOf: '2026-04-03',
+    watchYield: 5.5,
+    buyYield: 6.0,
+    notes: '北京小红门 + 深圳福永 + 合肥十五里河污水处理厂。富国 + 首创集团（北京国资）。市政 REIT 首批',
+  },
+  {
+    code: '180801',
+    name: '中航首钢绿能 REIT',
+    shortName: '首钢绿能',
+    market: 'sz',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A',
+    qualityScore: 24,
+    redFlags: [
+      '租户 100% 政府单一客户（垃圾处理费）',
+      '政策补贴变动风险',
+      '2023 年垃圾处理单价 -2.1%',
+    ],
+    tierReason: 'Doubao A 24 — 北京门头沟首钢生物质能源（垃圾焚烧发电）',
+    ttmDividend: 1.0710,
+    ttmDividendAsOf: '2026-04-23',
+    watchYield: 5.0,
+    buyYield: 5.5,
+    notes: '北京门头沟生活垃圾焚烧发电（鲁家山）。首钢集团 + 中航基金。当前分派率 9.05% 高',
+  },
+  {
+    code: '180302',
+    name: '华夏深国际 REIT',
+    shortName: '深国际物流',
+    market: 'sz',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A',
+    qualityScore: 24,
+    redFlags: [
+      '前 5 大租户集中度 42%（略高）',
+      '资产负债率近 50% 预警线',
+    ],
+    tierReason: 'Doubao A 24 — 与 508056 普洛斯同类物流，但深国际单一项目',
+    ttmDividend: 0.1879,
+    ttmDividendAsOf: '2026-04-15',
+    watchYield: 5.5,
+    buyYield: 6.0,
+    notes: '深圳综合物流港。华夏 + 深国际控股集团（深圳国资）',
+  },
+  {
+    code: '180501',
+    name: '红土创新深圳安居 REIT',
+    shortName: '深圳安居',
+    market: 'sz',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'A',
+    qualityScore: 23,
+    redFlags: [],
+    tierReason: 'Doubao A 23 — 与 508077/508058 同保租房类。深圳人才安居',
+    ttmDividend: 0.1195,
+    ttmDividendAsOf: '2026-04-10',
+    watchYield: 4.5,
+    buyYield: 5.0,
+    notes: '凤凰公馆 / 龙悦居四期 / 坪河雅苑（深圳保租房）。红土创新（深创投）+ 深圳安居',
+  },
+  {
+    code: '508088',
+    name: '国泰海通东久新经济 REIT',
+    shortName: '东久新经济',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'B+',
+    qualityScore: 21,
+    redFlags: [
+      '2023 年出租率较上年 -2pct 至 92%',
+      '前三大租户集中科技制造业',
+    ],
+    tierReason: 'Doubao B+ 21 — 与 508027/508003 等产业园 REIT 同类',
+    ttmDividend: 0.2772,
+    ttmDividendAsOf: '2026-04-28',
+    watchYield: 5.5,
+    buyYield: 6.0,
+    notes: '上海临港奉贤 + 苏州工业园 + 南京江宁产业园。国泰海通（合并后）+ 东久',
+  },
+  {
+    code: '508009',
+    name: '中金安徽交控 REIT',
+    shortName: '安徽交控',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'B+',
+    qualityScore: 19,
+    redFlags: [
+      '可分配金额覆盖率不足 100%',
+      '2023H1 NOI 同比下降',
+      '高速 REIT 到期归零特性',
+    ],
+    tierReason: 'Doubao B+ 19 — 合安高速（合肥-安庆）。NOI 下行趋势注意',
+    ttmDividend: 0.685,
+    ttmDividendAsOf: '2026-04-01',
+    watchYield: 5.5,
+    buyYield: 6.0,
+    notes: '合安高速公路（合肥至安庆段）。中金 + 安徽交控集团',
+  },
+  {
+    code: '508005',
+    name: '华夏首创奥莱 REIT',
+    shortName: '首创奥莱',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'B+',
+    qualityScore: 19,
+    redFlags: [
+      '2023Q2 杭州项目出租率环比 -2.1pct',
+      '消费复苏不及预期影响客流',
+    ],
+    tierReason: 'Doubao B+ 19 — 奥莱业态周期下行风险高于一线核心商业（如 180601 万象城）',
+    ttmDividend: 0.1978,
+    ttmDividendAsOf: '2026-03-06',
+    watchYield: 4.8,
+    buyYield: 5.5,
+    notes: '北京房山 + 杭州富阳奥特莱斯。华夏 + 首创集团',
+  },
+  {
+    code: '508027',
+    name: '东吴苏园产业 REIT',
+    shortName: '苏园产业',
+    market: 'sh',
+    category: 'reit',
+    tier: 'watch',
+    grade: 'B+',
+    qualityScore: 17,
+    redFlags: [
+      '最大回撤 52%（高）',
+      '资产负债率 55%（高杠杆）',
+      '3 年股息率均值 0%（不稳定）',
+    ],
+    tierReason: 'Doubao B+ 17 — 苏州工业园 BioBAY 生物医药园。回撤 + 杠杆都偏高',
+    ttmDividend: 0.3124,
+    ttmDividendAsOf: '2026-04-23',
+    watchYield: 5.5,
+    buyYield: 6.0,
+    notes: '苏州生物医药产业园（BioBAY）一期、二期。东吴 + 苏州工业园区运营',
   },
 ];
 

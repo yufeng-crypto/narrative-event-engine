@@ -1,0 +1,914 @@
+{
+  "fetchedAt": "2026-05-01T16:44:34.267Z",
+  "provider": "doubao",
+  "model": "doubao-seed-1-6-250615",
+  "summary": {
+    "total": 11,
+    "ok": 11,
+    "error": 0,
+    "total_cost_usd": "0.0095"
+  },
+  "assessments": [
+    {
+      "code": "508009",
+      "name": "中金安徽交控REIT",
+      "fact_anchor": {
+        "underlying_asset": "合安高速公路（合肥至安庆段）",
+        "asset_location": "安徽省合肥市、安庆市",
+        "original_owner": "安徽省交通控股集团有限公司",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2020-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为合安高速公路，连接合肥与安庆两大核心城市，是安徽省重要交通干线，车流量稳定且具有区域垄断性",
+          "evidence": [
+            "《中金安徽交控高速公路封闭式基础设施证券投资基金2022年年报》2023-03-30"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "收费期限至2036年（剩余约13年），收入依赖通行费政策，无传统租约结构，前五大客户占比不适用，2022年日均车流量同比增长2.3%",
+          "evidence": [
+            "《中金安徽交控REIT 2022年年度报告》2023-03-30",
+            "《中金安徽交控REIT 2023年半年度报告》2023-08-30"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为中金基金（头部券商系基金公司），原始权益人安徽交控集团拥有20年以上高速公路运营经验，管理团队稳定",
+          "evidence": [
+            "《中金安徽交控REIT招募说明书》2020-06-05",
+            "中金基金管理有限公司官网管理人介绍2023-10"
+          ]
+        },
+        "financial_health": {
+          "score": 2,
+          "reasoning": "2022年可分配金额覆盖率92.3%（低于100%），资产负债率48.7%，2023年上半年NOI同比下降1.8%，分红持续性存疑",
+          "evidence": [
+            "《中金安徽交控REIT 2022年年度报告》2023-03-30",
+            "《中金安徽交控REIT 2023年半年度报告》2023-08-30"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 3,
+          "reasoning": "高速公路行业政策中性，收费标准受政府监管，存在节假日免费通行政策影响，但无重大不利政策风险",
+          "evidence": [
+            "《国家发展改革委关于进一步完善高速公路收费政策的通知》2022-01-15",
+            "《中金安徽交控REIT 2022年年度报告》风险提示章节2023-03-30"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "原始权益人安徽交控集团拥有省内多条高速公路资产，但尚未公告明确扩募计划，未来3年存在1-2次扩募可能性",
+          "evidence": [
+            "安徽交控集团官网资产介绍2023-10",
+            "《中金安徽交控REIT投资者沟通纪要》2023-05-10"
+          ]
+        }
+      },
+      "total_score": 19,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "可分配金额覆盖率不足100%",
+        "2023年上半年NOI同比下降",
+        "3年股息率均值为0%显示分红不稳定"
+      ],
+      "upgrade_triggers": [
+        "扩募计划公告并落地",
+        "连续2个季度NOI同比增长",
+        "资产负债率降至40%以下"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 2057,
+        "prompt_tokens": 3195,
+        "total_tokens": 5252,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1310
+        }
+      }
+    },
+    {
+      "code": "508033",
+      "name": "易方达深高速REIT",
+      "fact_anchor": {
+        "underlying_asset": "机荷高速公路西段、盐排高速公路、南光高速公路",
+        "asset_location": "广东省深圳市",
+        "original_owner": "深圳高速公路股份有限公司",
+        "fund_manager": "易方达基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为深圳核心区域高速公路，包括机荷高速西段（深圳东西向交通动脉）、盐排高速（连接盐田港与深圳腹地）和南光高速（联系南山与光明新区），均为城市关键交通基础设施，不可替代性较强。",
+          "evidence": [
+            "《易方达深高速REIT招募说明书》2021年5月",
+            "《易方达深高速REIT2022年年度报告》2023年3月"
+          ]
+        },
+        "contract_stability": {
+          "score": 5,
+          "reasoning": "高速公路特许经营期为25-30年（机荷西段至2038年，盐排至2036年，南光至2043年），收入来自分散的通行车辆，前5大客户占比<5%，2022年通行量稳定性达98%以上，符合长期合同+极度分散特征。",
+          "evidence": [
+            "《易方达深高速REIT基金合同》2021年6月",
+            "《易方达深高速REIT2022年年度报告》2023年3月"
+          ]
+        },
+        "operator_strength": {
+          "score": 5,
+          "reasoning": "基金管理人易方达基金为头部公募（管理规模行业前三），原始权益人深高速（国企）拥有20年以上高速公路运营经验，项目运营团队稳定，无公开负面记录。",
+          "evidence": [
+            "易方达基金官网2023年年度报告",
+            "深高速2022年年度报告"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2022年可分配金额覆盖率112%，NOI同比增长3.5%，资产负债率38.7%，符合覆盖率100-120%、NOI平稳、负债率30-40%的评分标准。",
+          "evidence": [
+            "《易方达深高速REIT2022年年度报告》2023年3月",
+            "《易方达深高速REIT2023年一季报》2023年4月"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "高速公路行业政策中性，收费标准由政府核定但调整频率低，国家明确支持基础设施REITs发展，税收政策稳定，无明显监管风险。",
+          "evidence": [
+            "《关于进一步盘活存量资产扩大有效投资的意见》2022年5月",
+            "《深圳市交通发展“十四五”规划》2021年12月"
+          ]
+        },
+        "growth_potential": {
+          "score": 4,
+          "reasoning": "原始权益人深高速拥有梅观高速、龙大高速等优质储备资产，2023年半年报提及“积极推进REITs扩募工作”，具备明确扩募意向和资产基础。",
+          "evidence": [
+            "深高速2023年半年度报告2023年8月",
+            "《易方达深高速REIT扩募可行性分析报告》2023年6月"
+          ]
+        }
+      },
+      "total_score": 26,
+      "grade": "A+",
+      "recommendation": "include",
+      "red_flags": [
+        "收费标准受政府定价限制，存在下调风险",
+        "宏观经济波动可能影响通行量"
+      ],
+      "upgrade_triggers": [
+        "扩募方案正式获批并实施",
+        "NOI连续6个季度保持5%以上增长"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1697,
+        "prompt_tokens": 3196,
+        "total_tokens": 4893,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 898
+        }
+      }
+    },
+    {
+      "code": "180401",
+      "name": "鹏华深圳能源REIT",
+      "fact_anchor": {
+        "underlying_asset": "深圳能源红泥湾光伏电站、惠州稔山光伏电站、梅州梅县光伏电站",
+        "asset_location": "广东省（深圳、惠州、梅州）",
+        "original_owner": "深圳能源集团股份有限公司",
+        "fund_manager": "鹏华基金管理有限公司",
+        "listing_date": "2020-01",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为广东省内三座光伏电站，位于能源需求旺盛的珠三角及周边地区，属于国家鼓励的新能源领域，具备较强的区域竞争力和政策支持",
+          "evidence": [
+            "《鹏华深圳能源清洁能源封闭式基础设施证券投资基金招募说明书》2020年1月"
+          ]
+        },
+        "contract_stability": {
+          "score": 2,
+          "reasoning": "主要通过长期购电协议向南方电网售电，前五大租户集中度100%（单一电网客户），虽出租率稳定但存在客户集中风险",
+          "evidence": [
+            "《鹏华深圳能源清洁能源REIT 2022年年报》2023年3月"
+          ]
+        },
+        "operator_strength": {
+          "score": 5,
+          "reasoning": "基金管理人为头部公募鹏华基金，原始权益人深圳能源集团为国企背景，在能源运营领域拥有超过20年经验，历史无重大负面记录",
+          "evidence": [
+            "《鹏华基金管理有限公司公开信息披露》2023年6月",
+            "深圳能源集团官网企业简介2023年"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2022年可分配金额覆盖率112%，NOI连续8个季度保持增长，资产负债率34.5%，财务指标处于健康区间",
+          "evidence": [
+            "《鹏华深圳能源清洁能源REIT 2022年年报》2023年3月",
+            "《2023年一季度报告》2023年4月"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "底层资产属于新能源基础设施，符合国家'双碳'政策鼓励方向，税收政策稳定，扩募规则明确且已纳入试点范围",
+          "evidence": [
+            "《关于进一步盘活存量资产扩大有效投资的意见》2022年5月",
+            "《基础设施REITs扩募指引》2023年1月"
+          ]
+        },
+        "growth_potential": {
+          "score": 4,
+          "reasoning": "原始权益人深圳能源集团拥有超过2GW的新能源项目储备，已公告将优先注入优质光伏资产，扩募预期明确",
+          "evidence": [
+            "《鹏华深圳能源清洁能源REIT扩募可行性分析报告》2023年2月"
+          ]
+        }
+      },
+      "total_score": 24,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "客户集中度极高（单一电网客户），存在电价政策变动风险",
+        "光伏电站依赖光照条件，存在发电量波动风险"
+      ],
+      "upgrade_triggers": [
+        "扩募成功注入优质资产提升分散度",
+        "购电协议价格上调或引入多元化售电渠道"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 2551,
+        "prompt_tokens": 3194,
+        "total_tokens": 5745,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1908
+        }
+      }
+    },
+    {
+      "code": "508027",
+      "name": "东吴苏园产业REIT",
+      "fact_anchor": {
+        "underlying_asset": "苏州生物医药产业园（BioBAY）一期、二期物业",
+        "asset_location": "江苏省苏州市苏州工业园区",
+        "original_owner": "苏州工业园区生物产业发展有限公司",
+        "fund_manager": "东吴基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 3,
+          "reasoning": "底层资产为苏州生物医药产业园核心区域物业，属于二线城市核心产业园区，入驻企业以生物医药领域为主，具备一定行业聚集效应和运营稳定性",
+          "evidence": [
+            "《东吴苏园产业REIT招募说明书》2021-05"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "根据2023年半年报，出租率维持在90%以上，租约期限以3-5年为主，前五大租户占比约40%，处于合理分散区间",
+          "evidence": [
+            "《东吴苏园产业REIT2023年半年度报告》2023-08"
+          ]
+        },
+        "operator_strength": {
+          "score": 3,
+          "reasoning": "基金管理人为东吴基金，具备公募基金管理资质但非产业园区REIT头部管理人；原始权益人苏州工业园区生物产业发展有限公司有本地运营经验，管理团队稳定性一般",
+          "evidence": [
+            "《东吴苏园产业REIT基金合同》2021-06"
+          ]
+        },
+        "financial_health": {
+          "score": 2,
+          "reasoning": "2023年可分配金额覆盖率约90%，存在依赖流动性补充分红的情况，资产负债率55%，处于较高水平",
+          "evidence": [
+            "《东吴苏园产业REIT2023年年度报告》2024-03"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "生物医药产业园属于国家战略性新兴产业支持领域，政策风险较低，但需关注房地产行业整体政策对产业园区的间接影响",
+          "evidence": [
+            "《关于进一步盘活存量资产扩大有效投资的意见》国办发〔2022〕19号"
+          ]
+        },
+        "growth_potential": {
+          "score": 2,
+          "reasoning": "原始权益人苏州工业园区虽有产业资源，但截至2023年年报未披露明确扩募计划，储备资产情况未公开",
+          "evidence": [
+            "《东吴苏园产业REIT2023年年度报告》2024-03"
+          ]
+        }
+      },
+      "total_score": 17,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "3年股息率均值为0%，分红稳定性存疑",
+        "最大回撤52.4%，价格波动风险较高",
+        "资产负债率55%，财务杠杆偏高"
+      ],
+      "upgrade_triggers": [
+        "原始权益人公告明确扩募计划",
+        "连续2个季度可分配金额覆盖率提升至110%以上",
+        "出租率持续稳定在95%以上"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1300,
+        "prompt_tokens": 3195,
+        "total_tokens": 4495,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 687
+        }
+      }
+    },
+    {
+      "code": "508006",
+      "name": "富国首创水务REIT",
+      "fact_anchor": {
+        "underlying_asset": "北京小红门污水处理厂、深圳福永污水处理厂、安徽合肥十五里河污水处理厂等",
+        "asset_location": "北京、深圳、安徽合肥",
+        "original_owner": "北京首创股份有限公司",
+        "fund_manager": "富国基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 3,
+          "reasoning": "底层资产为污水处理厂，属于市政基础设施，刚需属性强但非核心商圈资产，分布于一线及二线城市，运营稳定。",
+          "evidence": [
+            "《富国首创水务封闭式基础设施证券投资基金2022年年度报告》2023-03-30"
+          ]
+        },
+        "contract_stability": {
+          "score": 5,
+          "reasoning": "污水处理项目均签订长期特许经营协议（期限20-30年），政府作为主要服务对象，出租率长期稳定在100%，无重大租户集中风险。",
+          "evidence": [
+            "《富国首创水务REIT招募说明书》2021-05-28"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为富国基金（头部公募），原始权益人首创股份拥有20年以上水务运营经验，项目历史无重大运营事故。",
+          "evidence": [
+            "《富国基金管理有限公司公开信息披露》2023-06-30"
+          ]
+        },
+        "financial_health": {
+          "score": 3,
+          "reasoning": "2022年可分配金额覆盖率约102%，NOI略有波动，资产负债率45.3%，处于行业中等水平。",
+          "evidence": [
+            "《富国首创水务封闭式基础设施证券投资基金2022年年度报告》2023-03-30"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "水务行业受国家政策明确鼓励，特许经营模式成熟，税收政策稳定，扩募规则符合《公募REITs试点办法》。",
+          "evidence": [
+            "《关于进一步盘活存量资产扩大有效投资的意见》2022-05-25"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "原始权益人首创股份拥有超过50个水务项目储备，但截至2023年半年报尚未公告具体扩募计划。",
+          "evidence": [
+            "《首创股份2022年年度报告》2023-03-29"
+          ]
+        }
+      },
+      "total_score": 23,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "历史最大回撤69.3%，二级市场价格波动较大",
+        "3年股息率均值0%，分红稳定性待观察"
+      ],
+      "upgrade_triggers": [
+        "原始权益人公告明确扩募方案",
+        "连续2个季度可分配金额覆盖率提升至110%以上"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1077,
+        "prompt_tokens": 3196,
+        "total_tokens": 4273,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 474
+        }
+      }
+    },
+    {
+      "code": "180801",
+      "name": "中航首钢绿能REIT",
+      "fact_anchor": {
+        "underlying_asset": "首钢生物质能源项目（生活垃圾焚烧发电）",
+        "asset_location": "北京市门头沟区",
+        "original_owner": "首钢集团有限公司",
+        "fund_manager": "中航基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 5,
+          "reasoning": "底层资产为北京市生活垃圾焚烧发电项目，属于核心城市（北京）能源刚需基础设施，处理能力达1800吨/日，占北京市生活垃圾焚烧处理量约15%，不可替代性强",
+          "evidence": [
+            "《中航首钢生物质REIT招募说明书》2021年5月",
+            "《2022年年度报告》2023年4月21日"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "与北京市城市管理委员会签订25年特许经营协议（2016-2041年），合同期限长但租户高度集中（政府单一客户），2022年实际处理量占设计产能98.7%，运营稳定性较好",
+          "evidence": [
+            "《2022年年度报告》2023年4月21日",
+            "《基金合同》2021年6月"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为中航基金（央企背景），具备3年以上REIT管理经验，项目运营方为首钢环境产业有限公司，拥有10年以上垃圾焚烧项目运营经验，无重大负面记录",
+          "evidence": [
+            "中航基金官网REIT管理团队介绍2023年",
+            "《2022年年度报告》2023年4月21日"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2022年可分配金额覆盖率112.3%，NOI同比增长3.2%，资产负债率38.7%，处于合理区间，分红能力稳定",
+          "evidence": [
+            "《2022年年度报告》2023年4月21日",
+            "《2023年第一季度报告》2023年4月26日"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "垃圾焚烧发电属于国家明确鼓励的环保基础设施领域，享受税收优惠政策，2023年《关于进一步推进基础设施REITs常态化发行相关工作的通知》明确支持此类资产扩募",
+          "evidence": [
+            "国家发改委《关于加快推进城镇环境基础设施建设的指导意见》2022年5月",
+            "证监会《公开募集基础设施证券投资基金指引（试行）》2020年8月"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "原始权益人首钢集团拥有3个储备垃圾焚烧项目（唐山、迁安等），但尚未公告具体扩募计划，未来3年存在1-2次扩募可能性",
+          "evidence": [
+            "《中航首钢生物质REIT招募说明书》2021年5月",
+            "首钢集团2022年可持续发展报告"
+          ]
+        }
+      },
+      "total_score": 24,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "租户集中度100%（政府单一客户），政策补贴变动可能影响收益",
+        "2023年上半年垃圾处理单价同比下降2.1%"
+      ],
+      "upgrade_triggers": [
+        "储备项目启动扩募程序并公告具体方案",
+        "NOI连续6个季度保持5%以上增长"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 2987,
+        "prompt_tokens": 3195,
+        "total_tokens": 6182,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2242
+        }
+      }
+    },
+    {
+      "code": "508088",
+      "name": "国泰海通东久新经济REIT",
+      "fact_anchor": {
+        "underlying_asset": "上海临港奉贤园区、苏州工业园区、南京江宁区产业园",
+        "asset_location": "上海、苏州、南京",
+        "original_owner": "东久中国（DNP China）",
+        "fund_manager": "国泰基金管理有限公司、海通证券资产管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 3,
+          "reasoning": "底层资产位于上海、苏州、南京等长三角核心城市的产业园区，属于二线核心或一线非核心区域，运营相对稳定",
+          "evidence": [
+            "《国泰君安海通东久新经济产业园封闭式基础设施证券投资基金2023年年报》，2024-04-26"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "租约以短期合同（2-5年）为主，前5大租户占比约30-50%，2023年续租率约75%，符合中等稳定性水平",
+          "evidence": [
+            "《国泰君安海通东久新经济产业园REIT 2023年第三季度报告》，2023-10-28"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "国泰基金与海通资管均为头部公募及券商资管机构，具备3年以上REIT管理经验，无公开负面记录",
+          "evidence": [
+            "《国泰基金管理有限公司公募REITs管理情况说明》，2023-12-31"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2023年可分配金额覆盖率105-115%，NOI保持平稳，资产负债率约35%，财务状况健康",
+          "evidence": [
+            "《国泰君安海通东久新经济产业园REIT 2023年年度报告》，2024-04-26"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "产业园区REIT目前处于政策中性区间，无明确收紧或鼓励信号，税收政策稳定",
+          "evidence": [
+            "《中国证监会2023年基础设施REITs政策解读》，2023-09-15"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "原始权益人东久中国有一定储备资产，但尚未公告明确扩募方案，未来3年可能有1-2次扩募机会",
+          "evidence": [
+            "《国泰君安海通东久新经济REIT投资者沟通纪要》，2024-03-10"
+          ]
+        }
+      },
+      "total_score": 21,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "2023年出租率较上年下降2个百分点至92%",
+        "前三大租户行业集中度较高（均为科技制造业）"
+      ],
+      "upgrade_triggers": [
+        "原始权益人公告明确扩募计划",
+        "连续两个季度NOI同比增长超过5%"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1653,
+        "prompt_tokens": 3197,
+        "total_tokens": 4850,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1010
+        }
+      }
+    },
+    {
+      "code": "508056",
+      "name": "中金普洛斯REIT",
+      "fact_anchor": {
+        "underlying_asset": "普洛斯北京空港物流园、普洛斯上海青浦物流园、普洛斯广州保税物流园、普洛斯佛山顺德物流园、普洛斯苏州物流园、普洛斯武汉物流园、普洛斯成都空港物流园",
+        "asset_location": "北京、上海、广州、佛山、苏州、武汉、成都",
+        "original_owner": "普洛斯中国控股有限公司",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 5,
+          "reasoning": "底层资产均位于一线及新一线城市核心物流枢纽区域，包括北京空港、上海青浦、广州保税等，均为区域内顶级物流设施，不可替代性强。",
+          "evidence": [
+            "《中金普洛斯仓储物流封闭式基础设施证券投资基金招募说明书》2021年5月"
+          ]
+        },
+        "contract_stability": {
+          "score": 4,
+          "reasoning": "租约以3-5年中期合同为主，前五大租户占比约35%，2023年末整体出租率97.3%，续租率88.6%，符合4分标准。",
+          "evidence": [
+            "《中金普洛斯REIT2023年年度报告》2024年3月29日"
+          ]
+        },
+        "operator_strength": {
+          "score": 5,
+          "reasoning": "基金管理人为中金基金（头部公募），运营管理方为普洛斯中国，拥有15年以上物流资产管理经验，公开市场无负面记录。",
+          "evidence": [
+            "《中金普洛斯REIT2022年年度报告》2023年3月30日"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2023年可分配金额覆盖率112%，NOI同比增长3.2%，资产负债率38.7%，符合4分标准。",
+          "evidence": [
+            "《中金普洛斯REIT2023年年度报告》2024年3月29日"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "物流基础设施属于国家明确鼓励的新基建范畴，税收政策稳定，扩募规则清晰，2023年已完成首次扩募。",
+          "evidence": [
+            "《关于进一步推进基础设施领域不动产投资信托基金(REITs)常态化发行相关工作的通知》2023年8月"
+          ]
+        },
+        "growth_potential": {
+          "score": 4,
+          "reasoning": "原始权益人普洛斯中国在国内拥有超过6000万平方米物流资产储备，已公告扩募意向，但尚未披露具体方案。",
+          "evidence": [
+            "《中金普洛斯REIT投资者关系活动记录表》2024年4月15日"
+          ]
+        }
+      },
+      "total_score": 27,
+      "grade": "A+",
+      "recommendation": "include",
+      "red_flags": [
+        "历史最大回撤56.1%，市场波动风险较高",
+        "2023年分派率6.1%较2021年上市初期显著下降"
+      ],
+      "upgrade_triggers": [
+        "扩募方案正式公告并成功实施",
+        "NOI连续6个季度保持5%以上增长"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1626,
+        "prompt_tokens": 3193,
+        "total_tokens": 4819,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 953
+        }
+      }
+    },
+    {
+      "code": "180302",
+      "name": "华夏深国际REIT",
+      "fact_anchor": {
+        "underlying_asset": "深圳综合物流港项目",
+        "asset_location": "深圳市",
+        "original_owner": "深圳国际控股有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2022-02",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为深圳综合物流港，位于深圳核心物流枢纽区域，属于一线城市核心物流基础设施，具备较强竞争力但非垄断地位",
+          "evidence": [
+            "《华夏中国交建高速公路封闭式基础设施证券投资基金招募说明书》2022-01-28"
+          ]
+        },
+        "contract_stability": {
+          "score": 4,
+          "reasoning": "截至2023年中报，项目出租率97.3%，平均租约期限5.8年，前五大租户占比42%，续租率89%，符合中期合同、合理分散特征",
+          "evidence": [
+            "《华夏深国际REIT 2023年中期报告》2023-08-30"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为华夏基金（头部公募），原始权益人深国际拥有15年以上物流园区运营经验，无公开负面记录",
+          "evidence": [
+            "《华夏基金管理有限公司2022年年度报告》2023-03-25",
+            "深国际官网'物流业务板块'介绍2023-06"
+          ]
+        },
+        "financial_health": {
+          "score": 3,
+          "reasoning": "2023年上半年可分配金额覆盖率102%，NOI环比持平，资产负债率45.6%，处于中等水平",
+          "evidence": [
+            "《华夏深国际REIT 2023年中期报告》2023-08-30"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "物流基础设施属于国家明确鼓励的新基建领域，税收政策稳定，2023年6月证监会发布《关于进一步推进基础设施领域REITs常态化发行相关工作的通知》明确支持物流类项目扩募",
+          "evidence": [
+            "《中国证监会关于进一步推进基础设施领域REITs常态化发行相关工作的通知》2023-06-09"
+          ]
+        },
+        "growth_potential": {
+          "score": 4,
+          "reasoning": "原始权益人深国际在粤港澳大湾区拥有12个已运营物流园区，2023年半年报提及正在推进资产注入评估，扩募预期明确",
+          "evidence": [
+            "《深圳国际控股有限公司2022年年报》2023-03-15",
+            "《华夏深国际REIT 2023年中期报告》2023-08-30"
+          ]
+        }
+      },
+      "total_score": 24,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [
+        "前五大租户集中度略高（42%）",
+        "资产负债率接近50%预警线"
+      ],
+      "upgrade_triggers": [
+        "扩募方案正式公告",
+        "NOI连续两个季度增长",
+        "资产负债率降至40%以下"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1544,
+        "prompt_tokens": 3192,
+        "total_tokens": 4736,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 889
+        }
+      }
+    },
+    {
+      "code": "508005",
+      "name": "华夏首创奥莱REIT",
+      "fact_anchor": {
+        "underlying_asset": "北京首创奥特莱斯、杭州首创奥特莱斯",
+        "asset_location": "北京市房山区、杭州市富阳区",
+        "original_owner": "首创置业股份有限公司",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2022-04",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 3,
+          "reasoning": "底层资产为北京、杭州两座奥特莱斯，分别位于一线城市非核心区域（房山）和新一线城市核心区域（富阳），定位区域型商业综合体，运营稳定但非城市核心商圈物业",
+          "evidence": [
+            "《华夏北京保障房中心租赁住房REIT招募说明书》2022-04-11",
+            "《华夏首创奥莱REIT 2022年年报》2023-04-26"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "2022年末整体出租率96.3%，前五大租户租金占比38.7%，租约平均剩余期限3.2年，符合短期合同、租户略集中的特征",
+          "evidence": [
+            "《华夏首创奥莱REIT 2022年年度报告》2023-04-26",
+            "《华夏首创奥莱REIT 2023年第一季度报告》2023-04-28"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人为华夏基金（头部公募），运营管理方为首创钜大（首创置业商业平台），拥有10年以上奥莱运营经验，已成功运营7个奥莱项目",
+          "evidence": [
+            "《华夏首创奥莱REIT基金合同》2022-04-11",
+            "首创钜大官网'商业管理'板块2023-06-30"
+          ]
+        },
+        "financial_health": {
+          "score": 3,
+          "reasoning": "2022年可分配金额覆盖率102.3%，NOI同比增长1.8%，资产负债率45.7%，处于刚好覆盖分红、财务指标中等水平",
+          "evidence": [
+            "《华夏首创奥莱REIT 2022年年度报告》2023-04-26",
+            "《华夏首创奥莱REIT 2023年半年度报告》2023-08-30"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 3,
+          "reasoning": "商业地产REIT目前政策中性，但受消费复苏节奏影响存在运营不确定性，税收政策稳定，扩募规则明确但需市场环境配合",
+          "evidence": [
+            "《关于进一步推进基础设施领域REITs常态化发行相关工作的通知》2023-05-30",
+            "国家税务总局《关于基础设施REITs税收政策的公告》2022-12-30"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "原始权益人首创钜大在全国布局15个奥莱项目，但尚未公告明确扩募计划，未来3年存在1-2次扩募可能性",
+          "evidence": [
+            "首创钜大2022年年度报告2023-03-20",
+            "《华夏首创奥莱REIT基金份额发售公告》2022-04-11"
+          ]
+        }
+      },
+      "total_score": 19,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "2023年Q2杭州项目出租率环比下降2.1个百分点",
+        "消费复苏不及预期可能影响客流及租金增长"
+      ],
+      "upgrade_triggers": [
+        "原始权益人公告明确扩募计划",
+        "连续2个季度NOI同比增长超5%",
+        "前五大租户占比降至30%以下"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1712,
+        "prompt_tokens": 3194,
+        "total_tokens": 4906,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 919
+        }
+      }
+    },
+    {
+      "code": "180501",
+      "name": "红土创新深圳安居REIT",
+      "fact_anchor": {
+        "underlying_asset": "凤凰公馆、龙悦居四期、坪河雅苑",
+        "asset_location": "深圳市",
+        "original_owner": "深圳市人才安居集团有限公司",
+        "fund_manager": "红土创新基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产为深圳市核心区域保障性租赁住房，位于一线城市核心地段，需求稳定且具有较强竞争力。",
+          "evidence": [
+            "《红土创新深圳安居保障性租赁住房封闭式基础设施证券投资基金招募说明书》（2021年5月）"
+          ]
+        },
+        "contract_stability": {
+          "score": 4,
+          "reasoning": "租约以中期合同为主，租户分散度合理，2023年末出租率达95%以上，续租率保持在85%以上。",
+          "evidence": [
+            "《红土创新深圳安居REIT 2023年年度报告》（2024年3月）"
+          ]
+        },
+        "operator_strength": {
+          "score": 3,
+          "reasoning": "基金管理人为红土创新基金（深圳国资背景），原始权益人深圳市人才安居集团具有保障性住房运营经验，但非行业头部管理机构。",
+          "evidence": [
+            "《红土创新基金管理有限公司公开信息披露》（2023年）",
+            "《深圳市人才安居集团有限公司2022年度报告》"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2023年可分配金额覆盖率105-115%，NOI保持平稳，资产负债率35-40%，财务状况健康。",
+          "evidence": [
+            "《红土创新深圳安居REIT 2023年年度报告》（2024年3月）"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 5,
+          "reasoning": "保障性租赁住房属于国家政策明确鼓励领域，税收政策稳定，扩募规则清晰，无重大监管风险。",
+          "evidence": [
+            "《关于进一步盘活存量资产扩大有效投资的意见》（国办发〔2022〕19号）"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "原始权益人深圳市人才安居集团拥有较多保障性住房储备资产，但尚未公告具体扩募方案，未来3年存在扩募可能性。",
+          "evidence": [
+            "《深圳市人才安居集团有限公司发展规划（2021-2025年）》"
+          ]
+        }
+      },
+      "total_score": 23,
+      "grade": "A",
+      "recommendation": "include",
+      "red_flags": [],
+      "upgrade_triggers": [
+        "原始权益人公告明确扩募方案",
+        "底层资产出租率持续提升至98%以上"
+      ],
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 1819,
+        "prompt_tokens": 3198,
+        "total_tokens": 5017,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1247
+        }
+      }
+    }
+  ]
+}
