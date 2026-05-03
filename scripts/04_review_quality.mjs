@@ -21,6 +21,7 @@ import { callDeepSeek, estimateCost as estimateDeepSeekCost } from './_lib/deeps
 import { callClaude, estimateClaudeCost } from './_lib/claude.mjs';
 import { callDoubao, estimateDoubaoCost } from './_lib/doubao.mjs';
 import { evaluateWithSearch } from './_lib/doubao_with_search.mjs';
+import { evaluateWithSearchAndFetch } from './_lib/doubao_with_search_and_fetch.mjs';
 
 const IN = 'data/screened.json';
 const FRAMEWORK_PATH = 'methodology/04_quality_framework.md';
@@ -33,6 +34,7 @@ const OUT_BY_PROVIDER = {
   'claude-opus': 'data/quality_scores_claude_opus.json',
   'doubao': 'data/quality_scores_doubao.json',
   'doubao_searxng': 'data/quality_scores_doubao_searxng.json',
+  'doubao_searxng_fetch': 'data/quality_scores_doubao_searxng_fetch.json',
 };
 const OUT = OUT_BY_PROVIDER[PROVIDER] || 'data/quality_scores.json';
 
@@ -169,10 +171,13 @@ async function main() {
     const c = candidates[i];
     process.stdout.write(`[04] (${i + 1}/${candidates.length}) ${c.code} ${c.name}... `);
     try {
-      if (PROVIDER === 'doubao_searxng') {
+      if (PROVIDER === 'doubao_searxng' || PROVIDER === 'doubao_searxng_fetch') {
         // 走 search-driven 评估路径（自带 system prompt + tool loop）
-        const r = await evaluateWithSearch(c, { maxIterations: 10, maxSearches: 8, verbose: false });
-        modelUsed = 'doubao-seed-1-6-250615+searxng';
+        const useFetch = PROVIDER === 'doubao_searxng_fetch';
+        const r = useFetch
+          ? await evaluateWithSearchAndFetch(c, { maxIterations: 14, maxSearches: 8, maxFetches: 4, verbose: false })
+          : await evaluateWithSearch(c, { maxIterations: 10, maxSearches: 8, verbose: false });
+        modelUsed = useFetch ? 'doubao-seed-1-6-250615+searxng+jina' : 'doubao-seed-1-6-250615+searxng';
         totalCost += r.cost;
         if (!r.parsed) {
           results.push({
@@ -182,21 +187,23 @@ async function main() {
             error: `JSON parse failed: ${r.parseError ?? 'unknown'}`,
             raw: (r.raw || '').slice(0, 1500),
             searchCount: r.searchCount,
+            fetchCount: r.fetchCount,
             iterations: r.iterations,
           });
-          console.log(`✗ JSON parse failed (searches=${r.searchCount})`);
+          console.log(`✗ JSON parse failed (searches=${r.searchCount}${useFetch ? ' fetches=' + r.fetchCount : ''})`);
         } else {
           results.push({
             ...r.parsed,
             status: 'ok',
             usage: r.usage,
             searchCount: r.searchCount,
+            fetchCount: r.fetchCount,
             iterations: r.iterations,
           });
           console.log(
             `✓ ${r.parsed.grade ?? '?'} score=${r.parsed.total_score ?? '?'} ` +
               `confidence=${r.parsed.fact_anchor?.verification_confidence ?? '?'} ` +
-              `searches=${r.searchCount} cost=$${r.cost.toFixed(4)}`,
+              `s=${r.searchCount}${useFetch ? ' f=' + r.fetchCount : ''} cost=$${r.cost.toFixed(4)}`,
           );
         }
       } else {
