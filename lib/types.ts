@@ -68,4 +68,37 @@ export interface ProductView {
   config: ProductConfig;
   quote: Quote;
   signal: SignalResult;
+  recommendation: Recommendation;
+  dataStatus: DataStatus;
+}
+
+/**
+ * 综合建议 — 合成 tier + grade + signal + redFlags 后的单一决策。
+ * 这是给用户看的唯一"该怎么办"字段。
+ */
+export type RecommendationAction =
+  | 'buy_now' // 立即建仓
+  | 'small_test' // 小仓试水
+  | 'watch_active' // 持仓观察
+  | 'wait_pullback' // 等待回调
+  | 'no_action' // 暂不建仓
+  | 'avoid'; // 建议剔除
+
+export interface Recommendation {
+  action: RecommendationAction;
+  label: string;
+  /** UI 色调：success/warning/info/neutral/danger */
+  tone: 'success' | 'warning' | 'info' | 'neutral' | 'danger';
+  /** 一句话说明为什么 */
+  reason: string;
+}
+
+/**
+ * 数据完整度。dashboard 上明确告诉用户：决策建议是基于完整数据的，
+ * 还是缺了什么所以不能给明确建议。
+ */
+export interface DataStatus {
+  complete: boolean;
+  /** 缺什么字段（如 'TTM 分红' / '实时报价' / '评估数据 90 天前'）*/
+  missing: string[];
 }

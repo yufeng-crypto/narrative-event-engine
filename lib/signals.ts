@@ -1,4 +1,11 @@
-import type { ProductConfig, Quote, SignalLevel, SignalResult } from './types';
+import type {
+  DataStatus,
+  ProductConfig,
+  Quote,
+  Recommendation,
+  SignalLevel,
+  SignalResult,
+} from './types';
 
 /**
  * 计算实时信号：基于配置的阈值 + 实时报价。
@@ -56,4 +63,124 @@ export function evaluateSignal(
   }
 
   return { level, ttmYield, premiumPct, triggers };
+}
+
+/**
+ * 综合建议：合成 tier + grade + signal + redFlags 给一个明确的"该怎么办"。
+ * 这是 dashboard 给用户看的唯一决策字段。
+ */
+export function deriveRecommendation(
+  cfg: ProductConfig,
+  signal: SignalResult,
+  dataStatus: DataStatus,
+): Recommendation {
+  // 1. 数据不完整 → 不能给明确建议
+  if (!dataStatus.complete) {
+    return {
+      action: 'no_action',
+      label: '⏸ 数据不全',
+      tone: 'neutral',
+      reason: `缺：${dataStatus.missing.join('、')}。补齐后才能给建议`,
+    };
+  }
+
+  // 2. C / C+ / D 级 → 建议剔除（无论价格信号）
+  if (cfg.grade === 'C' || cfg.grade === 'C+' || cfg.grade === 'D') {
+    return {
+      action: 'avoid',
+      label: '🚫 建议剔除',
+      tone: 'danger',
+      reason: '基本面有结构性问题，分派率高反映市场已 price-in，不建议入仓',
+    };
+  }
+
+  // 3. 价格触发 BUY
+  if (signal.level === 'buy_now') {
+    if (cfg.tier === 'core' && (cfg.grade === 'A+' || cfg.grade === 'A')) {
+      return {
+        action: 'buy_now',
+        label: '🟢 立即建仓',
+        tone: 'success',
+        reason: '核心资产 + 价格已触发，可分批入场',
+      };
+    }
+    if (cfg.tier === 'supporting') {
+      return {
+        action: 'small_test',
+        label: '🟢 可建仓（小仓）',
+        tone: 'success',
+        reason: '辅助资产 + 价格已触发，建议单只仓位 ≤ 30 万',
+      };
+    }
+    // tier=watch + BUY 价格信号 → 仍建议小仓
+    return {
+      action: 'small_test',
+      label: '🟡 谨慎试水',
+      tone: 'warning',
+      reason: '价格触发但仅 watch tier，建议小仓位（≤ 10 万）观察',
+    };
+  }
+
+  // 4. WATCH 信号
+  if (signal.level === 'watch') {
+    if (cfg.grade === 'A+' || cfg.grade === 'A' || cfg.grade === 'A-') {
+      return {
+        action: 'watch_active',
+        label: '🔵 持仓观察',
+        tone: 'info',
+        reason: '接近 BUY 阈值，分派率/价格已进入观察区',
+      };
+    }
+    return {
+      action: 'no_action',
+      label: '⏸ 暂不建仓',
+      tone: 'neutral',
+      reason: '虽接近触发但基本面一般，等更明确机会',
+    };
+  }
+
+  // 5. HOLD 信号（价格不便宜）
+  if (cfg.tier === 'core' && (cfg.grade === 'A+' || cfg.grade === 'A')) {
+    return {
+      action: 'wait_pullback',
+      label: '⏳ 等待回调',
+      tone: 'info',
+      reason: '资产优质但当前价格偏贵，等回调到 buy 阈值再入场',
+    };
+  }
+  return {
+    action: 'no_action',
+    label: '⏸ 暂不建仓',
+    tone: 'neutral',
+    reason: '价格不到位且无显著优势',
+  };
+}
+
+/**
+ * 检查决策所需数据是否完整。返回 missing 字段告诉用户缺什么。
+ */
+export function checkDataCompleteness(
+  cfg: ProductConfig,
+  quote: Quote,
+): DataStatus {
+  const missing: string[] = [];
+  if (cfg.ttmDividend == null || cfg.ttmDividend === 0) {
+    missing.push('TTM 分红');
+  }
+  if (cfg.qualityScore == null) {
+    missing.push('Stage 4 评估');
+  }
+  if (quote.source === 'error' || quote.price == null) {
+    missing.push('实时报价');
+  }
+  // 评估时效性
+  if (cfg.ttmDividendAsOf) {
+    const days = Math.floor(
+      (Date.now() - new Date(cfg.ttmDividendAsOf).getTime()) / 86400000,
+    );
+    if (days > 180) {
+      missing.push(`数据 ${days} 天前（>6月）`);
+    }
+  }
+  return { complete: missing.length === 0, missing };
 }

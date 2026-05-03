@@ -29,6 +29,76 @@ export interface CandidateInfo {
   totalScore: number | null;
   hardGatesFailed: string[];
   excludeReason?: string | null;
+  /** 候选池分组（来自 categorizeCandidate）*/
+  bucket?: CandidateBucket;
+}
+
+/** 候选池分组 — 按"为什么没进 monitored + 是否值得继续做工作"分类 */
+export type CandidateBucket =
+  | 'missing_ttm_etf' // 缺 TTM 分红的 ETF（补全后即可评估）
+  | 'newly_listed' // 上市不足 1.5 年（等时间）
+  | 'industry_squeeze' // 行业排名挤出（数据完整，调阈值即可）
+  | 'low_yield' // 价格偏贵 yield 低（等回调）
+  | 'small_aum' // 规模太小（结构性）
+  | 'other'; // 其他
+
+export const BUCKET_META: Record<
+  CandidateBucket,
+  { title: string; subtitle: string; priority: 'high' | 'medium' | 'low'; tone: string }
+> = {
+  missing_ttm_etf: {
+    title: '📊 缺数据，补全可评估',
+    subtitle: '缺 TTM 分红，需补全后才能进入 Stage 4 评估',
+    priority: 'high',
+    tone: 'amber',
+  },
+  industry_squeeze: {
+    title: '📋 数据完整但被行业 Top 限制',
+    subtitle: '同子类型已有 Top 2 占位 — 调阈值（如 Top 3）即可纳入',
+    priority: 'high',
+    tone: 'sky',
+  },
+  newly_listed: {
+    title: '⏰ 新发不足 1.5 年',
+    subtitle: '上市时间太短，等运营满 1.5 年自动达标',
+    priority: 'medium',
+    tone: 'slate',
+  },
+  low_yield: {
+    title: '⏸ 当前价格偏贵',
+    subtitle: '分派率 < 阈值，等价格回调',
+    priority: 'low',
+    tone: 'slate',
+  },
+  small_aum: {
+    title: '📉 规模 < 10 亿',
+    subtitle: '结构性问题（小盘流动性差），不建议跟踪',
+    priority: 'low',
+    tone: 'slate',
+  },
+  other: {
+    title: '❓ 其他',
+    subtitle: '查看 hardGatesFailed 字段了解具体原因',
+    priority: 'low',
+    tone: 'slate',
+  },
+};
+
+function categorizeCandidate(c: CandidateInfo): CandidateBucket {
+  const noTTM = c.ttmDividend == null || c.ttmDividend === 0;
+  const isNew = c.listingYears != null && c.listingYears < 1.5;
+  const yieldLow =
+    c.currentYieldPct != null &&
+    c.currentYieldPct < (c.category === 'reit' ? 3.5 : 3);
+  const rankedOut = c.excludeReason?.includes('排名超出');
+  const hardGatesH2 = c.hardGatesFailed.includes('REIT-H2') || c.hardGatesFailed.includes('ETF-H2');
+
+  if (rankedOut) return 'industry_squeeze';
+  if (isNew) return 'newly_listed';
+  if (noTTM && c.category.startsWith('dividend_etf')) return 'missing_ttm_etf';
+  if (yieldLow) return 'low_yield';
+  if (hardGatesH2) return 'small_aum';
+  return 'other';
 }
 
 /** Stage 3 硬门槛规则的人类可读描述 */
@@ -94,7 +164,26 @@ export function loadCandidates(): CandidateInfo[] {
         : [],
       excludeReason: (c.exclude_reason as string | null) ?? null,
     }))
+    .map((c) => ({ ...c, bucket: categorizeCandidate(c) }))
     .sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
+}
+
+/** 按 bucket 分组返回 — 用于 dashboard 展示 */
+export function groupCandidates(
+  candidates: CandidateInfo[],
+): Record<CandidateBucket, CandidateInfo[]> {
+  const groups: Record<CandidateBucket, CandidateInfo[]> = {
+    missing_ttm_etf: [],
+    industry_squeeze: [],
+    newly_listed: [],
+    low_yield: [],
+    small_aum: [],
+    other: [],
+  };
+  for (const c of candidates) {
+    if (c.bucket) groups[c.bucket].push(c);
+  }
+  return groups;
 }
 
 export function describeFailure(c: CandidateInfo): string[] {
