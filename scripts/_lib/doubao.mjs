@@ -88,3 +88,71 @@ export function estimateDoubaoCost(usage, model = 'doubao-seed-1-6-250615') {
   const outT = usage?.completion_tokens ?? 0;
   return ((inT * r.in) + (outT * r.out)) / 1_000_000;
 }
+
+/**
+ * 多轮 messages 调用，支持 OpenAI-style tool_use（function calling）。
+ * 用于实现 Doubao + 工具循环（如 SearXNG / Crawl4AI）。
+ *
+ * @param {Object} opts
+ * @param {Array} opts.messages - OpenAI-format messages（含 system/user/assistant/tool）
+ * @param {Array} [opts.tools] - 工具定义数组（OpenAI tool schema）
+ * @param {string} [opts.model='doubao-seed-1-6-250615']
+ * @param {number} [opts.temperature=0.2]
+ * @param {number} [opts.maxTokens=4096]
+ * @param {number} [opts.timeoutMs=120000]
+ * @returns {Promise<{ content, tool_calls, usage, model }>}
+ */
+export async function callDoubaoWithMessages({
+  messages,
+  tools,
+  model = 'doubao-seed-1-6-250615',
+  temperature = 0.2,
+  maxTokens = 4096,
+  timeoutMs = 120000,
+}) {
+  const apiKey = process.env.DOUBAO_API_KEY;
+  if (!apiKey) {
+    throw new Error('DOUBAO_API_KEY not set');
+  }
+
+  const body = {
+    model,
+    messages,
+    temperature,
+    max_tokens: maxTokens,
+  };
+  if (tools && tools.length > 0) {
+    body.tools = tools;
+  }
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`Doubao HTTP ${res.status}: ${text.slice(0, 500)}`);
+    }
+
+    const j = await res.json();
+    const message = j?.choices?.[0]?.message;
+    return {
+      content: message?.content ?? '',
+      tool_calls: message?.tool_calls ?? null,
+      usage: j?.usage ?? {},
+      model,
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}

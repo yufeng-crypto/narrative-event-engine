@@ -20,6 +20,7 @@ import { readJson, writeJson, timestamp } from './_lib/io.mjs';
 import { callDeepSeek, estimateCost as estimateDeepSeekCost } from './_lib/deepseek.mjs';
 import { callClaude, estimateClaudeCost } from './_lib/claude.mjs';
 import { callDoubao, estimateDoubaoCost } from './_lib/doubao.mjs';
+import { evaluateWithSearch } from './_lib/doubao_with_search.mjs';
 
 const IN = 'data/screened.json';
 const FRAMEWORK_PATH = 'methodology/04_quality_framework.md';
@@ -31,6 +32,7 @@ const OUT_BY_PROVIDER = {
   'claude-sonnet': 'data/quality_scores_claude_sonnet.json',
   'claude-opus': 'data/quality_scores_claude_opus.json',
   'doubao': 'data/quality_scores_doubao.json',
+  'doubao_searxng': 'data/quality_scores_doubao_searxng.json',
 };
 const OUT = OUT_BY_PROVIDER[PROVIDER] || 'data/quality_scores.json';
 
@@ -167,42 +169,74 @@ async function main() {
     const c = candidates[i];
     process.stdout.write(`[04] (${i + 1}/${candidates.length}) ${c.code} ${c.name}... `);
     try {
-      const { text, usage, cost, model } = await callLLM({
-        system: SYSTEM_PROMPT,
-        user: buildUserPrompt(c, framework),
-        json: true,
-        timeoutMs: 120000,
-      });
-      modelUsed = model;
-      totalCost += cost;
-
-      // 容错：去掉可能的 markdown code fence
-      let cleaned = text.trim();
-      if (cleaned.startsWith('```')) {
-        cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
-      }
-
-      let parsed;
-      try {
-        parsed = JSON.parse(cleaned);
-      } catch (e) {
-        results.push({
-          code: c.code,
-          name: c.name,
-          status: 'error',
-          error: 'JSON parse failed',
-          raw: cleaned.slice(0, 1500),
+      if (PROVIDER === 'doubao_searxng') {
+        // 走 search-driven 评估路径（自带 system prompt + tool loop）
+        const r = await evaluateWithSearch(c, { maxIterations: 10, maxSearches: 8, verbose: false });
+        modelUsed = 'doubao-seed-1-6-250615+searxng';
+        totalCost += r.cost;
+        if (!r.parsed) {
+          results.push({
+            code: c.code,
+            name: c.name,
+            status: 'error',
+            error: `JSON parse failed: ${r.parseError ?? 'unknown'}`,
+            raw: (r.raw || '').slice(0, 1500),
+            searchCount: r.searchCount,
+            iterations: r.iterations,
+          });
+          console.log(`✗ JSON parse failed (searches=${r.searchCount})`);
+        } else {
+          results.push({
+            ...r.parsed,
+            status: 'ok',
+            usage: r.usage,
+            searchCount: r.searchCount,
+            iterations: r.iterations,
+          });
+          console.log(
+            `✓ ${r.parsed.grade ?? '?'} score=${r.parsed.total_score ?? '?'} ` +
+              `confidence=${r.parsed.fact_anchor?.verification_confidence ?? '?'} ` +
+              `searches=${r.searchCount} cost=$${r.cost.toFixed(4)}`,
+          );
+        }
+      } else {
+        const { text, usage, cost, model } = await callLLM({
+          system: SYSTEM_PROMPT,
+          user: buildUserPrompt(c, framework),
+          json: true,
+          timeoutMs: 120000,
         });
-        console.log(`✗ JSON parse failed`);
-        continue;
-      }
+        modelUsed = model;
+        totalCost += cost;
 
-      results.push({ ...parsed, status: 'ok', usage });
-      console.log(
-        `✓ ${parsed.grade ?? '?'} score=${parsed.total_score ?? '?'} ` +
-          `confidence=${parsed.fact_anchor?.verification_confidence ?? '?'} ` +
-          `cost=$${cost.toFixed(4)}`,
-      );
+        // 容错：去掉可能的 markdown code fence
+        let cleaned = text.trim();
+        if (cleaned.startsWith('```')) {
+          cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+        }
+
+        let parsed;
+        try {
+          parsed = JSON.parse(cleaned);
+        } catch (e) {
+          results.push({
+            code: c.code,
+            name: c.name,
+            status: 'error',
+            error: 'JSON parse failed',
+            raw: cleaned.slice(0, 1500),
+          });
+          console.log(`✗ JSON parse failed`);
+          continue;
+        }
+
+        results.push({ ...parsed, status: 'ok', usage });
+        console.log(
+          `✓ ${parsed.grade ?? '?'} score=${parsed.total_score ?? '?'} ` +
+            `confidence=${parsed.fact_anchor?.verification_confidence ?? '?'} ` +
+            `cost=$${cost.toFixed(4)}`,
+        );
+      }
     } catch (e) {
       results.push({
         code: c.code,
