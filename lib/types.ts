@@ -3,8 +3,8 @@ export type ProductCategory = 'dividend_etf_a' | 'dividend_etf_hk' | 'reit';
 export type SignalLevel = 'hold' | 'watch' | 'buy_now';
 /** 产品分级（来自 Stage 5 review）*/
 export type Tier = 'core' | 'supporting' | 'watch';
-/** DeepSeek 资产质量评级（A+/A 进入池，B/C/D 不入池）*/
-export type Grade = 'A+' | 'A' | 'B+' | 'B' | 'C' | 'D';
+/** 资产质量评级。A+/A 通常入核心或辅助；B+/B 入观察；C+/C/D 警示，建议剔除。*/
+export type Grade = 'A+' | 'A' | 'A-' | 'B+' | 'B' | 'B-' | 'C+' | 'C' | 'D';
 
 export interface ProductConfig {
   code: string;

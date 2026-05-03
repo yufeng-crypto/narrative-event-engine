@@ -15,8 +15,11 @@ const TIER_STYLES: Record<Tier, string> = {
 const GRADE_STYLES: Record<Grade, string> = {
   'A+': 'bg-emerald-500/30 text-emerald-300',
   A: 'bg-emerald-500/15 text-emerald-400',
+  'A-': 'bg-emerald-500/10 text-emerald-500',
   'B+': 'bg-amber-500/15 text-amber-400',
   B: 'bg-amber-500/15 text-amber-500',
+  'B-': 'bg-amber-500/10 text-amber-600',
+  'C+': 'bg-rose-500/10 text-rose-500',
   C: 'bg-rose-500/15 text-rose-400',
   D: 'bg-rose-500/30 text-rose-300',
 };
