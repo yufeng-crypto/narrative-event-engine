@@ -59,74 +59,101 @@ const TOOLS = [
   },
 ];
 
-const SYSTEM_PROMPT = `你是公募 REITs / 红利 ETF 的 Stage 4 资产质量分析师，使用 search_web + fetch_page 工具调研后输出严格 JSON 评估。
+// Stage A：调研阶段 system prompt（不要求 JSON，只要求收齐证据）
+const STAGE_A_SYSTEM = `你是公募 REITs / 红利 ETF 的 Stage 4 资产质量分析师。本阶段任务是调研：用 search_web + fetch_page 工具收齐评分所需的事实，**不要输出 JSON**，调研完成后用结构化文本汇总即可。
 
 【⚠️ 严格预算】
 - search_web ≤ 8 次
-- fetch_page ≤ 4 次（用于 search snippet 不够时深读年报/公告原文）
+- fetch_page ≤ 4 次
 - 总迭代 ≤ 14 轮
 
-【⚠️ 反幻觉硬规则】
-- fact_anchor 5 字段每个必须有 search/fetch 证据，不确定写 "unknown"
-- red_flags 必须配具体数字 + 日期，不是泛泛之谈
-- 评分基于 search/fetch 找到的事实，不基于训练数据印象
+【调研重点（按优先级）】
+1. **fact_anchor 验证**：底层资产名称 / 位置 / 原始权益人 / 基金管理人 / 上市日期
+   - 如果用户已提供 known_fact_anchor，跳过这一步，直接进 2
+2. **基础财务**：2024 年报 + 2025 季报的 NOI / 可分配金额 / 出租率
+3. **深层风险（关键）**：负面关键词搜索（按需，不强制全做）
+   - 商誉减值 / 资产减值
+   - 净利润下降 / 净亏损
+   - 扩募终止 / 关联交易 / 解禁
+   - 超额分配 / 分红覆盖率
+   - 特许经营权剩余年限 / 到期归零
+4. **fetch 触发条件**：search snippet 出现具体数字 / 关键事件 → fetch URL 验证
+   - 优先 fetch：财经媒体解读（搜狐/新浪/睿思网） > 巨潮/上交所公告 > 基金官网
 
-【流程建议】
-1. search 1-2：拿 fact_anchor 5 字段（资产 / 位置 / 原始权益人 / 基金管理人 / 上市日）
-2. search 3-4：拿 2024 年报 + 2025 季报关键数字（NOI / 可分配金额 / 出租率）
-3. **search 5-7（强制）：必须做至少 3 次"负面关键词"搜索**，挖深层风险：
-   - "代码 名称 商誉减值 资产减值"
-   - "代码 名称 净利润下降 净亏损"
-   - "代码 名称 扩募终止 关联交易 解禁"
-   - "代码 名称 超额分配 分红覆盖率"
-   - "代码 名称 特许经营权 到期 年限"
-   不要全跳过这一步，REIT 风险藏在这里。
-4. search 8（可选）：补漏 / 验证矛盾信息
-5. **fetch（关键）：snippet 里看到这些信号必须 fetch 那个 URL**：
-   - 净利润 / 净亏损 / 商誉减值 + 具体数字（例 -9889 万）
-   - 扩募终止 / 出租率下滑 / 关联交易披露
-   - 财经媒体解读（搜狐/新浪/睿思网/华尔街见闻），通常比官网更具体
-   - 优先级：财经媒体 > 巨潮资讯/上交所公告 > 基金官网（官网信息往往最浅）
-6. 综合输出 JSON
+【调研完成后输出格式（plain text，不要 JSON）】
+=== FACT_ANCHOR ===
+underlying_asset: ...
+asset_location: ...
+original_owner: ...
+fund_manager: ...
+listing_date: YYYY-MM
+verification_confidence: high|medium|low
 
-【判断 search vs fetch 的指南】
-- 仅需"是不是 / 有没有 / 大致多少"→ search 够
-- 需要"具体数字 / 完整公告内容 / 章节细节"→ fetch
-- snippet 已经给出明确数字 → 不要再 fetch（省预算）
-- snippet 含糊或矛盾 → fetch 验证
-- snippet 出现负面关键词（亏损 / 减值 / 终止 / 下滑）→ **必须 fetch 验证**
+=== KEY FACTS ===
+（把所有重要事实列出来，每条配证据来源 + 日期，例：）
+- 2024 净利润 -9889 万元，因商誉减值 1.13 亿元 [来源：2025-03-27 搜狐财经年报解读]
+- 2025Q1 出租率 86.37%，环比 -3% [来源：2025Q1 季报]
+- 2025-09-01 解禁 1.55 亿份，占总份额 31% [来源：解禁公告]
 
-【最终输出 JSON Schema（不带 markdown 代码块）】
+=== RED FLAGS ===
+（最重要的风险，每条带具体数字+日期）
+
+=== UPGRADE TRIGGERS ===
+（什么条件触发上调）
+
+=== SEARCH/FETCH LOG ===
+search_queries: ["...", "..."]
+fetched_urls: ["...", "..."]`;
+
+// Stage B：JSON 化阶段 system prompt（短 input + 短 output，避免 truncate）
+const STAGE_B_SYSTEM = `你是 JSON 格式化助手。给你 Stage A 调研结果，按 schema 输出严格 JSON，不要任何 JSON 外的文字（不要 markdown 代码块）。
+
+【评分规则提醒】
+- 每维度 0-5 分；ETF 类标的 contract_stability=3；不确定写 score: null + reasoning: "信息不足"
+- total_score = 6 维之和（0-30）
+- grade 映射：26+ A+ / 23-25 A / 21-22 A- / 19-20 B+ / 17-18 B / 15-16 B- / 13-14 C+ / 11-12 C / ≤10 D
+- INCOMPLETE 等级仅用于 fact_anchor 全 unknown 且无法兜底时
+
+【JSON Schema】
 {
-  "code": "...",
-  "name": "...",
+  "code": "string",
+  "name": "string",
   "search_queries_used": ["..."],
   "fetched_urls": ["..."],
   "fact_anchor": {
-    "underlying_asset": "...",
-    "asset_location": "...",
-    "original_owner": "...",
-    "fund_manager": "...",
+    "underlying_asset": "string",
+    "asset_location": "string",
+    "original_owner": "string",
+    "fund_manager": "string",
     "listing_date": "YYYY-MM",
     "verification_confidence": "high|medium|low"
   },
   "scores": {
-    "asset_quality": { "score": 0-5, "reasoning": "...", "evidence": ["..."] },
-    "contract_stability": { "score": 0-5, "reasoning": "...", "evidence": ["..."] },
-    "operator_strength": { "score": 0-5, "reasoning": "...", "evidence": ["..."] },
-    "financial_health": { "score": 0-5, "reasoning": "...", "evidence": ["..."] },
-    "regulatory_risk": { "score": 0-5, "reasoning": "...", "evidence": ["..."] },
-    "growth_potential": { "score": 0-5, "reasoning": "...", "evidence": ["..."] }
+    "asset_quality":      { "score": 0-5或null, "reasoning": "≤50字", "evidence": ["..."] },
+    "contract_stability": { "score": 0-5或null, "reasoning": "≤50字", "evidence": ["..."] },
+    "operator_strength":  { "score": 0-5或null, "reasoning": "≤50字", "evidence": ["..."] },
+    "financial_health":   { "score": 0-5或null, "reasoning": "≤50字", "evidence": ["..."] },
+    "regulatory_risk":    { "score": 0-5或null, "reasoning": "≤50字", "evidence": ["..."] },
+    "growth_potential":   { "score": 0-5或null, "reasoning": "≤50字", "evidence": ["..."] }
   },
-  "total_score": 0-30,
-  "grade": "A+|A|A-|B+|B|B-|C+|C|D",
+  "total_score": 0-30或null,
+  "grade": "A+|A|A-|B+|B|B-|C+|C|D|INCOMPLETE",
   "recommendation": "include|watch|exclude",
-  "red_flags": ["具体事实 + 数字 + 日期"],
+  "red_flags": ["具体事实+数字+日期"],
   "upgrade_triggers": ["..."]
 }`;
 
-function buildUserPrompt(candidate) {
-  return `请评估以下标的的 Stage 4 质量评估。**必须先用 search_web + fetch_page 调研**，不要凭训练数据答。
+function buildStageAUserPrompt(candidate, knownFactAnchor) {
+  const seedBlock = knownFactAnchor
+    ? `
+
+【⚠️ Phase 1 已验证的 fact_anchor，直接采纳，不要再 search 验证】
+${JSON.stringify(knownFactAnchor, null, 2)}
+
+请把 search 预算全部用于挖深层风险（财务异常 / 特许权 / 扩募 / 解禁 / 关联交易），不要重复验证 fact_anchor。`
+    : '';
+
+  return `请调研以下标的，用 search_web + fetch_page 收齐 Stage 4 评估所需的事实。
 
 代码：${candidate.code}
 名称：${candidate.name}
@@ -134,9 +161,34 @@ function buildUserPrompt(candidate) {
 TTM 分红：${candidate.ttm_dividend} 元/份
 当前分派率：${candidate.current_yield_pct}%
 当前价：${candidate.current_price ?? '—'}
-量化筛选得分：${candidate.total_score ?? '—'}/100
+量化筛选得分：${candidate.total_score ?? '—'}/100${seedBlock}
 
-**预算：≤8 search + ≤4 fetch**。规划好查询，找到 fact_anchor + 6 维评分材料 + 深层 red_flags 后立即输出。`;
+**预算：≤8 search + ≤4 fetch**。调研完成后用 plain text 列出 fact_anchor + key facts + red flags + upgrade triggers + search/fetch log。**不要输出 JSON**。`;
+}
+
+function buildStageBUserPrompt(candidate, stageAResult, knownFactAnchor) {
+  const seedBlock = knownFactAnchor
+    ? `
+
+【已锁定 fact_anchor（Phase 1 验证，直接采纳）】
+${JSON.stringify(knownFactAnchor, null, 2)}`
+    : '';
+
+  return `请把以下 Stage A 调研结果转换为严格 JSON。
+
+【标的基础信息】
+code: ${candidate.code}
+name: ${candidate.name}
+category: ${candidate.category}${candidate.reit_subtype ? ` (${candidate.reit_subtype})` : ''}${seedBlock}
+
+【Stage A 调研结果】
+${stageAResult}
+
+按 system prompt 里的 JSON Schema 输出。注意：
+1. 每个维度 reasoning ≤ 50 字
+2. evidence 数组里只放最关键的 1-3 条
+3. red_flags ≤ 5 条，每条带数字+日期
+4. 输出纯 JSON，无 markdown 包裹`;
 }
 
 async function dispatchTool(name, args) {
@@ -168,26 +220,29 @@ async function dispatchTool(name, args) {
 }
 
 /**
- * Phase 2 评估单只标的（search + fetch）。
+ * Phase 2 评估单只标的（两阶段：search/fetch 调研 → JSON 化）。
  * @param {Object} candidate
  * @param {Object} [opts]
+ * @param {Object} [opts.knownFactAnchor] - Phase 1 已验证的 fact_anchor，注入后跳过重新搜索
  * @param {number} [opts.maxIterations=14]
  * @param {number} [opts.maxSearches=8]
  * @param {number} [opts.maxFetches=4]
  * @param {boolean} [opts.verbose=false]
- * @returns {Promise<{ raw, parsed, parseError, usage, cost, searchCount, fetchCount, iterations }>}
+ * @returns {Promise<{ raw, stageA, parsed, parseError, usage, cost, searchCount, fetchCount, iterations }>}
  */
 export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
   const {
+    knownFactAnchor,
     maxIterations = 14,
     maxSearches = 8,
     maxFetches = 4,
     verbose = false,
   } = opts;
 
+  // ============== Stage A：调研（tool loop）==============
   const messages = [
-    { role: 'system', content: SYSTEM_PROMPT },
-    { role: 'user', content: buildUserPrompt(candidate) },
+    { role: 'system', content: STAGE_A_SYSTEM },
+    { role: 'user', content: buildStageAUserPrompt(candidate, knownFactAnchor) },
   ];
 
   let totalCost = 0;
@@ -302,20 +357,63 @@ export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
     }
   }
 
+  // ============== Stage B：JSON 化（独立调用，无 tools）==============
+  const stageAResult = finalText || '(Stage A 没有返回结果)';
+
   let parsed = null;
   let parseError = null;
-  let cleaned = finalText.trim();
-  if (cleaned.startsWith('```')) {
-    cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+  let stageBRaw = '';
+
+  // 重试 Stage B 最多 2 次
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const stageB = await callDoubaoWithMessages({
+        messages: [
+          { role: 'system', content: STAGE_B_SYSTEM },
+          { role: 'user', content: buildStageBUserPrompt(candidate, stageAResult, knownFactAnchor) },
+        ],
+        // 不带 tools — 强制纯文本输出
+        maxTokens: 8192,
+        timeoutMs: 90000,
+      });
+      const stageBCost = estimateDoubaoCost(stageB.usage);
+      totalCost += stageBCost;
+      totalTokens += stageB.usage?.total_tokens ?? 0;
+      stageBRaw = stageB.content || '';
+
+      let cleaned = stageBRaw.trim();
+      if (cleaned.startsWith('```')) {
+        cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+      }
+      parsed = JSON.parse(cleaned);
+      parseError = null;
+      if (verbose) console.log(`  [stage B] tokens=${stageB.usage?.total_tokens} cost=$${stageBCost.toFixed(4)} ✓`);
+      break;
+    } catch (e) {
+      parseError = e.message;
+      if (verbose) console.log(`  [stage B] attempt ${attempt + 1}/2 failed: ${e.message}`);
+      await new Promise((r) => setTimeout(r, 1500));
+    }
   }
-  try {
-    parsed = JSON.parse(cleaned);
-  } catch (e) {
-    parseError = e.message;
+
+  // ============== Fix 3：fact_anchor 兜底 ==============
+  // 如果 LLM 返回的 fact_anchor 全 unknown 但 knownFactAnchor 已提供，强制用 seed
+  if (parsed?.fact_anchor && knownFactAnchor) {
+    const fa = parsed.fact_anchor;
+    const allUnknown =
+      fa.underlying_asset === 'unknown' &&
+      fa.asset_location === 'unknown' &&
+      fa.original_owner === 'unknown';
+    if (allUnknown) {
+      parsed.fact_anchor = { ...knownFactAnchor, source: 'phase1_fallback' };
+      parsed._fact_anchor_fallback = true;
+      if (verbose) console.log(`  [fact_anchor] fallback to Phase 1 seed`);
+    }
   }
 
   return {
-    raw: finalText,
+    raw: finalText,           // Stage A plain text
+    stageBRaw,                // Stage B JSON raw
     parsed,
     parseError,
     usage: { total_tokens: totalTokens },
@@ -323,5 +421,6 @@ export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
     searchCount,
     fetchCount,
     iterations,
+    seeded: !!knownFactAnchor,
   };
 }

@@ -145,6 +145,71 @@ TTM 分红：${candidate.ttm_dividend} 元/份
 输出严格遵循上述 JSON schema。不要包含任何 JSON 外的解释文本。`;
 }
 
+// Fix 1：load Phase 1 fact_anchor map（仅供 doubao_searxng_fetch 用作 seed）
+function loadPhase1FactAnchorMap() {
+  try {
+    const phase1 = readJson('data/quality_scores_doubao_searxng.json');
+    const map = new Map();
+    for (const a of phase1.assessments || []) {
+      if (a.status === 'ok' && a.fact_anchor && a.fact_anchor.verification_confidence !== 'low') {
+        map.set(a.code, a.fact_anchor);
+      }
+    }
+    return map;
+  } catch (e) {
+    return new Map();
+  }
+}
+
+async function evalOne(c, opts) {
+  const { provider, framework, phase1Map } = opts;
+  if (provider === 'doubao_searxng' || provider === 'doubao_searxng_fetch') {
+    const useFetch = provider === 'doubao_searxng_fetch';
+    const r = useFetch
+      ? await evaluateWithSearchAndFetch(c, {
+          knownFactAnchor: phase1Map.get(c.code), // ← Fix 1：seed
+          maxIterations: 14,
+          maxSearches: 8,
+          maxFetches: 4,
+          verbose: false,
+        })
+      : await evaluateWithSearch(c, { maxIterations: 10, maxSearches: 8, verbose: false });
+    return {
+      modelUsed: useFetch ? 'doubao-seed-1-6-250615+searxng+jina' : 'doubao-seed-1-6-250615+searxng',
+      cost: r.cost,
+      ok: !!r.parsed,
+      parsed: r.parsed,
+      raw: r.raw,
+      stageBRaw: r.stageBRaw,
+      parseError: r.parseError,
+      usage: r.usage,
+      searchCount: r.searchCount,
+      fetchCount: r.fetchCount,
+      iterations: r.iterations,
+      seeded: r.seeded,
+    };
+  }
+  // 普通 LLM 路径
+  const { text, usage, cost, model } = await callLLM({
+    system: SYSTEM_PROMPT,
+    user: buildUserPrompt(c, framework),
+    json: true,
+    timeoutMs: 120000,
+  });
+  let cleaned = (text || '').trim();
+  if (cleaned.startsWith('```')) {
+    cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+  }
+  let parsed = null;
+  let parseError = null;
+  try {
+    parsed = JSON.parse(cleaned);
+  } catch (e) {
+    parseError = e.message;
+  }
+  return { modelUsed: model, cost, ok: !!parsed, parsed, raw: cleaned, parseError, usage };
+}
+
 async function main() {
   const screened = readJson(IN);
   const framework = readFileSync(FRAMEWORK_PATH, 'utf8');
@@ -153,6 +218,10 @@ async function main() {
     const before = candidates.length;
     candidates = candidates.filter((c) => !ALREADY_EVALUATED.has(c.code));
     console.log(`[04] ONLY_NEW=1：从 ${before} 只过滤到 ${candidates.length} 只新候选`);
+  }
+  const phase1Map = PROVIDER === 'doubao_searxng_fetch' ? loadPhase1FactAnchorMap() : new Map();
+  if (phase1Map.size > 0) {
+    console.log(`[04] Phase 1 seed 加载：${phase1Map.size} 只标的有 fact_anchor 锚点`);
   }
   console.log(`[04] Provider: ${PROVIDER}`);
   console.log(`[04] ${candidates.length} 只 candidates 进入质量评估`);
@@ -167,94 +236,93 @@ async function main() {
   let totalCost = 0;
   let modelUsed = null;
 
+  // ============== 主跑 ==============
   for (let i = 0; i < candidates.length; i++) {
     const c = candidates[i];
     process.stdout.write(`[04] (${i + 1}/${candidates.length}) ${c.code} ${c.name}... `);
     try {
-      if (PROVIDER === 'doubao_searxng' || PROVIDER === 'doubao_searxng_fetch') {
-        // 走 search-driven 评估路径（自带 system prompt + tool loop）
-        const useFetch = PROVIDER === 'doubao_searxng_fetch';
-        const r = useFetch
-          ? await evaluateWithSearchAndFetch(c, { maxIterations: 14, maxSearches: 8, maxFetches: 4, verbose: false })
-          : await evaluateWithSearch(c, { maxIterations: 10, maxSearches: 8, verbose: false });
-        modelUsed = useFetch ? 'doubao-seed-1-6-250615+searxng+jina' : 'doubao-seed-1-6-250615+searxng';
+      const r = await evalOne(c, { provider: PROVIDER, framework, phase1Map });
+      modelUsed = r.modelUsed;
+      totalCost += r.cost;
+      if (!r.ok) {
+        results.push({
+          code: c.code,
+          name: c.name,
+          status: 'error',
+          error: `JSON parse failed: ${r.parseError ?? 'unknown'}`,
+          raw: (r.raw || '').slice(0, 2000),
+          stageBRaw: (r.stageBRaw || '').slice(0, 2000),
+          searchCount: r.searchCount,
+          fetchCount: r.fetchCount,
+        });
+        console.log(`✗ JSON parse failed (s=${r.searchCount ?? '?'} f=${r.fetchCount ?? '?'})`);
+      } else {
+        results.push({
+          ...r.parsed,
+          status: 'ok',
+          usage: r.usage,
+          searchCount: r.searchCount,
+          fetchCount: r.fetchCount,
+          iterations: r.iterations,
+          seeded: r.seeded,
+        });
+        const seedTag = r.seeded ? ' seed' : '';
+        const sf = r.searchCount != null ? ` s=${r.searchCount} f=${r.fetchCount}` : '';
+        console.log(
+          `✓ ${r.parsed.grade ?? '?'} score=${r.parsed.total_score ?? '?'} ` +
+            `conf=${r.parsed.fact_anchor?.verification_confidence ?? '?'}${sf}${seedTag} cost=$${r.cost.toFixed(4)}`,
+        );
+      }
+    } catch (e) {
+      results.push({ code: c.code, name: c.name, status: 'error', error: e.message });
+      console.log(`✗ ${e.message}`);
+    }
+    await sleep(500);
+  }
+
+  // ============== Fix 4：自动重跑失败的 ==============
+  const RETRY_ROUNDS = 2;
+  for (let round = 1; round <= RETRY_ROUNDS; round++) {
+    const failedIdx = results
+      .map((r, idx) => (r.status === 'error' ? idx : -1))
+      .filter((x) => x >= 0);
+    if (failedIdx.length === 0) break;
+    console.log(`[04] 🔁 第 ${round} 轮重跑：${failedIdx.length} 只失败`);
+    for (const idx of failedIdx) {
+      const c = candidates[idx];
+      process.stdout.write(`[04] retry${round} (${c.code}) ${c.name}... `);
+      try {
+        const r = await evalOne(c, { provider: PROVIDER, framework, phase1Map });
         totalCost += r.cost;
-        if (!r.parsed) {
-          results.push({
-            code: c.code,
-            name: c.name,
-            status: 'error',
-            error: `JSON parse failed: ${r.parseError ?? 'unknown'}`,
-            raw: (r.raw || '').slice(0, 1500),
-            searchCount: r.searchCount,
-            fetchCount: r.fetchCount,
-            iterations: r.iterations,
-          });
-          console.log(`✗ JSON parse failed (searches=${r.searchCount}${useFetch ? ' fetches=' + r.fetchCount : ''})`);
-        } else {
-          results.push({
+        if (r.ok) {
+          results[idx] = {
             ...r.parsed,
             status: 'ok',
             usage: r.usage,
             searchCount: r.searchCount,
             fetchCount: r.fetchCount,
             iterations: r.iterations,
-          });
-          console.log(
-            `✓ ${r.parsed.grade ?? '?'} score=${r.parsed.total_score ?? '?'} ` +
-              `confidence=${r.parsed.fact_anchor?.verification_confidence ?? '?'} ` +
-              `s=${r.searchCount}${useFetch ? ' f=' + r.fetchCount : ''} cost=$${r.cost.toFixed(4)}`,
-          );
+            seeded: r.seeded,
+            recoveredOn: `retry${round}`,
+          };
+          const sf = r.searchCount != null ? ` s=${r.searchCount} f=${r.fetchCount}` : '';
+          console.log(`✓ ${r.parsed.grade ?? '?'}${sf} cost=$${r.cost.toFixed(4)}`);
+        } else {
+          // 保留 error 但累计尝试
+          results[idx] = {
+            ...results[idx],
+            error: `retry${round}: ${r.parseError ?? 'unknown'}`,
+            raw: (r.raw || '').slice(0, 2000),
+            stageBRaw: (r.stageBRaw || '').slice(0, 2000),
+          };
+          console.log(`✗ still failing`);
         }
-      } else {
-        const { text, usage, cost, model } = await callLLM({
-          system: SYSTEM_PROMPT,
-          user: buildUserPrompt(c, framework),
-          json: true,
-          timeoutMs: 120000,
-        });
-        modelUsed = model;
-        totalCost += cost;
-
-        // 容错：去掉可能的 markdown code fence
-        let cleaned = text.trim();
-        if (cleaned.startsWith('```')) {
-          cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
-        }
-
-        let parsed;
-        try {
-          parsed = JSON.parse(cleaned);
-        } catch (e) {
-          results.push({
-            code: c.code,
-            name: c.name,
-            status: 'error',
-            error: 'JSON parse failed',
-            raw: cleaned.slice(0, 1500),
-          });
-          console.log(`✗ JSON parse failed`);
-          continue;
-        }
-
-        results.push({ ...parsed, status: 'ok', usage });
-        console.log(
-          `✓ ${parsed.grade ?? '?'} score=${parsed.total_score ?? '?'} ` +
-            `confidence=${parsed.fact_anchor?.verification_confidence ?? '?'} ` +
-            `cost=$${cost.toFixed(4)}`,
-        );
+      } catch (e) {
+        results[idx] = { ...results[idx], error: `retry${round}: ${e.message}` };
+        console.log(`✗ ${e.message}`);
       }
-    } catch (e) {
-      results.push({
-        code: c.code,
-        name: c.name,
-        status: 'error',
-        error: e.message,
-      });
-      console.log(`✗ ${e.message}`);
+      await sleep(800);
     }
-    // 节流，避免 API rate limit
-    await sleep(500);
   }
 
   writeJson(OUT, {
