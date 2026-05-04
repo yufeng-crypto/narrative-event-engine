@@ -1,0 +1,43 @@
+use_default_settings: true
+
+general:
+  instance_name: "stock-searxng"
+
+server:
+  # 部署时通过 fly secret SEARXNG_SECRET 覆盖（不要把真 secret 提交到 git）
+  secret_key: "stock-searxng-replaced-by-env"
+  limiter: false
+  image_proxy: false
+
+search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "zh-CN"
+  formats:
+    - html
+    - json
+
+ui:
+  static_use_hash: true
+
+engines:
+  - name: baidu
+    disabled: false
+  - name: bing
+    disabled: false
+  - name: sogou
+    disabled: false
+  - name: startpage
+    disabled: false
+  - name: 360search
+    disabled: false
+  - name: quark
+    disabled: false
+  - name: sogou images
+    disabled: true
+  - name: duckduckgo
+    disabled: false
+  - name: google
+    disabled: false
+  - name: qwant
+    disabled: true
