@@ -263,7 +263,7 @@ export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
           messages,
           tools: TOOLS,
           maxTokens: 8192, // 上调避免 JSON 输出截断
-          timeoutMs: 120000,
+          timeoutMs: 180000, // stage A 单轮超时 3 分钟（fetch 多时上下文大）
         });
         lastErr = null;
         break;
@@ -364,8 +364,10 @@ export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
   let parseError = null;
   let stageBRaw = '';
 
-  // 重试 Stage B 最多 2 次
-  for (let attempt = 0; attempt < 2; attempt++) {
+  // Stage B 重试：最多 3 次，每次超时 / 退避独立配置
+  // Doubao 在 stage A 上下文较大时 stage B 单次响应可能 60-150s，给充足窗口
+  const STAGE_B_TIMEOUTS = [180000, 240000, 240000]; // 3min / 4min / 4min
+  for (let attempt = 0; attempt < STAGE_B_TIMEOUTS.length; attempt++) {
     try {
       const stageB = await callDoubaoWithMessages({
         messages: [
@@ -374,7 +376,7 @@ export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
         ],
         // 不带 tools — 强制纯文本输出
         maxTokens: 8192,
-        timeoutMs: 90000,
+        timeoutMs: STAGE_B_TIMEOUTS[attempt],
       });
       const stageBCost = estimateDoubaoCost(stageB.usage);
       totalCost += stageBCost;
@@ -387,12 +389,12 @@ export async function evaluateWithSearchAndFetch(candidate, opts = {}) {
       }
       parsed = JSON.parse(cleaned);
       parseError = null;
-      if (verbose) console.log(`  [stage B] tokens=${stageB.usage?.total_tokens} cost=$${stageBCost.toFixed(4)} ✓`);
+      if (verbose) console.log(`  [stage B] attempt ${attempt + 1} tokens=${stageB.usage?.total_tokens} cost=$${stageBCost.toFixed(4)} ✓`);
       break;
     } catch (e) {
       parseError = e.message;
-      if (verbose) console.log(`  [stage B] attempt ${attempt + 1}/2 failed: ${e.message}`);
-      await new Promise((r) => setTimeout(r, 1500));
+      if (verbose) console.log(`  [stage B] attempt ${attempt + 1}/${STAGE_B_TIMEOUTS.length} failed: ${e.message}`);
+      await new Promise((r) => setTimeout(r, 2000 + attempt * 1500));
     }
   }
 

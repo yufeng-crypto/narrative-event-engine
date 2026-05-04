@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-05-04T09:01:53.369Z",
+  "fetchedAt": "2026-05-04T11:50:13.383Z",
   "provider": "doubao_searxng_fetch",
   "model": "doubao-seed-1-6-250615+searxng+jina",
   "summary": {
     "total": 11,
-    "ok": 10,
-    "error": 1,
-    "total_cost_usd": "0.2661"
+    "ok": 11,
+    "error": 0,
+    "total_cost_usd": "0.2835"
   },
   "assessments": [
     {
@@ -700,12 +700,98 @@
     {
       "code": "508056",
       "name": "中金普洛斯REIT",
-      "status": "error",
-      "error": "retry2: This operation was aborted",
-      "raw": "=== FACT_ANCHOR ===\nunderlying_asset: 10个现代化仓储园区（总建筑面积约116万平方米）\nasset_location: 京津冀（北京空港）、长三角（苏州望亭）、粤港澳大湾区（广州保税区）等核心物流枢纽\noriginal_owner: 普洛斯\nfund_manager: 中金基金管理有限公司\nlisting_date: 2021-06\nverification_confidence: high\n\n=== KEY FACTS ===\n- 2024年基金收入4.56亿元，净利润-9889.29万元，经营活动现金流净额2.92亿元 [来源：2025-03-27 新浪财经年报解读]\n- 2024年商誉减值1.13亿元（占总商誉8.05%），其中递延所得税负债转回减值8515万元，资产组可回收金额低于账面价值减值2777万元 [来源：2025-03-27 新浪财经年报解读]\n- 2024年可供分配金额3.58亿元，单位可供分配金额0.1849元，完成扩募预测100.82% [来源：2025-03-27 新浪财经年报解读]\n- 2025年营业收入同比下降6.9%，净利润亏损8010万元（主要因商誉减值7152万元） [来源：雪球财经2025年数据]\n- 基础设施项目分布于京津冀、长三角、环渤海、粤港澳大湾区和成渝经济圈，北京空港物流园运营年限17年，通州光机电物流园16年，广州增城物流园13年 [来源：2025-03-27 新浪财经年报解读]\n- 战略投资者限售安排：除原始权益人外，其他战投限售36个月 [来源：雪球讨论2025年]\n\n=== RED FLAGS ===\n- 连续两年商誉减值：2024年1.13亿元，2025年7152万元，累计减值占总商誉比例未明确披露 [来源：新浪财经2025-03-27、雪球2025年]\n- 净利润连续亏损：2024年-9889万元，2025年-8010万元，主要由非经营性减值导致 [来源：新浪财经2025-03-27、雪球2025年]\n- 营业收入下滑：2025年同比下降6.9%，可能反映物流仓储需求疲软 [来源：雪球2025年]\n\n=== UPGRADE TRIGGERS ===\n- 连续两个季度NOI同比增长超5%且出租率维持90%以上\n- 商誉减值风险消除（如资产组估值回升或完成资产处置）\n- 扩募成功并入高收益物流资产，且关联交易定价公允\n\n=== SEARCH/FETCH LOG ===\nsearch_queries: [\"中金普洛斯REIT 508056 2024年报 NOI 可分配金额\", \"中金普洛斯REIT 508056 2025Q1 出租率 季报\", \"中金普洛斯REIT 508056 商誉减值 资产减值 2024\", \"中金普洛斯REIT 508056 扩募 关联交易 2024\", \"中金普洛斯REIT 508056 解禁 2025\", \"中金普洛斯REIT 508056 分红覆盖率 超额分配 2024\", \"中金普洛斯REIT 508056 特许经营权 剩余年限\", \"中金普洛斯REIT 508056 净利润下降 2024\"]\nfetched_urls: [\"https://cj.sina.com.cn/articles/view/7840890301/1d35a7dbd00101bt4m\", \"https://xueqiu.com/S/SH508056\", \"https://www.lixinger.com/equity/fund/detail/sh/508056/508056/announcement\", \"https://www.sse.com.cn/assortment/fund/list/reits/basic/index.shtml?FUNDID=508056\"]",
-      "stageBRaw": "",
+      "search_queries_used": [
+        "中金普洛斯REIT 508056 底层资产 原始权益人 基金管理人 上市日期",
+        "中金普洛斯REIT 508056 2024年报 NOI 可分配金额 出租率",
+        "中金普洛斯REIT 508056 2025Q1 出租率 NOI",
+        "中金普洛斯REIT 508056 解禁 扩募 关联交易",
+        "中金普洛斯REIT 2024 NOI 具体数值",
+        "中金普洛斯REIT 2025 解禁 关联交易",
+        "中金普洛斯REIT 2024年报 NOI 全文",
+        "中金普洛斯REIT 特许经营权 剩余年限"
+      ],
+      "fetched_urls": [
+        "https://static.cninfo.com.cn/finalpage/2025-03-28/1222930475.PDF",
+        "https://www.glpreit.com.cn/information/media/467.html",
+        "https://static.cninfo.com.cn/finalpage/2024-03-29/1219453843.PDF",
+        "https://www.glpreit.com.cn/information/media/462.html"
+      ],
+      "fact_anchor": {
+        "underlying_asset": "10处仓储物流园（北京空港、通州光机电、广州保税、增城、顺德、苏州望亭、淀山湖、青岛前湾港、江门鹤山、重庆城市配送）",
+        "asset_location": "京津冀、长三角、粤港澳大湾区、成渝经济圈核心物流枢纽",
+        "original_owner": "普洛斯中国（GLP China）",
+        "fund_manager": "中金基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "底层资产位于核心物流枢纽，出租率超90%，租金收缴率高",
+          "evidence": [
+            "2024年末平均签约出租率超90%，租金收缴率99.70%",
+            "资产_location:京津冀、长三角、粤港澳大湾区、成渝经济圈核心物流枢纽"
+          ]
+        },
+        "contract_stability": {
+          "score": 4,
+          "reasoning": "加权平均剩余租期547天，租户分散，无单一依赖",
+          "evidence": [
+            "2024年末加权平均剩余租期547天",
+            "底层资产前五大租户租金收入占比28.09%，无单一租户收入占比超10%"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "基金管理人中金基金，原始权益人普洛斯中国，实力较强",
+          "evidence": [
+            "fund_manager:中金基金管理有限公司",
+            "original_owner:普洛斯中国（GLP China）"
+          ]
+        },
+        "financial_health": {
+          "score": 3,
+          "reasoning": "2024年净利润-9889.29万元（商誉减值），可供分配金额3.58亿元",
+          "evidence": [
+            "2024年合并报表营业总收入4.56亿元，可供分配金额3.58亿元",
+            "2024年净利润-9889.29万元，因确认商誉减值损失1.13亿元"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "未发现重大监管风险，运营合规性良好",
+          "evidence": [
+            "verification_confidence:high"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "2025Q1出租率同比+6pct，存在扩募增长机会",
+          "evidence": [
+            "2025Q1平均签约出租率超90%，同比+6pct，环比+2pct",
+            "扩募收购新资产并实现NOI同比增长10%以上"
+          ]
+        }
+      },
+      "total_score": 22,
+      "grade": "A-",
+      "recommendation": "include",
+      "red_flags": [
+        "2024年净利润-9889.29万元，主要因商誉减值1.13亿元，可能影响未来资产估值 [2025-03-27]",
+        "2024年EBITDA净利率67.07%，虽保持稳定但需关注运营成本上升风险 [2025-03-28]"
+      ],
+      "upgrade_triggers": [
+        "出租率持续提升至95%以上且租金单价环比增长",
+        "扩募收购新资产并实现NOI同比增长10%以上",
+        "商誉减值风险消除且净利润转正"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 137163
+      },
       "searchCount": 8,
-      "fetchCount": 4
+      "fetchCount": 4,
+      "iterations": 9
     },
     {
       "code": "180302",
