@@ -1,0 +1,54 @@
+# 每周一 06:00 (北京时间，UTC 22:00 周日) 自动刷新所有标的的 TTM 分红
+#
+# 数据源：fundf10.eastmoney.com（解析表格，0 LLM 成本）
+# 兜底：Doubao + SearXNG + Jina（仅当 fundf10 没数据）
+#
+# 触发方式：定时 / GitHub Actions UI 手动 (workflow_dispatch)
+
+name: Refresh TTM Dividends (Weekly)
+
+on:
+  schedule:
+    # cron 用 UTC，北京时间周一 06:00 = UTC 周日 22:00
+    - cron: '0 22 * * 0'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write # 允许 commit 回 repo
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: claude/sweet-buck-bd2f4f # 当前工作分支，未来 merge 到 master 后改
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh all TTM dividends (fundf10 主路径 + Doubao 兜底)
+        env:
+          DOUBAO_API_KEY: ${{ secrets.DOUBAO_API_KEY }}
+          SEARXNG_URL: ${{ secrets.SEARXNG_URL }}
+        run: |
+          # 用 ALL=1 刷全部 manual_dividend_overrides.json 里的标的
+          ALL=1 node scripts/refresh_ttm_dividends.mjs
+
+      - name: Commit and push if changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet methodology/manual_dividend_overrides.json; then
+            echo "No changes, skipping commit"
+          else
+            git add methodology/manual_dividend_overrides.json
+            git commit -m "chore(cron): TTM 分红自动刷新 $(date -u +%Y-%m-%d)"
+            git push
+          fi

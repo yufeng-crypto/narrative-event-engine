@@ -1,0 +1,70 @@
+# Phase 2 (Doubao + SearXNG + Jina) 月度深读评估
+#
+# 当前默认仅手动触发（workflow_dispatch）。原因：
+#   1. Phase 2 单只 ~10 分钟，全 30 只 ~5 小时
+#   2. 月度全刷成本 ~¥3，每月跑一次合理
+#   3. 手动触发期间可观察日志、调参
+#
+# 待"增量刷新"脚本写好（只刷 >30 天的标的）后再启用 schedule。
+
+name: Refresh Phase 2 Evaluations (Monthly / Manual)
+
+on:
+  # schedule:
+  #   # 每月 1 日 06:00 北京时间 = UTC 月末 22:00
+  #   - cron: '0 22 28-31 * *'  # 待增量脚本完成后启用
+  workflow_dispatch:
+    inputs:
+      codes:
+        description: '指定刷新的代码（逗号分隔，留空=只刷未评估的）'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350 # GitHub Actions 上限 6h，留余量
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: claude/sweet-buck-bd2f4f
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Phase 2 evaluation
+        env:
+          DOUBAO_API_KEY: ${{ secrets.DOUBAO_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          SEARXNG_URL: ${{ secrets.SEARXNG_URL }}
+          INPUT_CODES: ${{ inputs.codes }}
+        run: |
+          if [ -n "$INPUT_CODES" ]; then
+            echo "Refreshing specific codes: $INPUT_CODES"
+            # 注意：当前 04_review_quality.mjs 不支持 CODES 过滤
+            # 暂时用 ONLY_NEW=1 触发只刷未评估的标的
+            LLM_PROVIDER=doubao_searxng_fetch ONLY_NEW=1 node scripts/04_review_quality.mjs
+          else
+            LLM_PROVIDER=doubao_searxng_fetch ONLY_NEW=1 node scripts/04_review_quality.mjs
+          fi
+
+      - name: Commit and push if changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet data/quality_scores_doubao_searxng_fetch.json data/quality_scores_doubao_searxng.json; then
+            echo "No changes, skipping commit"
+          else
+            git add data/quality_scores_doubao_searxng_fetch.json data/quality_scores_doubao_searxng.json
+            git commit -m "chore(cron): Phase 2 评估自动刷新 $(date -u +%Y-%m-%d)"
+            git push
+          fi
