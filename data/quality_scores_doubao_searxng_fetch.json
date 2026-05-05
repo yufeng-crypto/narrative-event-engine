@@ -1,868 +1,84 @@
 {
-  "fetchedAt": "2026-05-04T11:50:13.383Z",
+  "fetchedAt": "2026-05-04T20:01:10.801Z",
   "provider": "doubao_searxng_fetch",
   "model": "doubao-seed-1-6-250615+searxng+jina",
   "summary": {
-    "total": 11,
-    "ok": 11,
+    "total": 9,
+    "ok": 9,
     "error": 0,
-    "total_cost_usd": "0.2835"
+    "total_cost_usd": "0.1088"
   },
   "assessments": [
     {
-      "code": "508009",
-      "name": "中金安徽交控REIT",
+      "code": "180201",
+      "name": "平安广州广河REIT",
       "search_queries_used": [
-        "中金安徽交控REIT 2024年报 NOI 可分配金额",
-        "中金安徽交控REIT 2025Q1 车流量 通行费",
-        "中金安徽交控REIT 解禁 2025",
-        "中金安徽交控REIT 关联交易 2024",
-        "中金安徽交控REIT 2025Q1 季报 官方",
-        "中金安徽交控REIT 特许经营权 续期 政策",
-        "中金安徽交控REIT 2025Q1 官方季报 上交所",
-        "中金安徽交控REIT 2024 关联交易 金额"
+        "平安广州广河REIT 2024年报 NOI 可分配金额",
+        "180201 2025Q1 季报 通行费 车流量",
+        "平安广州广河REIT 2024 商誉减值 资产减值",
+        "180201 2024 净利润 下降",
+        "平安广州广河REIT 扩募 2025",
+        "180201 关联交易 2024",
+        "平安广州广河REIT 解禁 2025",
+        "广河高速 特许经营权 剩余年限"
       ],
       "fetched_urls": [
-        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-03-29/508009_20250329_I20J.pdf",
-        "https://www.163.com/dy/article/KE8TM8360519D45U.html",
-        "https://www.cnfin.com/zs-lb/detail/20250422/4221418_1.html"
+        "https://www.sohu.com/a/876974905_121726219",
+        "https://fund.pingan.com/nasfile/1761613939586.pdf",
+        "https://cj.sina.com.cn/articles/view/7840890301/1d35a7dbd00101g0vc",
+        "https://xueqiu.com/8510387275/263977184"
       ],
       "fact_anchor": {
-        "underlying_asset": "杭徽高速公路及构筑物资产组(含收费权益)",
-        "asset_location": "安徽省",
-        "original_owner": "安徽交控",
-        "fund_manager": "中金基金",
-        "listing_date": "2022-11",
-        "verification_confidence": "medium"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 3,
-          "reasoning": "2024年资产减值8.92亿，2025Q1车流量及通行费收入同比回升超10%",
-          "evidence": [
-            "2025-03-29 上交所年度报告",
-            "2025-04-22 中国金融信息网季报解读"
-          ]
-        },
-        "contract_stability": {
-          "score": 2,
-          "reasoning": "特许经营权剩余不足12年，到期价值或归零，续期政策未披露",
-          "evidence": [
-            "2025-03-29 上交所年度报告"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "中金基金管理，具备较强REIT管理经验和市场影响力",
-          "evidence": [
-            "fact_anchor.fund_manager"
-          ]
-        },
-        "financial_health": {
-          "score": 3,
-          "reasoning": "2024年净利润-11.23亿，分配降23.8%，2025Q1分配增29.51%",
-          "evidence": [
-            "2025-03-29 上交所年度报告",
-            "2025-04-22 中国金融信息网季报解读"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 3,
-          "reasoning": "2024年关联交易正常，具体金额未披露",
-          "evidence": [
-            "2025-03-29 上交所年度报告"
-          ]
-        },
-        "growth_potential": {
-          "score": 3,
-          "reasoning": "2025Q1车流量及通行费增超10%，面临解禁抛压和到期风险",
-          "evidence": [
-            "2025-04-22 中国金融信息网季报解读",
-            "2025-11-13 网易财经解禁公告"
-          ]
-        }
-      },
-      "total_score": 18,
-      "grade": "B",
-      "recommendation": "watch",
-      "red_flags": [
-        "2024年资产减值8.92亿元，占期末净资产11.2%（2025-03-29）",
-        "2024年可供分配金额同比下降23.8%，因周边路网分流（2025-03-29）",
-        "2025年11月解禁3.73亿份，占当前流通份额87.3%（2025-11-13）",
-        "特许经营权剩余年限不足12年，到期后资产价值可能归零（2025-03-29）"
-      ],
-      "upgrade_triggers": [
-        "连续2季度车流量及通行费收入同比增速超10%",
-        "特许经营权续期政策明确或资产扩募落地",
-        "资产减值损失转回或评估增值"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 282635
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 9,
-      "seeded": true
-    },
-    {
-      "code": "508033",
-      "name": "易方达深高速REIT",
-      "search_queries_used": [
-        "易方达深高速REIT 2024年报 NOI 可分配金额",
-        "易方达深高速REIT 2025Q1 季报 NOI 可分配金额",
-        "易方达深高速REIT 关联交易 2024 年报",
-        "易方达深高速REIT 解禁公告 2025",
-        "易方达深高速REIT 2024分红比例未达90%原因",
-        "益常高速 收费权到期 延长政策",
-        "易方达深高速REIT 益常北线 车流量 2025",
-        "益常高速 收费权延长 2034"
-      ],
-      "fetched_urls": [
-        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-03-31/508033_20250331_VNN1.pdf",
-        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-04-22/508033_20250422_ODR0.pdf",
-        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-03-17/508033_20250317_BWII.pdf",
-        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-10-11/508033_20251011_UBYF.pdf"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "益常高速公路（益阳至常德段）收费权及附属设施",
-        "asset_location": "湖南省益阳市至常德市",
-        "original_owner": "深圳高速公路集团有限公司",
-        "fund_manager": "易方达基金管理有限公司",
-        "listing_date": "2024-03",
-        "verification_confidence": "medium"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 3,
-          "reasoning": "基础资产为高速公路收费权，2025Q3车流量受分流影响同比降20.43%",
-          "evidence": [
-            "2025Q3日均车流量同比-20.43%",
-            "2024年NOI 2.36亿元"
-          ]
-        },
-        "contract_stability": {
-          "score": 2,
-          "reasoning": "特许经营权剩余约9年，到期日2034年3月，无延长政策",
-          "evidence": [
-            "特许经营权剩余年限约9年",
-            "到期日2034年3月20日"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "基金经理为易方达基金，原 owner 深圳高速集团运营实力较强",
-          "evidence": [
-            "fund_manager: 易方达基金管理有限公司",
-            "original_owner: 深圳高速公路集团有限公司"
-          ]
-        },
-        "financial_health": {
-          "score": 3,
-          "reasoning": "2024年分红比例82.9%未达90%，2025Q1可供分配同比降55.45%",
-          "evidence": [
-            "2024年分红比例82.9%",
-            "2025Q1可供分配金额同比-55.45%"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 3,
-          "reasoning": "收费权到期无明确延长政策，存在监管不确定性",
-          "evidence": [
-            "无最新延长政策",
-            "到期日2034年3月20日"
-          ]
-        },
-        "growth_potential": {
-          "score": 2,
-          "reasoning": "益常北线分流致2025Q3车流量下滑，1-9月营收仅达预测76.05%",
-          "evidence": [
-            "2025Q3日均车流量同比-20.43%",
-            "1-9月营收仅达全年预测76.05%"
-          ]
-        }
-      },
-      "total_score": 17,
-      "grade": "B",
-      "recommendation": "exclude",
-      "red_flags": [
-        "1. 特许经营权剩余年限仅9年，到期后资产价值可能归零，且无明确延长政策 [2025-04-22 季报]",
-        "2. 益常北线高速分流显著，2025Q3车流量同比-20.43%，1-9月营收未达预测值，可能影响后续分红能力 [2025-10-11 运营公告]",
-        "3. 2024年分红比例82.9%，未满足基金合同约定的\"每年分配比例≥90%\"要求 [2025-03-31 年报]",
-        "4. 2025年3月解禁1.2亿份（占比40%），流通盘扩大可能导致二级市场价格波动 [2025-03-17 解禁公告]"
-      ],
-      "upgrade_triggers": [
-        "湖南省出台益常高速收费权延长政策，剩余年限显著增加",
-        "益常北线高速分流影响低于预期，连续两个季度车流量同比降幅收窄至10%以内",
-        "分红比例恢复至90%以上并持续两个报告期",
-        "启动扩募收购新资产，延长基金存续期"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 290426
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 10,
-      "seeded": true
-    },
-    {
-      "code": "180401",
-      "name": "鹏华深圳能源REIT",
-      "search_queries_used": [
-        "鹏华深圳能源REIT 2024年报 NOI 可分配金额",
-        "鹏华深圳能源REIT 2025Q1 出租率 季报",
-        "鹏华深圳能源REIT 特许经营权 剩余年限",
-        "鹏华深圳能源REIT 关联交易 2024",
-        "鹏华深圳能源REIT 2025Q1 出租率 最新",
-        "鹏华深圳能源REIT 2024 商誉减值 资产减值",
-        "鹏华深圳能源REIT 扩募 进展 2025",
-        "鹏华深圳能源REIT 分红覆盖率 2024"
-      ],
-      "fetched_urls": [
-        "https://static.cninfo.com.cn/finalpage/2025-03-28/1222926203.PDF",
-        "http://eid.csrc.gov.cn/fund/disclose/instance_show_pdf_id.do?instanceid=1269244",
-        "https://pdf.dfcfw.com/pdf/H2_AN202506051685346283_1.pdf",
-        "http://finance.china.com.cn/money/fund/20250508/6239628.shtml"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "东部电厂(一期)天然气发电项目",
-        "asset_location": "广东省深圳市大鹏新区秤头角",
-        "original_owner": "深圳能源集团股份有限公司",
-        "fund_manager": "鹏华基金管理有限公司",
-        "listing_date": "2022-07",
-        "verification_confidence": "high"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 3,
-          "reasoning": "基础设施资产稳定，售电量可观，但电价下降影响收益",
-          "evidence": [
-            "东部电厂(一期)天然气发电项目",
-            "2024年售电量35.12亿千瓦时，平均电价0.5021元/千瓦时"
-          ]
-        },
-        "contract_stability": {
-          "score": 3,
-          "reasoning": "存续期较长，长协提供稳定性，但未来供应量下降存风险",
-          "evidence": [
-            "基金存续期34年",
-            "天然气长协有效期至2031年"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "基金经理和原始权益人实力雄厚，运营经验丰富",
-          "evidence": [
-            "鹏华基金管理有限公司",
-            "深圳能源集团股份有限公司"
-          ]
-        },
-        "financial_health": {
-          "score": 2,
-          "reasoning": "可供分配金额下滑，存在超额分配风险，财务健康承压",
-          "evidence": [
-            "2024年可供分配金额同比下降15.35%",
-            "2024年实际分红4.77亿元超出经营活动现金流2.95亿元"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 3,
-          "reasoning": "电力市场监管环境稳定，暂无重大政策风险",
-          "evidence": [
-            "电力市场电价水平波动"
-          ]
-        },
-        "growth_potential": {
-          "score": 2,
-          "reasoning": "短期电价回升有限，长期依赖扩募和成本控制",
-          "evidence": [
-            "2025Q1平均电价0.5171元/千瓦时",
-            "天然气长协2031年到期"
-          ]
-        }
-      },
-      "total_score": 17,
-      "grade": "B",
-      "recommendation": "exclude",
-      "red_flags": [
-        "2024年可供分配金额同比下降15.35%，主要因电力市场电价水平下降（2025-05-08）",
-        "2024年实际分红4.77亿元，超出经营活动现金流2.95亿元，存在超额分配风险（2025-03-27）",
-        "天然气长协2031年到期，之后或面临市场化购气成本波动风险（2025-06-05）",
-        "2025-07-24解禁1.86亿份（占比31%），可能对二级市场价格形成压力（2025-07-24）"
-      ],
-      "upgrade_triggers": [
-        "广东电力市场电价回升导致项目售电收入增长",
-        "成功扩募收购新的清洁能源项目",
-        "天然气长协到期后以有利条件续签或获得更低成本气源"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 170165
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 6,
-      "seeded": true
-    },
-    {
-      "code": "508027",
-      "name": "东吴苏园产业REIT",
-      "search_queries_used": [
-        "东吴苏园产业REIT 2024年报 NOI 可分配金额 出租率",
-        "东吴苏园产业REIT 2025Q1季报 财务数据",
-        "东吴苏园产业REIT 2024 商誉减值 资产减值",
-        "东吴苏园产业REIT 净利润下降 净亏损 2024",
-        "东吴苏园产业REIT 扩募终止 关联交易",
-        "东吴苏园产业REIT 2025 解禁 份额",
-        "东吴苏园产业REIT 分红覆盖率 超额分配",
-        "东吴苏园产业REIT 特许经营权 剩余年限"
-      ],
-      "fetched_urls": [
-        "https://xueqiu.com/S/SZ000895/time?page=20",
-        "https://basic.10jqka.com.cn/508027/index.html",
-        "http://notice.10jqka.com.cn/api/pdf/921df25e9037cb7a/%E4%B8%9C%E5%90%B4%E8%8B%8F%E5%B7%9E%E5%B7%A5%E4%B8%9A%E5%9B%AD%E5%8C%BA%E4%BA%A7%E4%B8%9A%E5%9B%AD%E5%B0%81%E9%97%AD%E5%BC%8F%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912025%E5%B9%B4%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf",
-        "http://notice.10jqka.com.cn/api/pdf/95465ec2462ec39a/%E4%B8%9C%E5%90%B4%E8%8B%8F%E5%B7%9E%E5%B7%A5%E4%B8%9A%E5%9B%AD%E5%8C%BA%E4%BA%A7%E4%B8%9A%E5%9B%AD%E5%B0%81%E9%97%AD%E5%BC%8F%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E8%AF%81%E5%88%B8%E6%8A%95%E8%B5%84%E5%9F%BA%E9%87%912026%E5%B9%B4%E7%AC%AC1%E5%AD%A3%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "国际科技园五期B区、2.5产业园一期及二期",
-        "asset_location": "苏州工业园区",
-        "original_owner": "苏州工业园区科技发展有限公司、苏州工业园区建屋产业园开发有限公司",
-        "fund_manager": "东吴基金管理有限公司",
-        "listing_date": "2021-06",
-        "verification_confidence": "high"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 1,
-          "reasoning": "2025年计提减值1.06亿元，2026Q1出租率68.42%持续下滑",
-          "evidence": [
-            "2025年计提投资性房地产减值损失1.06亿元",
-            "2026Q1出租率68.42%，同比-7.47%"
-          ]
-        },
-        "contract_stability": {
-          "score": 3,
-          "reasoning": "产权类产业园，存续期40年，无特许经营权到期风险",
-          "evidence": [
-            "底层资产为产权类产业园，基金存续期40年"
-          ]
-        },
-        "operator_strength": {
-          "score": 2,
-          "reasoning": "出租率持续恶化，区域竞争加剧，运营能力待提升",
-          "evidence": [
-            "2025年末整体出租率68.66%，同比-12.16%",
-            "区域竞争加剧（如2公里内新增新盛里低空经济产业园等）"
-          ]
-        },
-        "financial_health": {
-          "score": 1,
-          "reasoning": "连续两年净亏损，2025年超额分配依赖往期资金",
-          "evidence": [
-            "2024年净利润-8766.17万元，2025年-5955.59万元",
-            "2025年实际分配1.48亿元超可供分配1.33亿元"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 4,
-          "reasoning": "2025年关联交易在正常业务范围内，未披露重大异常",
-          "evidence": [
-            "2025年关联交易在正常业务范围内，未披露重大异常"
-          ]
-        },
-        "growth_potential": {
-          "score": 1,
-          "reasoning": "出租率持续下降，净利润未转正，增长乏力",
-          "evidence": [
-            "2025年末出租率同比-12.16%，2026Q1续降",
-            "2024-2025年连续净亏损"
-          ]
-        }
-      },
-      "total_score": 12,
-      "grade": "C",
-      "recommendation": "exclude",
-      "red_flags": [
-        "连续两年净亏损：2024年-8766万元，2025年-5956万元",
-        "出租率持续恶化：2025年末68.66%（同比-12.16%），2026Q1降至68.42%",
-        "2025年计提1.06亿元投资性房地产减值损失",
-        "2025年实际分配1.48亿元超出可供分配金额1.33亿元"
-      ],
-      "upgrade_triggers": [
-        "连续两个季度出租率回升至80%以上",
-        "资产减值损失转回或净利润由负转正",
-        "分红覆盖率（实际分配/可供分配）≤100%"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 101091
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 4,
-      "seeded": true,
-      "recoveredOn": "retry2"
-    },
-    {
-      "code": "508006",
-      "name": "富国首创水务REIT",
-      "search_queries_used": [
-        "富国首创水务REIT 2024年报 NOI 可分配金额",
-        "富国首创水务REIT 2024年报 NOI",
-        "富国首创水务REIT 2025Q1 财务数据",
-        "富国首创水务REIT 特许经营权 到期时间",
-        "富国首创水务REIT 解禁 公告",
-        "富国首创水务REIT 2024年报 NOI 具体数值",
-        "富国首创水务REIT 2025 解禁 具体日期 数量",
-        "富国首创水务REIT 2024年报 PDF 下载"
-      ],
-      "fetched_urls": [
-        "https://cj.sina.com.cn/articles/view/7840890301/1d35a7dbd00101bud4",
-        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-06-06/508006_20250606_DJAP.pdf",
-        "http://eid.csrc.gov.cn/fund/disclose/instance_show_pdf_id.do?instanceid=1276784",
-        "https://www.fullgoal.com.cn/wbs-file/fund_report/20250409/CN_50100000_508006_FC900010_20250001.pdf"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "深圳市福永、松岗、公明水质净化厂和合肥市十五里河污水处理厂PPP项目",
-        "asset_location": "深圳、合肥",
-        "original_owner": "北京首创生态环保集团股份有限公司",
-        "fund_manager": "富国基金管理有限公司",
+        "underlying_asset": "广河高速广州段",
+        "asset_location": "广州",
+        "original_owner": "广州交通投资集团有限公司",
+        "fund_manager": "平安基金管理有限公司",
         "listing_date": "2021-06",
         "verification_confidence": "high"
       },
       "scores": {
         "asset_quality": {
           "score": 3,
-          "reasoning": "基础设施资产稳定，但2024年可供分配金额、处理单价双降",
+          "reasoning": "高速资产稳定，2025Q3通行费收入同比降4.51%",
           "evidence": [
-            "2024年可供分配金额同比下降6.52%",
-            "2024年整体污水处理平均单价同比下降2.25%"
+            "2025Q3通行费收入2.06亿元，同比-4.51%"
           ]
         },
         "contract_stability": {
           "score": 3,
-          "reasoning": "特许经营权存在到期风险，深圳项目最早2031年到期",
+          "reasoning": "特许经营权剩余11.22年，到期存在资产清零风险",
           "evidence": [
-            "深圳项目特许经营权2031年、2033年陆续到期"
+            "2025Q3末特许经营权剩余年限约11.22年"
           ]
         },
         "operator_strength": {
           "score": 4,
-          "reasoning": "富国基金管理，首创环保运营，关联服务费占收入9.04%",
+          "reasoning": "平安基金管理，原 owner 为广州交投集团，实力较强",
           "evidence": [
-            "2024年服务费占收入比例约9.04%"
+            "fund_manager: 平安基金管理有限公司"
           ]
         },
         "financial_health": {
           "score": 3,
-          "reasoning": "收入3.03亿，现金流1.34亿，但可供分配金额连续下滑",
+          "reasoning": "2024年净利润-2.9亿，2026Q1转正，财务费用较高",
           "evidence": [
-            "2024年基金收入3.03亿元",
-            "2024年经营活动现金流净额1.34亿元",
-            "可供分配金额连续下滑"
+            "2024年净利润-2.90亿元",
+            "2026Q1净利润5434.94万元"
           ]
         },
         "regulatory_risk": {
-          "score": 3,
-          "reasoning": "依赖特许经营政策，到期需审批，存在政策不确定性",
+          "score": 4,
+          "reasoning": "无重大关联交易，单一客户现金流占比未超10%",
           "evidence": [
-            "深圳项目最早2031年到期，若未扩募可能终止"
+            "2024年无重大关联交易，来源于单一客户现金流占比未超10%"
           ]
         },
         "growth_potential": {
           "score": 2,
-          "reasoning": "可供分配金额下滑，需扩募或提价改善增长",
+          "reasoning": "2025Q3通行费、车流量同比下降，扩募计划未明确",
           "evidence": [
-            "2024年可供分配金额同比下降6.52%",
-            "扩募成功纳入新特许经营项目可延长存续期"
-          ]
-        }
-      },
-      "total_score": 18,
-      "grade": "B",
-      "recommendation": "watch",
-      "red_flags": [
-        "特许经营权到期风险：深圳项目最早2031年到期，若未及时扩募新资产，基金净值可能减少甚至到期终止（2025-06-06）",
-        "可供分配金额连续下滑：2024年同比下降6.52%，可能影响未来分红能力（2025-03-30）",
-        "关联交易依赖：运营管理机构为首创环保，2024年服务费占收入比例约9.04%，存在利益冲突风险（2025-03-30）"
-      ],
-      "upgrade_triggers": [
-        "扩募成功纳入新特许经营项目，延长资产存续期",
-        "可供分配金额连续两个季度同比增长超5%",
-        "污水处理单价上调或处理量显著增加，推动NOI回升"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 106851
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 7,
-      "seeded": true
-    },
-    {
-      "code": "180801",
-      "name": "中航首钢绿能REIT",
-      "search_queries_used": [
-        "中航首钢绿能REIT 180801 2024年报 NOI 可分配金额",
-        "中航首钢绿能REIT 2025Q1 季报 NOI 处理量",
-        "中航首钢绿能REIT 2024 商誉减值 资产减值",
-        "中航首钢绿能REIT 特许经营权 剩余年限",
-        "中航首钢绿能REIT 扩募终止 关联交易",
-        "中航首钢绿能REIT 解禁 2025",
-        "中航首钢绿能REIT 2024 分红覆盖率 超额分配",
-        "中航首钢绿能REIT 特许经营权到期日 公告"
-      ],
-      "fetched_urls": [
-        "https://static.cninfo.com.cn/finalpage/2025-03-31/1222942621.PDF",
-        "https://fundf10.eastmoney.com/fhsp_180801.html",
-        "https://pdf.dfcfw.com/pdf/H2_AN202505201676031857_1.pdf"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "生活垃圾焚烧处理设施",
-        "asset_location": "北京市",
-        "original_owner": "unknown",
-        "fund_manager": "中航基金管理有限公司",
-        "listing_date": "2021-06",
-        "verification_confidence": "medium"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 3,
-          "reasoning": "2024年处理量下降，2025Q1同比增长17.44%，资产运营波动",
-          "evidence": [
-            "2024年生活垃圾处理量下降导致收入减少",
-            "2025Q1生活垃圾处理量25.39万吨，同比增长17.44%"
-          ]
-        },
-        "contract_stability": {
-          "score": 3,
-          "reasoning": "特许经营权《电力业务许可证》2035年到期，早于基金存续期2042年",
-          "evidence": [
-            "特许经营权相关《电力业务许可证》有效期至2035年4月，基金存续期至2042年"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "基金管理人中航基金为国企，具备REIT管理经验",
-          "evidence": [
-            "fund_manager: 中航基金管理有限公司"
-          ]
-        },
-        "financial_health": {
-          "score": 2,
-          "reasoning": "可供分配金额连续下滑30.1%，应收账款增长31.8%，存在税务风险",
-          "evidence": [
-            "2024年可供分配金额7495.96万元，同比下降30.10%",
-            "2024年末应收账款2.82亿元，较2023年增长31.8%",
-            "2024年发生关联方债权性投资，存在利息支出税前抵扣受限风险"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 3,
-          "reasoning": "受北京垃圾减量政策影响，特许经营权续期及关联交易税务风险",
-          "evidence": [
-            "2025Q1营收同比略降0.4%，受北京市垃圾源头减量政策影响",
-            "特许经营权相关《电力业务许可证》有效期至2035年4月",
-            "关联债资比可能超2:1"
-          ]
-        },
-        "growth_potential": {
-          "score": 3,
-          "reasoning": "2025Q1处理量回升，但政策压制营收，依赖后续改善",
-          "evidence": [
-            "2025Q1生活垃圾处理量同比增长17.44%",
-            "2025Q1营收同比略降0.4%"
-          ]
-        }
-      },
-      "total_score": 18,
-      "grade": "B",
-      "recommendation": "watch",
-      "red_flags": [
-        "可供分配金额连续三年下滑，2024年同比降30.1%（2024年报）",
-        "《电力业务许可证》2035年到期，早于基金存续期2042年（2025-05-20基金产品资料概要）",
-        "2024年末应收账款2.82亿元，较2023年增长31.8%（2024年报PDF）",
-        "关联方利息支出可能因债资比超限无法全额税前抵扣（2024年报附注）"
-      ],
-      "upgrade_triggers": [
-        "连续两个季度生活垃圾处理量同比增长超15%且恢复至110万吨/年以上水平",
-        "北京市城管委核定垃圾处理服务费价格高于当前173元/吨暂定价",
-        "特许经营权相关证照（如《电力业务许可证》）成功续期至基金存续期结束",
-        "国补退坡后绿证交易收入弥补补贴缺口超80%"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 145270
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 7,
-      "seeded": true
-    },
-    {
-      "code": "508088",
-      "name": "国泰海通东久新经济REIT",
-      "search_queries_used": [
-        "国泰海通东久新经济REIT 508088 2024年报 NOI 可分配金额",
-        "国泰海通东久新经济REIT 2025Q1 出租率 季报",
-        "国泰海通东久新经济REIT 商誉减值 资产减值 2024",
-        "国泰海通东久新经济REIT 净利润下降 净亏损 2024",
-        "国泰海通东久新经济REIT 扩募终止 关联交易 公告",
-        "国泰海通东久新经济REIT 解禁 2025 份额",
-        "国泰海通东久新经济REIT 超额分配 分红覆盖率 2024",
-        "国泰海通东久新经济REIT 特许经营权 剩余年限"
-      ],
-      "fetched_urls": [
-        "https://www.msn.cn/zh-cn/money/%E7%BB%8F%E6%B5%8E/%E5%9B%BD%E6%B3%B0%E6%B5%B7%E9%80%9A%E4%B8%9C%E4%B9%85%E6%96%B0%E7%BB%8F%E6%B5%8EREIT-%E7%AC%AC%E5%9B%9B%E5%AD%A3%E5%BA%A6%E6%94%B6%E5%85%A52853%E4%B8%87%E5%85%83-%E5%8F%AF%E4%BE%9B%E5%88%86%E9%85%8D%E9%87%91%E9%A2%9D%E4%B8%BA1758%E4%B8%87%E5%85%83/ar-AA1UEQ5j",
-        "https://www.sse.com.cn/reits/assortment/prices/detail/announcements/?code=508088&name=%E5%9B%BD%E6%B3%B0%E5%90%9B%E5%AE%89%E4%B8%9C%E4%B9%85%E6%96%B0%E7%BB%8F%E6%B5%8EREIT",
-        "https://cj.sina.com.cn/articles/view/1704103183/65928d0f02007m4g6?finpagefr=p_104",
-        "https://finance.sina.com.cn/stock/aigc/fundfs/2026-04-22/doc-inhvhvwu9834811.shtml"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "标准厂房类产业园区",
-        "asset_location": "上海金山、昆山、无锡、常州、南通、重庆",
-        "original_owner": "东久工业或其关联方",
-        "fund_manager": "张鹏坤",
-        "listing_date": "2022-10",
-        "verification_confidence": "medium"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 4,
-          "reasoning": "出租率高但租金下滑，扩募资产质量良好",
-          "evidence": [
-            "2026Q1出租率96.49%",
-            "扩募项目南通出租率100%"
-          ]
-        },
-        "contract_stability": {
-          "score": 3,
-          "reasoning": "剩余租期缩短，租约到期压力大",
-          "evidence": [
-            "剩余租期同比减少14.75%",
-            "部分项目租约集中到期"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "扩募顺利，资金使用高效，管理团队经验尚可",
-          "evidence": [
-            "2025年11月完成首次扩募",
-            "扩募净回收资金使用率100%"
-          ]
-        },
-        "financial_health": {
-          "score": 4,
-          "reasoning": "分红比例高，净利润稳定，财务状况健康",
-          "evidence": [
-            "2024年度分红比例99.9965%",
-            "2025Q4净利润1500.55万元"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 4,
-          "reasoning": "未发现明显监管风险，合规性较好",
-          "evidence": []
-        },
-        "growth_potential": {
-          "score": 3,
-          "reasoning": "扩募带来新增面积，出租率提升潜力大，但租金承压",
-          "evidence": [
-            "新增可租赁面积9.88万平方米",
-            "重庆智造园签约率100%"
-          ]
-        }
-      },
-      "total_score": 22,
-      "grade": "A-",
-      "recommendation": "watch",
-      "red_flags": [
-        "2026Q1平均租金29.38元/平方米/月，同比-3.33% [2026-04-22]",
-        "期末剩余租期923.24天，同比减少14.75% [2026-04-22]",
-        "重庆智造园一期租约变动产生157万元现金流差异 [2026-04-22]"
-      ],
-      "upgrade_triggers": [
-        "扩募资产租金水平修复至首发项目平均水平（约29元/平方米/月）",
-        "租约到期项目续租率超90%且租金涨幅≥3%",
-        "新增扩募项目落地且出租率快速提升至95%以上"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 63895
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 3,
-      "seeded": true
-    },
-    {
-      "code": "508056",
-      "name": "中金普洛斯REIT",
-      "search_queries_used": [
-        "中金普洛斯REIT 508056 底层资产 原始权益人 基金管理人 上市日期",
-        "中金普洛斯REIT 508056 2024年报 NOI 可分配金额 出租率",
-        "中金普洛斯REIT 508056 2025Q1 出租率 NOI",
-        "中金普洛斯REIT 508056 解禁 扩募 关联交易",
-        "中金普洛斯REIT 2024 NOI 具体数值",
-        "中金普洛斯REIT 2025 解禁 关联交易",
-        "中金普洛斯REIT 2024年报 NOI 全文",
-        "中金普洛斯REIT 特许经营权 剩余年限"
-      ],
-      "fetched_urls": [
-        "https://static.cninfo.com.cn/finalpage/2025-03-28/1222930475.PDF",
-        "https://www.glpreit.com.cn/information/media/467.html",
-        "https://static.cninfo.com.cn/finalpage/2024-03-29/1219453843.PDF",
-        "https://www.glpreit.com.cn/information/media/462.html"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "10处仓储物流园（北京空港、通州光机电、广州保税、增城、顺德、苏州望亭、淀山湖、青岛前湾港、江门鹤山、重庆城市配送）",
-        "asset_location": "京津冀、长三角、粤港澳大湾区、成渝经济圈核心物流枢纽",
-        "original_owner": "普洛斯中国（GLP China）",
-        "fund_manager": "中金基金管理有限公司",
-        "listing_date": "2021-06",
-        "verification_confidence": "high"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 4,
-          "reasoning": "底层资产位于核心物流枢纽，出租率超90%，租金收缴率高",
-          "evidence": [
-            "2024年末平均签约出租率超90%，租金收缴率99.70%",
-            "资产_location:京津冀、长三角、粤港澳大湾区、成渝经济圈核心物流枢纽"
-          ]
-        },
-        "contract_stability": {
-          "score": 4,
-          "reasoning": "加权平均剩余租期547天，租户分散，无单一依赖",
-          "evidence": [
-            "2024年末加权平均剩余租期547天",
-            "底层资产前五大租户租金收入占比28.09%，无单一租户收入占比超10%"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "基金管理人中金基金，原始权益人普洛斯中国，实力较强",
-          "evidence": [
-            "fund_manager:中金基金管理有限公司",
-            "original_owner:普洛斯中国（GLP China）"
-          ]
-        },
-        "financial_health": {
-          "score": 3,
-          "reasoning": "2024年净利润-9889.29万元（商誉减值），可供分配金额3.58亿元",
-          "evidence": [
-            "2024年合并报表营业总收入4.56亿元，可供分配金额3.58亿元",
-            "2024年净利润-9889.29万元，因确认商誉减值损失1.13亿元"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 4,
-          "reasoning": "未发现重大监管风险，运营合规性良好",
-          "evidence": [
-            "verification_confidence:high"
-          ]
-        },
-        "growth_potential": {
-          "score": 3,
-          "reasoning": "2025Q1出租率同比+6pct，存在扩募增长机会",
-          "evidence": [
-            "2025Q1平均签约出租率超90%，同比+6pct，环比+2pct",
-            "扩募收购新资产并实现NOI同比增长10%以上"
-          ]
-        }
-      },
-      "total_score": 22,
-      "grade": "A-",
-      "recommendation": "include",
-      "red_flags": [
-        "2024年净利润-9889.29万元，主要因商誉减值1.13亿元，可能影响未来资产估值 [2025-03-27]",
-        "2024年EBITDA净利率67.07%，虽保持稳定但需关注运营成本上升风险 [2025-03-28]"
-      ],
-      "upgrade_triggers": [
-        "出租率持续提升至95%以上且租金单价环比增长",
-        "扩募收购新资产并实现NOI同比增长10%以上",
-        "商誉减值风险消除且净利润转正"
-      ],
-      "status": "ok",
-      "usage": {
-        "total_tokens": 137163
-      },
-      "searchCount": 8,
-      "fetchCount": 4,
-      "iterations": 9
-    },
-    {
-      "code": "180302",
-      "name": "华夏深国际REIT",
-      "search_queries_used": [
-        "华夏深国际REIT 2024年报 NOI 可分配金额 减值",
-        "华夏深国际REIT 2025 Q1季报 出租率",
-        "华夏深国际REIT 解禁公告 2025",
-        "华夏深国际REIT 关联交易 2024",
-        "华夏深国际REIT 分红覆盖率 超额分配",
-        "华夏深国际REIT 特许经营权 剩余年限",
-        "华夏深国际REIT 扩募进展 2025",
-        "华夏深国际REIT 2024 净利润 亏损"
-      ],
-      "fetched_urls": [
-        "https://news.qq.com/rain/a/20260416A05N7Q00",
-        "https://finance.sina.com.cn/stock/aigc/fundfs/2026-01-21/doc-inhiavim5194642.shtml?cref=cj",
-        "https://www.szihl.com/uploads/20250627035044_159494.pdf",
-        "https://ir.sf-express.com/media/cnwnu3qx/a%E8%82%A1-%E9%A1%BA%E4%B8%B0%E6%8E%A7%E8%82%A12024%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A-1.pdf"
-      ],
-      "fact_anchor": {
-        "underlying_asset": "深国际华东智慧城一期项目、深国际贵州综合物流港项目",
-        "asset_location": "浙江省杭州市钱塘区、贵州省黔南州龙里县",
-        "original_owner": "深圳市深国际物流发展有限公司",
-        "fund_manager": "华夏基金管理有限公司",
-        "listing_date": "2024-07",
-        "verification_confidence": "high"
-      },
-      "scores": {
-        "asset_quality": {
-          "score": 3,
-          "reasoning": "出租率维持较高水平，但租金单价同比下滑明显",
-          "evidence": [
-            "2025Q4整体出租率89.35%",
-            "2025Q4平均租金单价同比-19.25%"
-          ]
-        },
-        "contract_stability": {
-          "score": 2,
-          "reasoning": "租户集中度高，前五大租户收入占比超70%",
-          "evidence": [
-            "前五大租户租金收入占比71.32%"
-          ]
-        },
-        "operator_strength": {
-          "score": 4,
-          "reasoning": "华夏基金管理，原始权益人深国际支持扩募",
-          "evidence": [
-            "华夏基金管理有限公司",
-            "深国际2025年3月公告适时启动扩募"
-          ]
-        },
-        "financial_health": {
-          "score": 3,
-          "reasoning": "分红覆盖率较高，但租金下滑可能影响未来现金流",
-          "evidence": [
-            "2025年分红覆盖率96.97%",
-            "2025Q4平均租金单价同比-19.25%"
-          ]
-        },
-        "regulatory_risk": {
-          "score": 4,
-          "reasoning": "无明显监管风险，运作符合REIT规范",
-          "evidence": []
-        },
-        "growth_potential": {
-          "score": 3,
-          "reasoning": "扩募计划存在，但租金下滑和租户集中制约增长",
-          "evidence": [
-            "深国际2025年3月公告适时启动扩募",
-            "2025Q4平均租金单价同比-19.25%"
+            "2025Q3通行费收入同比-4.51%，日均车流量同比-2.47%",
+            "2025年基金扩募计划未明确推进"
           ]
         }
       },
@@ -870,190 +86,571 @@
       "grade": "B+",
       "recommendation": "watch",
       "red_flags": [
-        "2025Q4整体平均租金单价同比降19.25%，贵州项目同比降25.55%（2026-01-21）",
-        "前五大租户租金收入占比71.32%，租户集中度较高（2026-01-21）",
-        "2025Q4杭州项目出租率86.50%，同比-6.4%（2026-01-21）"
+        "2024年净利润-2.90亿元，主要因财务费用较高（2025-03-28 搜狐财经）",
+        "特许经营权剩余年限仅11.22年，到期后资产存在清零风险（2025Q3季报）",
+        "2025Q3通行费收入同比下降4.51%，客车流量同比-4.32%（2025Q3季报）"
       ],
       "upgrade_triggers": [
-        "扩募落地：成功收购优质物流资产提升规模效应",
-        "租金企稳：杭州/贵州项目租金单价连续两季度环比增长",
-        "租户结构优化：前五大租户收入占比降至50%以下"
+        "扩募收购新资产项目落地，延长特许经营期限",
+        "车流量及通行费收入连续2季度同比正增长",
+        "融资成本下降导致净利润显著改善"
       ],
       "status": "ok",
       "usage": {
-        "total_tokens": 81432
+        "total_tokens": 47399
       },
       "searchCount": 8,
       "fetchCount": 4,
       "iterations": 3,
-      "seeded": true,
-      "recoveredOn": "retry1"
+      "seeded": true
     },
     {
-      "code": "508005",
-      "name": "华夏首创奥莱REIT",
+      "code": "508018",
+      "name": "华夏中国交建REIT",
       "search_queries_used": [
-        "华夏首创奥莱REIT 508005 2024年报 NOI 可分配金额 出租率",
-        "华夏首创奥莱REIT 508005 2024年报 净经营收入 NOI 可分配金额 出租率",
-        "华夏首创奥莱REIT 2024年报 NOI 出租率 2025Q1",
-        "华夏首创奥莱REIT 商誉减值 资产减值 扩募 解禁 关联交易",
-        "华夏首创奥莱REIT 2024年报 NOI 净经营收入",
-        "华夏首创奥莱REIT 2025Q1 出租率",
-        "华夏首创奥莱REIT 2025年一季度报告 出租率",
-        "华夏首创奥莱REIT 解禁公告 2025"
+        "华夏中国交建REIT 2024年报 NOI 可分配金额",
+        "华夏中国交建REIT 2025Q1 季报 NOI 可分配金额",
+        "华夏中国交建REIT 解禁 2025",
+        "华夏中国交建REIT 2025Q1 NOI",
+        "华夏中国交建REIT 2025 解禁日期 规模",
+        "华夏中国交建REIT 关联交易 2024",
+        "华夏中国交建REIT 2024 超额分配",
+        "华夏中国交建REIT 2025Q1 季报 全文"
       ],
       "fetched_urls": [
-        "http://pdf.dfcfw.com/pdf/H2_AN202503301649145362_1.pdf",
-        "http://www.sse.com.cn/reits/assortment/prices/detail/announcements/?code=508005&name=N%E5%8D%8E%E5%A4%8F%E9%A6%96%E5%88%9B%E5%A5%A5%E8%8E%B1REIT"
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-03-29/508018_20250329_2AXB.pdf",
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2024-09-20/508018_20240920_R16E.pdf",
+        "https://cj.sina.cn/articles/view/7840890301/1d35a7dbd00101c2zi"
       ],
       "fact_anchor": {
-        "underlying_asset": "济南首创奥莱项目、武汉首创奥莱项目",
-        "asset_location": "济南、武汉",
-        "original_owner": "首创城发集团",
-        "fund_manager": "华夏基金",
-        "listing_date": "2024-08",
-        "verification_confidence": "high"
+        "underlying_asset": "嘉通高速公路",
+        "asset_location": "湖北赤壁",
+        "original_owner": "unknown",
+        "fund_manager": "华夏基金管理有限公司",
+        "listing_date": "2022-04",
+        "verification_confidence": "medium"
       },
       "scores": {
         "asset_quality": {
-          "score": 4,
-          "reasoning": "出租率高且稳定（98%+），租金收缴率100%",
+          "score": 2,
+          "reasoning": "2024年NOI-8.93亿，通行费降7.5%，计提减值12.09亿，资产质量差",
           "evidence": [
-            "2024年末整体出租率98.07%，2025年末98.96%，租金收缴率100%"
+            "2024年报，2025-03-29 上交所公告"
           ]
         },
         "contract_stability": {
-          "score": 2,
-          "reasoning": "底层资产剩余租期仅1.70年，续租风险高",
+          "score": 4,
+          "reasoning": "特许经营权剩余约21年，期限较长，稳定性较好",
           "evidence": [
-            "底层资产剩余租期仅1.70年（济南1.75年，武汉1.65年）"
+            "2025Q1运营公告，2025-04-21 新浪财经"
           ]
         },
         "operator_strength": {
           "score": 4,
-          "reasoning": "华夏基金管理，首创城发为原owner，运营实力强",
+          "reasoning": "华夏基金管理，实力较强，但关联交易金额未公开",
           "evidence": [
-            "fund_manager: 华夏基金",
-            "original_owner: 首创城发集团"
+            "2024年报，2025-03-29 上交所公告"
           ]
         },
         "financial_health": {
-          "score": 4,
-          "reasoning": "收入利润稳定，可供分配完成率107.03%，Q1分派率6.52%",
+          "score": 1,
+          "reasoning": "2024年NOI为负，超额分配2349万，净利润-11.72亿，财务健康差",
           "evidence": [
-            "2024年可供分配金额完成率107.03%",
-            "2025Q1年化分派率6.52%"
+            "2024年报，2025-03-29 上交所公告"
           ]
         },
         "regulatory_risk": {
-          "score": 4,
-          "reasoning": "未发现重大监管风险，合规运营",
-          "evidence": []
+          "score": 3,
+          "reasoning": "关联交易已披露，无重大违规，监管风险中等",
+          "evidence": [
+            "2024年报，2025-03-29 上交所公告"
+          ]
         },
         "growth_potential": {
-          "score": 3,
-          "reasoning": "短期租约限制增长，扩募和租约延长可提升潜力",
+          "score": 1,
+          "reasoning": "通行费收入降7.5%，2025Q1分派率5.45%下滑，增长潜力低",
           "evidence": [
-            "2025Q1年化分派率6.52%",
-            "扩募收购新奥莱项目可实现NOI协同增长"
+            "2024年报，2025-03-29 上交所公告",
+            "2025-04-21 新浪财经"
           ]
         }
       },
-      "total_score": 21,
-      "grade": "A-",
-      "recommendation": "watch",
+      "total_score": 15,
+      "grade": "B-",
+      "recommendation": "exclude",
       "red_flags": [
-        "2024年基金合同生效至年末仅4.5个月，可供分配金额4405.71万元按全年折算后可能低于预期分派率5.46%（2024年报）",
-        "2025年8月解禁后流通份额激增，可能对二级市场价格形成压力（2025-08-20 上交所公告）",
-        "底层资产剩余租期仅1.70年（济南1.75年，武汉1.65年），短期租约到期后存在续租风险（2024年报）"
+        "2024年超额分配2349万元，实际分配超出可供分配金额8.8%，2025-03-29",
+        "2024年无形资产减值12.09亿元，资产组账面价值缩水11.9%，2025-03-29",
+        "2024年通行费收入同比下降7.5%，货车流量增长2.15%，2025-03-29",
+        "2025Q1年化现金流分派率5.45%，较2024年5.51%下滑，2025-04-21"
       ],
       "upgrade_triggers": [
-        "2025年全年可供分配金额同比增长超10%且分派率稳定在5.5%以上",
-        "扩募收购新奥莱项目并实现 NOI 协同增长",
-        "长期租约占比提升至50%以上且平均剩余租期延长至3年以上"
+        "连续两个季度通行费收入同比正增长且NOI回升至5亿元以上",
+        "特许经营权延期或扩募收购新资产项目",
+        "资产减值转回或评估值修复至历史高位"
       ],
       "status": "ok",
       "usage": {
-        "total_tokens": 107895
+        "total_tokens": 139306
       },
       "searchCount": 8,
-      "fetchCount": 2,
+      "fetchCount": 3,
       "iterations": 8,
       "seeded": true
     },
     {
-      "code": "180501",
-      "name": "红土创新深圳安居REIT",
+      "code": "508001",
+      "name": "浙商沪杭甬REIT",
       "search_queries_used": [
-        "红土创新深圳安居REIT 2024年报 NOI 可分配金额 减值",
-        "180501 2024年报 财务数据 NOI 出租率",
-        "红土创新深圳安居REIT 2024年报 巨潮资讯",
-        "180501 特许经营权 剩余年限",
-        "红土创新深圳安居REIT 2024年报 全文 巨潮资讯",
-        "180501 2025Q1 季报 出租率",
-        "红土创新深圳安居REIT 2024年度报告 全文 财务报表",
-        "180501 2025年第一季度报告 出租率"
+        "浙商沪杭甬REIT 2024年报 NOI 可分配金额",
+        "浙商沪杭甬REIT 2025 Q1 季报 财务数据",
+        "浙商沪杭甬REIT 特许经营权 剩余年限",
+        "浙商沪杭甬REIT 解禁 2025 公告",
+        "浙商沪杭甬REIT 关联交易 2024",
+        "浙商沪杭甬REIT 分红覆盖率 2024",
+        "浙商沪杭甬REIT 资产减值 2024",
+        "浙商沪杭甬REIT 扩募 进展 2025"
       ],
       "fetched_urls": [
-        "http://epaper.stcn.com/att/202604/08/ZQ08B057-CR_eBook.pdf",
-        "https://finance.sina.com.cn/roll/2025-04-17/doc-inetmqpy6103315.shtml",
-        "https://www.nbd.com.cn/articles/2025-04-16/3834337.html"
+        "http://pdf.dfcfw.com/pdf/H2_AN202503241646739505_1.pdf",
+        "https://xueqiu.com/S/SH508001",
+        "https://stockmc.xueqiu.com/202603/508001_20260331_AW50.pdf",
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-10-28/508001_20251028_Z3BS.pdf"
       ],
       "fact_anchor": {
-        "underlying_asset": "安居百泉阁、安居锦园、保利香槟苑、凤凰公馆4个保障性租赁住房项目（含1830套住房、9间商铺、510个停车位，总建筑面积13.47万平方米）",
-        "asset_location": "深圳市福田区、罗湖区、大鹏新区、坪山区",
-        "original_owner": "深圳市人才安居集团有限公司",
-        "fund_manager": "红土创新基金管理有限公司",
-        "listing_date": "2022-08",
+        "underlying_asset": "杭徽高速公路浙江段",
+        "asset_location": "杭州市余杭区至浙皖交界昱岭关",
+        "original_owner": "浙江沪杭甬高速公路股份有限公司",
+        "fund_manager": "浙江浙商证券资产管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 2,
+          "reasoning": "特许经营权剩余年限短，通行费收入连续下滑",
+          "evidence": [
+            "特许经营权剩余年限：昌昱段至2029年（剩余4年）",
+            "2025年通行费含税收入7.09亿元，同比下降6.10%"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "特许经营合同明确，剩余年限较短",
+          "evidence": [
+            "特许经营权剩余年限：昌昱段至2029年，汪昌段及留汪段至2031年"
+          ]
+        },
+        "operator_strength": {
+          "score": 3,
+          "reasoning": "运营方为券商资管，关联交易占营业成本11.77%",
+          "evidence": [
+            "2025年支付运营管理机构成本1.02亿元，占营业成本11.77%"
+          ]
+        },
+        "financial_health": {
+          "score": 2,
+          "reasoning": "净利润由盈转亏，超额分配依赖存量资金",
+          "evidence": [
+            "2025年净利润-633.24万元",
+            "2025年超额分配2052.78万元，分红覆盖率105.14%"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 3,
+          "reasoning": "受ETC政策调整影响，特许经营权续期存在不确定性",
+          "evidence": [
+            "2025年4月起ETC省外货车通行费优惠调整为85折",
+            "特许经营权昌昱段至2029年到期"
+          ]
+        },
+        "growth_potential": {
+          "score": 1,
+          "reasoning": "通行费收入连续下降，特许经营权剩余年限短",
+          "evidence": [
+            "2024年通行费收入同比降0.95%，2025年降6.10%",
+            "特许经营权剩余年限最长6年"
+          ]
+        }
+      },
+      "total_score": 14,
+      "grade": "C+",
+      "recommendation": "exclude",
+      "red_flags": [
+        "特许经营权剩余年限短（部分路段仅4年，2029年到期）",
+        "2025年超额分配2052.78万元，分红覆盖率105.14%",
+        "货车通行费收入连续两年下滑（2024年-9.85%，2025年-12.57%）",
+        "2025年净利润-633.24万元，同比由盈转亏"
+      ],
+      "upgrade_triggers": [
+        "特许经营权续期获得政府批准",
+        "货车通行费收入同比转正且连续2个季度增长",
+        "分红覆盖率恢复至100%以内",
+        "扩募收购新资产延长存续期"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 69161
+      },
+      "searchCount": 8,
+      "fetchCount": 4,
+      "iterations": 3,
+      "seeded": true
+    },
+    {
+      "code": "508000",
+      "name": "华安张江产业园REIT",
+      "search_queries_used": [
+        "华安张江产业园REIT 508000 底层资产 原始权益人 基金管理人 上市日期",
+        "华安张江产业园REIT 508000 原始权益人 基金管理人",
+        "华安张江产业园REIT 2025 解禁",
+        "华安张江产业园REIT 2025 解禁公告",
+        "508000 2025 解禁公告 上交所",
+        "华安张江产业园REIT 2025 分红覆盖率 超额分配",
+        "张江光大园 土地使用年限 张润大厦",
+        "华安张江REIT 2025 超额分配 确认",
+        "华安张江REIT 2025 超额分配 年报说明"
+      ],
+      "fetched_urls": [
+        "https://www.huaan.com.cn/upload2010/2026/03/27/011149412_0_24842729-aa75-3af1-a85a-824a6cc3d121.pdf",
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-10-28/508000_20251028_D08D.pdf"
+      ],
+      "fact_anchor": {
+        "underlying_asset": "张江光大园、张润大厦",
+        "asset_location": "上海市浦东新区盛夏路500弄（张江光大园）；上海市浦东新区盛夏路61弄1-3号、金秋路158号（张润大厦）",
+        "original_owner": "上海张江（集团）有限公司 / 上海张江集成电路产业区开发有限公司 / 上海光全投资中心（有限合伙） / 光控安石（北京）投资管理有限公司",
+        "fund_manager": "华安基金管理有限公司",
+        "listing_date": "2021-06",
         "verification_confidence": "high"
       },
       "scores": {
         "asset_quality": {
           "score": 3,
-          "reasoning": "出租率较高但同比下滑，扩募资产有溢价潜力",
+          "reasoning": "出租率下滑，资产估值下降，EBITDA增长",
           "evidence": [
-            "2024年整体出租率96.29%（同比-2.04pct）",
-            "拟收购新资产平均租金预计高出15%-20%"
+            "2025年末整体出租率87.38%同比-4.92%",
+            "2025年投资性房地产估值下降7.10%",
+            "2025年EBITDA同比+12.41%"
           ]
         },
         "contract_stability": {
-          "score": 3,
-          "reasoning": "租金受政府调控涨幅低，租户集中度较高",
+          "score": 4,
+          "reasoning": "基金合同存续期35年，期限稳定",
           "evidence": [
-            "荣耀终端贡献超22%收入",
-            "2025年租金上调0.44%-2.75%"
+            "基金合同存续期35年"
           ]
         },
         "operator_strength": {
           "score": 4,
-          "reasoning": "国企背景基金管理，推进扩募计划",
+          "reasoning": "管理人华安基金管理经验丰富",
           "evidence": [
-            "基金经理为红土创新基金管理有限公司",
-            "2024年6月启动扩募计划"
+            "fund_manager: 华安基金管理有限公司"
           ]
         },
         "financial_health": {
-          "score": 3,
-          "reasoning": "营收净利润稳定，高分红，但成本增幅远高于租金涨幅",
+          "score": 2,
+          "reasoning": "连续两年净利润为负，存在超额分配",
           "evidence": [
-            "2024年营业收入5438.89万元，净利润2406.75万元",
-            "2024年主要项目成本增幅61.77%-86.84%"
+            "2025年净利润-42,787,804.65元",
+            "2025年实际分配1.20亿元超可供分配1.13亿元"
           ]
         },
         "regulatory_risk": {
-          "score": 2,
-          "reasoning": "租金受政府调控，扩募需审批，存在政策不确定性",
+          "score": 4,
+          "reasoning": "资产位于上海，监管环境稳定",
           "evidence": [
-            "租金定价由福田区住建局核定",
-            "拟收购项目需通过监管审批"
+            "asset_location: 上海市浦东新区"
           ]
         },
         "growth_potential": {
           "score": 3,
-          "reasoning": "扩募计划带来租金增长潜力，但存在执行风险",
+          "reasoning": "EBITDA增长，出租率下滑，政策依赖",
           "evidence": [
-            "拟收购新增2338套保障房",
-            "新资产租金预计高出15%-20%"
+            "EBITDA同比+12.41%",
+            "2025年末出租率同比-4.92%",
+            "平均租金单价同比-1.43%"
+          ]
+        }
+      },
+      "total_score": 20,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "2025年实际分配金额1.20亿元超过可供分配金额1.13亿元，存在超额分配风险 [2026-03-27]",
+        "张江光大园出租率较2023年下降10.87个百分点，空置面积增加4,694.63平方米 [2026-03-27]",
+        "2025年投资性房地产估值25.13亿元，较2024年下降7.10% [2026-03-27]",
+        "前五大租户租金收入占比38.35%，租户集中度较高 [2026-03-27]"
+      ],
+      "upgrade_triggers": [
+        "张江光大园出租率回升至90%以上且稳定6个月",
+        "连续两个季度可供分配金额覆盖实际分配比例≥100%",
+        "张江科学城产业政策落地带来租金单价同比增长5%以上"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 296280
+      },
+      "searchCount": 5,
+      "fetchCount": 2,
+      "iterations": 11,
+      "seeded": false
+    },
+    {
+      "code": "180101",
+      "name": "博时蛇口产园REIT",
+      "search_queries_used": [
+        "博时蛇口产园REIT 2024年报 NOI 可分配金额",
+        "博时蛇口产园REIT 2025Q1 出租率",
+        "博时蛇口产园REIT 商誉减值 资产减值 2024",
+        "博时蛇口产园REIT 扩募终止 关联交易",
+        "博时蛇口产园REIT 解禁 2025",
+        "博时蛇口产园REIT 分红覆盖率 超额分配",
+        "博时蛇口产园REIT 特许经营权 剩余年限",
+        "180101 博时蛇口产园REIT 2024年报 公告"
+      ],
+      "fetched_urls": [],
+      "fact_anchor": {
+        "underlying_asset": "深圳蛇口万融大厦、万海大厦、光明加速器二期",
+        "asset_location": "深圳蛇口",
+        "original_owner": "招商蛇口",
+        "fund_manager": "博时基金",
+        "listing_date": "2021-06",
+        "verification_confidence": "medium"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": null,
+          "reasoning": "关键财务数据未公开，信息不足",
+          "evidence": [
+            "2024年报及2025Q1财务数据未通过公开渠道获取"
+          ]
+        },
+        "contract_stability": {
+          "score": null,
+          "reasoning": "特许经营权剩余年限未披露，信息不足",
+          "evidence": [
+            "特许经营权剩余年限未在公开信息中明确披露"
+          ]
+        },
+        "operator_strength": {
+          "score": null,
+          "reasoning": "基金经理实力信息不足",
+          "evidence": [
+            "基金经理为博时基金，但无具体管理能力数据"
+          ]
+        },
+        "financial_health": {
+          "score": null,
+          "reasoning": "财务数据及分红覆盖率未公开，信息不足",
+          "evidence": [
+            "2024年报及2025Q1财务数据未获取",
+            "分红覆盖率及超额分配情况无公开数据"
+          ]
+        },
+        "regulatory_risk": {
+          "score": null,
+          "reasoning": "风险信息未检索到，监管风险评估信息不足",
+          "evidence": [
+            "商誉减值等风险信息未检索到有效结果"
+          ]
+        },
+        "growth_potential": {
+          "score": null,
+          "reasoning": "财务及扩募信息缺失，增长潜力评估不足",
+          "evidence": [
+            "扩募进展未检索到有效结果"
+          ]
+        }
+      },
+      "total_score": null,
+      "grade": "INCOMPLETE",
+      "recommendation": "watch",
+      "red_flags": [
+        "关键财务数据（2024年报、2025Q1季报）未公开或无法获取，存在信息透明度风险 [日期：2025-04]",
+        "核心风险指标（资产减值、扩募、解禁等）缺乏公开信息验证，可能存在未披露风险 [日期：2025-04]"
+      ],
+      "upgrade_triggers": [
+        "2024年报及2025Q1季报正式披露且财务指标（NOI/出租率）符合行业平均水平",
+        "公开渠道发布扩募进展、特许经营权续期等正面信息",
+        "分红覆盖率≥100%且无超额分配记录"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 14499
+      },
+      "searchCount": 0,
+      "fetchCount": 0,
+      "iterations": 3,
+      "seeded": true
+    },
+    {
+      "code": "508021",
+      "name": "国泰海通临港创新产业园REIT",
+      "search_queries_used": [
+        "国泰海通临港创新产业园REIT 2024年报 NOI 可分配金额",
+        "508021 2025Q1 出租率",
+        "国泰海通临港REIT 商誉减值 资产减值",
+        "508021 净利润下降 净亏损",
+        "国泰海通临港创新产业园REIT 扩募终止 关联交易",
+        "508021 解禁 2025",
+        "国泰海通临港REIT 超额分配 分红覆盖率",
+        "临港创新产业园REIT 特许经营权 剩余年限"
+      ],
+      "fetched_urls": [
+        "http://cj.sina.cn/articles/view/7840890301/1d35a7dbd00101bucu",
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-10-17/508021_20251017_9EB7.pdf",
+        "https://pdf.dfcfw.com/pdf/H301_AP202509031738476477_1.pdf",
+        "http://reitse.cn/observe/article?category1=999&category2=304&id=61932"
+      ],
+      "fact_anchor": {
+        "underlying_asset": "临港奉贤智造园一期、临港奉贤智造园二期、漕河泾康桥科技绿洲",
+        "asset_location": "上海临港",
+        "original_owner": "上海临港华平经济发展有限公司",
+        "fund_manager": "上海国泰海通证券资产管理有限公司",
+        "listing_date": "2022-10",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 3,
+          "reasoning": "2026Q1出租率92.02%，康桥项目租户集中度65.67%",
+          "evidence": [
+            "2026年一季度整体出租率92.02%",
+            "康桥项目前十大租户租赁面积占比65.67%"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "土地使用权至2061-2065年，扩募项目租约到期面积占比53%",
+          "evidence": [
+            "土地使用权期限至2061-2065年",
+            "2025-2027年租约到期面积占比53%"
+          ]
+        },
+        "operator_strength": {
+          "score": 3,
+          "reasoning": "管理人系券商资管，原始权益人2024年现金流-138.18亿元",
+          "evidence": [
+            "原始权益人临港集团2024年经营活动现金流-138.18亿元"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2026Q1 EBITDA同比增167.18%，可供分配金额增85.26%",
+          "evidence": [
+            "2026年一季度EBITDA同比增长167.18%",
+            "可供分配金额同比增长85.26%"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "扩募通过上交所公告，无明显监管风险提示",
+          "evidence": [
+            "2025-10-17上交所扩募公告"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "扩募新增项目，行业营收同比下降14.47%",
+          "evidence": [
+            "2025年完成扩募新增漕河泾康桥项目",
+            "2024年产业园REITs行业平均营收同比下降14.47%"
+          ]
+        }
+      },
+      "total_score": 20,
+      "grade": "B+",
+      "recommendation": "watch",
+      "red_flags": [
+        "2024年可供分配金额同比下降15.17%（2025-03-30）",
+        "康桥项目前十大租户租赁面积占比65.67%，2025-2027年租约到期面积占比53%（2025-10-17）",
+        "原始权益人临港集团2024年经营活动现金流-138.18亿元（2025-10-17）",
+        "2024年产业园REITs行业平均营收同比下降14.47%，该REIT营收降幅7.23%（2025-09-02）"
+      ],
+      "upgrade_triggers": [
+        "康桥项目出租率持续提升至95%以上且租金收缴率恢复至95%+",
+        "扩募资金使用效率提升（当前46.04%）并实现新增资产现金流贡献",
+        "行业出租率及租金水平触底回升，带动可供分配金额同比增速转正"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 73432
+      },
+      "searchCount": 8,
+      "fetchCount": 4,
+      "iterations": 3,
+      "seeded": true
+    },
+    {
+      "code": "180303",
+      "name": "华泰宝湾物流REIT",
+      "search_queries_used": [
+        "华泰宝湾物流REIT 2024年报 NOI 可分配金额",
+        "180303 2024年报 商誉减值 资产减值",
+        "华泰宝湾物流REIT 2025Q1 出租率 NOI",
+        "180303 关联交易 2024 公告",
+        "华泰宝湾物流REIT 扩募 进展 2025",
+        "180303 解禁 2025 公告",
+        "华泰宝湾物流REIT 分红覆盖率 2024",
+        "180303 特许经营权 剩余年限"
+      ],
+      "fetched_urls": [
+        "https://pdf.dfcfw.com/pdf/H2_AN202412051641193615_1.pdf?1733418416000.pdf",
+        "http://pdf.dfcfw.com/pdf/H2_AN202510261769412876_1.pdf",
+        "https://www.163.com/dy/article/KQVR711R0519QIKK.html",
+        "https://pdf.dfcfw.com/pdf/H301_AP202410161640317329_1.pdf"
+      ],
+      "fact_anchor": {
+        "underlying_asset": "天津宝湾物流园、南京宝湾物流园、嘉兴高标物流园",
+        "asset_location": "天津、南京、嘉兴",
+        "original_owner": "宝湾物流控股有限公司3家全资子公司",
+        "fund_manager": "华泰证券（上海）资产管理有限公司",
+        "listing_date": "2024-10",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 3,
+          "reasoning": "土地剩余年限较长，但租约集中到期风险高",
+          "evidence": [
+            "2024-10-16 上海证券REITs周报",
+            "2024-12-05 招募说明书"
+          ]
+        },
+        "contract_stability": {
+          "score": 2,
+          "reasoning": "租约集中到期比例高，关联交易占比上升",
+          "evidence": [
+            "2024-12-05 招募说明书"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "华泰证券资管管理，运营经验丰富",
+          "evidence": [
+            "2024-12-05 招募说明书"
+          ]
+        },
+        "financial_health": {
+          "score": 3,
+          "reasoning": "预测分派率稳定，但解禁或影响流动性",
+          "evidence": [
+            "2025-10-27 解禁公告"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 3,
+          "reasoning": "扩募待审批，关联交易需关注合规",
+          "evidence": [
+            "2024-12-05 招募说明书",
+            "2026-04-20 网易财经"
+          ]
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "扩募项目待审核，潜在增长空间",
+          "evidence": [
+            "2026-04-20 网易财经"
           ]
         }
       },
@@ -1061,23 +658,202 @@
       "grade": "B",
       "recommendation": "watch",
       "red_flags": [
-        "2024年整体出租率96.29%（同比-2.04pct），保利香槟苑降至90.79%，配套商业出租率同比-5.88pct（2025-04-17）",
-        "2024年主要项目成本增幅61.77%-86.84%，租金涨幅仅0.44%-2.75%（2025-04-16）",
-        "拟收购项目需监管审批，新资产出租率及租金溢价存在不及预期风险（2025-04-17）",
-        "荣耀终端贡献超22%收入，退租或缩减规模将影响现金流稳定性（2025-04-17）"
+        "2025年10月29日解禁13.8亿份，占总份额46%，可能引发二级市场抛压",
+        "2025年底前79.73%租约集中到期，若续租不及预期将影响现金流稳定性",
+        "2024年1-3月关联租户收入占比12.67%，存在利益输送风险"
       ],
       "upgrade_triggers": [
-        "扩募计划顺利落地且新资产出租率达标（≥95%），租金溢价兑现15%+",
-        "核心区域项目（福田/罗湖）出租率回升至98%以上，成本增速收窄至10%以内",
-        "政府调整保障房租金定价机制，允许市场化调价幅度提升至5%+"
+        "扩募项目（成都/西安/青岛/宁波物流园）获国家发改委推荐并通过证监会审核",
+        "2025年底前到期租约续签率超90%且租金水平保持稳定",
+        "2025年实际可供分配金额超预测值（5499.07万元）10%以上"
       ],
       "status": "ok",
       "usage": {
-        "total_tokens": 167981
+        "total_tokens": 101501
       },
       "searchCount": 8,
       "fetchCount": 4,
+      "iterations": 4,
+      "seeded": true
+    },
+    {
+      "code": "180301",
+      "name": "红土创新盐田港REIT",
+      "search_queries_used": [
+        "180301 2024年报 NOI 可分配金额",
+        "红土创新盐田港REIT 2024年报 巨潮资讯",
+        "红土创新盐田港REIT 2024年报 公告 PDF",
+        "红土创新盐田港REIT 2024年报 全文 PDF",
+        "红土创新盐田港REIT 2024年度报告 全文 公告",
+        "红土创新盐田港REIT 2024年报 深交所公告 PDF",
+        "红土创新盐田港REIT 2025Q1 季报",
+        "红土创新盐田港REIT 2024年报 巨潮资讯 PDF"
+      ],
+      "fetched_urls": [
+        "http://www.htcxfund.com/plat_files/upload/png_upload/20240705/202407051720170504406.pdf",
+        "https://fundf10.eastmoney.com/jjgg_180301.html"
+      ],
+      "fact_anchor": {
+        "underlying_asset": "世纪物流园仓储物流设施",
+        "asset_location": "深圳市盐田区",
+        "original_owner": "深圳港集团有限公司",
+        "fund_manager": "红土创新基金管理有限公司",
+        "listing_date": "2021-06",
+        "verification_confidence": "high"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 5,
+          "reasoning": "出租率高（100%/91.50%），资产质量良好",
+          "evidence": [
+            "2024年上半年现代物流中心出租率91.50%，世纪物流园出租率100% [来源：2024-07-06 红土创新基金官网半年报运营数据公告]"
+          ]
+        },
+        "contract_stability": {
+          "score": 2,
+          "reasoning": "特许经营权剩余年限未披露，产权稳定性待确认",
+          "evidence": [
+            "特许经营权剩余年限未披露，底层资产产权稳定性待确认 [来源：现有公告未提及相关信息]"
+          ]
+        },
+        "operator_strength": {
+          "score": 3,
+          "reasoning": "基金管理方为红土创新基金，无负面信息",
+          "evidence": [
+            "fund_manager: 红土创新基金管理有限公司"
+          ]
+        },
+        "financial_health": {
+          "score": null,
+          "reasoning": "2024年报未公开，核心财务数据缺失",
+          "evidence": [
+            "2024年完整年报未公开获取，NOI、实际可分配金额等核心财务数据缺失 [来源：搜索结果未返回2024年报全文]"
+          ]
+        },
+        "regulatory_risk": {
+          "score": null,
+          "reasoning": "信息不足",
+          "evidence": []
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "2024年预测分派率4.28%，有一定增长潜力",
+          "evidence": [
+            "2024年预测可供分配金额91,874,665.78元对应分派率4.28% [来源：2024-07-06 红土创新基金官网半年报]"
+          ]
+        }
+      },
+      "total_score": 13,
+      "grade": "C+",
+      "recommendation": "watch",
+      "red_flags": [
+        "2024年完整年报未公开获取，NOI、实际可分配金额等核心财务数据缺失（2024年报未返回）",
+        "2025Q1季报未公开获取，最新出租率、现金流数据不明确（2025Q1季报未返回）",
+        "特许经营权剩余年限未披露，底层资产产权稳定性待确认（现有公告未提及）"
+      ],
+      "upgrade_triggers": [
+        "公开披露2024年年报且NOI同比增长≥5%",
+        "2025Q1出租率维持90%以上且可分配金额覆盖分红比例≥1.2倍",
+        "明确披露特许经营权剩余年限≥15年"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 72271
+      },
+      "searchCount": 8,
+      "fetchCount": 2,
       "iterations": 9,
+      "seeded": true
+    },
+    {
+      "code": "508002",
+      "name": "华安百联消费REIT",
+      "search_queries_used": [
+        "华安百联消费REIT 508002 2024年报 NOI 可分配金额",
+        "华安百联消费REIT 508002 2025Q1 出租率",
+        "华安百联消费REIT 508002 商誉减值 资产减值",
+        "华安百联消费REIT 508002 净利润下降 净亏损",
+        "华安百联消费REIT 508002 扩募终止 关联交易",
+        "华安百联消费REIT 508002 解禁 公告",
+        "华安百联消费REIT 508002 超额分配 分红覆盖率",
+        "华安百联消费REIT 508002 特许经营权 剩余年限"
+      ],
+      "fetched_urls": [
+        "https://www.stcn.com/article/detail/1624853.html",
+        "https://m.163.com/dy/article/JTN7T3FV055650O5.html",
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-08-18/508002_20250818_1YZV.pdf",
+        "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2024-06-20/508002_20240620_GTOR.pdf"
+      ],
+      "fact_anchor": {
+        "underlying_asset": "上海又一城购物中心",
+        "asset_location": "上海五角场商圈",
+        "original_owner": "上海百联集团股份有限公司",
+        "fund_manager": "华安基金管理有限公司",
+        "listing_date": "2024-08",
+        "verification_confidence": "medium"
+      },
+      "scores": {
+        "asset_quality": {
+          "score": 4,
+          "reasoning": "出租率95.04%，租金收缴率98.66%，资产质量良好",
+          "evidence": [
+            "2025Q1出租率95.04%，平均租金226元/平方米/月，租赁收缴率98.66%"
+          ]
+        },
+        "contract_stability": {
+          "score": 3,
+          "reasoning": "加权平均剩余租期2.48年偏短，稳定性一般",
+          "evidence": [
+            "底层资产加权平均剩余租期2.48年"
+          ]
+        },
+        "operator_strength": {
+          "score": 4,
+          "reasoning": "华安基金管理，百联集团背景，运营实力较强",
+          "evidence": [
+            "fund_manager: 华安基金管理有限公司，original_owner: 上海百联集团股份有限公司"
+          ]
+        },
+        "financial_health": {
+          "score": 4,
+          "reasoning": "2024-2025Q1年化分派率5.59%-5.62%，财务健康",
+          "evidence": [
+            "2024年年化现金流分派率5.59%",
+            "2025Q1年化分派率5.62%"
+          ]
+        },
+        "regulatory_risk": {
+          "score": 4,
+          "reasoning": "未提及明显监管风险，合规性较好",
+          "evidence": []
+        },
+        "growth_potential": {
+          "score": 3,
+          "reasoning": "运营年限18年，剩余租期短，增长潜力有限",
+          "evidence": [
+            "底层资产运营年限已18年，加权平均剩余租期2.48年"
+          ]
+        }
+      },
+      "total_score": 22,
+      "grade": "A-",
+      "recommendation": "watch",
+      "red_flags": [
+        "2025年8月18日解禁3.94亿份，占总份额39.41%，可能引发抛压",
+        "底层资产加权平均剩余租期2.48年，长期运营稳定性存疑"
+      ],
+      "upgrade_triggers": [
+        "2025年可供分配金额超预测值1.45亿元（当前完成度50%）",
+        "出租率回升至96%以上且租金单价环比增长",
+        "扩募计划启动并纳入优质资产"
+      ],
+      "status": "ok",
+      "usage": {
+        "total_tokens": 42501
+      },
+      "searchCount": 8,
+      "fetchCount": 4,
+      "iterations": 3,
       "seeded": true
     }
   ]

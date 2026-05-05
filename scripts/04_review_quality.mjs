@@ -61,11 +61,15 @@ async function callLLM(opts) {
   return { text, usage, cost: estimateClaudeCost(usage, claudeModel), model };
 }
 
-// 已评估过的 codes（在 data/quality_scores_claude_sonnet.json 里）
-// 设 ONLY_NEW=1 时跳过这些
+// 已评估过的 codes — 设 ONLY_NEW=1 时跳过这些
+// 12 个原 Sonnet 复核 + 11 个 Phase 2 v2 复核 = 23 已评估，剩 Top 5 扩池后的 10 只新候选
 const ALREADY_EVALUATED = new Set([
+  // Sonnet 复核（lib/products.ts 当前 v0.7 基础）
   '180601','512890','561580','508077','508058','510880',
   '508028','180602','513530','180202','508098','515100',
+  // Phase 2 v2 复核（quality_scores_doubao_searxng_fetch.json）
+  '508009','508033','180401','508027','508006','180801',
+  '508088','508056','180302','508005','180501',
 ]);
 
 const SYSTEM_PROMPT = `你是公募 REITs 和红利 ETF 的资产质量分析师。你的任务是按 framework 给定的 6 个维度评分。

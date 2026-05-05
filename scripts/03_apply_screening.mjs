@@ -191,18 +191,19 @@ function main() {
     }
   }
 
-  // 行业约束：每个 REIT 子类型最多 Top 2，A 股红利 Top 3，港股红利 Top 1
+  // 行业约束：每个 REIT 子类型最多 Top 5（原 Top 2，2026-05 扩池），
+  // A 股红利 Top 5（市场仅 3 只全过），港股红利 Top 5（市场仅 1 只全过）
   for (const r of results) {
     if (!r.passed_to_stage4) continue;
-    if (r.category === 'reit' && r.rank_in_category > 2) {
+    if (r.category === 'reit' && r.rank_in_category > 5) {
       r.passed_to_stage4 = false;
-      r.exclude_reason = '类型内排名超出 Top 2';
-    } else if (r.category === 'dividend_etf_a' && r.rank_in_category > 3) {
+      r.exclude_reason = '类型内排名超出 Top 5';
+    } else if (r.category === 'dividend_etf_a' && r.rank_in_category > 5) {
       r.passed_to_stage4 = false;
-      r.exclude_reason = 'A 股红利 ETF 排名超出 Top 3';
-    } else if (r.category === 'dividend_etf_hk' && r.rank_in_category > 1) {
+      r.exclude_reason = 'A 股红利 ETF 排名超出 Top 5';
+    } else if (r.category === 'dividend_etf_hk' && r.rank_in_category > 5) {
       r.passed_to_stage4 = false;
-      r.exclude_reason = '港股红利 ETF 排名超出 Top 1';
+      r.exclude_reason = '港股红利 ETF 排名超出 Top 5';
     }
   }
 
