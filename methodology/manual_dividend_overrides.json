@@ -1,6 +1,6 @@
 {
   "version": "0.2",
-  "lastUpdated": "2026-05-04",
+  "lastUpdated": "2026-05-05",
   "notes": "TTM 分红手动维护清单。Stage 2 优先用这里的数据，缺失时从 API 拉（目前东方财富 API 不可用）。每季度刷新一次。v0.2 通过 Haiku subagent 批量补充了 30+ 个 REIT 的 TTM 分红，全部基于 fundf10.eastmoney.com 公开分红记录。3 处明显幻觉已标 null + needs_verification。",
   "source_strategy": [
     "ETF: https://fundf10.eastmoney.com/fhsp_<code>.html （HTML 页面）",
@@ -8,6 +8,7 @@
     "批量补全 (2026-04-30): Haiku subagent × 4 并行查询"
   ],
   "changelog": [
+    "2026-05-05 TTM refresh: 6 只更新 (fundf10 主 + Doubao 兜底)",
     "2026-05-04 TTM refresh: 4 只更新 (fundf10 主 + Doubao 兜底)",
     "2026-04-30 v0.2: + 30 个 REIT TTM 分红（Haiku subagent 批量；5 个 null：3 幻觉 + 2 新发未分红）",
     "2026-04-28 v0.1: 初始 12 个标的（lib/products.ts monitor pool）"
@@ -29,9 +30,9 @@
       "verified_by": "haiku_4dividends_fhsp_180201"
     },
     "180202": {
-      "ttm_dividend": 0.38175,
-      "as_of": "2026-01-31",
-      "verified_by": "公告_2025_累计"
+      "ttm_dividend": 0.3817,
+      "as_of": "2026-05-05",
+      "verified_by": "fundf10_14dividends"
     },
     "180301": {
       "ttm_dividend": 0.1207,
@@ -71,9 +72,9 @@
       "verified_by": "公告_2025_4_quarters"
     },
     "180602": {
-      "ttm_dividend": 0.0856,
-      "as_of": "2025-12-31",
-      "verified_by": "deepseek_assessment_2026-04-28"
+      "ttm_dividend": 0.1739,
+      "as_of": "2026-05-05",
+      "verified_by": "fundf10_7dividends"
     },
     "180606": {
       "ttm_dividend": 0.0859,
@@ -180,9 +181,9 @@
       "verified_by": "haiku_2dividends_fhsp_508027"
     },
     "508028": {
-      "ttm_dividend": 0.3,
-      "as_of": "2026-01-05",
-      "verified_by": "公告_2024_3次合计_约0.42_2025_首次0.1587"
+      "ttm_dividend": 0.1587,
+      "as_of": "2026-05-05",
+      "verified_by": "fundf10_7dividends"
     },
     "508033": {
       "ttm_dividend": 0.705,
@@ -222,9 +223,9 @@
       "verified_by": "haiku_2dividends_fhsp_508068"
     },
     "508077": {
-      "ttm_dividend": 0.13,
-      "as_of": "2025-12-31",
-      "verified_by": "estimate_累计0.2581_除以_持有年"
+      "ttm_dividend": 0.0881,
+      "as_of": "2026-05-05",
+      "verified_by": "fundf10_10dividends"
     },
     "508078": {
       "ttm_dividend": 0.1333,
@@ -238,9 +239,9 @@
       "verified_by": "haiku_2dividends_fhsp_508088"
     },
     "508098": {
-      "ttm_dividend": 0.18,
-      "as_of": "2026-01-22",
-      "verified_by": "estimate_2025_3次分红"
+      "ttm_dividend": 0.1158,
+      "as_of": "2026-05-05",
+      "verified_by": "fundf10_9dividends"
     },
     "508099": {
       "ttm_dividend": 0.0619,
@@ -248,9 +249,9 @@
       "verified_by": "haiku_3dividends_fhsp_508099"
     },
     "510880": {
-      "ttm_dividend": 0.142,
-      "as_of": "2026-01-21",
-      "verified_by": "web_search_2026-04-28"
+      "ttm_dividend": 0.143,
+      "as_of": "2026-05-05",
+      "verified_by": "fundf10_19dividends"
     },
     "512890": {
       "ttm_dividend": 0,
