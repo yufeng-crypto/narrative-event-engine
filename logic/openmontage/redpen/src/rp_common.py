@@ -44,12 +44,21 @@ def client():
 
 
 def image_edit(image_paths: list, prompt: str, out_path, size: str = "1536x1024",
-               model: str = "gpt-image-2", fidelity: str = "high") -> Path:
-    """images.edit 一次调用,写 PNG。多图时第一张是被编辑对象,其余为参考。"""
+               model: str = "gpt-image-2", fidelity: str = "high",
+               mask_path=None) -> Path:
+    """images.edit 一次调用,写 PNG。多图时第一张是被编辑对象,其余为参考。
+
+    `mask_path`:RGBA 掩膜(alpha=0 处=允许改写,其余保持)——**外科路**。
+    全图 edit 是整图重合成,几何会被模型先验拉走(失败模式7:缝合段把已合并的
+    肩线拉回原稿 ±12px);要局部修改必须走 mask,对应 scrub 律(改存量不整图重掷)。
+    """
     cli = client()
     fhs = [open(p, "rb") for p in image_paths]
+    mfh = open(mask_path, "rb") if mask_path else None
     try:
         base = dict(model=model, image=fhs, prompt=prompt, size=size)
+        if mfh is not None:
+            base["mask"] = mfh
         try:
             r = cli.images.edit(**base, input_fidelity=fidelity)
         except Exception as e:
@@ -60,6 +69,8 @@ def image_edit(image_paths: list, prompt: str, out_path, size: str = "1536x1024"
     finally:
         for f in fhs:
             f.close()
+        if mfh is not None:
+            mfh.close()
     dst = Path(out_path)
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_bytes(base64.b64decode(r.data[0].b64_json))

@@ -54,6 +54,21 @@ python worker/redpen_worker.py <sheet.jpg> [--vlm provider:model] [--ir gold.jso
 - **WoZ 模式**:`--ir` 注入外部解读(人工/更强模型),对应研究计划书研究2的上限测量。
 - IR 校验不过**如实入账不静默放行**(_validation 字段+run.json)。
 
+## 混合执行管线(2026-09-02,首个几何达标的完整闭环)
+
+生成模型三轮迭代证明做不了"采纳B版几何"(失败模式6),连"只缝合"都会把几何拉回先验
+(失败模式7)。⇒ **按指令类型路由到引擎**,`src/hybrid_pipeline.py` 端到端可复现:
+
+| 步骤 | 引擎 | 几何闸(输出↔蓝线目标) |
+|---|---|---|
+| 两版合并(采纳蓝线) | 确定性 `merge_versions.py` | ✓ 0.4px |
+| 删耳环 | **masked inpaint**(外科,gpt-image-2+mask) | ✓ 0.6px |
+| 批注清除 | 确定性(纸面回填/局部去绿) | ✓ 0.6px |
+
+产物:out/头发的飘动方向可以配合_对齐处理/final_clean.png。
+闸=`src/verify_geometry.py`(✗分支已反向验证;✓分支此处首个真阳性)。
+案例专属 bbox 当前手工给定;worker 化方向=VLM 的 IR 供 bbox,代码执行。
+
 ## 与研究计划书的对应
 
 - 语料账本+IR 六分类 = RQ1 编码方案的真实数据预演

@@ -1,0 +1,30 @@
+{
+  "sheet": "修塔尔克(带角)抬头,绿X删耳环+头发飘向统一",
+  "sheet_layers": {
+    "black": "single clean drawing (blue version already merged in by code)"
+  },
+  "_stage": "2/2 hybrid: merge done by src/merge_versions.py; this IR covers the rest",
+  "corrections": [
+    {
+      "id": "earring-delete",
+      "color": "green",
+      "location": "the double-ring earring at the base of the left horn (screen-left)",
+      "transcription": "ここの2号はなし",
+      "translation": "No earring on cel #2 here",
+      "type": "delete",
+      "actionable": true,
+      "edit_instruction": "Delete the earring: remove the two small hanging rings at the base of the character's left horn entirely, so the horn base and nearby hair look natural, as if the earring never existed.",
+      "scope": "sheet"
+    },
+    {
+      "id": "seam-repair",
+      "color": "n/a",
+      "type": "constrain",
+      "actionable": true,
+      "location": "small line gaps where the merge erased superseded strokes (hair/horn/collar junctions)",
+      "transcription": "",
+      "translation": "",
+      "edit_instruction": "Repair any small gaps or broken line segments in the existing black line art (hair, horn, collar junctions) by reconnecting them smoothly; do NOT change any line's position or shape — only close breaks."
+    }
+  ]
+}
