@@ -216,7 +216,11 @@ td,th{{border:1px solid #bbb;padding:4px 8px}}</style>
 
 def run(sheet: Path, vlm: str, ir_path: Path | None, execute: bool = True) -> Path:
     stem = re.sub(r"[^\w一-鿿]+", "_", sheet.stem)[:40]
-    tag = "gold" if ir_path else vlm.replace(":", "_")
+    # ⚠ 注入 IR 时标签必须编码**注入源身份**(取 IR 文件父目录名),不许折叠成固定名 ——
+    #   固定名会让不同注入源互相覆盖(2026-09-02 实撞:doubao/deepseek 两次注入执行
+    #   先后写进 run_gold,把金标准产物顶掉)。同族教训见 openmontage worktree 路径 bug 族:
+    #   把"身份"写成"常量"的错,两边都不报错。
+    tag = f"ir_{Path(ir_path).parent.name}" if ir_path else vlm.replace(":", "_")
     out_dir = OUT / stem / f"run_{tag}"
     out_dir.mkdir(parents=True, exist_ok=True)
     ledger = {"sheet": str(sheet), "vlm": None if ir_path else vlm,
