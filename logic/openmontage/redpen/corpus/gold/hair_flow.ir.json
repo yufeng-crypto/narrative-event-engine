@@ -9,22 +9,36 @@
       "translation": "No earring on cel #2 here",
       "type": "delete",
       "actionable": true,
-      "edit_instruction": "Delete the earring: remove the two small hanging rings at the base of the character's left horn entirely, so the horn base and nearby hair look natural, as if the earring never existed."
+      "edit_instruction": "Delete the earring: remove the two small hanging rings at the base of the character's left horn entirely, so the horn base and nearby hair look natural, as if the earring never existed.",
+      "scope": "sheet"
     },
     {
-      "id": "hair-flow-unify",
+      "id": "hair-flow-align-to-correction",
       "color": "pencil",
       "location": "all loose flying hair strands",
       "transcription": "なびき合わせて直してです",
-      "translation": "Fix the hair so the flow direction is unified",
+      "translation": "Fix so the hair flow matches (the corrected version)",
       "type": "constrain",
       "actionable": true,
-      "edit_instruction": "Unify the hair flow: make all loose hair strands wave in one consistent leftward-blowing direction instead of pointing in mixed directions."
+      "edit_instruction": "Adopt the light-blue corrected lines as the true line art wherever the black and blue versions differ (hair flow, horn contour): redraw those parts following the BLUE version and drop the superseded black rough lines.",
+      "scope": "cut",
+      "note": "v2 修订(用户指正 2026-09-01):蓝线=修正版线稿(干净单笔轮廓),黑线=原稿rough;なびき合わせて=各张(Aの3の①〜③)飘动按修正版对齐,跨张一致性指令,非'本张内发丝方向统一'。原 v1 读法错了参照与作用域。"
     }
   ],
   "trace_marks": [
-    {"color": "green", "location": "nose tip / ear / collar", "meaning": "color separation (色トレス)"},
-    {"color": "light-blue", "location": "hair and clothing", "meaning": "shadow boundary"}
+    {
+      "color": "green",
+      "location": "nose tip / ear / collar",
+      "meaning": "color separation (色トレス)"
+    },
+    {
+      "color": "light-blue",
+      "location": "hair and clothing",
+      "meaning": "shadow boundary"
+    }
   ],
-  "meta_notes": ["Aの3の①〜③"]
+  "meta_notes": [
+    "Aの3の①〜③"
+  ],
+  "_revision": "v2: hair 条目按蓝线=修正版读法修正;两版叠加(黑rough/蓝clean)结构记入"
 }
