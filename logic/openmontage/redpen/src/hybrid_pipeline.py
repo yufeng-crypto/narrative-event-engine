@@ -146,7 +146,12 @@ def main():
         wipe(bx, only_green=True)
     Image.fromarray(img.astype(np.uint8)).save(B / "final_clean.png")
     gate(B / "final_clean.png", "final")
-    print("hybrid pipeline done:", B / "final_clean.png")
+    # 4. 断线修补(用户拍板的分工:代码删得干净,模型接得完整)——
+    #    代码骨架端点找断口,模型经外科通道逐框接线,判据=原墨≥95%保留+新增≤60%
+    from repair_lines import repair
+    repair(B / "final_clean.png", B / "final_repaired.png", B)
+    gate(B / "final_repaired.png", "repair")
+    print("hybrid pipeline done:", B / "final_repaired.png")
 
 
 if __name__ == "__main__":
