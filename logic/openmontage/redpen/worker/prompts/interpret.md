@@ -32,7 +32,7 @@ ambiguous, classify with "ambiguous": true and explain in "note".
     {
       "id": "slug",
       "color": "red|green|orange|pencil|blue-pen|...",
-      "location": "what OBJECT in the drawing it targets — name the object (e.g. 'the double-ring earring at the base of the left horn'), never just a direction",
+      "location": "what OBJECT in the drawing it targets — name the object in the form '<object name> at <anatomical/garment position>', never just a direction",
       "transcription": "Japanese text as written ('' if pure stroke)",
       "translation": "English translation ('' if none)",
       "type": "replace|displace|indicate|constrain|annotate|delete",
@@ -55,9 +55,10 @@ actionable=false when the note is addressed to another department, refers to an 
 reference sheet, or cannot be turned into a concrete edit of THIS drawing.
 
 ## Hard rules
-- Every edit_instruction MUST contain the target object's noun (earring, bangs, jaw,
-  collar...). "Remove the two lines on the upper left" is INVALID; "Remove the double-ring
-  earring at the base of the left horn" is valid.
+- Every edit_instruction MUST contain the target object's noun. Instructions shaped like
+  "remove the <marks/lines/parts> on the <direction>" are INVALID — first identify WHAT
+  object the stroke points at by looking at the drawing, then write
+  "<verb> the <object noun> at <position>, <expected result>".
 - Do NOT list color-trace marks as corrections. Do NOT invent corrections that are not on
   the sheet. If the sheet has no corrections, return an empty corrections array.
 - Transcribe ALL handwritten text somewhere (corrections / meta_notes), so nothing is lost.

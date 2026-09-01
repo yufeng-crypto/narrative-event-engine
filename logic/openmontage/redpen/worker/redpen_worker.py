@@ -39,9 +39,16 @@ PROVIDERS = {
                "key_env": "GOOGLE_API_KEY", "default": "gemini-2.5-pro"},
     "xai":    {"base_url": "https://api.x.ai/v1", "key_env": "XAI_API_KEY",
                "default": "grok-4"},
+    # 豆包/火山方舟(forge 2026-07-17 实测 vision 判别力 8/8);默认给较强的复核档
+    "doubao": {"base_url": "https://ark.cn-beijing.volces.com/api/v3",
+               "key_env": "DOUBAO_API_KEY", "default": "doubao-seed-1-6-251015"},
+    # deepseek 视觉实验档(⚠每图压缩上限384 token,细小手写字可能读不清——实测为准)
+    "deepseek": {"base_url": "https://api.deepseek.com",
+                 "key_env": "DEEPSEEK_API_KEY", "default": "deepseek-v4-flash-vision-exp"},
 }
 
-_ENV_FILES = [ROOT.parent / "OpenMontage" / ".env", ROOT.parent / ".env"]
+_ENV_FILES = [ROOT.parent / "OpenMontage" / ".env",
+              ROOT.parent / "OpenMontage" / "forge" / ".env", ROOT.parent / ".env"]
 
 
 def _key(env_name: str) -> str:
@@ -72,6 +79,55 @@ def vlm_client(provider: str):
     return OpenAI(**kw)
 
 
+def stroke_crops(sheet: Path, out_dir: Path, max_crops: int = 4) -> list:
+    """彩色笔触簇定位→原分辨率裁片。破解 VLM 输入压缩(如 deepseek 384 token/图)读不清
+    细小手写批注的问题:全图给上下文,裁片给细节。纯色彩启发式,漏掉铅笔字是已知局限。"""
+    import numpy as np
+    from PIL import Image
+    a = np.array(Image.open(sheet).convert("RGB")).astype(np.int16)
+    r, g, b = a[:, :, 0], a[:, :, 1], a[:, :, 2]
+    mask = (((r - g > 40) & (r - b > 40) & (r > 100)) |          # 红/橙
+            ((g - r > 25) & (g - b > 25) & (g > 90)))            # 绿/黄绿
+    h, w = mask.shape
+    mask[: int(h * 0.12), :] = False                             # 顶部定位孔色块
+    cell = 48                                                     # 粗网格聚类,零依赖
+    gh, gw = (h + cell - 1) // cell, (w + cell - 1) // cell
+    grid = np.zeros((gh, gw), bool)
+    ys, xs = np.nonzero(mask)
+    grid[ys // cell, xs // cell] = True
+    seen, boxes = np.zeros_like(grid), []
+    for gy, gx in zip(*np.nonzero(grid)):
+        if seen[gy, gx]:
+            continue
+        stack, cells = [(gy, gx)], []
+        seen[gy, gx] = True
+        while stack:
+            cy, cx = stack.pop()
+            cells.append((cy, cx))
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    ny, nx = cy + dy, cx + dx
+                    if 0 <= ny < gh and 0 <= nx < gw and grid[ny, nx] and not seen[ny, nx]:
+                        seen[ny, nx] = True
+                        stack.append((ny, nx))
+        if len(cells) < 2:                                        # 孤点=色トレス小标记,跳过
+            continue
+        ys2 = [c[0] for c in cells]; xs2 = [c[1] for c in cells]
+        boxes.append((min(xs2) * cell, min(ys2) * cell,
+                      min((max(xs2) + 1) * cell, w), min((max(ys2) + 1) * cell, h),
+                      len(cells)))
+    boxes.sort(key=lambda t: -t[4])
+    img = Image.open(sheet).convert("RGB")
+    pad, paths = 60, []
+    for i, (x0, y0, x1, y1, _) in enumerate(boxes[:max_crops]):
+        crop = img.crop((max(0, x0 - pad), max(0, y0 - pad),
+                         min(w, x1 + pad), min(h, y1 + pad)))
+        p = out_dir / f"crop_{i}.jpg"
+        crop.save(p, quality=92)
+        paths.append(p)
+    return paths
+
+
 def _extract_json(text: str) -> dict:
     """兼容不支持 response_format 的端点:剥 markdown 围栏后取最外层 {...}。"""
     m = re.search(r"\{.*\}", text, re.S)
@@ -80,12 +136,21 @@ def _extract_json(text: str) -> dict:
     return json.loads(m.group(0))
 
 
-def vlm_see(cli, model: str, prompt: str, img_b64: str, extra_text: str = "") -> dict:
+def vlm_see(cli, model: str, prompt: str, img_b64: str, extra_text: str = "",
+            crop_b64s: list | None = None) -> dict:
     content = [{"type": "text", "text": prompt}]
     if extra_text:
         content.append({"type": "text", "text": extra_text})
     content.append({"type": "image_url",
                     "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}})
+    if crop_b64s:
+        content.append({"type": "text", "text":
+            "The following images are HIGH-RESOLUTION CROPS of the colored annotation "
+            "regions from the SAME sheet above, provided so you can read small handwritten "
+            "text and stroke details accurately. Use them to transcribe precisely."})
+        for cb in crop_b64s:
+            content.append({"type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{cb}"}})
     r = cli.chat.completions.create(model=model,
                                     messages=[{"role": "user", "content": content}])
     return _extract_json(r.choices[0].message.content)
@@ -165,12 +230,16 @@ def run(sheet: Path, vlm: str, ir_path: Path | None, execute: bool = True) -> Pa
         model = model or PROVIDERS[provider]["default"]
         cli = vlm_client(provider)
         b64 = base64.b64encode(sheet.read_bytes()).decode()
-        print(f"[1/3] interpret via {provider}:{model}", flush=True)
-        ir = vlm_see(cli, model, PROMPTS["interpret"], b64)
+        crops = stroke_crops(sheet, out_dir)
+        crop_b64s = [base64.b64encode(p.read_bytes()).decode() for p in crops]
+        ledger["crops"] = [p.name for p in crops]
+        print(f"[1/3] interpret via {provider}:{model} (+{len(crops)} crops)", flush=True)
+        ir = vlm_see(cli, model, PROMPTS["interpret"], b64, crop_b64s=crop_b64s)
         ledger["steps"].append({"step": "interpret", "sec": round(time.time() - t0, 1)})
         print("[2/3] refine (对图审校)", flush=True)
         ir = vlm_see(cli, model, PROMPTS["refine"], b64,
-                     extra_text="Draft JSON:\n" + json.dumps(ir, ensure_ascii=False))
+                     extra_text="Draft JSON:\n" + json.dumps(ir, ensure_ascii=False),
+                     crop_b64s=crop_b64s)
         ledger["steps"].append({"step": "refine", "sec": round(time.time() - t0, 1)})
 
     problems = validate_ir(ir)
