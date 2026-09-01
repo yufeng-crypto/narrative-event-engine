@@ -1,0 +1,341 @@
+{
+  "_meta": {
+    "source": "MADHOUSE 官方公开《葬送のフリーレン》原画修正稿(画面带 ©山田鐘人・アベツカサ／小学館／「葬送のフリーレン」製作委員会 版权标注)",
+    "usage_bounds": "仅限研究分析与内部实验;不用于模型训练;不重新分发;衍生图不公开发布",
+    "coder": "claude-fable-5 人工判读 2026-09-01;作为 VLM 解读的对照金标准(粗粒度)",
+    "types": [
+      "replace 直接画出正确形态",
+      "displace 指示移动方向幅度",
+      "indicate 仅圈出区域",
+      "constrain 规定须满足的条件",
+      "annotate 文字补充说明",
+      "delete 标示多余部分",
+      "meta 赛璐璐编号/问候/流程指令,不改画面",
+      "trace 分色线(色トレス):高光/阴影/分色指定,属画本身,不是修正"
+    ],
+    "revision": "2026-09-01 v2:按色トレス规范修订——画内贴形的红色小笔触=高光指定、黄绿/翠绿贴形线=其他分色线,均属画本身(type=trace),非修正指示。歧义条目标 ambiguous。"
+  },
+  "sheets": [
+    {
+      "file": "赤修正2.jpg",
+      "subject": "巨龙张口+持斧少年背影",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "replace",
+          "note": "口腔内唾液/液体形态红线重绘"
+        },
+        {
+          "color": "red",
+          "type": "constrain",
+          "text": "液体/動きに合わせて修正無視してください(A③でのびてA④で重力かかるとか)",
+          "note": "液体随动势变形,可无视修正稿——给条件不给形态"
+        },
+        {
+          "color": "red",
+          "type": "indicate",
+          "text": "アゴの大きい歯",
+          "note": "圈+引出线指到下颚大牙"
+        },
+        {
+          "color": "red",
+          "type": "indicate",
+          "text": "足",
+          "note": "圈出脚部"
+        },
+        {
+          "color": "blue-pen",
+          "type": "meta",
+          "text": "EA④ よろしくお願いします"
+        }
+      ]
+    },
+    {
+      "file": "这里做一下轻微晃动.jpg",
+      "subject": "芙莉莲回眸",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "meta",
+          "text": "A② B3 よろしくお願いします"
+        },
+        {
+          "color": "red",
+          "type": "trace",
+          "note": "发上红色小方块标记=高光指定(色トレス),属画本身"
+        },
+        {
+          "color": "red",
+          "type": "delete",
+          "note": "耳饰处红点+x"
+        },
+        {
+          "color": "orange",
+          "type": "constrain",
+          "text": "ここも少しゆらしたいです",
+          "note": "圈住围巾/发尾区域:想再稍微摇动一点——程度类条件"
+        }
+      ]
+    },
+    {
+      "file": "头发的飘动方向可以配合／对齐处理.jpg",
+      "subject": "修塔尔克(带角)抬头",
+      "corrections": [
+        {
+          "color": "green",
+          "type": "delete",
+          "text": "ここの2号はなし",
+          "note": "耳环画X:2号赛璐璐上不要这个耳环"
+        },
+        {
+          "color": "green",
+          "type": "trace",
+          "note": "鼻头/耳/领口黄绿贴形笔触=分色线(色トレス),属画本身"
+        },
+        {
+          "color": "pencil",
+          "type": "constrain",
+          "text": "なびき合わせて直してです",
+          "note": "头发飘动方向要统一——给条件不给形态"
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "Aの3の①〜③"
+        }
+      ]
+    },
+    {
+      "file": "眼白之后也可以去掉，所以暂时先按‘有眼白’的版本画出来.jpg",
+      "subject": "菲伦全身+大幅飘发",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "annotate",
+          "text": "白目あとで消すことも出来るので一応アリで描いています",
+          "note": "信息性说明:先按有眼白版本画,之后可去掉"
+        },
+        {
+          "color": "red",
+          "type": "trace",
+          "note": "发面红色小标记=高光指定(色トレス),属画本身"
+        },
+        {
+          "color": "red",
+          "type": "meta",
+          "text": "Bの / Aの"
+        }
+      ]
+    },
+    {
+      "file": "f5d6zocp27nmyut3n45rm6oq7zlq9d.jpg",
+      "subject": "蓝色侧脸(阴影稿)",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "replace",
+          "note": "刘海上红色斜线笔触=增加发丝分面 ⚠歧义:红=高光分色线也=作监修正传统色,笔触性质待细判",
+          "ambiguous": true
+        },
+        {
+          "color": "pencil",
+          "type": "constrain",
+          "text": "鼻ガタの面が増える感にしたいです",
+          "note": "想要鼻梁分面增加的感觉——目标感受,不给具体画法"
+        },
+        {
+          "color": "red",
+          "type": "meta",
+          "text": "A②"
+        }
+      ]
+    },
+    {
+      "file": "hfn9iwxlgvawhpqueqzasl7rw19m0y.jpg",
+      "subject": "军装男正面(维亚贝尔?)",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "replace",
+          "note": "额发走向红线重绘两处;眼线红色修正 ⚠歧义:红=高光分色线也=作监修正传统色,笔触性质待细判",
+          "ambiguous": true
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "すいません セリフパク テンプレ的ですが 歯とウの口のほうが安全かと。演出さま、セリフパクつけ直しお願いします",
+          "note": "口型模板流程建议,面向演出不改本张画面"
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "Bの(メジ) 2中 3(アキ) 4歯 5ウの口",
+          "note": "口型序列表"
+        }
+      ]
+    },
+    {
+      "file": "i2h2etkcj52uuhrwpvqq1603v6y0yb.jpg",
+      "subject": "少年正面(黄纸小图)",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "trace",
+          "note": "发上红色小标记=高光指定(色トレス),属画本身"
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "A①修 / ありがとうございます!噴水は演修を参考にして下さい。よろしくお願いします!",
+          "note": "指向外部参考(喷水看演出修正),本张不可执行"
+        }
+      ]
+    },
+    {
+      "file": "iemffv6zw76ih0defrgzv1tiq0gh9g.jpg",
+      "subject": "芙莉莲托腮特写",
+      "corrections": [],
+      "note": "近乎无批注(仅眼角红色小点),可作无修正对照样本"
+    },
+    {
+      "file": "kr6v24y77v861s8mlsvekzkrskhpeu.jpg",
+      "subject": "小恶魔(阿乌拉幼体?)张手仰视",
+      "corrections": [
+        {
+          "color": "green",
+          "type": "trace",
+          "note": "鼻尖/领口/衣褶黄绿贴形线=分色线(色トレス),属画本身"
+        },
+        {
+          "color": "red",
+          "type": "trace",
+          "note": "眼内红圈=瞳孔高光分色线,属画本身"
+        },
+        {
+          "color": "green",
+          "type": "meta",
+          "text": "A⑥ 5 8"
+        }
+      ]
+    },
+    {
+      "file": "l1t3i9nnazvozmnilfvd55o7dpv08e.jpg",
+      "subject": "少年持汤匙+骑士鞘(黄纸)",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "annotate",
+          "text": "ニンジンがスプーンに載っています、シチューもつけています",
+          "note": "打印体红字+引出线:说明汤匙上有胡萝卜和炖菜(给上色/摄影的信息)"
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "C①修 / A①修 / ありがとうございます!"
+        }
+      ]
+    },
+    {
+      "file": "m6816cedr8kzpepgz4gf02lvxfq1ts.jpg",
+      "subject": "火堆旁抱膝少年+战斧(上色稿)",
+      "corrections": [
+        {
+          "color": "pencil",
+          "type": "annotate",
+          "text": "針葉樹 これ以外広葉樹です",
+          "note": "箭头标注木板树种"
+        },
+        {
+          "color": "pencil",
+          "type": "annotate",
+          "text": "←樹皮側"
+        },
+        {
+          "color": "red",
+          "type": "replace",
+          "note": "木板上红线=火烧/炭化范围修正"
+        }
+      ]
+    },
+    {
+      "file": "nnin7x4suomz1tuj8xv9g6nezefo1b.jpg",
+      "subject": "少年怒吼挥拳",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "replace",
+          "note": "眼角红线修正"
+        },
+        {
+          "color": "pencil",
+          "type": "constrain",
+          "text": "せっかく寄るし広角めな画で",
+          "note": "构图级约束:既然凑近就用更广角的画面——层级VI,只给方向"
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "c×8"
+        }
+      ]
+    },
+    {
+      "file": "qcuzdtndicccbns3xr6hm9vf906kk5.jpg",
+      "subject": "三人吃面包(芙莉莲/菲伦/中央背影)",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "meta",
+          "text": "※このサイズ 口元パクパク省略でOKです",
+          "note": "此景别口部开合动画可省略——流程指令"
+        },
+        {
+          "color": "pencil",
+          "type": "annotate",
+          "text": "パン20Gまでこのサイズ",
+          "note": "道具(面包)尺寸规定"
+        },
+        {
+          "color": "pencil",
+          "type": "annotate",
+          "text": "ぼりぼり",
+          "note": "拟声演技标注"
+        },
+        {
+          "color": "blue-pen",
+          "type": "constrain",
+          "text": "かじり面少し多めで",
+          "note": "咬痕面稍多一点——程度类"
+        },
+        {
+          "color": "orange",
+          "type": "replace",
+          "note": "中央背影轮廓/发中线橙色重绘"
+        }
+      ]
+    },
+    {
+      "file": "wcizru4d89xlymnbe5a4tm2bridwie.jpg",
+      "subject": "欣梅尔微笑(黄纸)",
+      "corrections": [
+        {
+          "color": "red",
+          "type": "replace",
+          "note": "发缝两处红色笔触修正 ⚠歧义:红=高光分色线也=作监修正传统色,笔触性质待细判",
+          "ambiguous": true
+        },
+        {
+          "color": "pencil",
+          "type": "annotate",
+          "text": "原作コマの表情参考にしてます、細かい部分合わせて宜しくお願い致します!",
+          "note": "说明参考来源+请对齐细节"
+        },
+        {
+          "color": "pencil",
+          "type": "meta",
+          "text": "A④歯C5 / B⑥修"
+        }
+      ]
+    }
+  ]
+}

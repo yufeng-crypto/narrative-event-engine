@@ -1,0 +1,30 @@
+{
+  "sheet": "修塔尔克(带角)抬头,绿X删耳环+头发飘向统一",
+  "corrections": [
+    {
+      "id": "earring-delete",
+      "color": "green",
+      "location": "the double-ring earring at the base of the left horn (screen-left)",
+      "transcription": "ここの2号はなし",
+      "translation": "No earring on cel #2 here",
+      "type": "delete",
+      "actionable": true,
+      "edit_instruction": "Delete the earring: remove the two small hanging rings at the base of the character's left horn entirely, so the horn base and nearby hair look natural, as if the earring never existed."
+    },
+    {
+      "id": "hair-flow-unify",
+      "color": "pencil",
+      "location": "all loose flying hair strands",
+      "transcription": "なびき合わせて直してです",
+      "translation": "Fix the hair so the flow direction is unified",
+      "type": "constrain",
+      "actionable": true,
+      "edit_instruction": "Unify the hair flow: make all loose hair strands wave in one consistent leftward-blowing direction instead of pointing in mixed directions."
+    }
+  ],
+  "trace_marks": [
+    {"color": "green", "location": "nose tip / ear / collar", "meaning": "color separation (色トレス)"},
+    {"color": "light-blue", "location": "hair and clothing", "meaning": "shadow boundary"}
+  ],
+  "meta_notes": ["Aの3の①〜③"]
+}

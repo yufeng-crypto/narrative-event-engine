@@ -1,0 +1,208 @@
+# -*- coding: utf-8 -*-
+"""redpen worker · 红笔修正 agent MVP
+
+带修正批注的线稿 → 解读(可插拔 VLM,两轮:解读+对图审校) → 修正IR → 编译执行(images.edit)
+→ 修正后线稿 + 对照页 + run 账本。
+
+用法:
+  python redpen_worker.py <sheet.jpg> [--vlm openai:gpt-4o] [--ir gold.json] [--no-exec]
+
+  --vlm   解读后端 "provider:model"。provider ∈ PROVIDERS(OpenAI 兼容端点)。
+  --ir    跳过 VLM,注入外部修正IR(人工金标准/其他模型产物)= WoZ 模式。
+  --no-exec 只解读不出图(便宜地批量跑语料)。
+
+模型无关性:解读契约全部在 prompts/*.md 里,任何能看图、能出 JSON 的 LLM 都能按同一契约
+接入;执行端(gpt-image-2)与解读端解耦。
+"""
+import argparse
+import base64
+import json
+import re
+import sys
+import time
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent          # worker/
+ROOT = HERE.parent                               # redpen/
+sys.path.insert(0, str(ROOT / "src"))
+from rp_common import OUT, image_edit, openai_key  # noqa: E402
+
+PROMPTS = {p.stem: (HERE / "prompts" / f"{p.stem}.md").read_text(encoding="utf-8")
+           for p in (HERE / "prompts").glob("*.md")}
+
+# OpenAI 兼容端点注册表:key_env 存环境变量名,不内联明文(同 forge 蓝图 §11)
+PROVIDERS = {
+    "openai": {"base_url": None, "key_env": "OPENAI_API_KEY", "default": "gpt-4o"},
+    "qwen":   {"base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+               "key_env": "DASHSCOPE_API_KEY", "default": "qwen-vl-max"},
+    "gemini": {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+               "key_env": "GOOGLE_API_KEY", "default": "gemini-2.5-pro"},
+    "xai":    {"base_url": "https://api.x.ai/v1", "key_env": "XAI_API_KEY",
+               "default": "grok-4"},
+}
+
+_ENV_FILES = [ROOT.parent / "OpenMontage" / ".env", ROOT.parent / ".env"]
+
+
+def _key(env_name: str) -> str:
+    import os
+    v = os.environ.get(env_name, "")
+    if v:
+        return v
+    for f in _ENV_FILES:
+        if not f.is_file():
+            continue
+        for ln in f.read_text(encoding="utf-8", errors="ignore").splitlines():
+            if ln.strip().startswith(env_name + "="):
+                v = ln.split("=", 1)[1].strip().strip('"').strip("'")
+                if v:
+                    return v
+    raise RuntimeError(f"未取到 {env_name}(env 或 .env)")
+
+
+def vlm_client(provider: str):
+    import httpx
+    from openai import OpenAI
+    p = PROVIDERS[provider]
+    key = openai_key() if p["key_env"] == "OPENAI_API_KEY" else _key(p["key_env"])
+    kw = dict(api_key=key, max_retries=3,
+              timeout=httpx.Timeout(connect=60.0, read=600.0, write=600.0, pool=600.0))
+    if p["base_url"]:
+        kw["base_url"] = p["base_url"]
+    return OpenAI(**kw)
+
+
+def _extract_json(text: str) -> dict:
+    """兼容不支持 response_format 的端点:剥 markdown 围栏后取最外层 {...}。"""
+    m = re.search(r"\{.*\}", text, re.S)
+    if not m:
+        raise ValueError(f"VLM 回复中未找到 JSON:{text[:200]}")
+    return json.loads(m.group(0))
+
+
+def vlm_see(cli, model: str, prompt: str, img_b64: str, extra_text: str = "") -> dict:
+    content = [{"type": "text", "text": prompt}]
+    if extra_text:
+        content.append({"type": "text", "text": extra_text})
+    content.append({"type": "image_url",
+                    "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}})
+    r = cli.chat.completions.create(model=model,
+                                    messages=[{"role": "user", "content": content}])
+    return _extract_json(r.choices[0].message.content)
+
+
+def validate_ir(ir: dict) -> list:
+    """schema+接地校验。返回问题清单(空=通过)。接地判据:指令须含具体对象名词,
+    纯方位词指令(首轮实验B的失败模式)判不合格——机械近似:去掉方位/几何词后仍须有实词。"""
+    problems = []
+    if "corrections" not in ir:
+        return ["缺 corrections 字段"]
+    POSITIONAL = {"left", "right", "top", "bottom", "upper", "lower", "line", "lines",
+                  "area", "part", "side", "corner", "region", "mark", "marks", "stroke"}
+    for c in ir["corrections"]:
+        if not c.get("actionable"):
+            continue
+        ins = (c.get("edit_instruction") or "").strip()
+        if not ins:
+            problems.append(f"{c.get('id')}: actionable 但 edit_instruction 为空")
+            continue
+        words = {w.strip(".,;()").lower() for w in ins.split()}
+        content_words = {w for w in words if len(w) > 3 and w not in POSITIONAL
+                         and not w.isdigit()}
+        if len(content_words) < 2:
+            problems.append(f"{c.get('id')}: 指令疑似未绑定对象:{ins!r}")
+    return problems
+
+
+def compile_execute_prompt(ir: dict, bg: str = "light-green paper") -> str:
+    lines = []
+    n = 0
+    for c in ir.get("corrections", []):
+        if not c.get("actionable") or not c.get("edit_instruction"):
+            continue
+        n += 1
+        lines.append(f"{n}. {c['edit_instruction'].strip()}")
+    if n == 0:
+        raise SystemExit("没有可执行修正(actionable=0),不出图。")
+    return PROMPTS["execute_template"].replace("{instructions}", "\n".join(lines)) \
+                                      .replace("{bg}", bg)
+
+
+def make_compare(out_dir: Path, src: Path, ir: dict, corrected: Path | None):
+    def b64img(p):
+        ext = p.suffix.lstrip(".").lower().replace("jpg", "jpeg")
+        return f"data:image/{ext};base64," + base64.b64encode(p.read_bytes()).decode()
+    rows = "".join(
+        f"<tr><td>{c.get('color','')}</td><td>{c.get('type','')}</td>"
+        f"<td>{'✔' if c.get('actionable') else ''}</td><td>{c.get('location','')}</td>"
+        f"<td>{c.get('transcription','')}</td><td>{c.get('edit_instruction','')}</td></tr>"
+        for c in ir.get("corrections", []))
+    right = (f'<img src="{b64img(corrected)}">' if corrected and corrected.is_file()
+             else "<p>(未执行)</p>")
+    html = f"""<!doctype html><meta charset="utf-8"><title>redpen · {src.name}</title>
+<style>body{{font-family:system-ui;margin:16px}}.g{{display:grid;grid-template-columns:1fr 1fr;gap:12px}}
+img{{width:100%;border:1px solid #ccc}}table{{border-collapse:collapse;font-size:13px;margin-top:12px}}
+td,th{{border:1px solid #bbb;padding:4px 8px}}</style>
+<h2>{src.name}</h2><div class="g"><div><h3>原稿</h3><img src="{b64img(src)}"></div>
+<div><h3>修正后</h3>{right}</div></div>
+<h3>修正 IR</h3><table><tr><th>色</th><th>类型</th><th>可执行</th><th>位置</th><th>原文</th><th>编辑指令</th></tr>{rows}</table>"""
+    (out_dir / "compare.html").write_text(html, encoding="utf-8")
+
+
+def run(sheet: Path, vlm: str, ir_path: Path | None, execute: bool = True) -> Path:
+    stem = re.sub(r"[^\w一-鿿]+", "_", sheet.stem)[:40]
+    tag = "gold" if ir_path else vlm.replace(":", "_")
+    out_dir = OUT / stem / f"run_{tag}"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ledger = {"sheet": str(sheet), "vlm": None if ir_path else vlm,
+              "ir_injected": str(ir_path) if ir_path else None, "steps": []}
+    t0 = time.time()
+
+    if ir_path:                                   # WoZ 模式:外部解读
+        ir = json.loads(Path(ir_path).read_text(encoding="utf-8"))
+    else:
+        provider, _, model = vlm.partition(":")
+        model = model or PROVIDERS[provider]["default"]
+        cli = vlm_client(provider)
+        b64 = base64.b64encode(sheet.read_bytes()).decode()
+        print(f"[1/3] interpret via {provider}:{model}", flush=True)
+        ir = vlm_see(cli, model, PROMPTS["interpret"], b64)
+        ledger["steps"].append({"step": "interpret", "sec": round(time.time() - t0, 1)})
+        print("[2/3] refine (对图审校)", flush=True)
+        ir = vlm_see(cli, model, PROMPTS["refine"], b64,
+                     extra_text="Draft JSON:\n" + json.dumps(ir, ensure_ascii=False))
+        ledger["steps"].append({"step": "refine", "sec": round(time.time() - t0, 1)})
+
+    problems = validate_ir(ir)
+    ir["_validation"] = {"passed": not problems, "problems": problems}
+    (out_dir / "ir.json").write_text(json.dumps(ir, ensure_ascii=False, indent=2),
+                                     encoding="utf-8")
+    if problems:
+        print("⚠ IR 校验未过(如实入账,不静默放行):", *problems, sep="\n  ")
+
+    corrected = None
+    if execute:
+        prompt = compile_execute_prompt(ir)
+        (out_dir / "execute_prompt.txt").write_text(prompt, encoding="utf-8")
+        print("[3/3] execute via gpt-image-2", flush=True)
+        corrected = image_edit([sheet], prompt, out_dir / "corrected.png",
+                               size="1536x1024")
+        ledger["steps"].append({"step": "execute", "sec": round(time.time() - t0, 1)})
+
+    make_compare(out_dir, sheet, ir, corrected)
+    ledger["validation"] = ir["_validation"]
+    ledger["out_dir"] = str(out_dir)
+    (out_dir / "run.json").write_text(json.dumps(ledger, ensure_ascii=False, indent=2),
+                                      encoding="utf-8")
+    print("done:", out_dir / "compare.html")
+    return out_dir
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("sheet")
+    ap.add_argument("--vlm", default="openai:gpt-4o")
+    ap.add_argument("--ir", default=None)
+    ap.add_argument("--no-exec", action="store_true")
+    a = ap.parse_args()
+    run(Path(a.sheet), a.vlm, Path(a.ir) if a.ir else None, execute=not a.no_exec)

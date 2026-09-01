@@ -1,0 +1,55 @@
+# redpen · 红笔修正 → 生成式图像编辑接口(研究项目)
+
+以动画行业"红笔修正"惯例为指令语言,驱动生成模型对线稿执行修正。
+独立研究项目,**不并入 OpenMontage 生产管线**;研究计划书见会话记录(2026-08 草案)。
+
+## 语料
+
+`../芙莉莲/` — MADHOUSE 官方公开《葬送のフリーレン》原画修正稿 14 张(画面带版权标注)。
+**使用边界:仅研究分析与内部实验;不训练模型;不再分发;衍生图不公开发布。**
+
+- [corpus/inventory.json](corpus/inventory.json) — 14 张全量人工判读账本(金标准,粗粒度,v2 已按色トレス规范修订)
+- [docs/color_conventions.md](docs/color_conventions.md) — 线稿用色规范调研(色トレス×修正指示两套体系+判别线索,带来源)
+- [docs/ir_schema.md](docs/ir_schema.md) — 修正 IR schema v0.2(worker 输出契约)
+
+## 首轮端到端实验(2026-09-01, case: hair_flow)
+
+测试稿:修塔尔克抬头(绿X删耳环=delete 类;"なびき合わせて"=constrain 类)。
+执行端统一 gpt-image-2 images.edit + input_fidelity=high;唯一变量=解读质量。
+
+| 实验 | 解读者 | 结果 | 产物 |
+|---|---|---|---|
+| A 端到端 | 生图模型自己读批注 | ✗ 修正被当噪声擦除,被X的耳环反被描干净 | out/hair_flow/expA_e2e.png |
+| B 弱解读中介 | gpt-4o → IR | ✗ 指令未绑定对象("删两条线"≠"删耳环"),执行落空 | out/hair_flow/expB_ir.png + ir.json |
+| C 金标准中介 | 人工精确指令 | ✓ 删除+约束两类修正均正确执行,分色线/脸/构图保持 | out/hair_flow/expC_gold.png |
+
+**结论:执行端成立,瓶颈全在解读端的语义绑定(指令必须点名目标对象)。**
+对照页:`src/make_compare.py` → out/hair_flow/compare.html。
+(gpt-5 因组织未验证 404 不可用;解读端强模型待补测。)
+
+## worker(agent MVP)
+
+```
+python worker/redpen_worker.py <sheet.jpg> [--vlm provider:model] [--ir gold.json] [--no-exec]
+```
+
+流水:解读(interpret)→对图审校(refine)→IR校验(接地判据)→编译执行→compare.html+run.json 账本。
+
+- **模型无关**:解读契约全在 [worker/prompts/](worker/prompts)(interpret/refine/execute_template),
+  任何能看图出 JSON 的 LLM 按同一契约接入;后端注册表 PROVIDERS(openai/qwen/gemini/xai,OpenAI 兼容端点)。
+- **WoZ 模式**:`--ir` 注入外部解读(人工/更强模型),对应研究计划书研究2的上限测量。
+- IR 校验不过**如实入账不静默放行**(_validation 字段+run.json)。
+
+## 与研究计划书的对应
+
+- 语料账本+IR 六分类 = RQ1 编码方案的真实数据预演
+- constrain 类(给条件不给形态)在 14 张中反复出现(なびき合わせ/広角めな画で/面が増える感)= RQ2 假设的实证线索
+- A/B/C 对照 = RQ3 的实证形式;A 的失败模式("批注被当噪声")是论文级发现候选
+- 色トレス×修正指示两套系统的判别 = 刺激材料设计(§4.2)必须控制的混淆变量
+
+## 下一步
+
+1. 解读端补强:qwen-vl-max / gemini-2.5-pro / gpt-5(组织验证后)横评,以 inventory.json 为金标准算命中率
+2. 全语料 `--no-exec` 批跑 → RQ2 迷你分布(方案型 vs 指出型比例)
+3. constrain 类执行策略:条件式指令的执行成功率单独测(部分规范如何落地是理论核心)
+4. 扩语料:各社官方公开修正稿收集(X/画集),注意纸色=检查者角色这一维度
