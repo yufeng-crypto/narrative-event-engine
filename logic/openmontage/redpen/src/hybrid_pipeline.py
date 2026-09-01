@@ -47,8 +47,9 @@ def main():
     B.mkdir(parents=True, exist_ok=True)
     # 0. 裁作画框(输入输出同比例,几何闸坐标映射才严格成立)
     Image.open(SRC).crop(FRAME).save(B / "src_cropped.png")
-    # 1. 确定性合并:采纳蓝线版几何
-    merge(SRC, B / "merged_full.png")
+    # 1. 确定性合并:采纳蓝线版几何。PROTECT=面部中心(眼/眉/鼻/口,全src坐标):
+    #    那里的蓝色是点缀笔触不是重绘线,不设保护会把正式线蚕食成灰壳
+    merge(SRC, B / "merged_full.png", protect=[(400, 430, 1180, 830)])
     Image.open(B / "merged_full.png").crop(FRAME).resize((1536, 1024), Image.LANCZOS)\
          .save(B / "merged_1536.png")
     gate(B / "merged_1536.png", "merge")
@@ -64,9 +65,15 @@ def main():
     Image.fromarray(base_img[py0:py1, px0:px1]).resize((1024, 1024), Image.LANCZOS)\
          .save(B / "_patch_in.png")
 
+    # 固化缓存必须按**输入指纹**失效:旧底图上生成的裁片贴到新底图=把旧缺陷带回来
+    import hashlib
+    in_sha = hashlib.sha1((B / "_patch_in.png").read_bytes()).hexdigest()
+
     def load_patch():
-        if not (B / "_patch_out.png").is_file():
+        if not (B / "_patch_out.png").is_file() or not (B / "_patch_in.sha1").is_file():
             return None
+        if (B / "_patch_in.sha1").read_text().strip() != in_sha:
+            return None                       # 输入变了 ⇒ 缓存作废
         p = np.array(Image.open(B / "_patch_out.png").convert("RGB")
                      .resize((px1 - px0, py1 - py0), Image.LANCZOS))
         sub = p[ey0 - py0:ey1 - py0, ex0 - px0:ex1 - px0].astype(int)
@@ -83,6 +90,7 @@ def main():
                        "strands naturally. Keep every other line exactly as drawn, same position, "
                        "same darkness. Output the same crop, nothing else changed.",
                        B / "_patch_out.png", size="1024x1024")
+            (B / "_patch_in.sha1").write_text(in_sha)
             patch = load_patch()
             print(f"[patch roll {attempt}] {'✓过判据' if patch is not None else '✗废卷'}")
             if patch is not None:

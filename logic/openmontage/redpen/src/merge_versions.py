@@ -17,23 +17,38 @@ from PIL import Image
 from scipy import ndimage
 
 
-def merge(src_path, out_path, radius=45):
+def merge(src_path, out_path, radius=45, protect=()):
+    """protect: [(x0,y0,x1,y1), ...] 源图坐标的保护区 —— 区内不做任何删除。
+
+    ⚠ 蓝线重绘区 ≠ 全图:眼睑等处有蓝色**点缀笔触**(不是版本重绘),一揽子
+    "距蓝线R内即旧版"会把那里的正式线蚕食成灰壳(v1 起即有,被残留灰晕遮蔽,
+    2026-09-02 用户发现)。合并必须限定区域;区域与 bbox 同源,worker 化后由 IR 供给。"""
     img = np.array(Image.open(src_path).convert("RGB")).astype(int)
     r, g, b = img[:, :, 0], img[:, :, 1], img[:, :, 2]
 
     blue = (b - r > 30) & (b > 120)
-    black = (r < 110) & (g < 110) & (b < 110)
 
-    # 纸色 = 非线条区域的中位色(逐通道)
-    paper_mask = ~(blue | black)
-    paper = [int(np.median(img[:, :, c][paper_mask])) for c in range(3)]
+    # 纸色 = 全图中位色(纸面占绝对多数,中位数就是纸)
+    paper = np.median(img.reshape(-1, 3), axis=0)
 
-    # 距蓝线的欧氏距离场;R 内的黑线像素 = 被取代的旧版
+    # 被取代的旧版 = **深色芯在蓝线 R 内的笔画 + 这些笔画自己的灰晕**(结构性判据)。
+    # 两个都踩过的坑,别回去:
+    # · 只删深色芯(RGB各<110) ⇒ 抗锯齿灰晕存活,旧线以"被橡皮擦过"的灰痕留在纸上;
+    # · "R内一切灰性墨迹都算旧版" ⇒ 把恰好离蓝线近的**正式画**也吃掉(眼睛内部被抹空,
+    #   2026-09-02 实撞)。蓝线近旁 ≠ 被取代;被取代的判据是"它的深色芯要被删"。
+    core = (r < 110) & (g < 110) & (b < 110) & ~blue
     dist_to_blue = ndimage.distance_transform_edt(~blue)
-    superseded = black & (dist_to_blue <= radius)
+    core_removed = core & (dist_to_blue <= radius)
+    # 灰晕 = 被删芯周边 3px 内的灰性像素(偏离纸色+低饱和,排除蓝/彩色 trace)
+    paper_dist = np.abs(img - paper).sum(axis=2)
+    grayish = (paper_dist > 25) & (np.ptp(img, axis=2) < 45) & (b - r <= 15)
+    halo_zone = ndimage.binary_dilation(core_removed, iterations=3)
+    superseded = (core_removed | (grayish & halo_zone)) & ~blue
+    for x0, y0, x1, y1 in protect:
+        superseded[y0:y1, x0:x1] = False
 
     out = img.copy()
-    out[superseded] = paper          # 先抹旧版
+    out[superseded] = paper          # 先抹旧版(含灰晕)
     ink = [40, 40, 40]               # 再落新版:蓝线变正式线(与原线稿墨色一致)
     out[blue] = ink
 
