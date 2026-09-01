@@ -179,6 +179,26 @@ def validate_ir(ir: dict) -> list:
     return problems
 
 
+def _layer_rules(ir: dict) -> str:
+    """图层保护条款按 IR 动态生成 —— **图层语义归 IR 所有,模板不得硬编码断言**。
+
+    教训(2026-09-02):模板写死"PRESERVE light-blue color-trace lines",而 gold IR 的
+    指令是"采纳蓝线为正式线稿、丢弃黑 rough" —— 同一 prompt 里两句打架,模型服从了
+    样板文,合并静默不执行(对照:无保护条款的手写 prompt 同指令执行成功)。
+    通用律:样板文只能断言 IR 没有话语权的部分;IR 可推翻的语义必须由 IR 供值。
+    """
+    layers = ir.get("sheet_layers") or {}
+    blue = str(layers.get("light_blue", "color-trace")).lower()
+    if "correct" in blue or "overlay" in blue or "version" in blue:
+        blue_rule = ("The light-blue lines are the supervisor's corrected second version of "
+                     "the drawing — handle them exactly as the numbered corrections instruct "
+                     "(do NOT blanket-preserve them as color-trace).")
+    else:
+        blue_rule = "PRESERVE the light-blue shadow-boundary color-trace lines as drawn."
+    return (blue_rule + " PRESERVE other color-trace marks that are part of the drawing: "
+            "thin red highlight marks hugging the forms, yellow-green color separation lines.")
+
+
 def compile_execute_prompt(ir: dict, bg: str = "light-green paper") -> str:
     lines = []
     n = 0
@@ -190,6 +210,7 @@ def compile_execute_prompt(ir: dict, bg: str = "light-green paper") -> str:
     if n == 0:
         raise SystemExit("没有可执行修正(actionable=0),不出图。")
     return PROMPTS["execute_template"].replace("{instructions}", "\n".join(lines)) \
+                                      .replace("{layer_rules}", _layer_rules(ir)) \
                                       .replace("{bg}", bg)
 
 

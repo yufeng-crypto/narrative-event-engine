@@ -24,10 +24,20 @@ Industry note: there is NO enforced color standard; studios differ. Use stroke M
 and text pairing as the primary cue, color only as a weak prior. If a mark is genuinely
 ambiguous, classify with "ambiguous": true and explain in "note".
 
+Layer structure: FIRST decide whether the sheet is a single drawing or TWO overlaid
+versions (original × supervisor's redraw shown in a different line color). Cue: colored
+lines that form complete ALTERNATE contours offset from the black ones (hair silhouette,
+horn outline, collar) = a second version, NOT shadow trace; shadow trace sits INSIDE forms.
+Report this in "sheet_layers" — downstream execution rules depend on it.
+
 ## Output — return ONLY one JSON object
 
 {
   "sheet": "<short description of the drawing>",
+  "sheet_layers": {
+    "black": "single clean drawing | original rough drawing",
+    "light_blue": "color-trace shadow boundary | supervisor's corrected version overlay (adopt per instructions)"
+  },
   "corrections": [
     {
       "id": "slug",

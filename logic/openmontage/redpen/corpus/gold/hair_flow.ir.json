@@ -20,7 +20,7 @@
       "translation": "Fix so the hair flow matches (the corrected version)",
       "type": "constrain",
       "actionable": true,
-      "edit_instruction": "Adopt the light-blue corrected lines as the true line art wherever the black and blue versions differ (hair flow, horn contour): redraw those parts following the BLUE version and drop the superseded black rough lines.",
+      "edit_instruction": "Merge the two versions into one final drawing: wherever the black and light-blue versions differ (hair flow, horn contour), redraw those parts AS CLEAN BLACK LINES following the LIGHT-BLUE version's shapes, then drop both the superseded black rough lines and the now-redundant light-blue version lines. The final drawing must be single-version black line art.",
       "scope": "cut",
       "note": "v2 修订(用户指正 2026-09-01):蓝线=修正版线稿(干净单笔轮廓),黑线=原稿rough;なびき合わせて=各张(Aの3の①〜③)飘动按修正版对齐,跨张一致性指令,非'本张内发丝方向统一'。原 v1 读法错了参照与作用域。"
     }
@@ -40,5 +40,10 @@
   "meta_notes": [
     "Aの3の①〜③"
   ],
-  "_revision": "v2: hair 条目按蓝线=修正版读法修正;两版叠加(黑rough/蓝clean)结构记入"
+  "_revision": "v2: hair 条目按蓝线=修正版读法修正;两版叠加(黑rough/蓝clean)结构记入",
+  "sheet_layers": {
+    "black": "original rough drawing",
+    "light_blue": "supervisor's corrected version overlay (adopt per instructions)",
+    "_note": "本稿为两版叠加;图层语义由 IR 供值,execute 模板据此生成保护条款(不再硬编码蓝=分色线)"
+  }
 }
