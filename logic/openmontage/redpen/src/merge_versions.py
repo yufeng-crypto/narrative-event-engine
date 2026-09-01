@@ -31,26 +31,33 @@ def merge(src_path, out_path, radius=45, protect=()):
     # 纸色 = 全图中位色(纸面占绝对多数,中位数就是纸)
     paper = np.median(img.reshape(-1, 3), axis=0)
 
-    # 被取代的旧版 = **深色芯在蓝线 R 内的笔画 + 这些笔画自己的灰晕**(结构性判据)。
-    # 两个都踩过的坑,别回去:
-    # · 只删深色芯(RGB各<110) ⇒ 抗锯齿灰晕存活,旧线以"被橡皮擦过"的灰痕留在纸上;
-    # · "R内一切灰性墨迹都算旧版" ⇒ 把恰好离蓝线近的**正式画**也吃掉(眼睛内部被抹空,
-    #   2026-09-02 实撞)。蓝线近旁 ≠ 被取代;被取代的判据是"它的深色芯要被删"。
-    core = (r < 110) & (g < 110) & (b < 110) & ~blue
-    dist_to_blue = ndimage.distance_transform_edt(~blue)
-    core_removed = core & (dist_to_blue <= radius)
-    # 灰晕 = 被删芯周边 3px 内的灰性像素(偏离纸色+低饱和,排除蓝/彩色 trace)
+    # ⚠ 减法路(在扫描上擦旧线)追了三轮阈值仍有漏网灰痕:v1 只删深色芯留灰晕;
+    #   v2 芯+自身晕,通体浅灰的轻笔画整根幸存;v3 R内一切灰性墨迹,右角仍剩
+    #   蓝灰色调/低于阈值的绒毛残迹 —— 每类残迹都是一轮迭代,追不完。
+    # 定稿=**加法重建**:纯纸色画布上只落"要保留的墨迹"(保留黑线/彩色trace/
+    #   保护区整块搬运/蓝转正式线);被删的线在构造上不可能留任何残迹。
     paper_dist = np.abs(img - paper).sum(axis=2)
-    grayish = (paper_dist > 25) & (np.ptp(img, axis=2) < 45) & (b - r <= 15)
-    halo_zone = ndimage.binary_dilation(core_removed, iterations=3)
-    superseded = (core_removed | (grayish & halo_zone)) & ~blue
-    for x0, y0, x1, y1 in protect:
-        superseded[y0:y1, x0:x1] = False
+    ptp = np.ptp(img, axis=2)
+    dist_to_blue = ndimage.distance_transform_edt(~blue)
 
-    out = img.copy()
-    out[superseded] = paper          # 先抹旧版(含灰晕)
-    ink = [40, 40, 40]               # 再落新版:蓝线变正式线(与原线稿墨色一致)
-    out[blue] = ink
+    colored = ((g - r > 40) & (g > 120)) | ((r - g > 40) & (r > 120)) | blue \
+              | ((b - r > 15) & (b > 150))            # 绿/红 trace、蓝、淡水色
+    gray_ink = (paper_dist > 20) & (ptp < 45) & (b - r <= 15)
+    keep = colored | (gray_ink & (dist_to_blue > radius))
+    # 去噪:纯色画布会让 JPEG 噪斑显形(在原扫描里融在纸纹里),<6px 的孤立碎点丢弃
+    lbl, n = ndimage.label(keep)
+    sizes = ndimage.sum_labels(np.ones_like(lbl), lbl, index=np.arange(1, n + 1))
+    keep &= np.isin(lbl, np.arange(1, n + 1)[sizes >= 6])
+    keep = ndimage.binary_dilation(keep, iterations=1)  # 带上保留线自己的抗锯齿晕
+
+    out = np.empty_like(img)
+    out[:] = paper                                     # 画布=纯纸色
+    out[keep] = img[keep]                              # 只落保留墨迹(原像素)
+    for x0, y0, x1, y1 in protect:
+        out[y0:y1, x0:x1] = img[y0:y1, x0:x1]          # 保护区整块原样搬运
+    ink = [40, 40, 40]
+    out[blue] = ink                                    # 蓝线变正式线(含保护区内)
+    superseded = gray_ink & (dist_to_blue <= radius)   # 仅供统计
 
     Image.fromarray(out.astype(np.uint8)).save(out_path)
     stats = dict(blue_px=int(blue.sum()), superseded_px=int(superseded.sum()),

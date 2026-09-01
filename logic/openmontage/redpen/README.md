@@ -61,7 +61,7 @@ python worker/redpen_worker.py <sheet.jpg> [--vlm provider:model] [--ir gold.jso
 
 | 步骤 | 引擎 | 几何闸(输出↔蓝线目标) |
 |---|---|---|
-| 两版合并(采纳蓝线) | 确定性 `merge_versions.py` | ✓ 0.4px |
+| 两版合并(采纳蓝线) | 确定性 `merge_versions.py`(**加法重建**:纸色画布+只落保留墨迹,残迹构造上不存在) | ✓ 0.4px |
 | 删耳环 | **局部裁片编辑**(320²裁片→gpt-image-2 整片编辑→纸色配平+羽化贴回,片外字节不变) | ✓ 0.4px |
 | 批注清除 | 确定性(逐框中位纸色+偏离阈值+膨胀2px 清光晕) | ✓ 0.4px |
 
