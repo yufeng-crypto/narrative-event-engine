@@ -60,9 +60,25 @@ def merge(src_path, out_path, radius=45, protect=()):
     superseded = gray_ink & (dist_to_blue <= radius)   # 仅供统计
 
     Image.fromarray(out.astype(np.uint8)).save(out_path)
+
+    # 切口导出:半径判据逐像素,会把保留笔画拦腰切开(发梢"像被刀割",用户 2026-09-02
+    # 抓的)。合并段自己最清楚在哪里下了刀 —— 保留墨迹与被删墨迹的邻接处=切口,
+    # 坐标交给修补段当种子,不靠事后猜断口。
+    removed = gray_ink & ~keep
+    cut_mask = keep & gray_ink & ndimage.binary_dilation(removed, iterations=2)
+    cys, cxs = np.nonzero(cut_mask)
+    cuts = []
+    taken = np.zeros(len(cxs), dtype=bool)
+    pts = np.stack([cxs, cys], axis=1)
+    for i in range(len(pts)):                      # 20px 贪心去重
+        if taken[i]:
+            continue
+        cuts.append((int(pts[i][0]), int(pts[i][1])))
+        taken |= (np.abs(pts - pts[i]).sum(axis=1) < 20)
+
     stats = dict(blue_px=int(blue.sum()), superseded_px=int(superseded.sum()),
-                 radius=radius, paper=paper)
-    print("merged:", out_path, stats)
+                 radius=radius, paper=paper, cuts=cuts)
+    print("merged:", out_path, {k: v if k != "cuts" else f"{len(v)}处" for k, v in stats.items()})
     return stats
 
 

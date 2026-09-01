@@ -49,7 +49,16 @@ def main():
     Image.open(SRC).crop(FRAME).save(B / "src_cropped.png")
     # 1. 确定性合并:采纳蓝线版几何。PROTECT=面部中心(眼/眉/鼻/口,全src坐标):
     #    那里的蓝色是点缀笔触不是重绘线,不设保护会把正式线蚕食成灰壳
-    merge(SRC, B / "merged_full.png", protect=[(400, 430, 1180, 830)])
+    # ⚠ protect 边界必须走**低墨走廊**:矩形边穿过笔画密集区=刀切边(发梢被齐平切断,
+    #   用户 2026-09-02 抓的)。第二块窄条=发梢走廊(避开领口,防旧领线复活)
+    mstats = merge(SRC, B / "merged_full.png",
+                   protect=[(400, 430, 1180, 830), (400, 830, 640, 905)])
+    # 切口坐标 全src系 → 1536 系(先裁 FRAME 再缩放)
+    fx0, fy0, fx1, fy1 = FRAME
+    sx, sy = 1536 / (fx1 - fx0), 1024 / (fy1 - fy0)
+    cut_pts = [(int((x - fx0) * sx), int((y - fy0) * sy))
+               for x, y in mstats.get("cuts", [])
+               if fx0 <= x < fx1 and fy0 <= y < fy1]
     Image.open(B / "merged_full.png").crop(FRAME).resize((1536, 1024), Image.LANCZOS)\
          .save(B / "merged_1536.png")
     gate(B / "merged_1536.png", "merge")
@@ -149,7 +158,7 @@ def main():
     # 4. 断线修补(用户拍板的分工:代码删得干净,模型接得完整)——
     #    代码骨架端点找断口,模型经外科通道逐框接线,判据=原墨≥95%保留+新增≤60%
     from repair_lines import repair
-    repair(B / "final_clean.png", B / "final_repaired.png", B)
+    repair(B / "final_clean.png", B / "final_repaired.png", B, extra_points=cut_pts)
     gate(B / "final_repaired.png", "repair")
     print("hybrid pipeline done:", B / "final_repaired.png")
 

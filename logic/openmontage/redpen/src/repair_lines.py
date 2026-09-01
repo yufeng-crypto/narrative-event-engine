@@ -21,11 +21,13 @@ from rp_common import image_edit
 
 REPAIR_PROMPT = (
     "This is a zoomed-in crop of a Japanese anime key animation drawing (clean black "
-    "line art on plain light-green paper). Some line strokes are BROKEN mid-stroke. "
-    "Reconnect every broken stroke by drawing the missing short segment along the "
-    "stroke's natural trajectory, matching its thickness and darkness. Do NOT move, "
-    "reshape or redraw any existing line; do NOT add any new element, detail or "
-    "shading. Output the same crop with only the breaks bridged."
+    "line art on plain light-green paper). Some line strokes are BROKEN mid-stroke, and "
+    "some stroke ends are ABRUPTLY CUT OFF (they stop with a blunt edge instead of a "
+    "natural taper). Reconnect every broken stroke by drawing the missing short segment "
+    "along the stroke's natural trajectory, and finish every abruptly-cut stroke end "
+    "with a short natural taper along its existing direction, matching thickness and "
+    "darkness. Do NOT move, reshape or redraw any existing line; do NOT add any new "
+    "element, detail or shading. Output the same crop with only these fixes."
 )
 
 
@@ -48,13 +50,13 @@ def detect_gaps(img, max_gap=16):
     comps = lbl[eys, exs]
     gaps = []
     for i in range(len(pts)):
-        # 端点必须属于足够大的连通域 —— 虚线装饰框的短段(10-20px)天然成对断口,
-        # 不滤会把修补框引到纯纸面上(实撞:1380 个"断口"大半是虚线框)
-        if sizes[comps[i] - 1] < 40:
+        # 连通域下限只为滤噪点碎屑(≥12px);虚线装饰框改由坐标带排除(EXCLUDE_BANDS)——
+        # 早先用 ≥40px 滤虚线,把切割产生的小碎段一并误伤,断口漏检(用户抓的)
+        if sizes[comps[i] - 1] < 12:
             continue
         d = np.abs(pts - pts[i]).sum(axis=1)
         for j in np.nonzero((d > 0) & (d <= max_gap))[0]:
-            if comps[i] != comps[j] and i < j and sizes[comps[j] - 1] >= 40:
+            if comps[i] != comps[j] and i < j and sizes[comps[j] - 1] >= 12:
                 gaps.append(tuple((pts[i] + pts[j]) // 2))
     return gaps
 
@@ -76,10 +78,22 @@ def cluster_boxes(gaps, img_shape, ctx=150, max_boxes=6):
     return [b for b, _ in boxes]
 
 
-def repair(img_path, out_path, work_dir, max_boxes=6):
+EXCLUDE_BANDS = [(0, 25, 1536, 80), (0, 815, 1536, 885), (0, 0, 22, 1024),
+                 (1495, 0, 1536, 1024)]           # 虚线装饰框/纸边坐标带(1536 系)
+
+
+def _excluded(p):
+    return any(x0 <= p[0] < x1 and y0 <= p[1] < y1 for x0, y0, x1, y1 in EXCLUDE_BANDS)
+
+
+def repair(img_path, out_path, work_dir, max_boxes=12, extra_points=()):
+    """extra_points:上游(合并段)导出的切口坐标 —— 权威断口来源,优先于事后检测。"""
     img = np.array(Image.open(img_path).convert("RGB"))
-    gaps = detect_gaps(img.astype(int))
-    print(f"[repair] 检测到断口 {len(gaps)} 处")
+    gaps = detect_gaps(img.astype(int), max_gap=26)
+    gaps = [p for p in gaps if not _excluded(p)]
+    extra = [p for p in extra_points if not _excluded(p)]
+    print(f"[repair] 事后检测断口 {len(gaps)} 处 + 上游切口 {len(extra)} 处")
+    gaps = gaps + list(extra)
     if not gaps:
         Image.fromarray(img).save(out_path)
         return 0
@@ -97,7 +111,11 @@ def repair(img_path, out_path, work_dir, max_boxes=6):
         Image.fromarray(crop).resize((1024, 1024), Image.LANCZOS).save(pin)
         ok = False
         for attempt in range(2):
-            image_edit([pin], REPAIR_PROMPT, pout, size="1024x1024")
+            try:
+                image_edit([pin], REPAIR_PROMPT, pout, size="1024x1024")
+            except Exception as e:                 # 网络闪断只废这一框,不废整跑
+                print(f"[repair box{k} roll{attempt}] 调用失败:{type(e).__name__},跳过本卷")
+                continue
             got = np.array(Image.open(pout).convert("RGB")
                            .resize((x1 - x0, y1 - y0), Image.LANCZOS))
             ink_before, _ = ink_mask(crop.astype(int))
