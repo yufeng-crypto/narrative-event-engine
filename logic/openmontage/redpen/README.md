@@ -62,11 +62,14 @@ python worker/redpen_worker.py <sheet.jpg> [--vlm provider:model] [--ir gold.jso
 | 步骤 | 引擎 | 几何闸(输出↔蓝线目标) |
 |---|---|---|
 | 两版合并(采纳蓝线) | 确定性 `merge_versions.py` | ✓ 0.4px |
-| 删耳环 | **masked inpaint**(外科,gpt-image-2+mask) | ✓ 0.6px |
-| 批注清除 | 确定性(纸面回填/局部去绿) | ✓ 0.6px |
+| 删耳环 | **局部裁片编辑**(320²裁片→gpt-image-2 整片编辑→纸色配平+羽化贴回,片外字节不变) | ✓ 0.4px |
+| 批注清除 | 确定性(逐框中位纸色+偏离阈值+膨胀2px 清光晕) | ✓ 0.4px |
 
 产物:out/头发的飘动方向可以配合_对齐处理/final_clean.png。
 闸=`src/verify_geometry.py`(✗分支已反向验证;✓分支此处首个真阳性)。
+⚠ API 的 mask edit **不可用**:gpt-image 不严格遵守 mask,透明洞常被画成黑块(实测 4/5 卷),
+且 mask 外仍整幅重编码(黑线发灰)——裁片贴回是唯一验证可靠的外科通道。
+已接受的裁片卷=固化资产(判据通过即冻结复用,无 seed 不重掷)。
 案例专属 bbox 当前手工给定;worker 化方向=VLM 的 IR 供 bbox,代码执行。
 
 ## 与研究计划书的对应
